@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5384c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CodeByte" representedClassName="CodeByte" syncable="YES" codeGenerationType="class">
+        <attribute name="dataType" attributeType="String" defaultValueString="Unknown"/>
+        <attribute name="hexValue" attributeType="String" defaultValueString="--"/>
+        <attribute name="intValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isStartOfOpCode" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="lineNumber" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="CodeByte"/>
+        </fetchedProperty>
+    </entity>
+    <elements>
+        <element name="CodeByte" positionX="-1169.64794921875" positionY="-3682.692169189453" width="128" height="146"/>
+    </elements>
 </model>

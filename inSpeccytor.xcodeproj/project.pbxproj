@@ -16,6 +16,11 @@
 		CDF8A1E22531CC2A00F0D216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDF8A1E02531CC2A00F0D216 /* LaunchScreen.storyboard */; };
 		CDF8A1ED2531CC2A00F0D216 /* inSpeccytorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1EC2531CC2A00F0D216 /* inSpeccytorTests.swift */; };
 		CDF8A1F82531CC2A00F0D216 /* inSpeccytorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1F72531CC2A00F0D216 /* inSpeccytorUITests.swift */; };
+		CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDF8A20D2531CCB700F0D216 /* actionbiker.sna */; };
+		CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A2652531DA7900F0D216 /* Data+String.swift */; };
+		CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A26D2531DBC000F0D216 /* StringExtensions.swift */; };
+		CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */; };
+		CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,12 @@
 		CDF8A1F32531CC2A00F0D216 /* inSpeccytorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = inSpeccytorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1F72531CC2A00F0D216 /* inSpeccytorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inSpeccytorUITests.swift; sourceTree = "<group>"; };
 		CDF8A1F92531CC2A00F0D216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDF8A2082531CC4A00F0D216 /* inSpeccytor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = inSpeccytor.entitlements; sourceTree = "<group>"; };
+		CDF8A20D2531CCB700F0D216 /* actionbiker.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = actionbiker.sna; sourceTree = "<group>"; };
+		CDF8A2652531DA7900F0D216 /* Data+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+String.swift"; sourceTree = "<group>"; };
+		CDF8A26D2531DBC000F0D216 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeByteModel.swift; sourceTree = "<group>"; };
+		CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +92,7 @@
 		CDF8A1C62531CC2700F0D216 = {
 			isa = PBXGroup;
 			children = (
+				CDF8A20C2531CC9F00F0D216 /* library */,
 				CDF8A1D12531CC2700F0D216 /* inSpeccytor */,
 				CDF8A1EB2531CC2A00F0D216 /* inSpeccytorTests */,
 				CDF8A1F62531CC2A00F0D216 /* inSpeccytorUITests */,
@@ -101,6 +113,9 @@
 		CDF8A1D12531CC2700F0D216 /* inSpeccytor */ = {
 			isa = PBXGroup;
 			children = (
+				CDF8A2722531E86D00F0D216 /* models */,
+				CDF8A2642531DA6300F0D216 /* extensions */,
+				CDF8A2082531CC4A00F0D216 /* inSpeccytor.entitlements */,
 				CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */,
 				CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */,
 				CDF8A1D62531CC2700F0D216 /* ViewController.swift */,
@@ -109,6 +124,7 @@
 				CDF8A1E02531CC2A00F0D216 /* LaunchScreen.storyboard */,
 				CDF8A1E32531CC2A00F0D216 /* Info.plist */,
 				CDF8A1DB2531CC2700F0D216 /* inSpeccytor.xcdatamodeld */,
+				CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -129,6 +145,31 @@
 				CDF8A1F92531CC2A00F0D216 /* Info.plist */,
 			);
 			path = inSpeccytorUITests;
+			sourceTree = "<group>";
+		};
+		CDF8A20C2531CC9F00F0D216 /* library */ = {
+			isa = PBXGroup;
+			children = (
+				CDF8A20D2531CCB700F0D216 /* actionbiker.sna */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		CDF8A2642531DA6300F0D216 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CDF8A2652531DA7900F0D216 /* Data+String.swift */,
+				CDF8A26D2531DBC000F0D216 /* StringExtensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		CDF8A2722531E86D00F0D216 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +277,7 @@
 			files = (
 				CDF8A1E22531CC2A00F0D216 /* LaunchScreen.storyboard in Resources */,
 				CDF8A1DF2531CC2A00F0D216 /* Assets.xcassets in Resources */,
+				CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,10 +303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
+				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
+				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
+				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = inSpeccytor/inSpeccytor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FAGJTP495D;
 				INFOPLIST_FILE = inSpeccytor/Info.plist;
@@ -449,6 +496,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowrod.inSpeccytor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -459,6 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = inSpeccytor/inSpeccytor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FAGJTP495D;
 				INFOPLIST_FILE = inSpeccytor/Info.plist;
@@ -468,6 +517,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowrod.inSpeccytor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
