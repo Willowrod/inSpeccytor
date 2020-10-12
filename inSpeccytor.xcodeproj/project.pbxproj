@@ -21,6 +21,7 @@
 		CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A26D2531DBC000F0D216 /* StringExtensions.swift */; };
 		CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */; };
 		CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */; };
+		CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8C47825335F8C0014A587 /* RegisterModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		CDF8A26D2531DBC000F0D216 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeByteModel.swift; sourceTree = "<group>"; };
 		CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTableViewCell.swift; sourceTree = "<group>"; };
+		CDF8C47825335F8C0014A587 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */,
+				CDF8C47825335F8C0014A587 /* RegisterModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
+				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +500,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowrod.inSpeccytor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -517,7 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowrod.inSpeccytor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

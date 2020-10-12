@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 hexView.text = "- - - - - - - -"
             }
             let contents = NSData(contentsOfFile: filePath)
-            let data = contents as! Data
+            let data = contents! as Data
             let dataString = data.hexString
             
             print ("Data: \(contents)")
@@ -62,6 +62,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func sortHeaderDataPass(){
+        if (model.count > 26){
+            
+        }
+    }
+    
+    func sortInitialDataPass(){
+        
+    }
     
     
     // Delegates
