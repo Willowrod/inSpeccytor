@@ -12,10 +12,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var fileName: UILabel!
     @IBOutlet weak var hexView: UITextView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var programCounter: UITextField!
+    
+    let pCOffset = 16384 - 27
     
     let textCellIdentifier = "lineCell"
     
     var model: Array<CodeByteModel> = []
+    var header: RegisterModel = RegisterModel()
+    
+    var stopAfterEachOpCode = false;
+    
+    let z80 = Z80()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let data = contents! as Data
             let dataString = data.hexString
             
-            print ("Data: \(contents)")
+           // print ("Data: \(contents)")
             hexView.text = dataString
             expandData(data: dataString)
         } else {
@@ -57,6 +65,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        hexView.text = "\(dataModel)"
             self.model = dataModel
             tableView.reloadData()
+            sortHeaderDataPass()
         } else {
             fileName.text = "Failed to create model"
         }
@@ -64,13 +73,88 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func sortHeaderDataPass(){
         if (model.count > 26){
-            
+            header = RegisterModel.init(header: model)
+            updatePCUI()
         }
     }
     
     func sortInitialDataPass(){
         
     }
+    
+    @IBAction func runFromPC(_ sender: Any) {
+        stopAfterEachOpCode = false
+        updatePC()
+        parseLine()
+    }
+    
+    
+    @IBAction func stepFromPC(_ sender: Any) {
+        stopAfterEachOpCode = true
+        updatePC()
+        parseLine()
+    }
+    
+    func updatePC(){
+        if let pc = programCounter.text, pc.count == 5, let pcInt = Int(pc) {
+            header.registerPC = pcInt
+        }
+    }
+    
+    func updatePCUI(){
+        programCounter.text = "\(header.registerPC)"
+        let modelPosition = header.registerPC - pCOffset
+        if (modelPosition < model.count){
+        let targetRowIndexPath = IndexPath(row: modelPosition, section: 0)
+        tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+        }
+    }
+    
+    func getCodeByte() -> CodeByteModel {
+        let modelPosition = header.registerPC - pCOffset
+        print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
+        return model[modelPosition]
+    }
+    
+    func parseLine(){
+        if (header.registerPC - pCOffset > model.count){
+            print("End Of File")
+            return
+        }
+        let line = "\(header.registerPC)"
+        var opCode = z80.opCode(code: getCodeByte().hexValue)
+        header.registerPC += 1
+        if opCode.isPreCode {
+            opCode = z80.opCode(preCode: opCode.code, code: getCodeByte().hexValue)
+            header.registerPC += 1
+        }
+        
+        if opCode.length == 2 {
+            let byte = getCodeByte().intValue
+            opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(byte)")
+            opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
+            header.registerPC += 1
+        } else if opCode.length == 3 {
+            let low = getCodeByte().intValue
+            header.registerPC += 1
+            let high = getCodeByte().intValue
+            let word = (high * 256) + low
+            opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word)")
+            opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(word)")
+            header.registerPC += 1
+        }
+        updatePCUI()
+        print("\(line): \(opCode.meaning)")
+        if (!stopAfterEachOpCode){
+            parseLine()
+        }
+        
+    }
+    
+    
+    
+    
+    
     
     
     // Delegates

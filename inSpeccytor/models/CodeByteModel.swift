@@ -8,14 +8,14 @@
 import Foundation
 
 class CodeByteModel: Codable {
-    var lineNumber: Int32
+    var lineNumber: Int
     var hexValue: String
-    var intValue: Int16
+    var intValue: Int
     
-    init(withHex: String, line: Int32){
+    init(withHex: String, line: Int){
         hexValue = withHex
         lineNumber = line
-        if let inty = Int16(withHex, radix: 16){
+        if let inty = Int(withHex, radix: 16){
             intValue = inty
         } else {
             intValue = -1

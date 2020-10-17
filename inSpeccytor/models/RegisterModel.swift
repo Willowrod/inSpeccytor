@@ -7,45 +7,112 @@
 
 import Foundation
 
-class RegisterModel: Codable {
+struct RegisterModel: Codable {
     // 8 Bit registers
-    var registerA: Int16
-    var registerB: Int16
-    var registerC: Int16
-    var registerD: Int16
-    var registerE: Int16
-    var registerH: Int16
-    var registerL: Int16
-    var registerF: Int16
+    var registerA: Int = -1
+    var registerB: Int = -1
+    var registerC: Int = -1
+    var registerD: Int = -1
+    var registerE: Int = -1
+    var registerH: Int = -1
+    var registerL: Int = -1
+    var registerF: Int = -1
     
     // 8 Bit swap registers
-    var registerA2: Int16
-    var registerB2: Int16
-    var registerC2: Int16
-    var registerD2: Int16
-    var registerE2: Int16
-    var registerH2: Int16
-    var registerL2: Int16
-    var registerF2: Int16
+    var registerA2: Int = -1
+    var registerB2: Int = -1
+    var registerC2: Int = -1
+    var registerD2: Int = -1
+    var registerE2: Int = -1
+    var registerH2: Int = -1
+    var registerL2: Int = -1
+    var registerF2: Int = -1
     
     // 16 Bit register pairs
-    var registerAF: Int16
-    var registerBC: Int16
-    var registerDE: Int16
-    var registerHL: Int16
+    var registerAF: Int = -1
+    var registerBC: Int = -1
+    var registerDE: Int = -1
+    var registerHL: Int = -1
     
     // 16 Bit swap register pairs
-    var registerAF2: Int16
-    var registerBC2: Int16
-    var registerDE2: Int16
-    var registerHL2: Int16
+    var registerAF2: Int = -1
+    var registerBC2: Int = -1
+    var registerDE2: Int = -1
+    var registerHL2: Int = -1
     
     // 8 Bit other registers
-    var registerI: Int16
-    var registerR: Int16
+    var registerI: Int = -1
+    var registerR: Int = -1
     
     // 16 Bit other registers
-    var registerSP: Int16 // Stack pointer
-    var registerPC: Int16 // Program counter
+    var registerIX: Int = -1
+    var registerIY: Int = -1
+    var registerSP: Int = -1 // Stack pointer
+    var registerPC: Int = -1 // Program counter
     
+    var interupt: Int = -1
+    
+    init() {
+        
+    }
+    
+    init(header:Array<CodeByteModel>) {
+        registerI = header[0].intValue
+        registerL2 = header[1].intValue
+        registerH2 = header[2].intValue
+        registerE2 = header[3].intValue
+        registerD2 = header[4].intValue
+        registerC2 = header[5].intValue
+        registerB2 = header[6].intValue
+        registerF2 = header[7].intValue
+        registerA2 = header[8].intValue
+        registerL = header[9].intValue
+        registerH = header[10].intValue
+        registerE = header[11].intValue
+        registerD = header[12].intValue
+        registerC = header[13].intValue
+        registerB = header[14].intValue
+        registerIY = registerPair(l:header[15].intValue, h:header[16].intValue)
+        registerIX = registerPair(l:header[17].intValue, h:header[18].intValue)
+        interupt = header[19].intValue
+        registerR = header[20].intValue
+        registerF = header[21].intValue
+        registerA = header[22].intValue
+        registerSP = registerPair(l:header[23].intValue, h:header[24].intValue)
+
+        registerHL = registerPair(l: registerL, h: registerH)
+        registerDE = registerPair(l: registerE, h: registerD)
+        registerBC = registerPair(l: registerC, h: registerB)
+        registerAF = registerPair(l: registerF, h: registerA)
+        registerHL2 = registerPair(l: registerL2, h: registerH2)
+        registerDE2 = registerPair(l: registerE2, h: registerD2)
+        registerBC2 = registerPair(l: registerC2, h: registerB2)
+        registerAF2 = registerPair(l: registerF2, h: registerA2)
+
+        print("PC is stored at \(registerSP)")
+
+        if let stackStart = header.firstIndex(where: {$0.lineNumber == registerSP}){
+            registerPC = registerPair(l: header[stackStart].intValue, h: header[stackStart+1].intValue)//Int(stackStart.intValue)
+            print("PC is \(registerPC)")
+        }
+        
+        
+    }
+    
+    func registerPair(l: Int, h: Int) -> Int{
+        print("Low: \(l) : High: \(h)")
+        return (h * 256) + l
+    }
+    
+    /*
+        0        1      byte   I
+        1        8      word   HL',DE',BC',AF'
+        9        10     word   HL,DE,BC,IY,IX
+        19       1      byte   Interrupt (bit 2 contains IFF2, 1=EI/0=DI)
+        20       1      byte   R
+        21       4      words  AF,SP
+        25       1      byte   IntMode (0=IM0/1=IM1/2=IM2)
+        26       1      byte   BorderColor (0..7, not used by Spectrum 1.7)
+        27       49152  bytes  RAM dump 16384..65535
+     */
 }

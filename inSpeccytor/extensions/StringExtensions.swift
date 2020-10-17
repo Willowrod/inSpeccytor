@@ -22,7 +22,7 @@ extension String {
     func splitToBytes(separator: Character) -> [CodeByteModel] {
         let subStringArray = self.split(separator: separator)
         var stringArray: [CodeByteModel] = []
-        var lineNumber: Int32 = 0
+        var lineNumber: Int = 0
         for subString in subStringArray {
             stringArray.append(CodeByteModel(withHex: "\(subString)", line: lineNumber))
             lineNumber+=1

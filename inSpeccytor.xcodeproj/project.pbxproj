@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* Z80.swift */; };
+		CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F3E253B371800A1FFC0 /* OpCode.swift */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
 		CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */; };
 		CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D62531CC2700F0D216 /* ViewController.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CDBB3F39253B360F00A1FFC0 /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
+		CDBB3F3E253B371800A1FFC0 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				CDF8A1E32531CC2A00F0D216 /* Info.plist */,
 				CDF8A1DB2531CC2700F0D216 /* inSpeccytor.xcdatamodeld */,
 				CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */,
+				CDBB3F39253B360F00A1FFC0 /* Z80.swift */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 			children = (
 				CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */,
 				CDF8C47825335F8C0014A587 /* RegisterModel.swift */,
+				CDBB3F3E253B371800A1FFC0 /* OpCode.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
@@ -313,6 +320,7 @@
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
+				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
 			);
