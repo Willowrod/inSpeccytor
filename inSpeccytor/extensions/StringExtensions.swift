@@ -24,7 +24,7 @@ extension String {
         var stringArray: [CodeByteModel] = []
         var lineNumber: Int = 0
         for subString in subStringArray {
-            stringArray.append(CodeByteModel(withHex: "\(subString)", line: lineNumber))
+            stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
             lineNumber+=1
             if (lineNumber == 27){
                 lineNumber = 16384

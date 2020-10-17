@@ -13,18 +13,20 @@ struct OpCode {
     var meaning: String
     var length: Int
     var isPreCode: Bool = false
+    var isEndOfRoutine: Bool
     
-    init(v: String, c: String, m: String, l: Int) {
+    init(v: String, c: String, m: String, l: Int, e: Bool = false) {
         value = v
         code = c
         meaning = m
         length = l
+        isEndOfRoutine = e
         if l == 0 {
             isPreCode = true
         }
     }
     
     func toString() -> String {
-        return "\(code) - \(meaning)"
+        return "\(value):\(code) - \(meaning)"
     }
 }

@@ -117,15 +117,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func parseLine(){
-        if (header.registerPC - pCOffset > model.count){
-            print("End Of File")
-            return
-        }
+        var runLoop = true
+        while runLoop{
         let line = "\(header.registerPC)"
         var opCode = z80.opCode(code: getCodeByte().hexValue)
         header.registerPC += 1
         if opCode.isPreCode {
-            opCode = z80.opCode(preCode: opCode.code, code: getCodeByte().hexValue)
+            opCode = z80.opCode(code: "\(opCode.value)\(getCodeByte().hexValue)")
             header.registerPC += 1
         }
         
@@ -138,17 +136,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let low = getCodeByte().intValue
             header.registerPC += 1
             let high = getCodeByte().intValue
+            
+            if (opCode.meaning.contains("$$")){
             let word = (high * 256) + low
             opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word)")
             opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(word)")
+            } else {
+                opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
+                opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
+            }
             header.registerPC += 1
         }
-        updatePCUI()
-        print("\(line): \(opCode.meaning)")
-        if (!stopAfterEachOpCode){
-            parseLine()
+        print("\(line): \(opCode.toString())")
+        if (opCode.isEndOfRoutine){
+            if (stopAfterEachOpCode){
+                runLoop = false
+                updatePCUI()
+            } else {
+                print(" ---------------------- ")
+            }
         }
-        
+            
+            if (header.registerPC - pCOffset >= model.count){
+                print("End Of File")
+                runLoop = false
+                header.registerPC -= 1
+                updatePCUI()
+            }
+        }
     }
     
     
