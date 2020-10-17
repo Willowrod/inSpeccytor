@@ -112,8 +112,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func getCodeByte() -> CodeByteModel {
         let modelPosition = header.registerPC - pCOffset
-        print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
+        
+       // print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
+        if (modelPosition < model.count){
         return model[modelPosition]
+        } else {
+            return model.first ?? CodeByteModel(withHex: "00", line: modelPosition)
+        }
     }
     
     func parseLine(){
