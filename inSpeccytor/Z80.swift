@@ -15,22 +15,22 @@ class Z80 {
         case "00":
             return OpCode(v: code, c: "NOP", m: "No Operation", l: 1)
         case "01":
-            return OpCode(v: code, c: "LD BC,$$", m: "Load register pair BC with the value $$", l: 3)
+            return OpCode(v: code, c: "LD BC,$$", m: "Load register pair BC with the value $$", l: 3, t: .DATA)
         case "02":
             return OpCode(v: code, c: "LD (BC),A", m: "Load the contents of the memory address stored in BC with the value of register A", l: 1)
             
         case "18":
-            return OpCode(v: code, c: "JR $$", m: "Jump to routine at memory offset +$$", l: 2, e: true)
+            return OpCode(v: code, c: "JR ##", m: "Jump to routine at memory offset 2s $$ (##)", l: 2, e: true, t: .CODE)
             
         case "21":
-            return OpCode(v: code, c: "LD HL,$$", m: "Load the register pair HL with the value $$", l: 3)
+            return OpCode(v: code, c: "LD HL,$$", m: "Load the register pair HL with the value $$", l: 3, t: .DATA)
             
             
         case "28":
-            return OpCode(v: code, c: "JR Z, $$", m: "If the Zero flag is set in register F, jump to routine at memory location $$ - Relative jump", l: 3)
+            return OpCode(v: code, c: "JR Z, ##", m: "If the Zero flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
             
         case "3E":
-            return OpCode(v: code, c: "LD A,$$", m: "Load register A with the value $$", l: 2)
+            return OpCode(v: code, c: "LD A,$$", m: "Load register A with the value $$", l: 2, t: .DATA)
             
         case "47":
             return OpCode(v: code, c: "LD B,A", m: "Load register B with the value of register A", l: 1)
@@ -39,21 +39,21 @@ class Z80 {
             return OpCode(v: code, c: "LD A,B", m: "Load register A with the value of register B", l: 1)
             
         case "C3":
-            return OpCode(v: code, c: "JP $$", m: "Jump to routine at memory location $$", l: 3, e: true)
+            return OpCode(v: code, c: "JP $$", m: "Jump to routine at memory location $$", l: 3, e: true, t: .CODE)
             
         case "CA":
-            return OpCode(v: code, c: "JP Z, $$", m: "If the Zero flag is set in register F, jump to routine at memory location $$", l: 3)
+            return OpCode(v: code, c: "JP Z, $$", m: "If the Zero flag is set in register F, jump to routine at memory location $$", l: 3, t: .CODE)
         case "CB":
             return OpCode(v: code, c: "PreCode", m: "", l: 0)
             
         case "DB":
-            return OpCode(v: code, c: "IN A,($$)", m: "Load register A with an input defined by the current value of A from port $$ (Generally keyboard input) ", l: 2)
+            return OpCode(v: code, c: "IN A,(±)", m: "Load register A with an input defined by the current value of A from port $$ (Generally keyboard input) ", l: 2, t: .VALUE)
             
         case "DD":
             return OpCode(v: code, c: "PreCode", m: "", l: 0)
             
         case "E6":
-            return OpCode(v: code, c: "AND $$", m: "Update A to only contain bytes set in both A and the value $$", l: 2)
+            return OpCode(v: code, c: "AND ±", m: "Update A to only contain bytes set in both A and the value ±", l: 2)
             
         case "ED":
             return OpCode(v: code, c: "PreCode", m: "", l: 0)
@@ -63,16 +63,9 @@ class Z80 {
             
             //DD Op codes
         case "DD21":
-            return OpCode(v: code, c: "LD IX,$$", m: "Load the memory location IX with the value $$", l: 3)
+            return OpCode(v: code, c: "LD IX,$$", m: "Load the memory location IX with the value $$", l: 3, t: .DATA)
         case "DD36":
-            return OpCode(v: code, c: "LD (IX+$1),$2", m: "Load the contents of the memory address stored in (IX + $1) with the value $2", l: 3)
-//
-//        case "00":
-//        return OpCode(v: code, c: "NOP", m: " ", l: 1)
-//        case "01":
-//        return OpCode(v: code, c: "LD BC,$$", m: " ", l: 1)
-//        case "02":
-//        return OpCode(v: code, c: "LD (BC),A", m: " ", l: 1)
+            return OpCode(v: code, c: "LD (IX+$1),$2", m: "Load the contents of the memory address stored in (IX + $1) with the value $2", l: 3, t: .DATA)
         case "03":
         return OpCode(v: code, c: "INC BC", m: " ", l: 1)
         case "04":
@@ -80,7 +73,7 @@ class Z80 {
         case "05":
         return OpCode(v: code, c: "DEC B", m: " ", l: 1)
         case "06":
-        return OpCode(v: code, c: "LD B,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD B,±", m: " ", l: 2)
         case "07":
         return OpCode(v: code, c: "RLC A", m: " ", l: 1)
         case "08":
@@ -96,13 +89,13 @@ class Z80 {
         case "0D":
         return OpCode(v: code, c: "DEC C", m: " ", l: 1)
         case "0E":
-        return OpCode(v: code, c: "LD C,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD C,±", m: " ", l: 2)
         case "0F":
         return OpCode(v: code, c: "RRC A", m: " ", l: 1)
         case "10":
-        return OpCode(v: code, c: "DJ NZ$$", m: " ", l: 3)
+        return OpCode(v: code, c: "DJ NZ$$", m: " ", l: 3, t: .CODE)
         case "11":
-        return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3, t: .DATA)
         case "12":
         return OpCode(v: code, c: "LD (DE),A", m: " ", l: 1)
         case "13":
@@ -112,11 +105,9 @@ class Z80 {
         case "15":
         return OpCode(v: code, c: "DEC D", m: " ", l: 1)
         case "16":
-        return OpCode(v: code, c: "LD D,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD D,±", m: " ", l: 2)
         case "17":
         return OpCode(v: code, c: "RL A", m: " ", l: 1)
-//        case "18":
-//        return OpCode(v: code, c: "JR  $$", m: " ", l: 1)
         case "19":
         return OpCode(v: code, c: "ADD HL,DE", m: " ", l: 1)
         case "1A":
@@ -128,15 +119,13 @@ class Z80 {
         case "1D":
         return OpCode(v: code, c: "DEC E", m: " ", l: 1)
         case "1E":
-        return OpCode(v: code, c: "LD E,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD E,±", m: " ", l: 2)
         case "1F":
         return OpCode(v: code, c: "RRA", m: " ", l: 1)
         case "20":
-        return OpCode(v: code, c: "JR NZ,$$", m: " ", l: 2)
-//        case "21":
-//        return OpCode(v: code, c: "LD HL,$$", m: " ", l: 1)
+        return OpCode(v: code, c: "JR NZ, ##", m: "If the Zero flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
         case "22":
-        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3, t: .DATA)
         case "23":
         return OpCode(v: code, c: "INC HL", m: " ", l: 1)
         case "24":
@@ -144,15 +133,13 @@ class Z80 {
         case "25":
         return OpCode(v: code, c: "DEC H", m: " ", l: 1)
         case "26":
-        return OpCode(v: code, c: "LD H,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD H,$$", m: " ", l: 2, t: .DATA)
         case "27":
         return OpCode(v: code, c: "DAA", m: " ", l: 1)
-//        case "28":
-//        return OpCode(v: code, c: "JR Z,&4546", m: " ", l: 1)
         case "29":
         return OpCode(v: code, c: "ADD HL,HL", m: " ", l: 1)
         case "2A":
-        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3)
+        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3, t: .DATA)
         case "2B":
         return OpCode(v: code, c: "DEC HL", m: " ", l: 1)
         case "2C":
@@ -160,15 +147,15 @@ class Z80 {
         case "2D":
         return OpCode(v: code, c: "DEC L", m: " ", l: 1)
         case "2E":
-        return OpCode(v: code, c: "LD L,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD L,±", m: " ", l: 2)
         case "2F":
         return OpCode(v: code, c: "CP L", m: " ", l: 1)
         case "30":
-        return OpCode(v: code, c: "JR NC,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "JR NC, ##", m: "If the Carry flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
         case "31":
-        return OpCode(v: code, c: "LD SP,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "LD SP,$$", m: " ", l: 3, t: .DATA)
         case "32":
-        return OpCode(v: code, c: "LD ($$),A", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),A", m: " ", l: 3, t: .DATA)
         case "33":
         return OpCode(v: code, c: "INC SP", m: " ", l: 1)
         case "34":
@@ -176,23 +163,21 @@ class Z80 {
         case "35":
         return OpCode(v: code, c: "DEC (HL)", m: " ", l: 1)
         case "36":
-        return OpCode(v: code, c: "LD (HL),$$", m: " ", l: 3)
+        return OpCode(v: code, c: "LD (HL),$$", m: " ", l: 3, t: .DATA)
         case "37":
         return OpCode(v: code, c: "SCF", m: " ", l: 1)
         case "38":
-        return OpCode(v: code, c: "JR C,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "JR C, ##", m: "If the Carry flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
         case "39":
         return OpCode(v: code, c: "ADD HL,SP", m: " ", l: 1)
         case "3A":
-        return OpCode(v: code, c: "LD A,($$)", m: " ", l: 2)
+        return OpCode(v: code, c: "LD A,($$)", m: " ", l: 3, t: .DATA)
         case "3B":
         return OpCode(v: code, c: "DEC SP", m: " ", l: 1)
         case "3C":
         return OpCode(v: code, c: "INC A", m: " ", l: 1)
         case "3D":
         return OpCode(v: code, c: "DEC A", m: " ", l: 1)
-//        case "3E":
-//        return OpCode(v: code, c: "LD A,$$", m: " ", l: 1)
         case "3F":
         return OpCode(v: code, c: "CCF", m: " ", l: 1)
         case "40":
@@ -209,8 +194,6 @@ class Z80 {
         return OpCode(v: code, c: "LD B,L", m: " ", l: 1)
         case "46":
         return OpCode(v: code, c: "LD B,(HL)", m: " ", l: 1)
-//        case "47":
-//        return OpCode(v: code, c: "LD B,A", m: " ", l: 1)
         case "48":
         return OpCode(v: code, c: "LD C,B", m: " ", l: 1)
         case "49":
@@ -307,8 +290,6 @@ class Z80 {
         return OpCode(v: code, c: "HALT", m: " ", l: 1)
         case "77":
         return OpCode(v: code, c: "LD (HL),A", m: " ", l: 1)
-//        case "78":
-//        return OpCode(v: code, c: "LD A,B", m: " ", l: 1)
         case "79":
         return OpCode(v: code, c: "LD A,C", m: " ", l: 1)
         case "7A":
@@ -456,31 +437,25 @@ class Z80 {
         case "C1":
         return OpCode(v: code, c: "POP BC", m: " ", l: 1)
         case "C2":
-        return OpCode(v: code, c: "JP NZ,$$", m: " ", l: 3)
-//        case "C3":
-//        return OpCode(v: code, c: "JP $$", m: " ", l: 1)
+        return OpCode(v: code, c: "JP NZ,$$", m: " ", l: 3, t: .CODE)
         case "C4":
-        return OpCode(v: code, c: "CALL NZ,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "CALL NZ,$$", m: " ", l: 3, t: .CODE)
         case "C5":
         return OpCode(v: code, c: "PUSH BC", m: " ", l: 1)
         case "C6":
-        return OpCode(v: code, c: "ADD A,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "ADD A,±", m: " ", l: 2)
         case "C7":
-        return OpCode(v: code, c: "RST $$", m: " ", l: 2)
+        return OpCode(v: code, c: "RST 0", m: " ", l: 1)
         case "C8":
-        return OpCode(v: code, c: "RET Z", m: " ", l: 1)
+            return OpCode(v: code, c: "RET Z", m: " ", l: 1)
         case "C9":
-        return OpCode(v: code, c: "RET", m: " ", l: 1)
-//        case "CA":
-//        return OpCode(v: code, c: "JP Z,$$", m: " ", l: 1)
-//        case "CB":
-//        return OpCode(v: code, c: "****CB****", m: " ", l: 1)
+        return OpCode(v: code, c: "RET", m: " ", l: 1, e: true)
         case "CC":
-        return OpCode(v: code, c: "CALL Z,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "CALL Z,$$", m: " ", l: 3, t: .CODE)
         case "CD":
-        return OpCode(v: code, c: "CALL $$", m: " ", l: 3)
+        return OpCode(v: code, c: "CALL $$", m: " ", l: 3, t: .CODE)
         case "CE":
-        return OpCode(v: code, c: "ADC A,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "ADC A,±", m: " ", l: 2)
         case "CF":
         return OpCode(v: code, c: "RST &08", m: " ", l: 1)
         case "D0":
@@ -488,15 +463,15 @@ class Z80 {
         case "D1":
         return OpCode(v: code, c: "POP DE", m: " ", l: 1)
         case "D2":
-        return OpCode(v: code, c: "JP NC,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "JP NC,$$", m: " ", l: 3, t: .CODE)
         case "D3":
-        return OpCode(v: code, c: "OUT ($$),A", m: " ", l: 2)
+        return OpCode(v: code, c: "OUT (±),A", m: " ", l: 2)
         case "D4":
-        return OpCode(v: code, c: "CALL NC,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "CALL NC,$$", m: " ", l: 3, t: .CODE)
         case "D5":
         return OpCode(v: code, c: "PUSH DE", m: " ", l: 1)
         case "D6":
-        return OpCode(v: code, c: "SUB A,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "SUB A,±", m: " ", l: 2)
         case "D7":
         return OpCode(v: code, c: "RST &10", m: " ", l: 1)
         case "D8":
@@ -504,15 +479,11 @@ class Z80 {
         case "D9":
         return OpCode(v: code, c: "EXX", m: " ", l: 1)
         case "DA":
-        return OpCode(v: code, c: "JP C,$$", m: " ", l: 3)
-//        case "DB":
-//        return OpCode(v: code, c: "IN A,($$)", m: " ", l: 1)
+        return OpCode(v: code, c: "JP C,$$", m: " ", l: 3, t: .CODE)
         case "DC":
-        return OpCode(v: code, c: "CALL C,$$", m: " ", l: 3)
-//        case "DD":
-//        return OpCode(v: code, c: "****DD****", m: " ", l: 1)
+        return OpCode(v: code, c: "CALL C,$$", m: " ", l: 3, t: .CODE)
         case "DE":
-        return OpCode(v: code, c: "SBC A,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "SBC A,±", m: " ", l: 2)
         case "DF":
         return OpCode(v: code, c: "RST &18", m: " ", l: 1)
         case "E0":
@@ -520,15 +491,13 @@ class Z80 {
         case "E1":
         return OpCode(v: code, c: "POP HL", m: " ", l: 1)
         case "E2":
-        return OpCode(v: code, c: "JP PO,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "JP PO,$$", m: " ", l: 3, t: .CODE)
         case "E3":
         return OpCode(v: code, c: "EX (SP),HL", m: " ", l: 1)
         case "E4":
-        return OpCode(v: code, c: "CALL PO,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "CALL PO,$$", m: " ", l: 3, t: .CODE)
         case "E5":
         return OpCode(v: code, c: "PUSH HL", m: " ", l: 1)
-//        case "E6":
-//        return OpCode(v: code, c: "AND $$", m: " ", l: 1)
         case "E7":
         return OpCode(v: code, c: "RST &20", m: " ", l: 1)
         case "E8":
@@ -536,15 +505,13 @@ class Z80 {
         case "E9":
         return OpCode(v: code, c: "JP (HL)", m: " ", l: 1)
         case "EA":
-        return OpCode(v: code, c: "JP PE,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "JP PE,$$", m: " ", l: 3, t: .CODE)
         case "EB":
         return OpCode(v: code, c: "EX DE,HL", m: " ", l: 1)
         case "EC":
-        return OpCode(v: code, c: "CALL PE,$$", m: " ", l: 3)
-//        case "ED":
-//        return OpCode(v: code, c: "****ED****", m: " ", l: 1)
+        return OpCode(v: code, c: "CALL PE,$$", m: " ", l: 3, t: .CODE)
         case "EE":
-        return OpCode(v: code, c: "XOR $$", m: " ", l: 2)
+        return OpCode(v: code, c: "XOR ±", m: " ", l: 2)
         case "EF":
         return OpCode(v: code, c: "RST &28", m: " ", l: 1)
         case "F0":
@@ -552,15 +519,15 @@ class Z80 {
         case "F1":
         return OpCode(v: code, c: "POP AF", m: " ", l: 1)
         case "F2":
-        return OpCode(v: code, c: "JP P,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "JP P,$$", m: " ", l: 3, t: .CODE)
         case "F3":
         return OpCode(v: code, c: "DI", m: " ", l: 1)
         case "F4":
-        return OpCode(v: code, c: "CALL P,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "CALL P,$$", m: " ", l: 3, t: .CODE)
         case "F5":
         return OpCode(v: code, c: "PUSH AF", m: " ", l: 1)
         case "F6":
-        return OpCode(v: code, c: "OR $$", m: " ", l: 2)
+        return OpCode(v: code, c: "OR ±", m: " ", l: 2)
         case "F7":
         return OpCode(v: code, c: "RST &30", m: " ", l: 1)
         case "F8":
@@ -568,25 +535,21 @@ class Z80 {
         case "F9":
         return OpCode(v: code, c: "LD SP,HL", m: " ", l: 1)
         case "FA":
-        return OpCode(v: code, c: "JP M,$$", m: " ", l: 3)
+        return OpCode(v: code, c: "JP M,$$", m: " ", l: 3, t: .CODE)
         case "FB":
         return OpCode(v: code, c: "EI", m: " ", l: 1)
         case "FC":
-        return OpCode(v: code, c: "CALL M,$$", m: " ", l: 3)
-//        case "FD":
-//        return OpCode(v: code, c: "****FD****", m: " ", l: 1)
+        return OpCode(v: code, c: "CALL M,$$", m: " ", l: 3, t: .CODE)
         case "FE":
-        return OpCode(v: code, c: "CP $$", m: " ", l: 2)
+        return OpCode(v: code, c: "CP ±", m: " ", l: 2)
         case "FF":
         return OpCode(v: code, c: "RST &38", m: " ", l: 1)
         case "DD09":
         return OpCode(v: code, c: "ADD IX,BC", m: " ", l: 1)
         case "DD19":
         return OpCode(v: code, c: "ADD IX,DE", m: " ", l: 1)
-//        case "DD21":
-//        return OpCode(v: code, c: "LD IX,$$", m: " ", l: 1)
         case "DD22":
-        return OpCode(v: code, c: "LD ($$),IX", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),IX", m: " ", l: 3, t: .DATA)
         case "DD23":
         return OpCode(v: code, c: "INC IX", m: " ", l: 1)
         case "DD24":
@@ -594,11 +557,11 @@ class Z80 {
         case "DD25":
         return OpCode(v: code, c: "DEC IXH", m: " ", l: 1)
         case "DD26":
-        return OpCode(v: code, c: "LD IXH,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD IXH,±", m: " ", l: 2)
         case "DD29":
         return OpCode(v: code, c: "ADD IX,IX", m: " ", l: 1)
         case "DD2A":
-        return OpCode(v: code, c: "LD IX,($$)", m: " ", l: 3)
+        return OpCode(v: code, c: "LD IX,($$)", m: " ", l: 3, t: .DATA)
         case "DD2B":
         return OpCode(v: code, c: "DEC IX", m: " ", l: 1)
         case "DD2C":
@@ -606,13 +569,11 @@ class Z80 {
         case "DD2D":
         return OpCode(v: code, c: "DEC IXL", m: " ", l: 1)
         case "DD2E":
-        return OpCode(v: code, c: "LD IXL,$$", m: " ", l: 2)
+        return OpCode(v: code, c: "LD IXL,±", m: " ", l: 2)
         case "DD34":
         return OpCode(v: code, c: "INC (IX+0)", m: " ", l: 1)
         case "DD35":
         return OpCode(v: code, c: "DEC (IX+0)", m: " ", l: 1)
-//        case "DD36":
-//        return OpCode(v: code, c: "LD (IX+0),$$", m: " ", l: 1)
         case "DD39":
         return OpCode(v: code, c: "ADD IX,SP", m: " ", l: 1)
         case "DD44":
@@ -1810,7 +1771,7 @@ class Z80 {
         case "ED42":
         return OpCode(v: code, c: "SBC HL,BC", m: " ", l: 1)
         case "ED43":
-        return OpCode(v: code, c: "LD ($$),BC", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),BC", m: " ", l: 3, t: .DATA)
         case "ED44":
         return OpCode(v: code, c: "NEG", m: " ", l: 1)
         case "ED45":
@@ -1826,7 +1787,7 @@ class Z80 {
         case "ED4A":
         return OpCode(v: code, c: "ADC HL,BC", m: " ", l: 1)
         case "ED4B":
-        return OpCode(v: code, c: "LD BC,($$)", m: " ", l: 3)
+        return OpCode(v: code, c: "LD BC,($$)", m: " ", l: 3, t: .DATA)
         case "ED4C":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED4D":
@@ -1842,7 +1803,7 @@ class Z80 {
         case "ED52":
         return OpCode(v: code, c: "SBC HL,DE", m: " ", l: 1)
         case "ED53":
-        return OpCode(v: code, c: "LD ($$),DE", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),DE", m: " ", l: 3, t: .DATA)
         case "ED54":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED55":
@@ -1858,7 +1819,7 @@ class Z80 {
         case "ED5A":
         return OpCode(v: code, c: "ADC HL,DE", m: " ", l: 1)
         case "ED5B":
-        return OpCode(v: code, c: "LD DE,($$)", m: " ", l: 3)
+        return OpCode(v: code, c: "LD DE,($$)", m: " ", l: 3, t: .DATA)
         case "ED5C":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED5D":
@@ -1874,7 +1835,7 @@ class Z80 {
         case "ED62":
         return OpCode(v: code, c: "SBC HL,HL", m: " ", l: 1)
         case "ED63":
-        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3, t: .DATA)
         case "ED64":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED65":
@@ -1890,7 +1851,7 @@ class Z80 {
         case "ED6A":
         return OpCode(v: code, c: "ADC HL,HL", m: " ", l: 1)
         case "ED6B":
-        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3)
+        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3, t: .DATA)
         case "ED6C":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED6D":
@@ -1906,7 +1867,7 @@ class Z80 {
         case "ED72":
         return OpCode(v: code, c: "SBC HL,SP", m: " ", l: 1)
         case "ED73":
-        return OpCode(v: code, c: "LD ($$),SP", m: " ", l: 3)
+        return OpCode(v: code, c: "LD ($$),SP", m: " ", l: 3, t: .DATA)
         case "ED74":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED75":

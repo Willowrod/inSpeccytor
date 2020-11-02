@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */; };
+		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* Z80.swift */; };
 		CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F3E253B371800A1FFC0 /* OpCode.swift */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		CDBB3F39253B360F00A1FFC0 /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
 		CDBB3F3E253B371800A1FFC0 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD59ECF5254EC54C00B56C1A /* constants */ = {
+			isa = PBXGroup;
+			children = (
+				CD59ED07254EC83B00B56C1A /* TargetType.swift */,
+			);
+			path = constants;
+			sourceTree = "<group>";
+		};
 		CDF8A1C62531CC2700F0D216 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 		CDF8A1D12531CC2700F0D216 /* inSpeccytor */ = {
 			isa = PBXGroup;
 			children = (
+				CD59ECF5254EC54C00B56C1A /* constants */,
 				CDF8A2722531E86D00F0D216 /* models */,
 				CDF8A2642531DA6300F0D216 /* extensions */,
 				CDF8A2082531CC4A00F0D216 /* inSpeccytor.entitlements */,
@@ -132,6 +145,7 @@
 				CDF8A1DB2531CC2700F0D216 /* inSpeccytor.xcdatamodeld */,
 				CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */,
 				CDBB3F39253B360F00A1FFC0 /* Z80.swift */,
+				CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -314,6 +328,7 @@
 			files = (
 				CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
+				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
 				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
@@ -322,6 +337,7 @@
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
+				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
