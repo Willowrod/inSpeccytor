@@ -17,6 +17,7 @@ struct OpCode {
     var isPreCode: Bool = false
     var isEndOfRoutine: Bool
     var targetType: TargetType.TypeOfTarget
+    var lineType: TargetType.TypeOfTarget = .NOTARGET
     var isJumpPosition = false
     
     init(v: String, c: String, m: String, l: Int, e: Bool = false, t: TargetType.TypeOfTarget = .NOTARGET) {

@@ -9,6 +9,6 @@ import Foundation
 
 class TargetType {
     enum TypeOfTarget {
-        case CODE, DATA, TEXT, GRAPHICS, VALUE, NOTARGET
+        case CODE, DATA, TEXT, GRAPHICS, VALUE, RELATIVE, NOTARGET
     }
 }

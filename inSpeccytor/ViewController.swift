@@ -199,6 +199,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 header.registerPC -= 1
                 updatePCUI()
                 mainTableView.reloadData()
+                markPositions()
             }
         }
         
@@ -207,17 +208,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func markPositions(){
         let tempCodes = opCodes
         tempCodes.forEach({ opCode in
-            if (opCode.target > 0 && opCode.targetType == .CODE){
-                if let target = self.opCodes.firstIndex(where: {$0.line == opCode.target}) {     
-                    //target.isJumpPosition = true
+            if (opCode.target > 0){
+                if let target = self.opCodes.firstIndex(where: {$0.line == opCode.target}) {
+                   // print("Target: \(target.line) is jump position")
+//                    let jumpPos = opCodes[target]
+//                    print("Target: \(jumpPos.line) is jump position")
+                    //opCodes[target].isJumpPosition = true
+                    opCodes[target].lineType = opCode.targetType
                 }
-            
             }
         })
-
-        
-        
-        
+        mainTableView.reloadData()
     }
     
     
@@ -245,7 +246,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (tableView == mainTableView){
          let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
             let thisLine = self.opCodes[row]
-            cell.lineNumber.text = "\(thisLine.line)"
+            switch (thisLine.lineType){
+            case .CODE:
+                cell.lineNumber.text = "++ \(thisLine.line)"
+                break
+            case .RELATIVE:
+                cell.lineNumber.text = "+ \(thisLine.line)"
+                break
+            case .DATA:
+                cell.lineNumber.text = "D \(thisLine.line)"
+                break
+            case .TEXT:
+                cell.lineNumber.text = "T \(thisLine.line)"
+                break
+            case .GRAPHICS:
+                cell.lineNumber.text = "G \(thisLine.line)"
+                break
+            default:
+                cell.lineNumber.text = "\(thisLine.line)"
+                break
+                
+                
+            }
             cell.opCode.text = thisLine.code
             cell.meaning.text = "\(thisLine.meaning)"
             return cell

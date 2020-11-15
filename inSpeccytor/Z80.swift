@@ -20,14 +20,14 @@ class Z80 {
             return OpCode(v: code, c: "LD (BC),A", m: "Load the contents of the memory address stored in BC with the value of register A", l: 1)
             
         case "18":
-            return OpCode(v: code, c: "JR ##", m: "Jump to routine at memory offset 2s $$ (##)", l: 2, e: true, t: .CODE)
+            return OpCode(v: code, c: "JR ##", m: "Jump to routine at memory offset 2s $$ (##)", l: 2, e: true, t: .RELATIVE)
             
         case "21":
             return OpCode(v: code, c: "LD HL,$$", m: "Load the register pair HL with the value $$", l: 3, t: .DATA)
             
             
         case "28":
-            return OpCode(v: code, c: "JR Z, ##", m: "If the Zero flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
+            return OpCode(v: code, c: "JR Z, ##", m: "If the Zero flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
             
         case "3E":
             return OpCode(v: code, c: "LD A,$$", m: "Load register A with the value $$", l: 2, t: .DATA)
@@ -93,7 +93,7 @@ class Z80 {
         case "0F":
         return OpCode(v: code, c: "RRC A", m: " ", l: 1)
         case "10":
-        return OpCode(v: code, c: "DJ NZ$$", m: " ", l: 3, t: .CODE)
+        return OpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
         case "11":
         return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3, t: .DATA)
         case "12":
@@ -123,7 +123,7 @@ class Z80 {
         case "1F":
         return OpCode(v: code, c: "RRA", m: " ", l: 1)
         case "20":
-        return OpCode(v: code, c: "JR NZ, ##", m: "If the Zero flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
+        return OpCode(v: code, c: "JR NZ, ##", m: "If the Zero flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
         case "22":
         return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3, t: .DATA)
         case "23":
@@ -151,7 +151,7 @@ class Z80 {
         case "2F":
         return OpCode(v: code, c: "CP L", m: " ", l: 1)
         case "30":
-        return OpCode(v: code, c: "JR NC, ##", m: "If the Carry flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
+        return OpCode(v: code, c: "JR NC, ##", m: "If the Carry flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
         case "31":
         return OpCode(v: code, c: "LD SP,$$", m: " ", l: 3, t: .DATA)
         case "32":
@@ -167,7 +167,7 @@ class Z80 {
         case "37":
         return OpCode(v: code, c: "SCF", m: " ", l: 1)
         case "38":
-        return OpCode(v: code, c: "JR C, ##", m: "If the Carry flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .CODE)
+        return OpCode(v: code, c: "JR C, ##", m: "If the Carry flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
         case "39":
         return OpCode(v: code, c: "ADD HL,SP", m: " ", l: 1)
         case "3A":
