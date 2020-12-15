@@ -11,6 +11,12 @@
 		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* Z80.swift */; };
 		CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F3E253B371800A1FFC0 /* OpCode.swift */; };
+		CDCB61C925881786008DD916 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61C825881786008DD916 /* Color.swift */; };
+		CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61CD258817C8008DD916 /* Bitmap.swift */; };
+		CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */; };
+		CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */; };
+		CDCB61DD2588DC56008DD916 /* Int+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */; };
+		CDCB61E22588F030008DD916 /* aticatac.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDCB61E12588F030008DD916 /* aticatac.sna */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
 		CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */; };
 		CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D62531CC2700F0D216 /* ViewController.swift */; };
@@ -50,6 +56,12 @@
 		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		CDBB3F39253B360F00A1FFC0 /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
 		CDBB3F3E253B371800A1FFC0 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
+		CDCB61C825881786008DD916 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		CDCB61CD258817C8008DD916 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
+		CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Bitmap.swift"; sourceTree = "<group>"; };
+		CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bitwise.swift"; sourceTree = "<group>"; };
+		CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Attributes.swift"; sourceTree = "<group>"; };
+		CDCB61E12588F030008DD916 /* aticatac.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = aticatac.sna; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +158,8 @@
 				CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */,
 				CDBB3F39253B360F00A1FFC0 /* Z80.swift */,
 				CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */,
+				CDCB61C825881786008DD916 /* Color.swift */,
+				CDCB61CD258817C8008DD916 /* Bitmap.swift */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -171,6 +185,7 @@
 		CDF8A20C2531CC9F00F0D216 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				CDCB61E12588F030008DD916 /* aticatac.sna */,
 				CDF8A20D2531CCB700F0D216 /* actionbiker.sna */,
 			);
 			path = library;
@@ -181,6 +196,9 @@
 			children = (
 				CDF8A2652531DA7900F0D216 /* Data+String.swift */,
 				CDF8A26D2531DBC000F0D216 /* StringExtensions.swift */,
+				CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */,
+				CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */,
+				CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -302,6 +320,7 @@
 				CDF8A1DF2531CC2A00F0D216 /* Assets.xcassets in Resources */,
 				CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
+				CDCB61E22588F030008DD916 /* aticatac.sna in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,14 +349,19 @@
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
+				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
 				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
+				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
+				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
+				CDCB61C925881786008DD916 /* Color.swift in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
+				CDCB61DD2588DC56008DD916 /* Int+Attributes.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

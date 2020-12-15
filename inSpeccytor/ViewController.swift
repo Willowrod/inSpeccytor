@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var programCounter: UITextField!
+    @IBOutlet weak var screenRender: UIImageView!
     
     let pCOffset = 16384 - 27
     
@@ -24,26 +25,115 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var opCodes: Array<OpCode> = []
     var header: RegisterModel = RegisterModel()
     
-    var stopAfterEachOpCode = false;
+    var stopAfterEachOpCode = false
+    
+    var shouldDisplayScreen = false
+    
+    let borderX = 32
+    let borderY = 24
     
     let z80 = Z80()
+    
+    var frames = 1
+    var seconds = 1
+    var lastcount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setUpImageView()
         mainTableView.delegate = self
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
+        let displayLink = CADisplayLink(target: self, selector: #selector(update))
+        displayLink.add(to: .main, forMode: .common)
+    
         doIt()
+      //  blitMeAScreen()
+    }
+    
+    func blitMeAScreen(flashing: Bool){
+        if (shouldDisplayScreen){
+        var bitmap = Bitmap(width: 320, height: 240, color: .white)
+            
+        var x = 0
+            var y = 0
+            for a in 22528...23295 {
+                let byteValue = getCodeByteValue(position: a)
+                bitmap.attributes(byte: byteValue, x: (x*8) + borderX, y: (y*8) + borderY, flashing: flashing)
+                x += 1
+                if x > 31 {
+                    x = 0
+                    y += 1
+                }
+            }
+        x = 0
+            y = 0
+            for a in 16384...18431 {
+                let byteValue = getCodeByteValue(position: a)
+                bitmap.blit(byte: byteValue, x: (x*8) + borderX, y: (y + borderY), color: Color.black)
+                x += 1
+                if x > 31 {
+                    x = 0
+                    y += 8
+                    if (y > 63) {
+                        y -= 63
+                    }
+                }
+            }
+             x = 0
+                 y = 0
+            for a in 18432...20479 {
+                let byteValue = getCodeByteValue(position: a)
+                bitmap.blit(byte: byteValue, x: (x*8) + borderX, y: (y + borderY + 64), color: Color.black)
+                x += 1
+                if x > 31 {
+                    x = 0
+                    y += 8
+                    if (y > 63) {
+                        y -= 63
+                    }
+                }
+            }
+            x = 0
+                y = 0
+            for a in 20480...22527 {
+                let byteValue = getCodeByteValue(position: a)
+                bitmap.blit(byte: byteValue, x: (x*8) + borderX, y: (y + borderY + 128), color: Color.black)
+                //print("Byte at \((x*8) + 32), \(y + 156) = \(byteValue)")
+                x += 1
+                if x > 31 {
+                    x = 0
+                    y += 8
+                    if (y > 63) {
+                        y -= 63
+                    }
+                }
+            }
+        screenRender.image = UIImage(bitmap: bitmap)
+        }
     }
 
+    @objc func update(_ displayLink: CADisplayLink) {
+        let timestamp = displayLink.timestamp
+        let intedTimestamp = Int(timestamp)
+        let partial = timestamp - Double(intedTimestamp)
+        if lastcount < intedTimestamp {
+            lastcount = intedTimestamp
+            seconds += 1
+          //  print ("FPS: \(frames / seconds)")
+            hexView.text = "FPS: \(frames / seconds)"
+        }
+        frames += 1
+        
+        blitMeAScreen(flashing: partial > 0.5)
+    }
     
     func doIt(){
         // Load the snapshot
-        if let filePath = Bundle.main.path(forResource: "actionbiker", ofType: "sna"){
+        if let filePath = Bundle.main.path(forResource: "aticatac", ofType: "sna"){
             print("File found - \(filePath)")
             if let index = filePath.lastIndex(of: "/"){
             let name = filePath.substring(from: index)
@@ -72,6 +162,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.model = dataModel
             tableView.reloadData()
             sortHeaderDataPass()
+            shouldDisplayScreen = true
         } else {
             fileName.text = "Failed to create model"
         }
@@ -135,6 +226,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             return model.first ?? CodeByteModel(withHex: "00", line: modelPosition)
         }
+    }
+    
+    func getCodeByteValue(position: Int) -> Int {
+        let modelPosition = position - pCOffset
+        if (modelPosition < model.count){
+            return model[modelPosition].intValue
+        }
+        return 0
     }
     
     func parseLine(){
@@ -296,5 +395,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+}
+
+extension ViewController {
+    func setUpImageView() {
+        screenRender.translatesAutoresizingMaskIntoConstraints = false
+        screenRender.layer.magnificationFilter = .nearest
+//        screenRender.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        screenRender.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        screenRender.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+//        screenRender.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+//        screenRender.contentMode = .scaleAspectFit
+        screenRender.backgroundColor = .black
+    }
 }
 
