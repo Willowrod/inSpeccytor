@@ -54,17 +54,18 @@ struct Bitmap {
     
     mutating func blit(byte: Int, x: Int, y: Int, color: Color){
      //   print ("Plotting byte at \(x), \(y)")
-        if byte >= 0 && byte < 256 {
+   //     if byte >= 0 && byte < 256 {
             for a in 0...7 {
                 let position = (y * width) + x + 7 - a
-                if byte.isSet(bit: a){
-                //    print ("position \(position) is SET")
-                    pixels[position] = ink[position]
-                } else {
-             //       print ("position \(position) is OFF")
-                    pixels[position] = paper[position]
-                }
+                pixels[position] = (byte & (1 << a)) > 0 ? ink[position] : paper[position] //   //byte.isSet(bit: a)
+//                if byte.isSet(bit: a){
+//                //    print ("position \(position) is SET")
+//                    pixels[position] = ink[position]
+//                } else {
+//             //       print ("position \(position) is OFF")
+//                    pixels[position] = paper[position]
+//                }
             }
-        }
+    //    }
     }
 }

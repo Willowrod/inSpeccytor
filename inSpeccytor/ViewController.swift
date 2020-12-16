@@ -255,7 +255,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 opCode.code = "###\(opCode.code)"
                 } else if opCode.code.contains("##"){ // Two's compliment
                 var twos = Int8(bitPattern: ~byte)
+                    if (byte == 127){
+                        twos = -1
+                    } else {
                 twos -= 1 // Why is this -1 and not 1?
+                    }
                 let targetLine = header.registerPC - 1 - Int(twos)
                 opCode.target = targetLine
                 opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(targetLine)")
