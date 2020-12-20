@@ -1943,7 +1943,7 @@ class OpCodeDefs {
             
             
         default:
-            return OpCode(v: code, c: "Unknown", m: "Value is not known", l: -1, e: true)
+            return OpCode(v: code, c: "Unknown", m: "Value is not known", l: 1, e: true)
 
         }
         

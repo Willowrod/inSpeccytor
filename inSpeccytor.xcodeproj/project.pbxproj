@@ -10,6 +10,7 @@
 		CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */; };
 		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
+		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
 		CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */; };
 		CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F3E253B371800A1FFC0 /* OpCode.swift */; };
 		CDCB61C925881786008DD916 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61C825881786008DD916 /* Color.swift */; };
@@ -64,6 +65,7 @@
 		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
+		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
 		CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCodeDefs.swift; sourceTree = "<group>"; };
 		CDBB3F3E253B371800A1FFC0 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
 		CDCB61C825881786008DD916 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */,
 				CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */,
 				CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */,
+				CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
 				CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */,
+				CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,

@@ -166,6 +166,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //hexView.text = dataString
             sortHeaderDataPass(data: dataString)
             expandData(data: dataString)
+            startProcessor()
         } else {
             fileName.text = "Snapshot failed to load"
             hexView.text = "- - - - - - - -"
@@ -346,7 +347,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    
+    func startProcessor(){
+        DispatchQueue.background(background: {
+            self.z80.process()
+        }, completion:{
+            // when background job finished, do something in main thread
+        })
+    }
     
     
     

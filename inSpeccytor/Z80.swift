@@ -187,6 +187,31 @@ class Z80 {
         print ("Ram size = \(ram.count)")
     }
     
+    func process() {
+        pc().ld(value: 0)
+        let ops = OpCodeDefs()
+        while pc().value() < 65540 {
+            let count = pc().value()
+            let opCd = ram[Int(count)]
+            
+            var code = ops.opCode(code: String(opCd, radix: 16).padded())
+            
+            if code.isPreCode {
+                let opCd2 = ram[Int(count+1)]
+                code = ops.opCode(code: "\(code.value)\(String(opCd2, radix: 16).padded())")
+                pc().ld(value: UInt(count) + 1)
+            }
+            print("\(count) - \(code.code)")
+            pc().ld(value: UInt(count) + UInt(code.length))
+            if (pc().value() >= 65535){
+                pc().ld(value: 0)
+                a().ld(value: a().value() + 1)
+            }
+        }
+    }
+    
+    
+    
     func opCode(code: String) {
         switch(code.uppercased()){
         // case"00":
