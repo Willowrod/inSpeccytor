@@ -48,7 +48,7 @@ struct RegisterModel: Codable {
     var registerIX: Int = -1
     var registerIY: Int = -1
     var registerSP: Int = -1 // Stack pointer
-    var registerPC: Int = -1 // Program counter
+    var registerPC: Int = 0 // Program counter
     
     var interupt: Int = -1
     

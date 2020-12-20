@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */; };
 		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
-		CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* Z80.swift */; };
+		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
+		CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */; };
 		CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F3E253B371800A1FFC0 /* OpCode.swift */; };
 		CDCB61C925881786008DD916 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61C825881786008DD916 /* Color.swift */; };
 		CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61CD258817C8008DD916 /* Bitmap.swift */; };
@@ -17,6 +18,14 @@
 		CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */; };
 		CDCB61DD2588DC56008DD916 /* Int+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */; };
 		CDCB61E22588F030008DD916 /* aticatac.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDCB61E12588F030008DD916 /* aticatac.sna */; };
+		CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECAF258CE7D900C8E8AF /* Z80.swift */; };
+		CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECB5258CE84D00C8E8AF /* Register.swift */; };
+		CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */; };
+		CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECC2258CFC8B00C8E8AF /* Accumilator.swift */; };
+		CDE3ECCC258F525500C8E8AF /* 128k+3.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECC8258F525500C8E8AF /* 128k+3.rom */; };
+		CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECC9258F525500C8E8AF /* 128k+2.rom */; };
+		CDE3ECCE258F525500C8E8AF /* 48k.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECCA258F525500C8E8AF /* 48k.rom */; };
+		CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECCB258F525500C8E8AF /* 128k.rom */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
 		CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */; };
 		CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D62531CC2700F0D216 /* ViewController.swift */; };
@@ -54,7 +63,8 @@
 /* Begin PBXFileReference section */
 		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
-		CDBB3F39253B360F00A1FFC0 /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
+		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
+		CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCodeDefs.swift; sourceTree = "<group>"; };
 		CDBB3F3E253B371800A1FFC0 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
 		CDCB61C825881786008DD916 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CDCB61CD258817C8008DD916 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
@@ -62,6 +72,14 @@
 		CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bitwise.swift"; sourceTree = "<group>"; };
 		CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Attributes.swift"; sourceTree = "<group>"; };
 		CDCB61E12588F030008DD916 /* aticatac.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = aticatac.sna; sourceTree = "<group>"; };
+		CDE3ECAF258CE7D900C8E8AF /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
+		CDE3ECB5258CE84D00C8E8AF /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPair.swift; sourceTree = "<group>"; };
+		CDE3ECC2258CFC8B00C8E8AF /* Accumilator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accumilator.swift; sourceTree = "<group>"; };
+		CDE3ECC8258F525500C8E8AF /* 128k+3.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = "128k+3.rom"; sourceTree = "<group>"; };
+		CDE3ECC9258F525500C8E8AF /* 128k+2.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = "128k+2.rom"; sourceTree = "<group>"; };
+		CDE3ECCA258F525500C8E8AF /* 48k.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = 48k.rom; sourceTree = "<group>"; };
+		CDE3ECCB258F525500C8E8AF /* 128k.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = 128k.rom; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +137,27 @@
 			path = constants;
 			sourceTree = "<group>";
 		};
+		CDE3ECB4258CE83700C8E8AF /* Registers */ = {
+			isa = PBXGroup;
+			children = (
+				CDE3ECB5258CE84D00C8E8AF /* Register.swift */,
+				CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */,
+				CDE3ECC2258CFC8B00C8E8AF /* Accumilator.swift */,
+			);
+			path = Registers;
+			sourceTree = "<group>";
+		};
+		CDE3ECC7258F523C00C8E8AF /* roms */ = {
+			isa = PBXGroup;
+			children = (
+				CDE3ECCA258F525500C8E8AF /* 48k.rom */,
+				CDE3ECCB258F525500C8E8AF /* 128k.rom */,
+				CDE3ECC9258F525500C8E8AF /* 128k+2.rom */,
+				CDE3ECC8258F525500C8E8AF /* 128k+3.rom */,
+			);
+			path = roms;
+			sourceTree = "<group>";
+		};
 		CDF8A1C62531CC2700F0D216 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +182,7 @@
 		CDF8A1D12531CC2700F0D216 /* inSpeccytor */ = {
 			isa = PBXGroup;
 			children = (
+				CDE3ECB4258CE83700C8E8AF /* Registers */,
 				CD59ECF5254EC54C00B56C1A /* constants */,
 				CDF8A2722531E86D00F0D216 /* models */,
 				CDF8A2642531DA6300F0D216 /* extensions */,
@@ -156,10 +196,12 @@
 				CDF8A1E32531CC2A00F0D216 /* Info.plist */,
 				CDF8A1DB2531CC2700F0D216 /* inSpeccytor.xcdatamodeld */,
 				CDF8A27B2531ED3500F0D216 /* LineTableViewCell.swift */,
-				CDBB3F39253B360F00A1FFC0 /* Z80.swift */,
+				CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */,
 				CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */,
 				CDCB61C825881786008DD916 /* Color.swift */,
 				CDCB61CD258817C8008DD916 /* Bitmap.swift */,
+				CDE3ECAF258CE7D900C8E8AF /* Z80.swift */,
+				CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -185,6 +227,7 @@
 		CDF8A20C2531CC9F00F0D216 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				CDE3ECC7258F523C00C8E8AF /* roms */,
 				CDCB61E12588F030008DD916 /* aticatac.sna */,
 				CDF8A20D2531CCB700F0D216 /* actionbiker.sna */,
 			);
@@ -318,9 +361,14 @@
 			files = (
 				CDF8A1E22531CC2A00F0D216 /* LaunchScreen.storyboard in Resources */,
 				CDF8A1DF2531CC2A00F0D216 /* Assets.xcassets in Resources */,
+				CDE3ECCE258F525500C8E8AF /* 48k.rom in Resources */,
+				CDE3ECCC258F525500C8E8AF /* 128k+3.rom in Resources */,
 				CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */,
+				CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
+				CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */,
 				CDCB61E22588F030008DD916 /* aticatac.sna in Resources */,
+				CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDBB3F3A253B360F00A1FFC0 /* Z80.swift in Sources */,
+				CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
@@ -355,9 +403,13 @@
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
+				CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
+				CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
 				CDCB61C925881786008DD916 /* Color.swift in Sources */,
+				CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */,
+				CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
