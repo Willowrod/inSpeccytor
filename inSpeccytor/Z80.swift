@@ -212,10 +212,10 @@ class Z80 {
       //  print("Attempting to Render")
 
 
-        self.blitMeAScreen()
 
         DispatchQueue.main.sync {
 
+            self.blitMeAScreen()
         //    print("Rendering")
             self.delegate?.updateView(bitmap: self.screenBuffer)
         }
