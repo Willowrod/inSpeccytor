@@ -7,6 +7,9 @@
 
 import Foundation
 
+protocol Z80Delegate {
+    func updateView(bitmap: Bitmap?)
+}
 
 class Z80 {
     
@@ -31,7 +34,19 @@ class Z80 {
     var PC: RegisterPair = RegisterPair()
     var SP: RegisterPair = RegisterPair()
     
+    var screenWriteComplete = true
+    
     var ram: Array<UInt8> = []
+    
+    var screenBuffer = Bitmap(width: 256, height: 192, color: .white)
+    
+    let tStatesPerFrame = 69888
+    var currentTStates = 0
+    
+    var flashCount = 0
+    var flashOn = false
+    
+    var delegate: Z80Delegate?
     
     init() {
         af().setAF(h: A)
@@ -187,34 +202,80 @@ class Z80 {
         print ("Ram size = \(ram.count)")
     }
     
-    func process() {
-        pc().ld(value: 0)
-        let ops = OpCodeDefs()
-        while pc().value() < 65540 {
-            let count = pc().value()
-            let opCd = ram[Int(count)]
-            
-            var code = ops.opCode(code: String(opCd, radix: 16).padded())
-            
-            if code.isPreCode {
-                let opCd2 = ram[Int(count+1)]
-                code = ops.opCode(code: "\(code.value)\(String(opCd2, radix: 16).padded())")
-                pc().ld(value: UInt(count) + 1)
-            }
-            print("\(count) - \(code.code)")
-            pc().ld(value: UInt(count) + UInt(code.length))
-            if (pc().value() >= 65535){
-                pc().ld(value: 0)
-                a().ld(value: a().value() + 1)
-            }
+    func renderFrame(){
+     //   print("Flash is \(flashOn) - \(flashCount)")
+        flashCount += 1
+        if (flashCount >= 16){
+            flashCount = 0
+            flashOn = !flashOn
+        }
+      //  print("Attempting to Render")
+
+
+        self.blitMeAScreen()
+
+        DispatchQueue.main.sync {
+
+        //    print("Rendering")
+            self.delegate?.updateView(bitmap: self.screenBuffer)
         }
     }
     
+    func blitMeAScreen(){
+        //print ("Flash is on \(flashOn)")
+      //  if screenWriteComplete {
+     //       screenWriteComplete = false
+        screenBuffer.setAttributes(bytes: ram[22528...23295], flashing: flashOn)
+       screenBuffer.blit(bytes: ram[16384...22527]) //22527   18431
+  //      delegate?.updateView(bitmap: screenBuffer)
+//            screenWriteComplete = true
+
+    //    }
+    }
     
+    func process() {
+        currentTStates = 0
+        while true {
+            opCode(code: "00")
+        }
+        
+        
+        
+//        pc().ld(value: 0)
+//        let ops = OpCodeDefs()
+//        while pc().value() < 65540 {
+//            let count = pc().value()
+//            let opCd = ram[Int(count)]
+//
+//            var code = ops.opCode(code: String(opCd, radix: 16).padded())
+//
+//            if code.isPreCode {
+//                let opCd2 = ram[Int(count+1)]
+//                code = ops.opCode(code: "\(code.value)\(String(opCd2, radix: 16).padded())")
+//                pc().ld(value: UInt(count) + 1)
+//            }
+//            print("\(count) - \(code.code)")
+//            pc().ld(value: UInt(count) + UInt(code.length))
+//            if (pc().value() >= 65535){
+//                pc().ld(value: 0)
+//                a().ld(value: a().value() + 1)
+//            }
+//        }
+    }
+    
+    func t(states: Int) {
+        currentTStates += states
+        if currentTStates >= tStatesPerFrame {
+            currentTStates = 0
+            renderFrame()
+        }
+    }
     
     func opCode(code: String) {
         switch(code.uppercased()){
-        // case"00":
+         case"00":
+            // NOP = 4 TStates
+            t(states: 4)
             // returnOpCode(v: code, c: "NOP", m: "No Operation", l: 1)
         // case"01":
             // returnOpCode(v: code, c: "LD BC,$$", m: "Load register pair BC with the value $$", l: 3, t: .DATA)

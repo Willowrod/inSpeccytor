@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Z80Delegate {
     
     @IBOutlet weak var fileName: UILabel!
     @IBOutlet weak var hexView: UITextView!
@@ -61,33 +61,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var useHexValues = true
     
-    var bitmap = Bitmap(width: 256, height: 192, color: .white)
+    var lastSecond: TimeInterval = Date.init().timeIntervalSince1970
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        z80.delegate = self
         setUpImageView()
         mainTableView.delegate = self
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        let displayLink = CADisplayLink(target: self, selector: #selector(update))
-        displayLink.add(to: .main, forMode: .common)
+//        let displayLink = CADisplayLink(target: self, selector: #selector(update))
+//        displayLink.add(to: .main, forMode: .common)
         doIt()
         
-        z80.testRegisters()
+//        z80.testRegisters()
     }
     
-    func blitMeAScreen(){
-        if (shouldDisplayScreen){
-            //     shouldDisplayScreen = false
-            bitmap.setAttributes(bytes: z80.ram[22528...23295], flashing: flashOn)
-            bitmap.blit(bytes: z80.ram[16384...22527])
-            screenRender.image = UIImage(bitmap: bitmap)
-            updateRegisters()
-        }
-    }
+
     
     func updateRegisters(){
         a.text = useHexValues ? z80.A.hexValue() : z80.A.stringValue()
@@ -101,22 +94,52 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func update(_ displayLink: CADisplayLink) {
-        let timestamp = displayLink.timestamp
-        let intedTimestamp = Int(timestamp)
+//        let timestamp = displayLink.timestamp
+//        let intedTimestamp = Int(timestamp)
+//        //let partial = timestamp - Double(intedTimestamp)
+//        if lastFlashChange + 0.32 < timestamp {
+//            lastFlashChange = timestamp
+//            flashOn = !flashOn
+//        }
+//        if lastcount < intedTimestamp {
+//            lastcount = intedTimestamp
+//            seconds += 1
+//            //  print ("FPS: \(frames / seconds)")
+//            hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
+//        }
+//        frames += 1
+//
+//        updateRegisters()
+    }
+    
+    func updateFPS(){
+        let timestamp = Date.init().timeIntervalSince1970
+        
+        
         //let partial = timestamp - Double(intedTimestamp)
-        if lastFlashChange + 0.32 < timestamp {
-            lastFlashChange = timestamp
-            flashOn = !flashOn
-        }
-        if lastcount < intedTimestamp {
-            lastcount = intedTimestamp
+//        if lastFlashChange + 0.32 < timestamp {
+//            lastFlashChange = timestamp
+//            flashOn = !flashOn
+//        }
+ //       print ("Writing to screen")
+        if timestamp > lastSecond + 1 {
+            lastSecond = timestamp
             seconds += 1
-            //  print ("FPS: \(frames / seconds)")
             hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
+            print ("FPS: \(frames / seconds) in \(seconds) seconds")
+           
         }
         frames += 1
-        
-        blitMeAScreen()
+    }
+    
+    func updateView(bitmap: Bitmap?) {
+        updateFPS()
+
+        if let bitmap = bitmap{
+        screenRender.image = (UIImage(bitmap: bitmap))
+        }
+        updateRegisters()
+ //       print ("Writing Complete")
     }
     
     func loadROM(){

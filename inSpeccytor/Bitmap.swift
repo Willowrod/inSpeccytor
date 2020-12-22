@@ -11,6 +11,7 @@ struct Bitmap {
     var pixels: [Color]
     var paper: [Color]
     var ink: [Color]
+    var lastData: [Int]
     var positions: Dictionary<Int, Int> = Dictionary()
     var attributes: Dictionary<Int, Int> = Dictionary()
     var height: Int {
@@ -22,6 +23,7 @@ struct Bitmap {
         pixels = Array(repeating: color, count: 49152)
         paper = Array(repeating: Color.white, count: 768)
         ink = Array(repeating: Color.black, count: 768)
+        lastData = Array(repeating: -1, count: 49152)
         setupPositions()
     }
     
@@ -54,14 +56,27 @@ struct Bitmap {
             let colPos = attributes[indicator] ?? 0
             let myInk = ink[colPos]
             let myPaper = paper[colPos]
-            pixels[position] = byte.isSet(bit: 7) ? myInk : myPaper
-            pixels[position + 1] = byte.isSet(bit: 6) ? myInk : myPaper
-            pixels[position + 2] = byte.isSet(bit: 5) ? myInk : myPaper
-            pixels[position + 3] = byte.isSet(bit: 4) ? myInk : myPaper
-            pixels[position + 4] = byte.isSet(bit: 3) ? myInk : myPaper
-            pixels[position + 5] = byte.isSet(bit: 2) ? myInk : myPaper
-            pixels[position + 6] = byte.isSet(bit: 1) ? myInk : myPaper
-            pixels[position + 7] = byte.isSet(bit: 0) ? myInk : myPaper
+//            pixels[position] = byte.isSet(bit: 7) ? myInk : myPaper
+//            pixels[position + 1] = byte.isSet(bit: 6) ? myInk : myPaper
+//            pixels[position + 2] = byte.isSet(bit: 5) ? myInk : myPaper
+//            pixels[position + 3] = byte.isSet(bit: 4) ? myInk : myPaper
+//            pixels[position + 4] = byte.isSet(bit: 3) ? myInk : myPaper
+//            pixels[position + 5] = byte.isSet(bit: 2) ? myInk : myPaper
+//            pixels[position + 6] = byte.isSet(bit: 1) ? myInk : myPaper
+//            pixels[position + 7] = byte.isSet(bit: 0) ? myInk : myPaper
+  //          print("Pos: \(position) - Ind: \(indicator)")
+//            if lastData[position] != byte {
+//                print("Pos: \(position) - Ind: \(indicator)")
+//                lastData[position] = Int(byte)
+            pixels[position] = (byte & 0x80) > 0 ? myInk : myPaper
+            pixels[position + 1] = (byte & 0x40) > 0 ? myInk : myPaper
+            pixels[position + 2] = (byte & 0x20) > 0 ? myInk : myPaper
+            pixels[position + 3] = (byte & 0x10) > 0 ? myInk : myPaper
+            pixels[position + 4] = (byte & 0x08) > 0 ? myInk : myPaper
+            pixels[position + 5] = (byte & 0x04) > 0 ? myInk : myPaper
+            pixels[position + 6] = (byte & 0x02) > 0 ? myInk : myPaper
+            pixels[position + 7] = (byte & 0x01) > 0 ? myInk : myPaper
+//            }
             indicator += 1
         }
     }
