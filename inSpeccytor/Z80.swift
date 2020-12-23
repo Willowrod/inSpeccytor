@@ -43,6 +43,9 @@ class Z80 {
     let tStatesPerFrame = 69888
     var currentTStates = 0
     
+    var frameEnds = true
+    var frameStarted: TimeInterval = Date().timeIntervalSince1970
+    
     var flashCount = 0
     var flashOn = false
     
@@ -219,24 +222,31 @@ class Z80 {
         //    print("Rendering")
             self.delegate?.updateView(bitmap: self.screenBuffer)
         }
+        frameEnds = true
     }
     
     func blitMeAScreen(){
-        //print ("Flash is on \(flashOn)")
-      //  if screenWriteComplete {
-     //       screenWriteComplete = false
         screenBuffer.setAttributes(bytes: ram[22528...23295], flashing: flashOn)
-       screenBuffer.blit(bytes: ram[16384...22527]) //22527   18431
-  //      delegate?.updateView(bitmap: screenBuffer)
-//            screenWriteComplete = true
-
-    //    }
+       screenBuffer.blit(bytes: ram[16384...22527])
     }
     
     func process() {
         currentTStates = 0
+        pc().ld(value: 4565)
         while true {
-            opCode(code: "00")
+            if (!frameEnds) {
+                            let count = pc().value()
+                let bytes = ram[Int(count)]
+                opCode(code: opCd)
+
+                
+            } else {
+                let time = Date().timeIntervalSince1970
+                if (frameStarted + 0.02 <= time){
+                    frameStarted = time
+                    frameEnds = false
+                }
+            }
         }
         
         
@@ -270,6 +280,16 @@ class Z80 {
             renderFrame()
         }
     }
+    
+    func opCode(code: UInt8){
+        switch code {
+        case 0:
+            t(states: 4)
+        default:
+            print("Unknown code \(code)")
+        }
+    }
+    
     
     func opCode(code: String) {
         switch(code.uppercased()){
@@ -2206,7 +2226,7 @@ class Z80 {
             
             
         default:
-            print ("X")
+            print (code)
             // returnOpCode(v: code, c: "Unknown", m: "Value is not known", l: -1, e: true)
 
         }
