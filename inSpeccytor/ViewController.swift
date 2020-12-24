@@ -59,7 +59,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var lastFlashChange = 0.0
     var flashOn = false
     
-    var useHexValues = true
+    
+    
+    var useHexValues = false
     
     var lastSecond: TimeInterval = Date.init().timeIntervalSince1970
     
@@ -85,12 +87,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateRegisters(){
         a.text = useHexValues ? z80.A.hexValue() : z80.A.stringValue()
         f.text = useHexValues ? Z80.F.hexValue() : Z80.F.stringValue()
-        b.text = useHexValues ? z80.b().hexValue() : z80.b().stringValue()
-        c.text = useHexValues ? z80.c().hexValue() : z80.c().stringValue()
-        d.text = useHexValues ? z80.d().hexValue() : z80.d().stringValue()
-        e.text = useHexValues ? z80.e().hexValue() : z80.e().stringValue()
-        h.text = useHexValues ? z80.h().hexValue() : z80.h().stringValue()
-        l.text = useHexValues ? z80.l().hexValue() : z80.l().stringValue()
+        b.text = useHexValues ? z80.bR().hexValue() : "\(z80.b())"
+        c.text = useHexValues ? z80.cR().hexValue() : z80.cR().stringValue()
+        d.text = useHexValues ? z80.dR().hexValue() : z80.dR().stringValue()
+        e.text = useHexValues ? z80.eR().hexValue() : z80.eR().stringValue()
+        h.text = useHexValues ? z80.hR().hexValue() : z80.hR().stringValue()
+        l.text = useHexValues ? z80.lR().hexValue() : z80.lR().stringValue()
     }
     
     @objc func update(_ displayLink: CADisplayLink) {
@@ -170,31 +172,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Load the snapshot
         
         loadROM()
+        startProcessor()
         
-        
-        if let filePath = Bundle.main.path(forResource: "aticatac", ofType: "sna"){
-            print("File found - \(filePath)")
-            if let index = filePath.lastIndex(of: "/"){
-                let name = filePath.substring(from: index)
-                fileName.text = name
-            } else {
-                fileName.text = "Unknown Snapshot"
-                hexView.text = "- - - - - - - -"
-            }
-            let contents = NSData(contentsOfFile: filePath)
-            let data = contents! as Data
-            let dataString = data.hexString
-            
-            // print ("Data: \(contents)")
-            //hexView.text = dataString
-            sortHeaderDataPass(data: dataString)
-            expandData(data: dataString)
-            startProcessor()
-        } else {
-            fileName.text = "Snapshot failed to load"
-            hexView.text = "- - - - - - - -"
-            print("file not found")
-        }
+//        if let filePath = Bundle.main.path(forResource: "aticatac", ofType: "sna"){
+//            print("File found - \(filePath)")
+//            if let index = filePath.lastIndex(of: "/"){
+//                let name = filePath.substring(from: index)
+//                fileName.text = name
+//            } else {
+//                fileName.text = "Unknown Snapshot"
+//                hexView.text = "- - - - - - - -"
+//            }
+//            let contents = NSData(contentsOfFile: filePath)
+//            let data = contents! as Data
+//            let dataString = data.hexString
+//
+//            // print ("Data: \(contents)")
+//            //hexView.text = dataString
+//            sortHeaderDataPass(data: dataString)
+//            expandData(data: dataString)
+//            startProcessor()
+//        } else {
+//            fileName.text = "Snapshot failed to load"
+//            hexView.text = "- - - - - - - -"
+//            print("file not found")
+//        }
     }
     
     func expandData(data: String?){
@@ -203,7 +205,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print ("Data model size = \(dataModel.count)")
             print ("Model size = \(self.model.count)")
             print ("New Model size = \(self.model.count)")
-            z80.writeRAM(dataModel: Array<CodeByteModel>(dataModel[27...]), ignoreHeader: true)
+            z80.writeRAM(dataModel: Array<CodeByteModel>(dataModel[27...]), ignoreHeader: true, startAddress: 16384)
             self.model.append(contentsOf: Array<CodeByteModel>(dataModel[27...]))    // = dataModel
             tableView.reloadData()
             shouldDisplayScreen = true

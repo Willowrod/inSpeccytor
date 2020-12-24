@@ -27,6 +27,13 @@
 		CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECC9258F525500C8E8AF /* 128k+2.rom */; };
 		CDE3ECCE258F525500C8E8AF /* 48k.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECCA258F525500C8E8AF /* 48k.rom */; };
 		CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */ = {isa = PBXBuildFile; fileRef = CDE3ECCB258F525500C8E8AF /* 128k.rom */; };
+		CDED0BE725949A6600862DE0 /* Z80+OpcodeFD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0BE625949A6600862DE0 /* Z80+OpcodeFD.swift */; };
+		CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0BEB25949ACD00862DE0 /* Z80+OpcodeED.swift */; };
+		CDED0BF625949B0400862DE0 /* Z80+OpcodeDD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0BF525949B0400862DE0 /* Z80+OpcodeDD.swift */; };
+		CDED0BFB25949B2D00862DE0 /* Z80+OpcodeCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0BFA25949B2D00862DE0 /* Z80+OpcodeCB.swift */; };
+		CDED0C0025949B3C00862DE0 /* Z80+Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0BFF25949B3C00862DE0 /* Z80+Opcode.swift */; };
+		CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */; };
+		CDED0C0A25949FF400862DE0 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0925949FF400862DE0 /* Flag.swift */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
 		CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */; };
 		CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D62531CC2700F0D216 /* ViewController.swift */; };
@@ -82,6 +89,13 @@
 		CDE3ECC9258F525500C8E8AF /* 128k+2.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = "128k+2.rom"; sourceTree = "<group>"; };
 		CDE3ECCA258F525500C8E8AF /* 48k.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = 48k.rom; sourceTree = "<group>"; };
 		CDE3ECCB258F525500C8E8AF /* 128k.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = 128k.rom; sourceTree = "<group>"; };
+		CDED0BE625949A6600862DE0 /* Z80+OpcodeFD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeFD.swift"; sourceTree = "<group>"; };
+		CDED0BEB25949ACD00862DE0 /* Z80+OpcodeED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeED.swift"; sourceTree = "<group>"; };
+		CDED0BF525949B0400862DE0 /* Z80+OpcodeDD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeDD.swift"; sourceTree = "<group>"; };
+		CDED0BFA25949B2D00862DE0 /* Z80+OpcodeCB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeCB.swift"; sourceTree = "<group>"; };
+		CDED0BFF25949B3C00862DE0 /* Z80+Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+Opcode.swift"; sourceTree = "<group>"; };
+		CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Bitwise.swift"; sourceTree = "<group>"; };
+		CDED0C0925949FF400862DE0 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				CD59ED07254EC83B00B56C1A /* TargetType.swift */,
+				CDED0C0925949FF400862DE0 /* Flag.swift */,
 			);
 			path = constants;
 			sourceTree = "<group>";
@@ -245,6 +260,12 @@
 				CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */,
 				CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */,
 				CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */,
+				CDED0BE625949A6600862DE0 /* Z80+OpcodeFD.swift */,
+				CDED0BEB25949ACD00862DE0 /* Z80+OpcodeED.swift */,
+				CDED0BF525949B0400862DE0 /* Z80+OpcodeDD.swift */,
+				CDED0BFA25949B2D00862DE0 /* Z80+OpcodeCB.swift */,
+				CDED0BFF25949B3C00862DE0 /* Z80+Opcode.swift */,
+				CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -397,12 +418,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */,
+				CDED0C0025949B3C00862DE0 /* Z80+Opcode.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
+				CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */,
+				CDED0BF625949B0400862DE0 /* Z80+OpcodeDD.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
 				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
 				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
+				CDED0BFB25949B2D00862DE0 /* Z80+OpcodeCB.swift in Sources */,
+				CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
@@ -418,7 +444,9 @@
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
 				CDCB61DD2588DC56008DD916 /* Int+Attributes.swift in Sources */,
+				CDED0BE725949A6600862DE0 /* Z80+OpcodeFD.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
+				CDED0C0A25949FF400862DE0 /* Flag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

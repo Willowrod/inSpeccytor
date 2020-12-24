@@ -10,10 +10,8 @@ import Foundation
 class Register {
     var byteValue: UInt8 = 0
     
-    
-    
-    func value() -> Int {
-        return Int(byteValue)
+    func value() -> UInt8 {
+        return byteValue
     }
     
     func hexValue() -> String {
@@ -24,10 +22,8 @@ class Register {
         return String(byteValue)
     }
     
-    func ld(value: Int){
-        if (value >= 0 && value < 256){
-        self.byteValue = UInt8(value)
-        }
+    func ld(value: UInt8){
+        self.byteValue = value
     }
     
     func setBit(bit: Int) {
@@ -43,19 +39,11 @@ class Register {
     }
     
     func inc() {
-        if (byteValue == 255){
-            byteValue = 0
-            return
-        }
-        byteValue += 1
+        byteValue = byteValue &+ 1
     }
     
     func dec() {
-        if (byteValue == 0){
-            byteValue = 255
-            return
-        }
-        byteValue -= 1
+        byteValue = byteValue &- 1
     }
     
     func sub(diff: Int) {
@@ -63,5 +51,6 @@ class Register {
     
     func add(diff: Int) {
     }
+
     
 }
