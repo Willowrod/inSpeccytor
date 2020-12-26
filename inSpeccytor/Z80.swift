@@ -347,6 +347,22 @@ class Z80 {
         ram[location] = ram[location] &+ 1
     }
     
+    func ldRam(location: Int, value: UInt8){
+        ram[location] = value
+    }
+    
+    func ldRam(location: UInt16, value: UInt8){
+        ram[Int(location)] = value
+    }
+    
+    func fetchRam(location: Int) -> UInt8 {
+        return ram[location]
+    }
+    
+    func fetchRam(location: UInt16) -> UInt8 {
+        return ram[Int(location)]
+    }
+    
     func relativeJump(twos: UInt8) {
         let subt = twos.isSet(bit: 7)
         let comp = twos.twosCompliment()

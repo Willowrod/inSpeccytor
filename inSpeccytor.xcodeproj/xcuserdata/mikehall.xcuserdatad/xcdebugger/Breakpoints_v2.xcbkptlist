@@ -23,8 +23,8 @@
             filePath = "inSpeccytor/extensions/Z80+Opcode.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "920"
-            endingLineNumber = "920"
+            startingLineNumber = "960"
+            endingLineNumber = "960"
             landmarkName = "opCode(byte:)"
             landmarkType = "7">
          </BreakpointContent>
