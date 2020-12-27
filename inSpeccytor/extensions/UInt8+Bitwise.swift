@@ -32,4 +32,12 @@ extension UInt8 {
 //    func pcOffset() -> Int8 {
 //        let subtractor = comp.isSet(bit: 7)
 //    }
+    
+    func lowerNibble() -> UInt8 {
+        return self & 15
+    }
+    
+    func upperNibble() -> UInt8 {
+        return (self & 240) >> 4
+    }
 }

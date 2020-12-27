@@ -61,7 +61,7 @@ class Accumilator: Register {
         byteValue = byteValue ^ value
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
         Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
-        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
@@ -70,7 +70,7 @@ class Accumilator: Register {
         byteValue = byteValue | value
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
         Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
-        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
@@ -79,7 +79,7 @@ class Accumilator: Register {
         byteValue = byteValue &  value
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
         Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
-        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
@@ -109,16 +109,8 @@ class Accumilator: Register {
         Z80.F.byteValue.set(bit: Flag.CARRY, value: carry)
         Z80.F.byteValue.set(bit: Flag.SIGN, value: carry)
         Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
-        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
-        byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 3) != byteValue.isSet(bit: 3))
-    }
-    
-    func lowerNibble() -> UInt8 {
-        return byteValue & 15
-    }
-    
-    func upperNibble() -> UInt8 {
-        return (byteValue & 240) >> 4
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 3) != byteValue.isSet(bit: 3))
     }
     
     func rlcA(){
@@ -157,19 +149,21 @@ class Accumilator: Register {
         Z80.F.byteValue.set(bit: Flag.CARRY, value: bit0)
     }
     
-    
+    func negate(){
+        let oldValue = byteValue
+        byteValue = ~byteValue &+ 1
+        Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
+        Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
+        Z80.F.byteValue.set(bit: Flag.CARRY, value: oldValue != 0x00)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != byteValue.isSet(bit: 4))
+        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
+    }
     
     
     func daA(){
-// First, work out if this is an addition or subtraction change
-        let upper = upperNibble()
-        let lower = lowerNibble()
-//
-//        if upper < 0x10 && lower < 0x10 {
-//            return
-//        }
-        
-        let subtract = Z80.F.byteValue.isSet(bit: Flag.SUBTRACT)
+        let upper = byteValue.upperNibble()
+        let lower = byteValue.lowerNibble()
         let carry = Z80.F.byteValue.isSet(bit: Flag.CARRY)
         let halfCarry = Z80.F.byteValue.isSet(bit: Flag.HALF_CARRY)
         
@@ -188,17 +182,6 @@ class Accumilator: Register {
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
         Z80.F.byteValue.set(bit: Flag.SUBTRACT, value: (byteValue.isSet(bit: 7)))
         Z80.F.byteValue.set(bit: Flag.PARITY, value: !byteValue.isSet(bit: 0))
-        
-//        if (subtract){ // Is subtraction
-//            // Did we carry?
-//            if (carry){ // Yes, we carried
-//
-//            } else { // We did not carry
-//
-//            }
-//        } else { // Is addition
-//
-//        }
     }
     
 }

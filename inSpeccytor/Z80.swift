@@ -37,6 +37,8 @@ class Z80 {
     var PC: UInt16 = 0
     var SP: UInt16 = 0
     
+    var interuptMode = 1
+    
     var screenWriteComplete = true
     
     var ram: Array<UInt8> = []
@@ -54,7 +56,7 @@ class Z80 {
     
     var delegate: Z80Delegate?
     
-    var halt = true
+    var halt = false
     
     var stackSize = 0
     
@@ -285,7 +287,14 @@ class Z80 {
             if (!frameEnds) {
                 if (shouldRunInterupt){
                     push(value: PC)
-                    PC = 0x0038
+                    switch interuptMode {
+                    case 0:
+                        PC = 0x0066
+                    case 1:
+                        PC = 0x0038
+                    default:
+                        PC = UInt16(I.byteValue) * 256 // TODO: This needs to react to a low byte from a peripheral occasionally?
+                    }
                     halt = false
                     shouldRunInterupt = false
                 }
@@ -293,7 +302,7 @@ class Z80 {
                         instructionComplete(states: 4, length: 0)
                     } else {
                 let byte = ram[Int(PC)]
-                print("Processing line \(PC) (\(String(PC, radix: 16).padded(size: 4))) - \(String(byte, radix: 16))")
+   //             print("Processing line \(PC) (\(String(PC, radix: 16).padded(size: 4))) - \(String(byte, radix: 16))")
                 opCode(byte: byte)
                 }
                 
@@ -349,6 +358,7 @@ class Z80 {
         if (stackSize > 0){
         let value = fetchRamWord(location: SP)
         SP = SP &+ 2
+            stackSize -= 1
         return value
         } else {
             print("Stack discrepancy - more pops than pushes!")

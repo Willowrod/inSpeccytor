@@ -1051,7 +1051,7 @@ break
         break
             case 0xE6:
                 aR().add(diff: byte1)
-                instructionComplete(states: 7) //returnOpCode(v: code, c: "AND ±", m: "Update A to only contain bytes set in both A and the value ±", l: 2)
+                instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "AND ±", m: "Update A to only contain bytes set in both A and the value ±", l: 2)
             break
         case 0xE7:
             call(location: 0x0020)
