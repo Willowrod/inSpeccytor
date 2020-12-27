@@ -174,7 +174,7 @@ break
                 if byte1.isSet(bit: 7){
                     PC = PC &- UInt16(byte1.twosCompliment())
                 } else {
-                PC = PC &+ UInt16(byte1.twosCompliment())
+                PC = PC &+ UInt16(byte1) //UInt16(byte1.twosCompliment())
                 }
         instructionComplete(states: 12, length: 0)
             }
@@ -220,28 +220,35 @@ break
                 instructionComplete(states: 7, length: 2)
             }
         break
-//        case 0x29:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD HL,HL", m: " ", l: 1)
-//        break
-//        case 0x2A:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "LD HL,($$)", m: " ", l: 3, t: .DATA)
-//        break
+        case 0x29:
+            hl().addSelf()
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD HL,HL", m: " ", l: 1)
+        break
+        case 0x2A:
+            lR().ld(value: fetchRam(location: word))
+            hR().ld(value: fetchRam(location: word &+ 1))
+        instructionComplete(states: 16, length: 3) //returnOpCode(v: code, c: "LD HL,($$)", m: " ", l: 3, t: .DATA)
+        break
         case 0x2B:
             hl().dec()
         instructionComplete(states: 4) //returnOpCode(v: code, c: "DEC HL", m: " ", l: 1)
         break
-//        case 0x2C:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "INC L", m: " ", l: 1)
-//        break
-//        case 0x2D:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "DEC L", m: " ", l: 1)
-//        break
-//        case 0x2E:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "LD L,±", m: " ", l: 2)
-//        break
-//        case 0x2F:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CP L", m: " ", l: 1)
-//        break
+        case 0x2C:
+            lR().inc()
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "INC L", m: " ", l: 1)
+        break
+        case 0x2D:
+            lR().dec()
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "DEC L", m: " ", l: 1)
+        break
+        case 0x2E:
+            lR().ld(value: byte1)
+            instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "LD L,±", m: " ", l: 2)
+        break
+        case 0x2F:
+            aR().compare(value: l())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "CP L", m: " ", l: 1)
+        break
         case 0x30:
             if (f().isSet(bit: Flag.CARRY)){
                 instructionComplete(states: 7, length: 2)
@@ -255,56 +262,74 @@ break
         instructionComplete(states: 12, length: 0)
             }
         break
-//        case 0x31:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "LD SP,$$", m: " ", l: 3, t: .DATA)
-//        break
+        case 0x31:
+            SP = word
+        instructionComplete(states: 10, length: 3) //returnOpCode(v: code, c: "LD SP,$$", m: " ", l: 3, t: .DATA)
+        break
         case 0x32:
-            ram[Int(word)] = a()
+            ldRam(location: word, value: a())
         instructionComplete(states: 13) //returnOpCode(v: code, c: "LD ($$),A", m: " ", l: 3, t: .DATA)
         break
-//        case 0x33:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "INC SP", m: " ", l: 1)
-//        break
+        case 0x33:
+            SP = SP &+ 1
+        instructionComplete(states: 6) //returnOpCode(v: code, c: "INC SP", m: " ", l: 1)
+        break
         case 0x34:
             ram[Int(hl().value())] = ram[Int(hl().value())] &+ 1
         instructionComplete(states: 11) //returnOpCode(v: code, c: "INC (HL)", m: " ", l: 1)
         break
         case 0x35:
             ram[Int(hl().value())] = ram[Int(hl().value())] &- 1
-        instructionComplete(states: 11) //returnOpCode(v: code, c: "INC (HL)", m: " ", l: 1)
+        instructionComplete(states: 11) //returnOpCode(v: code, c: "DEC (HL)", m: " ", l: 1)
         break
         case 0x36:
             ram[Int(hl().value())] = byte1
         instructionComplete(states: 10, length: 2) //returnOpCode(v: code, c: "LD (HL),$$", m: " ", l: 3, t: .DATA)
         break
-//        case 0x37:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SCF", m: " ", l: 1)
-//        break
-//        case 0x38:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JR C, ##", m: "If the Carry flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
-//        break
-//        case 0x39:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD HL,SP", m: " ", l: 1)
-//        break
-//        case 0x3A:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "LD A,($$)", m: " ", l: 3, t: .DATA)
-//        break
-//        case 0x3B:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "DEC SP", m: " ", l: 1)
-//        break
-//        case 0x3C:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "INC A", m: " ", l: 1)
-//        break
-//        case 0x3D:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "DEC A", m: " ", l: 1)
-//        break
+        case 0x37:
+            Z80.F.byteValue.set(bit: Flag.CARRY)
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SCF", m: " ", l: 1)
+        break
+        case 0x38:
+            if (!f().isSet(bit: Flag.CARRY)){
+                instructionComplete(states: 7, length: 2)
+            } else {
+                PC = PC &+ 2
+                relativeJump(twos: byte1)
+        instructionComplete(states: 12, length: 0)
+            }
+            //returnOpCode(v: code, c: "JR C, ##", m: "If the Carry flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
+        break
+        case 0x39:
+            hl().add(diff: SP)
+        instructionComplete(states: 15) //returnOpCode(v: code, c: "ADD HL,SP", m: " ", l: 1)
+        break
+        case 0x3A:
+            aR().ld(value: fetchRam(location: word))
+        instructionComplete(states: 13, length: 3) //returnOpCode(v: code, c: "LD A,($$)", m: " ", l: 3, t: .DATA)
+        break
+        case 0x3B:
+            SP = SP &- 1
+        instructionComplete(states: 6) //returnOpCode(v: code, c: "DEC SP", m: " ", l: 1)
+        break
+        case 0x3C:
+            aR().inc()
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "INC A", m: " ", l: 1)
+        break
+        case 0x3D:
+            aR().dec()
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "DEC A", m: " ", l: 1)
+        break
         case 0x3E: // LD A,$$
             aR().ld(value: byte1)
             instructionComplete(states: 7, length: 2)
         break
-//        case 0x3F:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CCF", m: " ", l: 1)
-//        break
+        case 0x3F:
+            Z80.F.byteValue.set(bit: Flag.CARRY, value: !Z80.F.byteValue.isSet(bit: Flag.CARRY))
+            Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: !Z80.F.byteValue.isSet(bit: Flag.HALF_CARRY))
+            Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "CCF", m: " ", l: 1)
+        break
         case 0x40:
         instructionComplete(states: 4) //returnOpCode(v: code, c: "LD B,B", m: " ", l: 1)
         break
@@ -515,9 +540,10 @@ break
             ram[Int(hl().value())] = l()
         instructionComplete(states: 7)
         break
-//        case 0x76:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "HALT", m: " ", l: 1)
-//        break
+        case 0x76:
+        halt = true
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "HALT", m: " ", l: 1)
+        break
         case 0x77:
             ram[Int(hl().value())] = a()
         instructionComplete(states: 7)
@@ -553,30 +579,38 @@ break
         case 0x7F:
         instructionComplete(states: 4) //returnOpCode(v: code, c: "LD A,A", m: " ", l: 1)
         break
-//        case 0x80:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,B", m: " ", l: 1)
-//        break
-//        case 0x81:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,C", m: " ", l: 1)
-//        break
-//        case 0x82:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,D", m: " ", l: 1)
-//        break
-//        case 0x83:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,E", m: " ", l: 1)
-//        break
-//        case 0x84:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,H", m: " ", l: 1)
-//        break
-//        case 0x85:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,L", m: " ", l: 1)
-//        break
-//        case 0x86:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,(HL)", m: " ", l: 1)
-//        break
-//        case 0x87:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,A", m: " ", l: 1)
-//        break
+        case 0x80:
+            aR().add(diff: b())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,B", m: " ", l: 1)
+        break
+        case 0x81:
+            aR().add(diff: c())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,C", m: " ", l: 1)
+        break
+        case 0x82:
+            aR().add(diff: d())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,D", m: " ", l: 1)
+        break
+        case 0x83:
+            aR().add(diff: e())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,E", m: " ", l: 1)
+        break
+        case 0x84:
+            aR().add(diff: h())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,H", m: " ", l: 1)
+        break
+        case 0x85:
+            aR().add(diff: l())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,L", m: " ", l: 1)
+        break
+        case 0x86:
+            aR().add(diff: fetchRam(location: hl().value()))
+        instructionComplete(states: 7) //returnOpCode(v: code, c: "ADD A,(HL)", m: " ", l: 1)
+        break
+        case 0x87:
+            aR().add(diff: a())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,A", m: " ", l: 1)
+        break
         case 0x88:
             aR().aDC(diff: b())
         instructionComplete(states: 4) //returnOpCode(v: code, c: "ADC A,B", m: " ", l: 1)
@@ -609,100 +643,130 @@ break
             aR().aDC(diff: a())
         instructionComplete(states: 4) //returnOpCode(v: code, c: "ADC A,A", m: " ", l: 1)
         break
-//        case 0x90:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,B", m: " ", l: 1)
-//        break
-//        case 0x91:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,C", m: " ", l: 1)
-//        break
-//        case 0x92:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,D", m: " ", l: 1)
-//        break
-//        case 0x93:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,E", m: " ", l: 1)
-//        break
-//        case 0x94:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,H", m: " ", l: 1)
-//        break
-//        case 0x95:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,L", m: " ", l: 1)
-//        break
-//        case 0x96:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,(HL)", m: " ", l: 1)
-//        break
-//        case 0x97:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,A", m: " ", l: 1)
-//        break
-//        case 0x98:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,B", m: " ", l: 1)
-//        break
-//        case 0x99:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,C", m: " ", l: 1)
-//        break
-//        case 0x9A:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,D", m: " ", l: 1)
-//        break
-//        case 0x9B:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,E", m: " ", l: 1)
-//        break
-//        case 0x9C:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,H", m: " ", l: 1)
-//        break
-//        case 0x9D:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,L", m: " ", l: 1)
-//        break
-//        case 0x9E:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,(HL)", m: " ", l: 1)
-//        break
-//        case 0x9F:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,A", m: " ", l: 1)
-//        break
-//        case 0xA0:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND B", m: " ", l: 1)
-//        break
-//        case 0xA1:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND C", m: " ", l: 1)
-//        break
-//        case 0xA2:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND D", m: " ", l: 1)
-//        break
-//        case 0xA3:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND E", m: " ", l: 1)
-//        break
-//        case 0xA4:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND H", m: " ", l: 1)
-//        break
-//        case 0xA5:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND L", m: " ", l: 1)
-//        break
-//        case 0xA6:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND (HL)", m: " ", l: 1)
-//        break
+        case 0x90:
+            aR().sub(diff: b())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,B", m: " ", l: 1)
+        break
+        case 0x91:
+            aR().sub(diff: c())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,C", m: " ", l: 1)
+        break
+        case 0x92:
+            aR().sub(diff: d())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,D", m: " ", l: 1)
+        break
+        case 0x93:
+            aR().sub(diff: e())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,E", m: " ", l: 1)
+        break
+        case 0x94:
+            aR().sub(diff: h())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,H", m: " ", l: 1)
+        break
+        case 0x95:
+            aR().sub(diff: l())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,L", m: " ", l: 1)
+        break
+        case 0x96:
+            aR().sub(diff: fetchRam(location: hl().value()))
+        instructionComplete(states: 7) //returnOpCode(v: code, c: "SUB A,(HL)", m: " ", l: 1)
+        break
+        case 0x97:
+            aR().sub(diff: a())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,A", m: " ", l: 1)
+        break
+        case 0x98:
+            aR().sBC(diff: b())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,B", m: " ", l: 1)
+        break
+        case 0x99:
+            aR().sBC(diff: c())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,C", m: " ", l: 1)
+        break
+        case 0x9A:
+            aR().sBC(diff: d())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,D", m: " ", l: 1)
+        break
+        case 0x9B:
+            aR().sBC(diff: e())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,E", m: " ", l: 1)
+        break
+        case 0x9C:
+            aR().sBC(diff: h())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,H", m: " ", l: 1)
+        break
+        case 0x9D:
+            aR().sBC(diff: l())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,L", m: " ", l: 1)
+        break
+        case 0x9E:
+            aR().sBC(diff: fetchRam(location: hl().value()))
+        instructionComplete(states: 7) //returnOpCode(v: code, c: "SBC A,(HL)", m: " ", l: 1)
+        break
+        case 0x9F:
+            aR().sBC(diff: a())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,A", m: " ", l: 1)
+        break
+        case 0xA0:
+            aR().aND(value: b())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND B", m: " ", l: 1)
+        break
+        case 0xA1:
+            aR().aND(value: c())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND C", m: " ", l: 1)
+        break
+        case 0xA2:
+            aR().aND(value: d())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND D", m: " ", l: 1)
+        break
+        case 0xA3:
+            aR().aND(value: e())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND E", m: " ", l: 1)
+        break
+        case 0xA4:
+            aR().aND(value: h())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND H", m: " ", l: 1)
+        break
+        case 0xA5:
+            aR().aND(value: l())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "AND L", m: " ", l: 1)
+        break
+        case 0xA6:
+            aR().aND(value: fetchRam(location: hl().value()))
+        instructionComplete(states: 7) //returnOpCode(v: code, c: "AND (HL)", m: " ", l: 1)
+        break
         case 0xA7:
             aR().aND()
         instructionComplete(states: 4) //returnOpCode(v: code, c: "AND A", m: " ", l: 1)
         break
-//        case 0xA8:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR B", m: " ", l: 1)
-//        break
-//        case 0xA9:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR C", m: " ", l: 1)
-//        break
-//        case 0xAA:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR D", m: " ", l: 1)
-//        break
-//        case 0xAB:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR E", m: " ", l: 1)
-//        break
-//        case 0xAC:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR H", m: " ", l: 1)
-//        break
-//        case 0xAD:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR L", m: " ", l: 1)
-//        break
-//        case 0xAE:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR (HL)", m: " ", l: 1)
-//        break
+        case 0xA8:
+            aR().xOR(value: b())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR B", m: " ", l: 1)
+        break
+        case 0xA9:
+            aR().xOR(value: c())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR C", m: " ", l: 1)
+        break
+        case 0xAA:
+            aR().xOR(value: d())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR D", m: " ", l: 1)
+        break
+        case 0xAB:
+            aR().xOR(value: e())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR E", m: " ", l: 1)
+        break
+        case 0xAC:
+            aR().xOR(value: h())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR H", m: " ", l: 1)
+        break
+        case 0xAD:
+            aR().xOR(value: l())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR L", m: " ", l: 1)
+        break
+        case 0xAE:
+            aR().aND(value: fetchRam(location: hl().value()))
+        instructionComplete(states: 7) //returnOpCode(v: code, c: "XOR (HL)", m: " ", l: 1)
+        break
         case 0xAF:
             aR().xOR()
         instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR A", m: " ", l: 1)
@@ -732,7 +796,7 @@ break
         instructionComplete(states: 4) //returnOpCode(v: code, c: "OR L", m: " ", l: 1)
         break
         case 0xB6:
-            aR().oR(value: ram[Int(hl().value())])
+            aR().oR(value: fetchRam(location: hl().value()))
         instructionComplete(states: 7)
         break
         case 0xB7:
@@ -771,193 +835,361 @@ break
             aR().compare(value: a())
         instructionComplete(states: 4) //returnOpCode(v: code, c: "CP A", m: " ", l: 1)
         break
-//        case 0xC0:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET NZ", m: " ", l: 1)
-//        break
-//        case 0xC1:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "POP BC", m: " ", l: 1)
-//        break
-//        case 0xC2:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP NZ,$$", m: " ", l: 3, t: .CODE)
-//        break
+        case 0xC0:
+            if (!Z80.F.byteValue.isSet(bit: Flag.ZERO)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            }
+        //returnOpCode(v: code, c: "RET NZ", m: " ", l: 1)
+        break
+        case 0xC1:
+            bc().ld(value: pop())
+            instructionComplete(states: 11) //returnOpCode(v: code, c: "POP BC", m: " ", l: 1)
+        break
+        case 0xC2:
+            if (!Z80.F.byteValue.isSet(bit: Flag.ZERO)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP NZ,$$", m: " ", l: 3, t: .CODE)
+        break
         case 0xC3: //JP $$
-            PC = word
+            jump(location: word)
             instructionComplete(states: 10, length: 0) //returnOpCode(v: code, c: "JP $$", m: "Jump to routine at memory location $$", l: 3, e: true, t: .CODE)
         break
-//        case 0xC4:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL NZ,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xC5:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "PUSH BC", m: " ", l: 1)
-//        break
-//        case 0xC6:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADD A,±", m: " ", l: 2)
-//        break
-//        case 0xC7:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST 0", m: " ", l: 1)
-//        break
-//        case 0xC8:
-//            instructionComplete(states: 4) //returnOpCode(v: code, c: "RET Z", m: " ", l: 1)
-//        break
-//        case 0xC9:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET", m: " ", l: 1, e: true)
-//        break
-//        case 0xCA:
-//            instructionComplete(states: 4) //returnOpCode(v: code, c: "JP Z, $$", m: "If the Zero flag is set in register F, jump to routine at memory location $$", l: 3, t: .CODE)
+        case 0xC4:
+            if (!Z80.F.byteValue.isSet(bit: Flag.ZERO)){
+                call(location: word)
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL NZ,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xC5:
+            push(value: bc().value())
+            instructionComplete(states: 11)
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "PUSH BC", m: " ", l: 1)
+        break
+        case 0xC6:
+            aR().add(diff: byte1)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "ADD A,±", m: " ", l: 2)
+        break
+        case 0xC7:
+        call(location: 0x0000)
+        instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST 0", m: " ", l: 1)
+        break
+        case 0xC8:
+            if (Z80.F.byteValue.isSet(bit: Flag.ZERO)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            } //returnOpCode(v: code, c: "RET Z", m: " ", l: 1)
+        break
+        case 0xC9:
+            ret()
+        instructionComplete(states: 10, length: 0) //returnOpCode(v: code, c: "RET", m: " ", l: 1, e: true)
+        break
+        case 0xCA:
+            if (Z80.F.byteValue.isSet(bit: Flag.ZERO)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP Z, $$", m: "If the Zero flag is set in register F, jump to routine at memory location $$", l: 3, t: .CODE)
 //
 //
 //        break
-//        case 0xCC:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL Z,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xCD:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL $$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xCE:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "ADC A,±", m: " ", l: 2)
-//        break
-//        case 0xCF:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &08", m: " ", l: 1)
-//        break
-//        case 0xD0:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET NC", m: " ", l: 1)
-//        break
-//        case 0xD1:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "POP DE", m: " ", l: 1)
-//        break
-//        case 0xD2:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP NC,$$", m: " ", l: 3, t: .CODE)
-//        break
+        case 0xCC:
+            if (Z80.F.byteValue.isSet(bit: Flag.ZERO)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            }
+         //returnOpCode(v: code, c: "CALL Z,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xCD:
+            call(location: word)
+        instructionComplete(states: 17, length: 0) //returnOpCode(v: code, c: "CALL $$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xCE:
+            aR().aDC(diff: byte1)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "ADC A,±", m: " ", l: 2)
+        break
+        case 0xCF:
+            call(location: 0x0008)
+            instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &08", m: " ", l: 1)
+        break
+        case 0xD0:
+            if (!Z80.F.byteValue.isSet(bit: Flag.CARRY)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            }
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET NC", m: " ", l: 1)
+        break
+        case 0xD1:
+            de().ld(value: pop())
+            instructionComplete(states: 11)  //returnOpCode(v: code, c: "POP DE", m: " ", l: 1)
+        break
+        case 0xD2:
+            if (!Z80.F.byteValue.isSet(bit: Flag.CARRY)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP NC,$$", m: " ", l: 3, t: .CODE)
+        break
         case 0xD3: // TODO OUT (±),A
         instructionComplete(states: 11, length: 2) //returnOpCode(v: code, c: "OUT (±),A", m: " ", l: 2)
         break
-//        case 0xD4:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL NC,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xD5:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "PUSH DE", m: " ", l: 1)
-//        break
-//        case 0xD6:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SUB A,±", m: " ", l: 2)
-//        break
-//        case 0xD7:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &10", m: " ", l: 1)
-//        break
-//        case 0xD8:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET C", m: " ", l: 1)
-//        break
-//        case 0xD9:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "EXX", m: " ", l: 1)
-//        break
-//        case 0xDA:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP C,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xDB:
-//            instructionComplete(states: 4) //returnOpCode(v: code, c: "IN A,(±)", m: "Load register A with an input defined by the current value of A from port $$ (Generally keyboard input) ", l: 2, t: .VALUE)
-//        break
-//        case 0xDC:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL C,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xDE:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "SBC A,±", m: " ", l: 2)
-//        break
-//        case 0xDF:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &18", m: " ", l: 1)
-//        break
-//        case 0xE0:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET PO", m: " ", l: 1)
-//        break
-//        case 0xE1:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "POP HL", m: " ", l: 1)
-//        break
-//        case 0xE2:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP PO,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xE3:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "EX (SP),HL", m: " ", l: 1)
-//        break
-//        case 0xE4:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL PO,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xE5:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "PUSH HL", m: " ", l: 1)
-//        break
-//            case 0xE6:
-//                instructionComplete(states: 4) //returnOpCode(v: code, c: "AND ±", m: "Update A to only contain bytes set in both A and the value ±", l: 2)
-//            break
-//        case 0xE7:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &20", m: " ", l: 1)
-//        break
-//        case 0xE8:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET PE", m: " ", l: 1)
-//        break
-//        case 0xE9:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP (HL)", m: " ", l: 1)
-//        break
-//        case 0xEA:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP PE,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xEB:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "EX DE,HL", m: " ", l: 1)
-//        break
-//        case 0xEC:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL PE,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xEE:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR ±", m: " ", l: 2)
-//        break
-//        case 0xEF:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &28", m: " ", l: 1)
-//        break
-//        case 0xF0:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET P", m: " ", l: 1)
-//        break
-//        case 0xF1:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "POP AF", m: " ", l: 1)
-//        break
-//        case 0xF2:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP P,$$", m: " ", l: 3, t: .CODE)
+        case 0xD4:
+            if (!Z80.F.byteValue.isSet(bit: Flag.CARRY)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL NC,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xD5:
+            push(value: de().value())
+            instructionComplete(states: 11) //returnOpCode(v: code, c: "PUSH DE", m: " ", l: 1)
+        break
+        case 0xD6:
+            aR().sub(diff: byte1)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "SUB A,±", m: " ", l: 2)
+        break
+        case 0xD7:
+            call(location: 0x0010)
+            instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &10", m: " ", l: 1)
+        break
+        case 0xD8:
+            if (Z80.F.byteValue.isSet(bit: Flag.CARRY)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            } //returnOpCode(v: code, c: "RET C", m: " ", l: 1)
+        break
+        case 0xD9:
+            exchangeAll()
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "EXX", m: " ", l: 1)
+        break
+        case 0xDA:
+            if (Z80.F.byteValue.isSet(bit: Flag.CARRY)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP C,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xDB: // TODO: IN
+            instructionComplete(states: 11) //returnOpCode(v: code, c: "IN A,(±)", m: "Load register A with an input defined by the current value of A from port $$ (Generally keyboard input) ", l: 2, t: .VALUE)
+        break
+        case 0xDC:
+            if (Z80.F.byteValue.isSet(bit: Flag.CARRY)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL C,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xDE:
+            aR().sBC(diff: byte1)
+        instructionComplete(states: 7) //returnOpCode(v: code, c: "SBC A,±", m: " ", l: 2)
+        break
+        case 0xDF:
+            call(location: 0x0018)
+            instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &18", m: " ", l: 1)
+        break
+        case 0xE0:
+            if (!Z80.F.byteValue.isSet(bit: Flag.PARITY)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            } //returnOpCode(v: code, c: "RET PO", m: " ", l: 1)
+        break
+        case 0xE1:
+            hl().ld(value: pop())
+            instructionComplete(states: 11)  //returnOpCode(v: code, c: "POP HL", m: " ", l: 1)
+        break
+        case 0xE2:
+            if (!Z80.F.byteValue.isSet(bit: Flag.PARITY)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP PO,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xE3:
+            let oldHL = hl().value()
+            hl().ld(value: fetchRamWord(location: SP))
+            ldRam(location: SP, value: oldHL)
+        instructionComplete(states: 19) //returnOpCode(v: code, c: "EX (SP),HL", m: " ", l: 1)
+        break
+        case 0xE4:
+            if (!Z80.F.byteValue.isSet(bit: Flag.PARITY)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL PO,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xE5:
+            push(value: hl().value())
+            instructionComplete(states: 11) //returnOpCode(v: code, c: "PUSH HL", m: " ", l: 1)
+        break
+            case 0xE6:
+                aR().add(diff: byte1)
+                instructionComplete(states: 7) //returnOpCode(v: code, c: "AND ±", m: "Update A to only contain bytes set in both A and the value ±", l: 2)
+            break
+        case 0xE7:
+            call(location: 0x0020)
+            instructionComplete(states: 11, length: 0)//returnOpCode(v: code, c: "RST &20", m: " ", l: 1)
+        break
+        case 0xE8:
+            if (Z80.F.byteValue.isSet(bit: Flag.PARITY)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            } //returnOpCode(v: code, c: "RET PE", m: " ", l: 1)
+        break
+        case 0xE9:
+            jump(location: hl().value())
+        instructionComplete(states: 4, length: 0) //returnOpCode(v: code, c: "JP (HL)", m: " ", l: 1)
+        break
+        case 0xEA:
+            if (Z80.F.byteValue.isSet(bit: Flag.PARITY)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP PE,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xEB:
+            exchange(working: de(), spare: hl())
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "EX DE,HL", m: " ", l: 1)
+        break
+        case 0xEC:
+            if (Z80.F.byteValue.isSet(bit: Flag.PARITY)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL PE,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xEE:
+            aR().xOR(value: byte1)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "XOR ±", m: " ", l: 2)
+        break
+        case 0xEF:
+            call(location: 0x0028)
+            instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &28", m: " ", l: 1)
+        break
+        case 0xF0:
+            if (!Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            } //returnOpCode(v: code, c: "RET P", m: " ", l: 1)
+        break
+        case 0xF1:
+            af().ld(value: pop())
+            instructionComplete(states: 11)  //returnOpCode(v: code, c: "POP AF", m: " ", l: 1)
+        break
+        case 0xF2:
+            if (!Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP P,$$", m: " ", l: 3, t: .CODE)
+        break
         case 0xF3:
         interupt = false
         interupt2 = false
         instructionComplete(states: 4) //returnOpCode(v: code, c: "DI", m: " ", l: 1)
         break
-//        break
-//        case 0xF4:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL P,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xF5:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "PUSH AF", m: " ", l: 1)
-//        break
-//        case 0xF6:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "OR ±", m: " ", l: 2)
-//        break
-//        case 0xF7:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &30", m: " ", l: 1)
-//        break
-//        case 0xF8:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET M", m: " ", l: 1)
-//        break
-//        case 0xF9:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "LD SP,HL", m: " ", l: 1)
-//        break
-//        case 0xFA:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "JP M,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xFB:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "EI", m: " ", l: 1)
-//        break
-//        case 0xFC:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CALL M,$$", m: " ", l: 3, t: .CODE)
-//        break
-//        case 0xFE:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "CP ±", m: " ", l: 2)
-//        break
-//        case 0xFF:
-//        instructionComplete(states: 4) //returnOpCode(v: code, c: "RST &38", m: " ", l: 1)
+        case 0xF4:
+            if (Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL P,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xF5:
+            push(value: af().value())
+        instructionComplete(states: 11) //returnOpCode(v: code, c: "PUSH AF", m: " ", l: 1)
+        break
+        case 0xF6:
+            aR().oR(value: byte1)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "OR ±", m: " ", l: 2)
+        break
+        case 0xF7:
+            call(location: 0x0030)
+            instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &30", m: " ", l: 1)
+        break
+        case 0xF8:
+            if (Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+                ret()
+                instructionComplete(states: 11, length: 0)
+            } else {
+                instructionComplete(states: 5, length: 1)
+            } //returnOpCode(v: code, c: "RET M", m: " ", l: 1)
+        break
+        case 0xF9:
+            SP = hl().value()
+        instructionComplete(states: 6) //returnOpCode(v: code, c: "LD SP,HL", m: " ", l: 1)
+        break
+        case 0xFA:
+            if (Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+                jump(location: word)
+                instructionComplete(states: 10, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "JP M,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xFB:
+            interupt = true
+            interupt2 = true
+        instructionComplete(states: 4) //returnOpCode(v: code, c: "EI", m: " ", l: 1)
+        break
+        case 0xFC:
+            if (!Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+                push(value: PC)
+                PC = word
+                instructionComplete(states: 17, length: 0)
+            } else {
+                instructionComplete(states: 10, length: 3)
+            } //returnOpCode(v: code, c: "CALL M,$$", m: " ", l: 3, t: .CODE)
+        break
+        case 0xFE:
+            aR().compare(value: byte1)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "CP ±", m: " ", l: 2)
+        break
+        case 0xFF:
+            call(location: 0x0038)
+            instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &38", m: " ", l: 1)
+        break
         default:
-            print("Unknown code \(String(byte, radix: 16))")
-            print("-")
+//            print("Unknown code \(String(byte, radix: 16))")
+//            print("-")
+            instructionComplete(states: 4, length: 0)
         }
     }
     

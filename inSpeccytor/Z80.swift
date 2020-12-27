@@ -54,6 +54,12 @@ class Z80 {
     
     var delegate: Z80Delegate?
     
+    var halt = true
+    
+    var stackSize = 0
+    
+    var shouldRunInterupt = false
+    
     init() {
         ram = Array(repeating: 0, count: 65536)
         A.byteValue = a()
@@ -63,6 +69,8 @@ class Z80 {
         hl().setPairs(h: h(), l: l())
         af().setAF(h: A)
         iy().ld(value: 23610)
+        PC = 0
+        SP = 0
     }
     
     func accumilator() -> Accumilator{
@@ -183,14 +191,6 @@ class Z80 {
          return IY
     }
     
-    func pc() -> UInt16{
-         return PC
-    }
-    
-    func sp() -> UInt16{
-         return SP
-    }
-    
     func testRegisters(){
         bc().ld(value: 1257)
         print("B: \(b())")
@@ -218,7 +218,6 @@ class Z80 {
     }
     
     func exchangeAll(){
-        exchange(working: AF, spare: AF2)
         exchange(working: BC, spare: BC2)
         exchange(working: DE, spare: DE2)
         exchange(working: HL, spare: HL2)
@@ -262,23 +261,17 @@ class Z80 {
     }
     
     func renderFrame(){
-     //   print("Flash is \(flashOn) - \(flashCount)")
         flashCount += 1
         if (flashCount >= 16){
             flashCount = 0
             flashOn = !flashOn
         }
-      //  print("Attempting to Render")
-
-
-
         DispatchQueue.main.sync {
-
             self.blitMeAScreen()
-        //    print("Rendering")
             self.delegate?.updateView(bitmap: self.screenBuffer)
         }
         frameEnds = true
+        runInterupt()
     }
     
     func blitMeAScreen(){
@@ -288,15 +281,27 @@ class Z80 {
     
     func process() {
         currentTStates = 0
-        PC = 0
         while true {
             if (!frameEnds) {
-                
+                if (shouldRunInterupt){
+                    push(value: PC)
+                    PC = 0x0038
+                    halt = false
+                    shouldRunInterupt = false
+                }
+                    if (halt){
+                        instructionComplete(states: 4, length: 0)
+                    } else {
                 let byte = ram[Int(PC)]
                 print("Processing line \(PC) (\(String(PC, radix: 16).padded(size: 4))) - \(String(byte, radix: 16))")
                 opCode(byte: byte)
-
+                }
                 
+                if currentTStates >= tStatesPerFrame {
+                    currentTStates = 0
+                    renderFrame()
+                }
+                        
             } else {
                 let time = Date().timeIntervalSince1970
                 if (frameStarted + 0.02 <= time){
@@ -304,39 +309,55 @@ class Z80 {
                     frameEnds = false
                 }
             }
+            
+
+            
         }
-        
-        
-        
-//        pc().ld(value: 0)
-//        let ops = OpCodeDefs()
-//        while pc().value() < 65540 {
-//            let count = pc().value()
-//            let opCd = ram[Int(count)]
-//
-//            var code = ops.opCode(code: String(opCd, radix: 16).padded())
-//
-//            if code.isPreCode {
-//                let opCd2 = ram[Int(count+1)]
-//                code = ops.opCode(code: "\(code.value)\(String(opCd2, radix: 16).padded())")
-//                pc().ld(value: UInt(count) + 1)
-//            }
-//            print("\(count) - \(code.code)")
-//            pc().ld(value: UInt(count) + UInt(code.length))
-//            if (pc().value() >= 65535){
-//                pc().ld(value: 0)
-//                a().ld(value: a().value() + 1)
-//            }
-//        }
+    }
+    
+    func runInterupt() {
+        if (interupt){
+            shouldRunInterupt = true
+        }
     }
     
     func instructionComplete(states: Int, length: UInt16 = 1) {
         currentTStates += states
         PC = PC &+ length
-        if currentTStates >= tStatesPerFrame {
-            currentTStates = 0
-            renderFrame()
+//        if currentTStates >= tStatesPerFrame {
+//            currentTStates = 0
+//            renderFrame()
+//        }
+    }
+    
+    func call(location: UInt16){
+        push(value: PC)
+        PC = location
+    }
+    
+    func jump(location: UInt16){
+        PC = location
+    }
+    
+    func push(value: UInt16){
+        SP = SP &- 2
+        ldRam(location: SP, value: value)
+        stackSize += 1
+    }
+    
+    func pop() -> UInt16 {
+        if (stackSize > 0){
+        let value = fetchRamWord(location: SP)
+        SP = SP &+ 2
+        return value
+        } else {
+            print("Stack discrepancy - more pops than pushes!")
+            return 0
         }
+    }
+    
+    func ret(){
+        PC = pop()
     }
     
     func decRam(location: Int){
@@ -351,16 +372,33 @@ class Z80 {
         ram[location] = value
     }
     
+    func ldRam(location: Int, value: UInt16){
+        ram[location] = value.lowBit()
+        ram[location &+ 1] = value.highBit()
+    }
+    
     func ldRam(location: UInt16, value: UInt8){
         ram[Int(location)] = value
+    }
+    
+    func ldRam(location: UInt16, value: UInt16){
+        ldRam(location: Int(location), value: value)
     }
     
     func fetchRam(location: Int) -> UInt8 {
         return ram[location]
     }
     
+    func fetchRamWord(location: Int) -> UInt16 {
+        return UInt16(ram[location]) &+ (UInt16(ram[location &+ 1]) * 256)
+    }
+    
     func fetchRam(location: UInt16) -> UInt8 {
-        return ram[Int(location)]
+        return fetchRam(location: Int(location))
+    }
+    
+    func fetchRamWord(location: UInt16) -> UInt16 {
+        return fetchRamWord(location: Int(location))
     }
     
     func relativeJump(twos: UInt8) {
@@ -373,6 +411,7 @@ class Z80 {
         }
         print ("TC of \(twos) = \(subt ? "-" :  "")\(comp)")
     }
+    
     
     
     

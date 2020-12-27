@@ -10,12 +10,24 @@ import Foundation
 class Accumilator: Register {
     
     func sub(diff: UInt8) {
+        let oldValue = byteValue
         byteValue = byteValue &- diff
+        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
+        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != byteValue.isSet(bit: 4))
+        byteValue.set(bit: Flag.SUBTRACT)
+        
     }
     
     func add(diff: UInt8) {
+        let oldValue = byteValue
         byteValue = byteValue &+ diff
-        Z80.F.clearBit(bit: 0)
+        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
+        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 3) != byteValue.isSet(bit: 3))
+        byteValue.clear(bit: Flag.SUBTRACT)
     }
     
     func sBC(diff: UInt8) {
@@ -45,23 +57,29 @@ class Accumilator: Register {
     }
     
     func xOR(value: UInt8){
+        let oldValue = byteValue
         byteValue = byteValue ^ value
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT, value: (byteValue.isSet(bit: 7)))
+        Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
+        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
     func oR(value: UInt8){
+        let oldValue = byteValue
         byteValue = byteValue | value
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT, value: (byteValue.isSet(bit: 7)))
+        Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
+        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
     func aND(value: UInt8){
+        let oldValue = byteValue
         byteValue = byteValue &  value
         Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT, value: (byteValue.isSet(bit: 7)))
+        Z80.F.byteValue.set(bit: Flag.SIGN, value: (byteValue.isSet(bit: 7)))
+        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
@@ -78,7 +96,8 @@ class Accumilator: Register {
         Z80.F.byteValue.clear(bit: Flag.CARRY)
     }
     
-    func compare(value: UInt8){
+    func compare(value: UInt8){ // TODO: Signed compares?
+        let oldValue = byteValue
         var carry = false
         var zero = false
         if byteValue == value{
@@ -88,7 +107,10 @@ class Accumilator: Register {
         }
         Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
         Z80.F.byteValue.set(bit: Flag.CARRY, value: carry)
-        
+        Z80.F.byteValue.set(bit: Flag.SIGN, value: carry)
+        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+        byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != byteValue.isSet(bit: 7))
+        byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 3) != byteValue.isSet(bit: 3))
     }
     
     func lowerNibble() -> UInt8 {

@@ -34,6 +34,7 @@
 		CDED0C0025949B3C00862DE0 /* Z80+Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0BFF25949B3C00862DE0 /* Z80+Opcode.swift */; };
 		CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */; };
 		CDED0C0A25949FF400862DE0 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0925949FF400862DE0 /* Flag.swift */; };
+		CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C112598967700862DE0 /* UInt16+Bitwise.swift */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
 		CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */; };
 		CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D62531CC2700F0D216 /* ViewController.swift */; };
@@ -96,6 +97,7 @@
 		CDED0BFF25949B3C00862DE0 /* Z80+Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+Opcode.swift"; sourceTree = "<group>"; };
 		CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Bitwise.swift"; sourceTree = "<group>"; };
 		CDED0C0925949FF400862DE0 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
+		CDED0C112598967700862DE0 /* UInt16+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt16+Bitwise.swift"; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				CDED0BFA25949B2D00862DE0 /* Z80+OpcodeCB.swift */,
 				CDED0BFF25949B3C00862DE0 /* Z80+Opcode.swift */,
 				CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */,
+				CDED0C112598967700862DE0 /* UInt16+Bitwise.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
 				CDED0BFB25949B2D00862DE0 /* Z80+OpcodeCB.swift in Sources */,
 				CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */,
+				CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
