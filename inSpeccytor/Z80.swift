@@ -320,7 +320,7 @@ class Z80 {
 
 //                        print("PC: \(String(executed, radix:16)) a: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16)) HL2: \(String(HL2.value(), radix: 16)) BC2: \(String(BC2.value(), radix: 16)) DE2: \(String(DE2.value(), radix: 16))")
 //                        if (canLog){
-//                        print("PC: \(String(executed, radix:16)) Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+                        print("PC: \(String(executed, radix:16)) Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
 //                        }
 //                        if (PC == 0x0010 && a() > 0){
 //                            canLog = true
@@ -457,6 +457,7 @@ class Z80 {
     }
     
     func relativeJump(twos: UInt8) {
+        PC = PC &+ 2
         let subt = twos.isSet(bit: 7)
         let comp = twos.twosCompliment()
         if subt{

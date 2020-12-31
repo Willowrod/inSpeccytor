@@ -28,7 +28,6 @@ class FlagRegister: Register {
     }
     
     func parity(passedValue: UInt8){
-        print ("Checking parity on \(passedValue.bin()) (\(passedValue))")
         var count = 0
         for _ in 0...7 {
             if passedValue.isSet(bit: 0){

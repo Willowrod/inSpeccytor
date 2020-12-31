@@ -98,7 +98,6 @@ extension Z80 {
             if (f().isSet(bit: Flag.ZERO)){
                 instructionComplete(states: 8, length: 2)
             } else {
-                PC = PC &+ 2
                 relativeJump(twos: byte1)
                 instructionComplete(states: 13, length: 0)
             }//returnOpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
@@ -132,7 +131,6 @@ extension Z80 {
         instructionComplete(states: 4) //returnOpCode(v: code, c: "RL A", m: " ", l: 1)
 break
     case 0x18:
-        PC = PC &+ 2
         relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0) //returnOpCode(v: code, c: "JR ##", m: "Jump to routine at memory offset 2s $$ (##)", l: 2, e: true, t: .RELATIVE)
 
@@ -169,12 +167,7 @@ break
             if (f().isSet(bit: Flag.ZERO)){
                 instructionComplete(states: 7, length: 2)
             } else {
-                PC = PC &+ 2
-                if byte1.isSet(bit: 7){
-                    PC = PC &- UInt16(byte1.twosCompliment())
-                } else {
-                PC = PC &+ UInt16(byte1) //UInt16(byte1.twosCompliment())
-                }
+                relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0)
             }
         break
@@ -208,7 +201,6 @@ break
         break
         case 0x28:
             if (f().isSet(bit: Flag.ZERO)){
-                PC = PC &+ 2
                 relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0)
             } else {
@@ -249,12 +241,6 @@ break
             if (f().isSet(bit: Flag.CARRY)){
                 instructionComplete(states: 7, length: 2)
             } else {
-                PC = PC &+ 2
-//                if byte1.isSet(bit: 7){
-//                    PC = PC &- UInt16(byte1.twosCompliment())
-//                } else {
-//                PC = PC &+ UInt16(byte1.twosCompliment())
-//                }
                 relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0)
             }
@@ -291,7 +277,6 @@ break
             if (!f().isSet(bit: Flag.CARRY)){
                 instructionComplete(states: 7, length: 2)
             } else {
-                PC = PC &+ 2
                 relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0)
             }
@@ -947,12 +932,11 @@ break
         break
         case 0xD4:
             if (!Z80.F.byteValue.isSet(bit: Flag.CARRY)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
-            } //returnOpCode(v: code, c: "CALL NC,$$", m: " ", l: 3, t: .CODE)
+            }
         break
         case 0xD5:
             push(value: de().value())
@@ -991,8 +975,7 @@ break
         break
         case 0xDC:
             if (Z80.F.byteValue.isSet(bit: Flag.CARRY)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
@@ -1034,8 +1017,7 @@ break
         break
         case 0xE4:
             if (!Z80.F.byteValue.isSet(bit: Flag.PARITY)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
@@ -1079,8 +1061,7 @@ break
         break
         case 0xEC:
             if (Z80.F.byteValue.isSet(bit: Flag.PARITY)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
@@ -1121,8 +1102,7 @@ break
         break
         case 0xF4:
             if (Z80.F.byteValue.isSet(bit: Flag.SIGN)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
@@ -1167,8 +1147,7 @@ break
         break
         case 0xFC:
             if (!Z80.F.byteValue.isSet(bit: Flag.SIGN)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)

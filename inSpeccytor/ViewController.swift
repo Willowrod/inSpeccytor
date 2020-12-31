@@ -74,12 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
-        // Do any additional setup after loading the view.
-//        let displayLink = CADisplayLink(target: self, selector: #selector(update))
-//        displayLink.add(to: .main, forMode: .common)
-//        doIt()
-        
-//        z80.testRegisters()
+        doIt()
     }
     
 
@@ -95,53 +90,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         l.text = useHexValues ? z80.lR().hexValue() : z80.lR().stringValue()
     }
     
-    @objc func update(_ displayLink: CADisplayLink) {
-//        let timestamp = displayLink.timestamp
-//        let intedTimestamp = Int(timestamp)
-//        //let partial = timestamp - Double(intedTimestamp)
-//        if lastFlashChange + 0.32 < timestamp {
-//            lastFlashChange = timestamp
-//            flashOn = !flashOn
-//        }
-//        if lastcount < intedTimestamp {
-//            lastcount = intedTimestamp
-//            seconds += 1
-//            //  print ("FPS: \(frames / seconds)")
-//            hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
-//        }
-//        frames += 1
-//
-//        updateRegisters()
-    }
-    
     func updateFPS(){
         let timestamp = Date.init().timeIntervalSince1970
-        
-        
-        //let partial = timestamp - Double(intedTimestamp)
-//        if lastFlashChange + 0.32 < timestamp {
-//            lastFlashChange = timestamp
-//            flashOn = !flashOn
-//        }
- //       print ("Writing to screen")
         if timestamp > lastSecond + 1 {
             lastSecond = timestamp
             seconds += 1
             hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
-//            print ("FPS: \(frames / seconds) in \(seconds) seconds")
-           
         }
         frames += 1
     }
     
     func updateView(bitmap: Bitmap?) {
         updateFPS()
-
         if let bitmap = bitmap{
         screenRender.image = (UIImage(bitmap: bitmap))
         }
         updateRegisters()
- //       print ("Writing Complete")
     }
     
     func loadROM(){
@@ -162,17 +126,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let dataModel = data?.splitToBytes(separator: " "){
             self.model = dataModel
             z80.writeRAM(dataModel: dataModel, ignoreHeader: false)
-            
         } else {
             fileName.text = "Failed to create ROM"
         }
     }
     
     func doIt(){
-        // Load the snapshot
-        
         loadROM()
-        if let filePath = Bundle.main.path(forResource: "testz80", ofType: "sna"){
+        if let filePath = Bundle.main.path(forResource: "ab", ofType: "sna"){
             print("File found - \(filePath)")
             if let index = filePath.lastIndex(of: "/"){
                 let name = filePath.substring(from: index)
@@ -184,9 +145,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let contents = NSData(contentsOfFile: filePath)
             let data = contents! as Data
             let dataString = data.hexString
-
-            // print ("Data: \(contents)")
-            //hexView.text = dataString
             expandData(data: dataString)
             sortHeaderDataPass(data: dataString)
         } else {
@@ -199,10 +157,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func expandData(data: String?){
         if let dataModel = data?.splitToBytes(separator: " ", startFrom: 16384){
-            //        hexView.text = "\(dataModel)"
-//            print ("Data model size = \(dataModel.count)")
-//            print ("Model size = \(self.model.count)")
-//            print ("New Model size = \(self.model.count)")
             z80.writeRAM(dataModel: Array<CodeByteModel>(dataModel[27...]), ignoreHeader: true, startAddress: 16384)
             self.model.append(contentsOf: Array<CodeByteModel>(dataModel[27...]))    // = dataModel
             tableView.reloadData()
@@ -218,10 +172,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             z80.initialiseRegisters(header: header)
             updatePCUI(pc: 0) //23296
         }
-    }
-    
-    func sortInitialDataPass(){
-        
     }
     
     @IBAction func runFromPC(_ sender: Any) {
