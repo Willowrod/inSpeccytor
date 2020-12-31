@@ -77,7 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view.
 //        let displayLink = CADisplayLink(target: self, selector: #selector(update))
 //        displayLink.add(to: .main, forMode: .common)
-        doIt()
+//        doIt()
         
 //        z80.testRegisters()
     }
@@ -128,7 +128,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             lastSecond = timestamp
             seconds += 1
             hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
-            print ("FPS: \(frames / seconds) in \(seconds) seconds")
+//            print ("FPS: \(frames / seconds) in \(seconds) seconds")
            
         }
         frames += 1
@@ -172,39 +172,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Load the snapshot
         
         loadROM()
+        if let filePath = Bundle.main.path(forResource: "testz80", ofType: "sna"){
+            print("File found - \(filePath)")
+            if let index = filePath.lastIndex(of: "/"){
+                let name = filePath.substring(from: index)
+                fileName.text = name
+            } else {
+                fileName.text = "Unknown Snapshot"
+                hexView.text = "- - - - - - - -"
+            }
+            let contents = NSData(contentsOfFile: filePath)
+            let data = contents! as Data
+            let dataString = data.hexString
+
+            // print ("Data: \(contents)")
+            //hexView.text = dataString
+            expandData(data: dataString)
+            sortHeaderDataPass(data: dataString)
+        } else {
+            fileName.text = "Snapshot failed to load"
+            hexView.text = "- - - - - - - -"
+            print("file not found")
+        }
         startProcessor()
-        
-//        if let filePath = Bundle.main.path(forResource: "aticatac", ofType: "sna"){
-//            print("File found - \(filePath)")
-//            if let index = filePath.lastIndex(of: "/"){
-//                let name = filePath.substring(from: index)
-//                fileName.text = name
-//            } else {
-//                fileName.text = "Unknown Snapshot"
-//                hexView.text = "- - - - - - - -"
-//            }
-//            let contents = NSData(contentsOfFile: filePath)
-//            let data = contents! as Data
-//            let dataString = data.hexString
-//
-//            // print ("Data: \(contents)")
-//            //hexView.text = dataString
-//            sortHeaderDataPass(data: dataString)
-//            expandData(data: dataString)
-//            startProcessor()
-//        } else {
-//            fileName.text = "Snapshot failed to load"
-//            hexView.text = "- - - - - - - -"
-//            print("file not found")
-//        }
     }
     
     func expandData(data: String?){
         if let dataModel = data?.splitToBytes(separator: " ", startFrom: 16384){
             //        hexView.text = "\(dataModel)"
-            print ("Data model size = \(dataModel.count)")
-            print ("Model size = \(self.model.count)")
-            print ("New Model size = \(self.model.count)")
+//            print ("Data model size = \(dataModel.count)")
+//            print ("Model size = \(self.model.count)")
+//            print ("New Model size = \(self.model.count)")
             z80.writeRAM(dataModel: Array<CodeByteModel>(dataModel[27...]), ignoreHeader: true, startAddress: 16384)
             self.model.append(contentsOf: Array<CodeByteModel>(dataModel[27...]))    // = dataModel
             tableView.reloadData()
@@ -266,7 +264,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getCodeByte() -> CodeByteModel {
         let modelPosition = header.registerPC // - pCOffset
         
-         print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
+//         print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
         if (modelPosition < model.count){
             return model[modelPosition]
         } else {
@@ -332,7 +330,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             opCode.line = lineAsInt
             opCodes.append(opCode)
-            print("\(lineAsInt): \(opCode.toString())")
+//            print("\(lineAsInt): \(opCode.toString())")
             //        if (opCode.isEndOfRoutine){
             //            if (stopAfterEachOpCode){
             //                runLoop = false
@@ -344,7 +342,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //        }
             
             if (header.registerPC >= model.count){
-                print("End Of File")
+   //             print("End Of File")
                 runLoop = false
                 header.registerPC -= 1
                 updatePCUI()

@@ -14,7 +14,7 @@ protocol Z80Delegate {
 class Z80 {
     
     var A: Accumilator = Accumilator()
-    static var F: Register = Register()
+    static var F: FlagRegister = FlagRegister()
     var AF: RegisterPair = RegisterPair()
     var HL: RegisterPair = RegisterPair()
     var BC: RegisterPair = RegisterPair()
@@ -69,7 +69,7 @@ class Z80 {
         bc().setPairs(h: b(), l: c())
         de().setPairs(h: d(), l: e())
         hl().setPairs(h: h(), l: l())
-        af().setAF(h: A)
+        af().setAF(h: A, l: Z80.F)
         iy().ld(value: 23610)
         PC = 0
         SP = 0
@@ -233,8 +233,11 @@ class Z80 {
         bc().ld(value: UInt16(header.registerBC))
         de().ld(value: UInt16(header.registerDE))
         hl().ld(value: UInt16(header.registerHL))
-        PC = UInt16(header.registerPC)
+        
+
         SP = UInt16(header.registerSP)
+        ret()
+       // PC = 0x9a2d  //UInt16(header.registerPC)
         ix().ld(value: UInt16(header.registerIX))
         iy().ld(value: UInt16(header.registerIY))
         
@@ -247,19 +250,11 @@ class Z80 {
     }
     
     func writeRAM(dataModel: Array<CodeByteModel>, ignoreHeader: Bool, startAddress: Int = 0){
-        print ("Starting Ram size = \(ram.count)")
-        print ("Ram Model size = \(dataModel.count)")
         var count = startAddress
         dataModel.forEach { byte in
-          //  if (!ignoreHeader || byte.lineNumber > 100){
-               // ram.append(UInt8(byte.intValue))
             ram[count] = UInt8(byte.intValue)
             count += 1
-//            } else {
-//                print("Ignoring line \(byte.lineNumber)")
-//            }
         }
-        print ("Ram size = \(ram.count)")
     }
     
     func renderFrame(){
@@ -283,6 +278,9 @@ class Z80 {
     
     func process() {
         currentTStates = 0
+        var canLog = false
+        var myCount = 0
+       // PC = 49999
         while true {
             if (!frameEnds) {
                 if (shouldRunInterupt){
@@ -300,18 +298,45 @@ class Z80 {
                 }
                     if (halt){
                         instructionComplete(states: 4, length: 0)
+                        halt = false
                     } else {
                 let byte = ram[Int(PC)]
-   //             print("Processing line \(PC) (\(String(PC, radix: 16).padded(size: 4))) - \(String(byte, radix: 16))")
-                opCode(byte: byte)
+      //                  print("Processing line \(PC) (\(String(PC, radix: 16).padded(size: 4))) - \(String(byte, radix: 16)) - hl: \(hl().value())"  )// - a: \(a()) - b: \(b())")
+                        
+ //  print("Processing line \(String(PC, radix: 16)) - \(String(byte, radix: 16)) - hl: \(hl().value()) - b: \(b())"  ) //- SP: \(SP)"  )// - a: \(a()) - b: \(b())")   //  ")//
+                        
+    
+                        let executed = PC
+ //                      print("Processing line \(String(PC, radix: 16)) - \(String(byte, radix: 16))")
+//                        if (executed == 0x0c4c){
+//                            print("Executing....")
+//
+//                        }
+  //                         print("\(String(executed, radix: 16))")
+          opCode(byte: byte)
+        
+                        //                       opCode(byte: 3)
+ //                      print("\(String(executed, radix: 16))")
+
+//                        print("PC: \(String(executed, radix:16)) a: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16)) HL2: \(String(HL2.value(), radix: 16)) BC2: \(String(BC2.value(), radix: 16)) DE2: \(String(DE2.value(), radix: 16))")
+//                        if (canLog){
+//                        print("PC: \(String(executed, radix:16)) Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+//                        }
+//                        if (PC == 0x0010 && a() > 0){
+//                            canLog = true
+//                                   print("....... \(String(UnicodeScalar(a()))) .........")
+//                                }
+    //                    ..                     print(".")
                 }
                 
                 if currentTStates >= tStatesPerFrame {
                     currentTStates = 0
                     renderFrame()
+  //                  print("Rendering")
                 }
                         
-            } else {
+            }
+            else {
                 let time = Date().timeIntervalSince1970
                 if (frameStarted + 0.02 <= time){
                     frameStarted = time
@@ -339,7 +364,8 @@ class Z80 {
 //        }
     }
     
-    func call(location: UInt16){
+    func call(location: UInt16, length: UInt16 = 1){
+        PC = PC &+ length
         push(value: PC)
         PC = location
     }
@@ -352,18 +378,21 @@ class Z80 {
         SP = SP &- 2
         ldRam(location: SP, value: value)
         stackSize += 1
+  //      print ("PC: \(String(PC, radix:16)) Pushing \(value) (l:\(value.lowBit()) h:\(value.highBit())) to stack position \(SP) (\(String(SP, radix: 16)) - Stacksize:\(stackSize)")
     }
     
     func pop() -> UInt16 {
-        if (stackSize > 0){
+  //      if (stackSize > 0){
         let value = fetchRamWord(location: SP)
-        SP = SP &+ 2
             stackSize -= 1
+   //     print ("PC: \(String(PC, radix:16)) Popping \(value) (l:\(value.lowBit()) h:\(value.highBit())) from stack position \(SP) (\(String(SP, radix: 16)) - Stacksize:\(stackSize)")
+        SP = SP &+ 2
         return value
-        } else {
-            print("Stack discrepancy - more pops than pushes!")
-            return 0
-        }
+//        }
+//        else {
+//            print("Stack discrepancy - more pops than pushes!")
+//            return 0
+//        }
     }
     
     func ret(){
@@ -371,24 +400,40 @@ class Z80 {
     }
     
     func decRam(location: Int){
-        ram[location] = ram[location] &- 1
+        let oldValue = ram[location]
+        ldRam(location: Int(location), value: ram[location] &- 1)
+        ram[location].s53()
+        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
+        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
     }
     
     func incRam(location: Int){
-        ram[location] = ram[location] &+ 1
+        let oldValue = ram[location]
+        ldRam(location: Int(location), value: ram[location] &+ 1)
+        ram[location].s53()
+        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
+        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
     }
     
     func ldRam(location: Int, value: UInt8){
+//        if (location < 0x4000){
+//            print("location \(location) is being changed, that's not right!")
+//        } else {
         ram[location] = value
+//        }
     }
     
     func ldRam(location: Int, value: UInt16){
-        ram[location] = value.lowBit()
-        ram[location &+ 1] = value.highBit()
+        ldRam(location: location, value: value.lowBit())
+        ldRam(location: location &+ 1, value: value.highBit())
     }
     
     func ldRam(location: UInt16, value: UInt8){
-        ram[Int(location)] = value
+        ldRam(location: Int(location), value: value)
     }
     
     func ldRam(location: UInt16, value: UInt16){
@@ -417,9 +462,9 @@ class Z80 {
         if subt{
             PC = PC &- UInt16(comp)
         } else {
-        PC = PC &+ UInt16(comp)
+        PC = PC &+ UInt16(twos)
         }
-        print ("TC of \(twos) = \(subt ? "-" :  "")\(comp)")
+//        print ("TC of \(twos) = \(subt ? "-" :  "")\(comp)")
     }
     
     
@@ -429,10 +474,10 @@ class Z80 {
         let subt = twos.isSet(bit: 7)
         let comp = twos.twosCompliment()
         if subt{
-        print ("IY TC of \(twos) = -\(comp)")
+//        print ("IY TC of \(twos) = -\(comp)")
             return iy().value() &- UInt16(comp)
         } else {
-    print ("IY TC of \(twos) = \(comp)")
+//    print ("IY TC of \(twos) = \(comp)")
             return iy().value() &+ UInt16(comp)
         }
     }

@@ -40,8 +40,12 @@ extension String {
         for subString in subStringArray {
             stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
             lineNumber+=1
+//            if (lineNumber == 27){
+//                break
+//            }
+            
             if (lineNumber == 27){
-                break
+                lineNumber = 16384
             }
         }
         return stringArray

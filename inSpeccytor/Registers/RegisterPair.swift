@@ -11,8 +11,9 @@ class RegisterPair {
     var high = Register()
     var low = Register()
     
-    func setAF(h: Accumilator) {
+    func setAF(h: Accumilator, l: FlagRegister) {
         high = h
+        low = l
     }
     
     func ld(pair: RegisterPair){
@@ -42,6 +43,11 @@ class RegisterPair {
             ld(value: current &- diff)
         }
         Z80.F.byteValue.set(bit: Flag.CARRY, value: current < value())
+        high.byteValue.s53()
+        Z80.F.byteValue.set(bit: Flag.ZERO, value: value() == 0)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highBit().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highBit().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
+        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
     }
     
     func adc(diff: UInt16){
@@ -52,21 +58,28 @@ class RegisterPair {
             ld(value: current &+ diff)
         }
         Z80.F.byteValue.set(bit: Flag.CARRY, value: current > value())
+        high.byteValue.s53()
+        Z80.F.byteValue.set(bit: Flag.ZERO, value: value() == 0)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highBit().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highBit().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
     }
     
     
     func sub(diff: UInt16){
         let current:UInt16 = value()
             ld(value: value() &- diff)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: current > value())
+        Z80.F.byteValue.set(bit: Flag.CARRY, value: current < value())
         Z80.F.byteValue.set(bit: Flag.SUBTRACT)
     }
     
     func add(diff: UInt16){
         let current:UInt16 = value()
-            ld(value: value() &+ diff)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: current < value())
-        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+        let newValue: UInt32 = UInt32(value()) &+ UInt32(diff)
+            ld(value: UInt16(newValue & 0xffff))
+        Z80.F.positive()
+        Z80.F.halfCarry(passedValue: diff, oldValue: current)
+        Z80.F.carry(upperByte: UInt8(newValue >> 16))
+        Z80.F.bits5And3(passedValue: value())
     }
     
     func ld(high: UInt8, low: UInt8){
@@ -89,6 +102,14 @@ class RegisterPair {
     
     func addSelf() {
         add(diff: value())
+    }
+    
+    func hex() -> String {
+        return String(value(), radix: 16).padded(size: 4)
+    }
+    
+    func bin() -> String {
+        return String(value(), radix: 2).padded(size: 8)
     }
     
 }

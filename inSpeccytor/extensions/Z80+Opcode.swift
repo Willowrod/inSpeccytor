@@ -19,7 +19,7 @@ extension Z80 {
                   opCodeCB(byte: byte1)
                 break
                 case 0xDD:
-                    opCodeDD(byte: byte1)
+                    opCodeDDFD(reg: IX, byte: byte1)
         
                 break
                 case 0xED:
@@ -27,7 +27,7 @@ extension Z80 {
         
                 break
                 case 0xFD:
-                    opCodeFD(byte: byte1)
+                    opCodeDDFD(reg: IY, byte: byte1)
         break
         
         case 0: // NOP
@@ -101,8 +101,7 @@ extension Z80 {
                 PC = PC &+ 2
                 relativeJump(twos: byte1)
                 instructionComplete(states: 13, length: 0)
-            }
-        instructionComplete(states: 4) //returnOpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
+            }//returnOpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
         break
         case 0x11: //LD DE,nn
             de().ld(value: word)
@@ -184,8 +183,8 @@ break
             instructionComplete(states: 7, length: 3) //returnOpCode(v: code, c: "LD HL,$$", m: "Load the register pair HL with the value $$", l: 3, t: .DATA)
         break
         case 0x22:
-            ram[Int(word)] = l()
-            ram[Int(word + 1)] = h()
+            ldRam(location: word, value: l())
+            ldRam(location: word &+ 1, value: h())
         instructionComplete(states: 16, length: 3) //returnOpCode(v: code, c: "LD ($$),HL", m: " ", l: 3, t: .DATA)
         break
         case 0x23:
@@ -210,11 +209,7 @@ break
         case 0x28:
             if (f().isSet(bit: Flag.ZERO)){
                 PC = PC &+ 2
-                if byte1.isSet(bit: 7){
-                    PC = PC &- UInt16(byte1.twosCompliment())
-                } else {
-                PC = PC &+ UInt16(byte1.twosCompliment())
-                }
+                relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0)
             } else {
                 instructionComplete(states: 7, length: 2)
@@ -246,7 +241,8 @@ break
             instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "LD L,±", m: " ", l: 2)
         break
         case 0x2F:
-            aR().compare(value: l())
+//            aR().compare(value: a())
+            aR().cpl()
         instructionComplete(states: 4) //returnOpCode(v: code, c: "CP L", m: " ", l: 1)
         break
         case 0x30:
@@ -254,11 +250,12 @@ break
                 instructionComplete(states: 7, length: 2)
             } else {
                 PC = PC &+ 2
-                if byte1.isSet(bit: 7){
-                    PC = PC &- UInt16(byte1.twosCompliment())
-                } else {
-                PC = PC &+ UInt16(byte1.twosCompliment())
-                }
+//                if byte1.isSet(bit: 7){
+//                    PC = PC &- UInt16(byte1.twosCompliment())
+//                } else {
+//                PC = PC &+ UInt16(byte1.twosCompliment())
+//                }
+                relativeJump(twos: byte1)
         instructionComplete(states: 12, length: 0)
             }
         break
@@ -268,22 +265,22 @@ break
         break
         case 0x32:
             ldRam(location: word, value: a())
-        instructionComplete(states: 13) //returnOpCode(v: code, c: "LD ($$),A", m: " ", l: 3, t: .DATA)
+        instructionComplete(states: 13, length: 3) //returnOpCode(v: code, c: "LD ($$),A", m: " ", l: 3, t: .DATA)
         break
         case 0x33:
             SP = SP &+ 1
         instructionComplete(states: 6) //returnOpCode(v: code, c: "INC SP", m: " ", l: 1)
         break
         case 0x34:
-            ram[Int(hl().value())] = ram[Int(hl().value())] &+ 1
+            incRam(location: Int(hl().value())) // ram[Int(hl().value())] = ram[Int(hl().value())] &+ 1
         instructionComplete(states: 11) //returnOpCode(v: code, c: "INC (HL)", m: " ", l: 1)
         break
         case 0x35:
-            ram[Int(hl().value())] = ram[Int(hl().value())] &- 1
+            decRam(location: Int(hl().value())) // ram[Int(hl().value())] = ram[Int(hl().value())] &- 1
         instructionComplete(states: 11) //returnOpCode(v: code, c: "DEC (HL)", m: " ", l: 1)
         break
         case 0x36:
-            ram[Int(hl().value())] = byte1
+            ldRam(location: Int(hl().value()), value: byte1) //  ram[Int(hl().value())] = byte1
         instructionComplete(states: 10, length: 2) //returnOpCode(v: code, c: "LD (HL),$$", m: " ", l: 3, t: .DATA)
         break
         case 0x37:
@@ -517,27 +514,27 @@ break
         instructionComplete(states: 4) //returnOpCode(v: code, c: "LD L,A", m: " ", l: 1)
         break
         case 0x70:
-            ram[Int(hl().value())] = b()
+            ldRam(location: Int(hl().value()), value: b()) //  ram[Int(hl().value())] = b()
         instructionComplete(states: 7)
         break
         case 0x71:
-            ram[Int(hl().value())] = c()
+            ldRam(location: Int(hl().value()), value: c()) //  ram[Int(hl().value())] = c()
         instructionComplete(states: 7)
         break
         case 0x72:
-            ram[Int(hl().value())] = d()
+            ldRam(location: Int(hl().value()), value: d()) //  ram[Int(hl().value())] = d()
         instructionComplete(states: 7)
         break
         case 0x73:
-            ram[Int(hl().value())] = e()
+            ldRam(location: Int(hl().value()), value: e()) //  ram[Int(hl().value())] = e()
         instructionComplete(states: 7)
         break
         case 0x74:
-            ram[Int(hl().value())] = h()
+            ldRam(location: Int(hl().value()), value:  h()) //  ram[Int(hl().value())] = h()
         instructionComplete(states: 7)
         break
         case 0x75:
-            ram[Int(hl().value())] = l()
+            ldRam(location: Int(hl().value()), value: l()) //  ram[Int(hl().value())] = l()
         instructionComplete(states: 7)
         break
         case 0x76:
@@ -545,7 +542,7 @@ break
         instructionComplete(states: 4) //returnOpCode(v: code, c: "HALT", m: " ", l: 1)
         break
         case 0x77:
-            ram[Int(hl().value())] = a()
+            ldRam(location: Int(hl().value()), value: a()) // ram[Int(hl().value())] = a()
         instructionComplete(states: 7)
         break
         case 0x78:
@@ -764,7 +761,7 @@ break
         instructionComplete(states: 4) //returnOpCode(v: code, c: "XOR L", m: " ", l: 1)
         break
         case 0xAE:
-            aR().aND(value: fetchRam(location: hl().value()))
+            aR().xOR(value: fetchRam(location: hl().value()))
         instructionComplete(states: 7) //returnOpCode(v: code, c: "XOR (HL)", m: " ", l: 1)
         break
         case 0xAF:
@@ -862,7 +859,8 @@ break
         break
         case 0xC4:
             if (!Z80.F.byteValue.isSet(bit: Flag.ZERO)){
-                call(location: word)
+                
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
@@ -870,15 +868,14 @@ break
         break
         case 0xC5:
             push(value: bc().value())
-            instructionComplete(states: 11)
-        instructionComplete(states: 4) //returnOpCode(v: code, c: "PUSH BC", m: " ", l: 1)
+            instructionComplete(states: 11)//returnOpCode(v: code, c: "PUSH BC", m: " ", l: 1)
         break
         case 0xC6:
             aR().add(diff: byte1)
         instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "ADD A,±", m: " ", l: 2)
         break
         case 0xC7:
-        call(location: 0x0000)
+        call(location: 0x0000, length: 1)
         instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST 0", m: " ", l: 1)
         break
         case 0xC8:
@@ -902,11 +899,10 @@ break
             } //returnOpCode(v: code, c: "JP Z, $$", m: "If the Zero flag is set in register F, jump to routine at memory location $$", l: 3, t: .CODE)
 //
 //
-//        break
+       break
         case 0xCC:
             if (Z80.F.byteValue.isSet(bit: Flag.ZERO)){
-                push(value: PC)
-                PC = word
+                call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
                 instructionComplete(states: 10, length: 3)
@@ -914,7 +910,7 @@ break
          //returnOpCode(v: code, c: "CALL Z,$$", m: " ", l: 3, t: .CODE)
         break
         case 0xCD:
-            call(location: word)
+            call(location: word, length: 3)
         instructionComplete(states: 17, length: 0) //returnOpCode(v: code, c: "CALL $$", m: " ", l: 3, t: .CODE)
         break
         case 0xCE:
@@ -932,7 +928,7 @@ break
             } else {
                 instructionComplete(states: 5, length: 1)
             }
-        instructionComplete(states: 4) //returnOpCode(v: code, c: "RET NC", m: " ", l: 1)
+        //returnOpCode(v: code, c: "RET NC", m: " ", l: 1)
         break
         case 0xD1:
             de().ld(value: pop())
@@ -1004,7 +1000,7 @@ break
         break
         case 0xDE:
             aR().sBC(diff: byte1)
-        instructionComplete(states: 7) //returnOpCode(v: code, c: "SBC A,±", m: " ", l: 2)
+        instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "SBC A,±", m: " ", l: 2)
         break
         case 0xDF:
             call(location: 0x0018)
@@ -1050,7 +1046,7 @@ break
             instructionComplete(states: 11) //returnOpCode(v: code, c: "PUSH HL", m: " ", l: 1)
         break
             case 0xE6:
-                aR().add(diff: byte1)
+                aR().aND(value: byte1)
                 instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "AND ±", m: "Update A to only contain bytes set in both A and the value ±", l: 2)
             break
         case 0xE7:

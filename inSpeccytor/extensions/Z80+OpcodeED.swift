@@ -173,7 +173,7 @@ extension Z80 {
         break
         case 0x73: //LD ($$),SP
             ldRam(location: word, value: SP)
-        instructionComplete(states: 20)
+        instructionComplete(states: 20, length: 3)
         break
         case 0x78: // TODO: IN A,(C)
             instructionComplete(states: 12)
@@ -187,7 +187,7 @@ extension Z80 {
         break
         case 0x7B: // LD SP,($$)
             SP = fetchRamWord(location: word)
-        instructionComplete(states: 20)
+            instructionComplete(states: 20, length: 3)
         break
         case 0xA0: // LDI
             ldRam(location: de().value(), value: fetchRam(location: hl().value()))
@@ -199,51 +199,48 @@ extension Z80 {
             Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() != 1)
         instructionComplete(states: 16)
         break
-//        case 0xA1:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA2:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA3:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA4:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA5:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA6:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA7:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA8:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xA9:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xAA:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xAB:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xAC:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xAD:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xAE:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xAF:
-//        instructionComplete(states: 4)
-//        break
+        case 0xA1: // CPI
+            aR().compare(value: fetchRam(location: hl().value()))
+            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
+            hl().inc()
+            bc().dec()
+            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
+        instructionComplete(states: 21)
+        break
+        case 0xA2: // TODO: INI
+        instructionComplete(states: 16)
+        break
+        case 0xA3: // TODO: OUTI
+            instructionComplete(states: 16)
+        break
+        case 0xA8:// LDD
+            ldRam(location: de().value(), value: fetchRam(location: hl().value()))
+            de().dec()
+            hl().dec()
+            bc().dec()
+            Z80.F.byteValue.clear(bit: Flag.HALF_CARRY)
+            Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+            Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() != 1)
+        instructionComplete(states: 16)
+        break
+        case 0xA9: // CPI
+            aR().compare(value: fetchRam(location: hl().value()))
+            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
+            hl().dec()
+            bc().dec()
+            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
+        instructionComplete(states: 16)
+        break
+
+            
+            case 0xAA: // TODO: IND
+            instructionComplete(states: 16)
+            break
+            case 0xAB: // TODO: OUTD
+                instructionComplete(states: 16)
+            break
+
+                
         case 0xB0: // LDIR
             ldRam(location: de().value(), value: fetchRam(location: hl().value()))
             de().inc()
@@ -253,45 +250,71 @@ extension Z80 {
             Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
             Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() != 1)
             if (bc().value() != 0){
-                PC = PC &- 2
+                PC = PC &- 1
             instructionComplete(states: 21, length: 0)
             } else {
         instructionComplete(states: 16)
             }
         break
-//        case 0xB1:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB2:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB3:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB4:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB5:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB6:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB7:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB8:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xB9:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xBA:
-//        instructionComplete(states: 4)
-//        break
-//        case 0xBB:
-//        instructionComplete(states: 4)
-//        break
+        case 0xB1: // CPI
+            aR().compare(value: fetchRam(location: hl().value()))
+            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
+            hl().inc()
+            bc().dec()
+            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
+            if (zero || bc().value() == 0){
+                instructionComplete(states: 16)
+            } else {
+                PC = PC &- 1
+                instructionComplete(states: 21, length: 0)
+            }
+            
+            
+            
+        break
+        case 0xB2: // TODO: INIR
+        instructionComplete(states: 16)
+        break
+        case 0xB3: // TODO: OUTIR
+            instructionComplete(states: 16)
+        break
+        case 0xB8:// LDDR
+            ldRam(location: de().value(), value: fetchRam(location: hl().value()))
+            de().dec()
+            hl().dec()
+            bc().dec()
+            Z80.F.byteValue.clear(bit: Flag.HALF_CARRY)
+            Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+            Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() != 1)
+            if (bc().value() == 0){
+                instructionComplete(states: 16)
+            } else {
+                PC = PC &- 1
+                instructionComplete(states: 21, length: 0)
+            }
+        break
+        case 0xB9: // CPIR
+            aR().compare(value: fetchRam(location: hl().value()))
+            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
+            hl().dec()
+            bc().dec()
+            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
+            if (zero || bc().value() == 0){
+                instructionComplete(states: 16)
+            } else {
+                PC = PC &- 1
+                instructionComplete(states: 21, length: 0)
+            }
+        break
+
+            
+            case 0xBA: // TODO: IND
+            instructionComplete(states: 16)
+            break
+            case 0xBB: // TODO: OUTD
+                instructionComplete(states: 16)
+            break
+
 
         default:
             print("Potential Unknown code ED\(String(byte, radix: 16))")

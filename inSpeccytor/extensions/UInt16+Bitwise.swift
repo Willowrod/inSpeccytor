@@ -15,4 +15,12 @@ extension UInt16 {
     func lowBit() -> UInt8 {
        return UInt8(self - ((self / 256) * 256))
     }
+    
+    func hex() -> String {
+        return String(self, radix: 16).padded(size: 4)
+    }
+    
+    func bin() -> String {
+        return String(self, radix: 2).padded(size: 8)
+    }
 }
