@@ -21,49 +21,42 @@ extension Z80 {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x0E: //RRC
             ram[Int(targetByte)].rrc()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x16: //RL
             ram[Int(targetByte)].rl()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x1E: //RR
             ram[Int(targetByte)].rr()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x26: //SLA
             ram[Int(targetByte)].sla()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x2E: //SRA
             ram[Int(targetByte)].sra()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x3E: //SRL
             ram[Int(targetByte)].srl()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-            break
         case 0x46...0x7E: //BIT 0
             let opCodeOffset = Int(byte2 / 8)
                 ram[Int(targetByte)].testBit(bit: opCodeOffset - 8)
@@ -71,7 +64,6 @@ extension Z80 {
 //                    register.ld(value: ram[Int(targetByte)])
 //                }
                     instructionComplete(states: 20, length: 3)
-            break
         case 0x86...0xBE: //BIT 0
             let opCodeOffset = Int(byte2 / 8)
             ram[Int(targetByte)].clear(bit: opCodeOffset - 16)
@@ -79,7 +71,6 @@ extension Z80 {
                     register.ld(value: ram[Int(targetByte)])
                 }
                 instructionComplete(states: 23, length: 3)
-        break
         case 0xC6...0xFE: //BIT 0
             let opCodeOffset = Int(byte2 / 8)
             ram[Int(targetByte)].set(bit: opCodeOffset - 24)
@@ -87,7 +78,6 @@ extension Z80 {
                     register.ld(value: ram[Int(targetByte)])
                 }
                 instructionComplete(states: 23, length: 3)
-        break
         
         
         default:

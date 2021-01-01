@@ -23,8 +23,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
             landmarkName = "ldRam(location:value:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -39,8 +39,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "push(value:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,8 +55,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "pop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -71,8 +71,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "call(location:length:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -87,8 +87,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "process()"
             landmarkType = "7">
          </BreakpointContent>
@@ -103,8 +103,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "process()"
             landmarkType = "7">
          </BreakpointContent>
@@ -119,8 +119,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -135,8 +135,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "initialiseRegisters(header:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -145,6 +145,38 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F544EA04-2C86-47FD-A44F-E84E6C93CBF5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Z80.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "process()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C66FAD3-8306-4B9A-88E2-2D29D9E52DDF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Z80.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "blitMeAScreen()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20D6CD2C-3F24-4733-9BBF-9C5AFAEC995B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -160,54 +192,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2C66FAD3-8306-4B9A-88E2-2D29D9E52DDF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "inSpeccytor/Z80.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "blitMeAScreen()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "20D6CD2C-3F24-4733-9BBF-9C5AFAEC995B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "inSpeccytor/Z80.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "process()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "599F46AD-5001-41B5-BB4A-3944BE03C4CE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "inSpeccytor/Z80.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
-            landmarkName = "process()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "0A64779E-60DB-43E6-B09A-7B1A1395269F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -215,8 +199,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "process()"
             landmarkType = "7">
          </BreakpointContent>
@@ -231,8 +215,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "process()"
             landmarkType = "7">
          </BreakpointContent>
@@ -247,8 +231,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "process()"
             landmarkType = "7">
          </BreakpointContent>
@@ -450,8 +434,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "process()"
             landmarkType = "7">
             <Locations>
@@ -500,7 +484,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "bits5And3(passedValue:)"
+            landmarkName = "bits5And3(calculatedValue:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -534,6 +518,198 @@
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2FFAFC2-4B81-44EB-820E-CFA9244FCA22"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Z80.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            landmarkName = "process()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30C0D5F5-071A-4E74-B7E8-2ACEA3F1F39E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/Accumilator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "sBC(diff:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "30C0D5F5-071A-4E74-B7E8-2ACEA3F1F39E - 61c4739d24c86fcc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.Accumilator.sBC(diff: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/Accumilator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "30C0D5F5-071A-4E74-B7E8-2ACEA3F1F39E - 5a46e6dabd55c4fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.Accumilator.sBC(diff: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/Accumilator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FF4FA5D-F5E9-4572-986F-6FF6C6FCDD43"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "overFlow(passedValue:oldValue:newValue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0FF4FA5D-F5E9-4572-986F-6FF6C6FCDD43 - 6a7c8313c9d404d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.FlagRegister.overFlow(passedValue: Swift.UInt8, oldValue: Swift.UInt8, newValue: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "0FF4FA5D-F5E9-4572-986F-6FF6C6FCDD43 - 736c673f0700066"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.FlagRegister.overFlow(passedValue: Swift.UInt8, oldValue: Swift.UInt8, newValue: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA83CAA6-7B8A-4FE9-8BB4-6076FCBF021B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "overFlowSB(passedValue:oldValue:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3486844-4B72-47E4-87F0-9DCDD1DE21D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Z80.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
+            landmarkName = "process()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F781E0E-3DA4-4D9B-B756-CCC2EC55DFFD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Z80.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "process()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA59F07B-B8A7-4F14-8B3C-1A701A296E14"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/Register.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "srl()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CAF3D92C-EDF0-4313-A02C-8EE58F98AD40"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "keyboardInteraction(key:pressed:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

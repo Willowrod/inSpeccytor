@@ -8,7 +8,7 @@
 import Foundation
 
 extension UInt16 {
-    func highBit() -> UInt8 {
+    func highByte() -> UInt8 {
         return UInt8(self / 256)
     }
     

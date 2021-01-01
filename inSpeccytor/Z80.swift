@@ -9,6 +9,8 @@ import Foundation
 
 protocol Z80Delegate {
     func updateView(bitmap: Bitmap?)
+    func updateDebug(line: UInt16)
+    func updateRegisters()
 }
 
 class Z80 {
@@ -42,6 +44,7 @@ class Z80 {
     var screenWriteComplete = true
     
     var ram: Array<UInt8> = []
+    var keyboard: Array<UInt8> = []
     
     var screenBuffer = Bitmap(width: 256, height: 192, color: .white)
     
@@ -62,8 +65,18 @@ class Z80 {
     
     var shouldRunInterupt = false
     
+    var shouldBreak = false
+    var shouldStep = false
+    var shouldForceBreak = false
+    
+    
+    
+    var breakPoints: Array<UInt16> = []
+    
     init() {
         ram = Array(repeating: 0, count: 65536)
+        keyboard = Array(repeating: 0xff, count: 8)
+        breakPoints = Array()
         A.byteValue = a()
         Z80.F.byteValue = f()
         bc().setPairs(h: b(), l: c())
@@ -282,8 +295,10 @@ class Z80 {
         var myCount = 0
        // PC = 49999
         while true {
-            if (!frameEnds) {
+//            if (!frameEnds) {
                 if (shouldRunInterupt){
+                    interupt = false
+                    interupt2 = false
                     push(value: PC)
                     switch interuptMode {
                     case 0:
@@ -313,6 +328,23 @@ class Z80 {
 //
 //                        }
   //                         print("\(String(executed, radix: 16))")
+                        
+                         shouldBreak = breakPoints.contains(PC) || shouldStep || shouldForceBreak
+                        if (shouldBreak){
+                            
+                            print("Breakpoint hit at \(PC)")
+                            
+                            print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+                            DispatchQueue.main.sync {
+                                delegate?.updateRegisters()
+                                delegate?.updateDebug(line: PC)
+                            }
+                        while shouldBreak {
+                        }
+                        }
+                            
+                        shouldForceBreak = false
+                        
           opCode(byte: byte)
         
                         //                       opCode(byte: 3)
@@ -320,9 +352,9 @@ class Z80 {
 
 //                        print("PC: \(String(executed, radix:16)) a: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16)) HL2: \(String(HL2.value(), radix: 16)) BC2: \(String(BC2.value(), radix: 16)) DE2: \(String(DE2.value(), radix: 16))")
 //                        if (canLog){
-                        print("PC: \(String(executed, radix:16)) Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+//                        print("PC: \(String(executed, radix:16)) Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
 //                        }
-//                        if (PC == 0x0010 && a() > 0){
+//                        if (PC == 0xf53c){
 //                            canLog = true
 //                                   print("....... \(String(UnicodeScalar(a()))) .........")
 //                                }
@@ -332,17 +364,16 @@ class Z80 {
                 if currentTStates >= tStatesPerFrame {
                     currentTStates = 0
                     renderFrame()
-  //                  print("Rendering")
                 }
                         
-            }
-            else {
-                let time = Date().timeIntervalSince1970
-                if (frameStarted + 0.02 <= time){
-                    frameStarted = time
-                    frameEnds = false
-                }
-            }
+//            }
+//            else {
+//                let time = Date().timeIntervalSince1970
+//                if (frameStarted + 0.02 <= time){
+//                    frameStarted = time
+//                    frameEnds = false
+//                }
+//            }
             
 
             
@@ -429,7 +460,7 @@ class Z80 {
     
     func ldRam(location: Int, value: UInt16){
         ldRam(location: location, value: value.lowBit())
-        ldRam(location: location &+ 1, value: value.highBit())
+        ldRam(location: location &+ 1, value: value.highByte())
     }
     
     func ldRam(location: UInt16, value: UInt8){

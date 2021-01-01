@@ -77,7 +77,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         doIt()
     }
     
-
+    
+    @IBAction func debugStep(_ sender: Any) {
+        z80.shouldStep = true
+        z80.shouldBreak = false
+    }
+    
+    @IBAction func debugPause(_ sender: Any) {
+        z80.shouldForceBreak = true
+    }
+    
+    @IBAction func debugPlay(_ sender: Any) {
+        z80.shouldStep = false
+        z80.shouldBreak = false
+        z80.shouldForceBreak = false
+    }
+    
+    func updateDebug(line: UInt16){
+        var targLine = Int(line) - 4
+        if targLine < 0 {
+            targLine = 0
+        }
+        let targetRowIndexPath = IndexPath(row: targLine, section: 0)
+        tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+    }
     
     func updateRegisters(){
         a.text = useHexValues ? z80.A.hexValue() : z80.A.stringValue()
@@ -103,7 +126,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateView(bitmap: Bitmap?) {
         updateFPS()
         if let bitmap = bitmap{
-        screenRender.image = (UIImage(bitmap: bitmap))
+            screenRender.image = (UIImage(bitmap: bitmap))
         }
         updateRegisters()
     }
@@ -133,26 +156,187 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func doIt(){
         loadROM()
-        if let filePath = Bundle.main.path(forResource: "ab", ofType: "sna"){
-            print("File found - \(filePath)")
-            if let index = filePath.lastIndex(of: "/"){
-                let name = filePath.substring(from: index)
-                fileName.text = name
-            } else {
-                fileName.text = "Unknown Snapshot"
-                hexView.text = "- - - - - - - -"
-            }
-            let contents = NSData(contentsOfFile: filePath)
-            let data = contents! as Data
-            let dataString = data.hexString
-            expandData(data: dataString)
-            sortHeaderDataPass(data: dataString)
-        } else {
-            fileName.text = "Snapshot failed to load"
-            hexView.text = "- - - - - - - -"
-            print("file not found")
-        }
+        //        if let filePath = Bundle.main.path(forResource: "testz80", ofType: "sna"){
+        //            print("File found - \(filePath)")
+        //            if let index = filePath.lastIndex(of: "/"){
+        //                let name = filePath.substring(from: index)
+        //                fileName.text = name
+        //            } else {
+        //                fileName.text = "Unknown Snapshot"
+        //                hexView.text = "- - - - - - - -"
+        //            }
+        //            let contents = NSData(contentsOfFile: filePath)
+        //            let data = contents! as Data
+        //            let dataString = data.hexString
+        //            expandData(data: dataString)
+        //            sortHeaderDataPass(data: dataString)
+        //        } else {
+        //            fileName.text = "Snapshot failed to load"
+        //            hexView.text = "- - - - - - - -"
+        //            print("file not found")
+        //        }
         startProcessor()
+    }
+    
+    func keyboardInteraction(key: Int, pressed: Bool){
+        var bank = -1
+        var bit = -1
+        switch key{
+        case 4: // a
+            bank = 6
+            bit = 0
+        case 5: // b
+            bank = 0
+            bit = 4
+        case 6: // c
+            bank = 7
+            bit = 3
+        case 7: // d
+            bank = 6
+            bit = 2
+        case 8: // e
+            bank = 5
+            bit = 2
+        case 9: // f
+            bank = 6
+            bit = 3
+        case 10: // g
+            bank = 6
+            bit = 4
+        case 11: // h
+            bank = 1
+            bit = 4
+        case 12: // i
+            bank = 2
+            bit = 2
+        case 13: // j
+            bank = 1
+            bit = 2
+        case 14: // k
+            bank = 1
+            bit = 2
+        case 15: // l
+            bank = 1
+            bit = 1
+        case 16: // m
+            bank = 0
+            bit = 2
+        case 17: // n
+            bank = 0
+            bit = 3
+        case 18: // o
+            bank = 2
+            bit = 1
+        case 19: // p
+            bank = 2
+            bit = 0
+        case 20: // q
+            bank = 5
+            bit = 0
+        case 21: // r
+            bank = 5
+            bit = 3
+        case 22: // s
+            bank = 6
+            bit = 1
+        case 23: // t
+            bank = 5
+            bit = 4
+        case 24: // u
+            bank = 2
+            bit = 3
+        case 25: // v
+            bank = 7
+            bit = 4
+        case 26: // w
+            bank = 5
+            bit = 1
+        case 27: // x
+            bank = 7
+            bit = 2
+        case 28: // y
+            bank = 2
+            bit = 4
+        case 29: // z
+            bank = 7
+            bit = 1
+        case 30: // 1
+            bank = 4
+            bit = 0
+        case 31: // 2
+            bank = 4
+            bit = 1
+        case 32: // 3
+            bank = 4
+            bit = 2
+        case 33: // 4
+            bank = 4
+            bit = 3
+        case 34: // 5
+            bank = 4
+            bit = 4
+        case 35: // 6
+            bank = 3
+            bit = 4
+        case 36: // 7
+            bank = 3
+            bit = 3
+        case 37: // 8
+            bank = 3
+            bit = 2
+        case 38: // 9
+            bank = 3
+            bit = 1
+        case 39: // 0
+            bank = 3
+            bit = 0
+        case 40: // enter
+            bank = 1
+            bit = 0
+        case 44: // space
+            bank = 0
+            bit = 0
+        case 225: // LShift (CS)
+            bank = 7
+            bit = 0
+        case 224: // LCnt (SS)
+            bank = 0
+            bit = 1
+            
+        default:
+            bank = -1
+            bit = -1
+        }
+        if bank >= 0 && bit >= 0 {
+            pressed ? z80.keyboard[bank].clear(bit: bit) : z80.keyboard[bank].set(bit: bit)
+            
+            print("Bank \(bank) = \(z80.keyboard[bank].bin())")
+            
+            
+        }
+        
+    }
+    
+    
+    
+    
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        guard let key = presses.first?.key else {
+            return
+        }
+        
+        print("Key pressed: \(key.keyCode.rawValue)")
+        keyboardInteraction(key: key.keyCode.rawValue, pressed: true)
+        
+    }
+    
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        guard let key = presses.first?.key else {
+            return
+        }
+        
+        print("Key released: \(key.keyCode.rawValue)")
+        keyboardInteraction(key: key.keyCode.rawValue, pressed: false)
     }
     
     func expandData(data: String?){
@@ -207,14 +391,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let modelPosition = pc - pCOffset
         if (modelPosition < model.count){
             let targetRowIndexPath = IndexPath(row: modelPosition, section: 0)
-         //   tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+            //   tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
         }
     }
     
     func getCodeByte() -> CodeByteModel {
         let modelPosition = header.registerPC // - pCOffset
         
-//         print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
+        //         print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
         if (modelPosition < model.count){
             return model[modelPosition]
         } else {
@@ -280,7 +464,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             opCode.line = lineAsInt
             opCodes.append(opCode)
-//            print("\(lineAsInt): \(opCode.toString())")
+            //            print("\(lineAsInt): \(opCode.toString())")
             //        if (opCode.isEndOfRoutine){
             //            if (stopAfterEachOpCode){
             //                runLoop = false
@@ -292,7 +476,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //        }
             
             if (header.registerPC >= model.count){
-   //             print("End Of File")
+                //             print("End Of File")
                 runLoop = false
                 header.registerPC -= 1
                 updatePCUI()
@@ -378,9 +562,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
             let thisLine = self.model[row]
-            cell.lineNumber.text = "\(thisLine.lineNumber)"
+            cell.lineNumber.text = "\(String(thisLine.lineNumber, radix: 16)) - \(thisLine.lineNumber)"
             cell.hexValue.text = thisLine.hexValue
             cell.intValue.text = "\(thisLine.intValue)"
+            let breakPoint = UInt16(thisLine.lineNumber)
+            if (z80.breakPoints.contains(breakPoint)){
+                cell.backgroundColor = UIColor.yellow
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
             return cell
         }
     }
@@ -397,6 +587,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 
             }
+        } else if (tableView == self.tableView){
+            let row = indexPath.row
+            let thisLine = self.model[row]
+            let breakPoint = UInt16(thisLine.lineNumber)
+            if (z80.breakPoints.contains(breakPoint)){
+                while z80.breakPoints.contains(breakPoint){
+                    if let index = z80.breakPoints.firstIndex(of: breakPoint) {
+                        z80.breakPoints.remove(at: index)
+                    }
+                }
+                
+            } else {
+                z80.breakPoints.append(breakPoint)
+            }
+            tableView.reloadData()
         }
     }
     

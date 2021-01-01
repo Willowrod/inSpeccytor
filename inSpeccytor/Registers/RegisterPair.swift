@@ -36,18 +36,16 @@ class RegisterPair {
     }
     
     func sbc(diff: UInt16){
-        let current:UInt16 = value()
-        if (Z80.F.readBit(bit: Flag.CARRY)){
-            ld(value: current &- 1 &- diff)
-        } else {
-            ld(value: current &- diff)
-        }
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: current < value())
-        high.byteValue.s53()
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: value() == 0)
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highBit().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highBit().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
+        let oldValue:UInt16 = value()
+        let carry: UInt16 = UInt16(Z80.F.byteValue) & 1
+            ld(value: oldValue &- carry &- diff)
+        Z80.F.sign(passedValue: value())
+        Z80.F.carrySB(passedValue: diff, oldValue: oldValue)
+        Z80.F.bits5And3(calculatedValue: value())
+        Z80.F.zero(passedValue: value())
+        Z80.F.overFlowSB(passedValue: diff &+ carry, oldValue: oldValue, newValue: value())
+        Z80.F.halfCarry(passedValue: diff &+ carry, oldValue: oldValue)
+        Z80.F.negative()
     }
     
     func adc(diff: UInt16){
@@ -60,8 +58,8 @@ class RegisterPair {
         Z80.F.byteValue.set(bit: Flag.CARRY, value: current > value())
         high.byteValue.s53()
         Z80.F.byteValue.set(bit: Flag.ZERO, value: value() == 0)
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highBit().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highBit().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highByte().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
+        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highByte().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
     }
     
     
@@ -79,7 +77,7 @@ class RegisterPair {
         Z80.F.positive()
         Z80.F.halfCarry(passedValue: diff, oldValue: current)
         Z80.F.carry(upperByte: UInt8(newValue >> 16))
-        Z80.F.bits5And3(passedValue: value())
+        Z80.F.bits5And3(calculatedValue: value())
     }
     
     func ld(high: UInt8, low: UInt8){

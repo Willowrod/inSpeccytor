@@ -55,10 +55,49 @@
                                             <action selector="stepFromPC:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="fWJ-31-sQR"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4F-jE-7gz" userLabel="debugStep">
+                                        <rect key="frame" x="752" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="gui-fe-80z"/>
+                                            <constraint firstAttribute="height" constant="40" id="pmY-MH-QA9"/>
+                                        </constraints>
+                                        <state key="normal" image="forward" catalog="system"/>
+                                        <connections>
+                                            <action selector="debugStep:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="qV5-zj-sbB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAv-YV-cX4" userLabel="debugStop">
+                                        <rect key="frame" x="704" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="3ty-OY-mag"/>
+                                            <constraint firstAttribute="height" constant="40" id="be2-zA-H20"/>
+                                        </constraints>
+                                        <state key="normal" image="pause" catalog="system"/>
+                                        <connections>
+                                            <action selector="debugPause:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="uvB-s5-LZg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jij-ZB-OKA" userLabel="debugPlay">
+                                        <rect key="frame" x="656" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="9Un-05-qLY"/>
+                                            <constraint firstAttribute="height" constant="40" id="JAm-gM-FAh"/>
+                                        </constraints>
+                                        <state key="normal" image="play" catalog="system"/>
+                                        <connections>
+                                            <action selector="debugPlay:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="Miw-Uw-EES"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="jij-ZB-OKA" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="I6w-uD-eh6"/>
+                                    <constraint firstItem="I4F-jE-7gz" firstAttribute="leading" secondItem="iAv-YV-cX4" secondAttribute="trailing" constant="8" symbolic="YES" id="dob-hf-KOg"/>
+                                    <constraint firstItem="iAv-YV-cX4" firstAttribute="leading" secondItem="jij-ZB-OKA" secondAttribute="trailing" constant="8" symbolic="YES" id="g9H-zG-PD7"/>
                                     <constraint firstAttribute="height" constant="60" id="jNA-co-IIQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="I4F-jE-7gz" secondAttribute="trailing" constant="8" id="k21-Mp-XOk"/>
+                                    <constraint firstItem="I4F-jE-7gz" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="oOT-Ne-iX1"/>
+                                    <constraint firstItem="iAv-YV-cX4" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="p7m-aS-Bhf"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IOi-wc-uvd">
@@ -137,7 +176,7 @@
                                                         <constraint firstAttribute="width" constant="50" id="JHv-Dk-N53"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxO-mU-1dF">
@@ -146,13 +185,13 @@
                                                         <constraint firstAttribute="width" constant="70" id="8co-xI-7oM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="------" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCs-Z2-2Gr">
                                                     <rect key="frame" x="200" y="10" width="0.0" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjD-ic-4Pe">
@@ -161,7 +200,7 @@
                                                         <constraint firstAttribute="width" constant="100" id="ZlS-fH-jb4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -484,6 +523,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="forward" catalog="system" width="128" height="79"/>
+        <image name="pause" catalog="system" width="88" height="128"/>
+        <image name="play" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -140,4 +140,13 @@ class Register {
         Z80.F.byteValue.clear(bit: Flag.SIGN)
     }
     
+    func inCommand(byte: UInt8){
+        byteValue = byte
+        Z80.F.clearBit(bit: Flag.HALF_CARRY)
+        Z80.F.clearBit(bit: Flag.SUBTRACT)
+        Z80.F.clearBit(bit: Flag.SIGN)
+        Z80.F.zero(passedValue: byteValue)
+        Z80.F.clearBit(bit: Flag.PARITY)
+    }
+    
 }

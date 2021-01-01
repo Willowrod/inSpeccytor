@@ -18,13 +18,15 @@ class FlagRegister: Register {
     private let FLAG_ZERO: UInt8 = 64
     private let FLAG_SIGN: UInt8 = 128
     
-    func bits5And3(passedValue: UInt16){
-        byteValue = byteValue & ~FLAG_3 | passedValue.highBit() & FLAG_3
-        byteValue = byteValue & ~FLAG_5 | passedValue.highBit() & FLAG_5
+    func bits5And3(calculatedValue: UInt16){
+        byteValue = byteValue & ~FLAG_3 | calculatedValue.highByte() & FLAG_3
+        byteValue = byteValue & ~FLAG_5 | calculatedValue.highByte() & FLAG_5
     }
     
-    func bits5And3(passedValue: UInt8){
-        byteValue = byteValue & ~FLAG_35
+    func bits5And3(calculatedValue: UInt8){
+      //  byteValue = byteValue & ~FLAG_35
+        byteValue = byteValue & ~FLAG_3 | calculatedValue & FLAG_3
+        byteValue = byteValue & ~FLAG_5 | calculatedValue & FLAG_5
     }
     
     func parity(passedValue: UInt8){
@@ -41,7 +43,15 @@ class FlagRegister: Register {
         byteValue = byteValue & ~FLAG_SIGN | passedValue & FLAG_SIGN
     }
     
+    func sign(passedValue: UInt16){
+        byteValue = byteValue & ~FLAG_SIGN | passedValue.highByte() & FLAG_SIGN
+    }
+    
     func zero(passedValue: UInt8){
+        passedValue == 0 ? setBit(bit: Flag.ZERO) : clearBit(bit: Flag.ZERO)
+    }
+    
+    func zero(passedValue: UInt16){
         passedValue == 0 ? setBit(bit: Flag.ZERO) : clearBit(bit: Flag.ZERO)
     }
     
@@ -57,8 +67,32 @@ class FlagRegister: Register {
         byteValue = byteValue & ~FLAG_CARRY | upperByte & FLAG_CARRY
     }
     
+    func carrySB(passedValue: UInt8, oldValue: UInt8){
+        if oldValue < passedValue {
+            setBit(bit: Flag.CARRY)
+        } else {
+            clearBit(bit: Flag.CARRY)
+        }
+    }
+    
+    func carrySB(passedValue: UInt16, oldValue: UInt16){
+        if oldValue < passedValue {
+            setBit(bit: Flag.CARRY)
+        } else {
+            clearBit(bit: Flag.CARRY)
+        }
+    }
+    
     func overFlow(passedValue: UInt8, oldValue: UInt8, newValue: UInt8){
         if oldValue & FLAG_SIGN == passedValue & FLAG_SIGN && newValue & FLAG_SIGN != oldValue & FLAG_SIGN {
+            setBit(bit: Flag.OVERFLOW)
+        } else {
+            clearBit(bit: Flag.OVERFLOW)
+        }
+    }
+    
+    func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){
+        if oldValue.highByte() & FLAG_SIGN == passedValue.highByte() & FLAG_SIGN && newValue.highByte() & FLAG_SIGN != oldValue.highByte() & FLAG_SIGN {
             setBit(bit: Flag.OVERFLOW)
         } else {
             clearBit(bit: Flag.OVERFLOW)

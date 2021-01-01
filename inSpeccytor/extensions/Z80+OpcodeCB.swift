@@ -42,7 +42,6 @@ extension Z80 {
                 ram[Int(hl().value())].rlc()
                 instructionComplete(states: 15)
             }
-            break
         case 1: //RRC
             if let register = register {
                 register.rrc()
@@ -51,7 +50,6 @@ extension Z80 {
                 ram[Int(hl().value())].rrc()
                 instructionComplete(states: 15)
             }
-            break
         case 2: //RL
             if let register = register {
                 register.rl()
@@ -60,7 +58,6 @@ extension Z80 {
                 ram[Int(hl().value())].rl()
                 instructionComplete(states: 15)
             }
-            break
         case 3: //RR
             if let register = register {
                 register.rr()
@@ -69,7 +66,6 @@ extension Z80 {
                 ram[Int(hl().value())].rr()
                 instructionComplete(states: 15)
             }
-            break
         case 4: //SLA
             if let register = register {
                 register.sla()
@@ -78,7 +74,6 @@ extension Z80 {
                 ram[Int(hl().value())].sla()
                 instructionComplete(states: 15)
             }
-            break
         case 5: //SRA
             if let register = register {
                 register.sra()
@@ -87,7 +82,6 @@ extension Z80 {
                 ram[Int(hl().value())].sra()
                 instructionComplete(states: 15)
             }
-            break
         case 7: //SRL
             if let register = register {
                 register.srl()
@@ -96,7 +90,6 @@ extension Z80 {
                 ram[Int(hl().value())].srl()
                 instructionComplete(states: 15)
             }
-            break
         case 8...15: //BIT 0
             if let register = register {
                 register.byteValue.testBit(bit: opCodeOffset - 8)
@@ -105,7 +98,6 @@ extension Z80 {
                 ram[Int(hl().value())].testBit(bit: opCodeOffset - 8)
                 instructionComplete(states: 12)
             }
-            break
         case 16...23: //BIT 0
             if let register = register {
                 register.byteValue.clear(bit: opCodeOffset - 16)
@@ -114,7 +106,6 @@ extension Z80 {
                 ram[Int(hl().value())].clear(bit: opCodeOffset - 16)
                 instructionComplete(states: 15)
             }
-            break
         case 24...31: //BIT 0
             if let register = register {
                 register.byteValue.set(bit: opCodeOffset - 24)
@@ -123,9 +114,6 @@ extension Z80 {
                 ram[Int(hl().value())].set(bit: opCodeOffset - 24)
                 instructionComplete(states: 15)
             }
-        
-            
-            break
         default:
             print("Potential unknown code CB\(String(byte, radix: 16))")
             print("-")
