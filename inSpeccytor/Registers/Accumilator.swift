@@ -16,7 +16,7 @@ class Accumilator: Register {
         
         Z80.F.zero(passedValue: byteValue)
         Z80.F.overFlow(passedValue: diff, oldValue: oldValue, newValue: byteValue)
-        Z80.F.halfCarry(passedValue: diff, oldValue: oldValue)
+        Z80.F.halfCarrySB(passedValue: diff, oldValue: oldValue)
         Z80.F.sign(passedValue: byteValue)
         Z80.F.bits5And3(calculatedValue: byteValue)
         Z80.F.negative()
@@ -46,7 +46,7 @@ class Accumilator: Register {
         Z80.F.sign(passedValue: byteValue)
         Z80.F.zero(passedValue: byteValue)
         Z80.F.overFlow(passedValue: diff, oldValue: oldValue, newValue: byteValue)
-        Z80.F.halfCarry(passedValue: diff, oldValue: oldValue, carry: carry)
+        Z80.F.halfCarrySB(passedValue: diff, oldValue: oldValue, carry: carry)
         Z80.F.bits5And3(calculatedValue: byteValue)
         Z80.F.negative()
         Z80.F.carrySB(passedValue: diff &+ carry, oldValue: oldValue)
@@ -130,7 +130,7 @@ class Accumilator: Register {
             let byteValue16: UInt16 = UInt16(byteValue) &- UInt16(value)
             Z80.F.zero(passedValue: byteValue16.lowBit())
             Z80.F.overFlow(passedValue: value, oldValue: byteValue, newValue: byteValue16.lowBit())
-            Z80.F.halfCarry(passedValue: byteValue16.lowBit(), oldValue: byteValue)
+            Z80.F.halfCarrySB(passedValue: byteValue16.lowBit(), oldValue: byteValue)
             Z80.F.sign(passedValue: byteValue16.lowBit())
             Z80.F.bits5And3(calculatedValue: byteValue16.lowBit())
             Z80.F.negative()
@@ -182,7 +182,7 @@ class Accumilator: Register {
         byteValue = ~byteValue &+ 1
         Z80.F.zero(passedValue: byteValue)
         Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7))
-        Z80.F.halfCarry(passedValue: byteValue, oldValue: oldValue)
+        Z80.F.halfCarry(passedValue: byteValue, oldValue: oldValue) // This COULD be halfCarrySB
         Z80.F.sign(passedValue: byteValue)
         Z80.F.bits5And3(calculatedValue: byteValue)
         Z80.F.negative()

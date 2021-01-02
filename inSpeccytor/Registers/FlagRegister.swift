@@ -100,7 +100,15 @@ class FlagRegister: Register {
     }
     
     func halfCarry(passedValue: UInt8, oldValue: UInt8, carry: UInt8 = 0){
-        if (oldValue.lowerNibble() &+ passedValue.lowerNibble() &+ carry) & 0x10 > 0 {
+        if (oldValue.lowerNibble() &+ passedValue.lowerNibble() &+ carry.lowerNibble()) & 0x10 > 0 {
+            setBit(bit: Flag.HALF_CARRY)
+        } else {
+            clearBit(bit: Flag.HALF_CARRY)
+        }
+    }
+    
+    func halfCarrySB(passedValue: UInt8, oldValue: UInt8, carry: UInt8 = 0){
+        if (oldValue.lowerNibble() &- passedValue.lowerNibble() &- carry.lowerNibble()) & 0x10 > 0 {
             setBit(bit: Flag.HALF_CARRY)
         } else {
             clearBit(bit: Flag.HALF_CARRY)

@@ -77,8 +77,8 @@ extension Z80 {
             aR().rrcA()
             instructionComplete(states: 4) //returnOpCode(v: code, c: "RRC A", m: " ", l: 1)
         case 0x10:
-            bR().dec()
-            if (f().isSet(bit: Flag.ZERO)){
+            bR().ld(value: b() &- 1)
+            if (b() == 0){
                 instructionComplete(states: 8, length: 2)
             } else {
                 relativeJump(twos: byte1)
