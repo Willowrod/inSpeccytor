@@ -116,7 +116,9 @@ class FlagRegister: Register {
     }
     
     func halfCarry(passedValue: UInt16, oldValue: UInt16){
-        if (passedValue & 0x0fff) &+ (oldValue & 0x0fff) & 0x1000 > 0 {
+        let passedBits: UInt16 = passedValue & 0x0fff
+        let oldBits: UInt16 = oldValue & 0x0fff
+        if (passedBits &+ oldBits) & 0x1000 > 0 {
             setBit(bit: Flag.HALF_CARRY)
         } else {
             clearBit(bit: Flag.HALF_CARRY)

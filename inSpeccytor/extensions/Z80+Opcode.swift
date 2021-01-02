@@ -158,6 +158,7 @@ extension Z80 {
             hR().ld(value: byte1)
             instructionComplete(states: 7, length: 2) //returnOpCode(v: code, c: "LD H,$$", m: " ", l: 2, t: .DATA)
         case 0x27:
+            aR().daA()
             instructionComplete(states: 4) //returnOpCode(v: code, c: "DAA", m: " ", l: 1)
         case 0x28:
             if (f().isSet(bit: Flag.ZERO)){

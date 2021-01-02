@@ -191,26 +191,35 @@ class Accumilator: Register {
     
     
     func daA(){ // TODO: Flags!!!!
-        let upper = byteValue.upperNibble()
+        let oldValue = byteValue
         let lower = byteValue.lowerNibble()
         let carry = Z80.F.byteValue.isSet(bit: Flag.CARRY)
         let halfCarry = Z80.F.byteValue.isSet(bit: Flag.HALF_CARRY)
+        let negative = Z80.F.byteValue.isSet(bit: Flag.SUBTRACT)
+        
+        var correction: UInt8 = 0x00
         
         if (lower > 0x09 || halfCarry){
-            byteValue = byteValue &+ 6
+            correction |= 0x06
         }
         
-        if (upper > 0x09 || carry){
-            byteValue = byteValue &+ 0x60
+        if (byteValue > 0x99 || carry){
+            correction |= 0x60
             Z80.F.byteValue.set(bit: Flag.CARRY)
         } else {
-        
             Z80.F.byteValue.clear(bit: Flag.CARRY)
         }
         
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: (byteValue == 0))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT, value: (byteValue.isSet(bit: 7)))
-        Z80.F.byteValue.set(bit: Flag.PARITY, value: !byteValue.isSet(bit: 0))
+        if (negative){
+            byteValue = byteValue &- correction
+        } else {
+            byteValue = byteValue &+ correction
+        }
+        
+        Z80.F.overFlow(passedValue: correction, oldValue: oldValue, newValue: byteValue)
+        Z80.F.sign(passedValue: byteValue)
+        Z80.F.zero(passedValue: byteValue)
+        Z80.F.bits5And3(calculatedValue: byteValue)
     }
     
     func cpl(){

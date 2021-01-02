@@ -21,6 +21,6 @@ extension UInt16 {
     }
     
     func bin() -> String {
-        return String(self, radix: 2).padded(size: 8)
+        return String(self, radix: 2).padded(size: 16)
     }
 }

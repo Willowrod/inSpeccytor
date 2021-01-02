@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
-  //      doIt()
+        doIt()
     }
     
     
@@ -156,25 +156,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func doIt(){
         loadROM()
-        //        if let filePath = Bundle.main.path(forResource: "testz80", ofType: "sna"){
-        //            print("File found - \(filePath)")
-        //            if let index = filePath.lastIndex(of: "/"){
-        //                let name = filePath.substring(from: index)
-        //                fileName.text = name
-        //            } else {
-        //                fileName.text = "Unknown Snapshot"
-        //                hexView.text = "- - - - - - - -"
-        //            }
-        //            let contents = NSData(contentsOfFile: filePath)
-        //            let data = contents! as Data
-        //            let dataString = data.hexString
-        //            expandData(data: dataString)
-        //            sortHeaderDataPass(data: dataString)
-        //        } else {
-        //            fileName.text = "Snapshot failed to load"
-        //            hexView.text = "- - - - - - - -"
-        //            print("file not found")
-        //        }
+                if let filePath = Bundle.main.path(forResource: "aticatac", ofType: "sna"){
+                    print("File found - \(filePath)")
+                    if let index = filePath.lastIndex(of: "/"){
+                        let name = filePath.substring(from: index)
+                        fileName.text = name
+                    } else {
+                        fileName.text = "Unknown Snapshot"
+                        hexView.text = "- - - - - - - -"
+                    }
+                    let contents = NSData(contentsOfFile: filePath)
+                    let data = contents! as Data
+                    let dataString = data.hexString
+                    expandData(data: dataString)
+                    sortHeaderDataPass(data: dataString)
+                } else {
+                    fileName.text = "Snapshot failed to load"
+                    hexView.text = "- - - - - - - -"
+                    print("file not found")
+                }
         startProcessor()
     }
     
