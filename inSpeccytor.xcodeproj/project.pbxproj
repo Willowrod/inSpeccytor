@@ -43,6 +43,7 @@
 		CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD03E7B625A0BE4D005F0F83 /* unprefixedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03E7B525A0BE4D005F0F83 /* unprefixedTests.swift */; };
+		CD03E7C225A12B2E005F0F83 /* allTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03E7C125A12B2D005F0F83 /* allTests.swift */; };
 		CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */; };
 		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
@@ -112,6 +113,7 @@
 		CD03E6DF259BD501005F0F83 /* testz80.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testz80.sna; sourceTree = "<group>"; };
 		CD03E6E4259C7827005F0F83 /* ab.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = ab.sna; sourceTree = "<group>"; };
 		CD03E7B525A0BE4D005F0F83 /* unprefixedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = unprefixedTests.swift; sourceTree = "<group>"; };
+		CD03E7C125A12B2D005F0F83 /* allTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTests.swift; sourceTree = "<group>"; };
 		CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagRegister.swift; sourceTree = "<group>"; };
 		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				CDF8A1EC2531CC2A00F0D216 /* inSpeccytorTests.swift */,
 				CDF8A1EE2531CC2A00F0D216 /* Info.plist */,
 				CD03E7B525A0BE4D005F0F83 /* unprefixedTests.swift */,
+				CD03E7C125A12B2D005F0F83 /* allTests.swift */,
 			);
 			path = inSpeccytorTests;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				CD03E706259CF963005F0F83 /* Data+String.swift in Sources */,
 				CD03E725259CF995005F0F83 /* Flag.swift in Sources */,
 				CD03E70C259CF963005F0F83 /* UIImage+Bitmap.swift in Sources */,
+				CD03E7C225A12B2E005F0F83 /* allTests.swift in Sources */,
 				CD03E719259CF989005F0F83 /* Color.swift in Sources */,
 				CD03E716259CF989005F0F83 /* MainTableViewCell.swift in Sources */,
 				CD03E726259CF995005F0F83 /* CodeByteModel.swift in Sources */,

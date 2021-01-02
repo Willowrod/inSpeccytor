@@ -24,9 +24,13 @@ class FlagRegister: Register {
     }
     
     func bits5And3(calculatedValue: UInt8){
-      //  byteValue = byteValue & ~FLAG_35
-        byteValue = byteValue & ~FLAG_3 | calculatedValue & FLAG_3
-        byteValue = byteValue & ~FLAG_5 | calculatedValue & FLAG_5
+        byteValue = byteValue & ~FLAG_35
+        byteValue |= calculatedValue & FLAG_3
+        byteValue |= calculatedValue & FLAG_5
+    }
+    func bits5And3OR(calculatedValue: UInt8){
+        byteValue |= calculatedValue & FLAG_3
+        byteValue |= calculatedValue & FLAG_5
     }
     
     func parity(passedValue: UInt8){
@@ -123,6 +127,22 @@ class FlagRegister: Register {
         } else {
             clearBit(bit: Flag.HALF_CARRY)
         }
+    }
+    
+    func scf(acc: UInt8){
+        
+        clearBit(bit: Flag.HALF_CARRY)
+        clearBit(bit: Flag.SUBTRACT)
+        setBit(bit: Flag.CARRY)
+        bits5And3OR(calculatedValue: acc)
+    }
+    
+    func ccf(acc: UInt8){
+        
+        byteValue.set(bit: Flag.HALF_CARRY, value: byteValue.isSet(bit: Flag.CARRY))
+        clearBit(bit: Flag.SUBTRACT)
+        byteValue.set(bit: Flag.CARRY, value: !byteValue.isSet(bit: Flag.CARRY))
+        bits5And3OR(calculatedValue: acc)
     }
     
 }

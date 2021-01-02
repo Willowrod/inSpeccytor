@@ -220,12 +220,20 @@ class Accumilator: Register {
         Z80.F.sign(passedValue: byteValue)
         Z80.F.zero(passedValue: byteValue)
         Z80.F.bits5And3(calculatedValue: byteValue)
+        let originalBit4 = oldValue & 0x10
+        let computedBit4 = byteValue & 0x10
+        if originalBit4 ^ computedBit4 > 0 {
+            Z80.F.byteValue.set(bit: Flag.HALF_CARRY)
+        } else {
+            Z80.F.byteValue.clear(bit: Flag.HALF_CARRY)
+        }
     }
     
     func cpl(){
      byteValue = ~byteValue
         Z80.F.byteValue.set(bit: Flag.HALF_CARRY)
         Z80.F.byteValue.set(bit: Flag.SUBTRACT)
+        Z80.F.bits5And3(calculatedValue: byteValue)
     }
     
 }

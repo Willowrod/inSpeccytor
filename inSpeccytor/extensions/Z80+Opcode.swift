@@ -216,7 +216,7 @@ extension Z80 {
             ldRam(location: Int(hl().value()), value: byte1) //  ram[Int(hl().value())] = byte1
             instructionComplete(states: 10, length: 2) //returnOpCode(v: code, c: "LD (HL),$$", m: " ", l: 3, t: .DATA)
         case 0x37:
-            Z80.F.byteValue.set(bit: Flag.CARRY)
+            Z80.F.scf(acc: a())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "SCF", m: " ", l: 1)
         case 0x38:
             if (!f().isSet(bit: Flag.CARRY)){
@@ -245,9 +245,7 @@ extension Z80 {
             aR().ld(value: byte1)
             instructionComplete(states: 7, length: 2)
         case 0x3F:
-            Z80.F.byteValue.set(bit: Flag.CARRY, value: !Z80.F.byteValue.isSet(bit: Flag.CARRY))
-            Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: !Z80.F.byteValue.isSet(bit: Flag.HALF_CARRY))
-            Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+            Z80.F.ccf(acc: a())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "CCF", m: " ", l: 1)
         case 0x40:
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD B,B", m: " ", l: 1)
