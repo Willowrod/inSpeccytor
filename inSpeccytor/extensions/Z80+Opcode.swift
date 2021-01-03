@@ -861,7 +861,7 @@ extension Z80 {
             interupt2 = false
             instructionComplete(states: 4) //returnOpCode(v: code, c: "DI", m: " ", l: 1)
         case 0xF4:
-            if (Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+            if (!Z80.F.byteValue.isSet(bit: Flag.SIGN)){
                 call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {
@@ -898,7 +898,7 @@ extension Z80 {
             interupt2 = true
             instructionComplete(states: 4) //returnOpCode(v: code, c: "EI", m: " ", l: 1)
         case 0xFC:
-            if (!Z80.F.byteValue.isSet(bit: Flag.SIGN)){
+            if (Z80.F.byteValue.isSet(bit: Flag.SIGN)){
                 call(location: word, length: 3)
                 instructionComplete(states: 17, length: 0)
             } else {

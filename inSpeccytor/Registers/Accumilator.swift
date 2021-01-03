@@ -148,18 +148,11 @@ class Accumilator: Register {
     
     func cpi(value: UInt8, bc: UInt16){
             let byteValue16: UInt16 = UInt16(byteValue) &- UInt16(value)
-//        var bit35Bit: UInt8 = byteValue16.lowBit()
-//        if (Z80.F.byteValue.isSet(bit: Flag.HALF_CARRY)){
-//            bit35Bit = bit35Bit &- 1
-//        }
             Z80.F.sign(passedValue: byteValue16.lowBit())
             Z80.F.zero(passedValue: byteValue16.lowBit())
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: bc &- 1 != 0)
+            Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: bc &- 1 != 0)
             Z80.F.halfCarrySB(passedValue: byteValue16.lowBit(), oldValue: byteValue)
-       //    Z80.F.bits5And3(calculatedValue: byteValue16.lowBit())
             Z80.F.negative()
-//        Z80.F.byteValue.set(bit: 3, value: bit35Bit.isSet(bit: 3))
-//        Z80.F.byteValue.set(bit: 5, value: bit35Bit.isSet(bit: 1))
     }
     
     func rlcA(){

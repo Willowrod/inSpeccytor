@@ -260,19 +260,28 @@ extension Z80 {
             instructionComplete(states: 16)
         case 0xA8:// LDD
             ldRam(location: de().value(), value: fetchRam(location: hl().value()))
+            let bit35Bit = fetchRam(location: hl().value()) &+ a()
             de().dec()
             hl().dec()
             bc().dec()
             Z80.F.byteValue.clear(bit: Flag.HALF_CARRY)
             Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
             Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() != 1)
+            Z80.F.byteValue.set(bit: 3, value: bit35Bit.isSet(bit: 3))
+            Z80.F.byteValue.set(bit: 5, value: bit35Bit.isSet(bit: 1))
         instructionComplete(states: 16)
         case 0xA9: // CPI
-            aR().compare(value: fetchRam(location: hl().value()))
-            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
+            let halfCarry = Z80.F.byteValue.isSet(bit: Flag.HALF_CARRY)
+            var bit35Bit = a() &- fetchRam(location: hl().value())
+            if (halfCarry){
+                bit35Bit = bit35Bit &- 1
+            }
+            aR().cpi(value: fetchRam(location: hl().value()), bc: bc().value()) // TODO: Check this!!!!
             hl().dec()
             bc().dec()
-            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
+            Z80.F.negative()
+            Z80.F.byteValue.set(bit: 3, value: bit35Bit.isSet(bit: 3))
+            Z80.F.byteValue.set(bit: 5, value: bit35Bit.isSet(bit: 1))
         instructionComplete(states: 16)
 
             
@@ -285,31 +294,54 @@ extension Z80 {
 
                 
         case 0xB0: // LDIR
+            while bc().value() > 0{
             ldRam(location: de().value(), value: fetchRam(location: hl().value()))
+            let bit35Bit = fetchRam(location: hl().value()) &+ a()
+                Z80.F.byteValue.set(bit: 3, value: bit35Bit.isSet(bit: 3))
+                Z80.F.byteValue.set(bit: 5, value: bit35Bit.isSet(bit: 1))
             de().inc()
             hl().inc()
             bc().dec()
+            instructionComplete(states: 21, length: 0)
+            }
+            
             Z80.F.byteValue.clear(bit: Flag.HALF_CARRY)
             Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
-            Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() != 1)
-            if (bc().value() != 0){
-                PC = PC &- 1
-            instructionComplete(states: 21, length: 0)
-            } else {
+            Z80.F.byteValue.clear(bit: Flag.PARITY)
+            Z80.F.positive()
         instructionComplete(states: 16)
-            }
         case 0xB1: // CPI
-            aR().compare(value: fetchRam(location: hl().value()))
-            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
-            hl().inc()
-            bc().dec()
-            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
-            if (zero || bc().value() == 0){
-                instructionComplete(states: 16)
-            } else {
-                PC = PC &- 1
-                instructionComplete(states: 21, length: 0)
+            var isComplete = false
+            while !isComplete {
+                let currentRam = fetchRam(location: hl().value())
+                aR().cpi(value: fetchRam(location: hl().value()), bc: bc().value())
+                hl().inc()
+                bc().dec()
+            let bit35Bit = fetchRam(location: hl().value()) &+ a()
+                Z80.F.byteValue.set(bit: 3, value: bit35Bit.isSet(bit: 3))
+                Z80.F.byteValue.set(bit: 5, value: bit35Bit.isSet(bit: 1))
+                isComplete = bc().value() == 0 || a() == currentRam
+            instructionComplete(states: 21, length: 0)
             }
+            
+            Z80.F.byteValue.clear(bit: Flag.HALF_CARRY)
+            Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+            Z80.F.byteValue.set(bit: Flag.PARITY, value: bc().value() &- 1 != 0)
+            Z80.F.negative()
+        instructionComplete(states: 16)
+            
+            
+//            aR().compare(value: fetchRam(location: hl().value()))
+//            let zero = Z80.F.byteValue.isSet(bit: Flag.ZERO)
+//            hl().inc()
+//            bc().dec()
+//            Z80.F.byteValue.set(bit: Flag.ZERO, value: zero)
+//            if (zero || bc().value() == 0){
+//                instructionComplete(states: 16)
+//            } else {
+//                PC = PC &- 1
+//                instructionComplete(states: 21, length: 0)
+//            }
             
             
             

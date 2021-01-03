@@ -55,6 +55,9 @@
 		CD62E3EC25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3EB25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift */; };
 		CD62E3F125A2068C00B89CEA /* allTestsP_DDCB80toff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3F025A2068C00B89CEA /* allTestsP_DDCB80toff.swift */; };
 		CD62E3F925A2169E00B89CEA /* allTestP_ED_ALL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3F825A2169E00B89CEA /* allTestP_ED_ALL.swift */; };
+		CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3FD25A2526200B89CEA /* allTestsP_FDCB00to7f.swift */; };
+		CD62E40625A253EF00B89CEA /* allTestsP_FDCB80toff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E40525A253EF00B89CEA /* allTestsP_FDCB80toff.swift */; };
+		CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
 		CD959D642599E1C40043FB91 /* RamByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D632599E1C40043FB91 /* RamByte.swift */; };
@@ -132,6 +135,9 @@
 		CD62E3EB25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_DDCB00to7f.swift; sourceTree = "<group>"; };
 		CD62E3F025A2068C00B89CEA /* allTestsP_DDCB80toff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_DDCB80toff.swift; sourceTree = "<group>"; };
 		CD62E3F825A2169E00B89CEA /* allTestP_ED_ALL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestP_ED_ALL.swift; sourceTree = "<group>"; };
+		CD62E3FD25A2526200B89CEA /* allTestsP_FDCB00to7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FDCB00to7f.swift; sourceTree = "<group>"; };
+		CD62E40525A253EF00B89CEA /* allTestsP_FDCB80toff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FDCB80toff.swift; sourceTree = "<group>"; };
+		CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FD_ALL.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
 		CD959D632599E1C40043FB91 /* RamByte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamByte.swift; sourceTree = "<group>"; };
@@ -301,6 +307,9 @@
 				CD62E3EB25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift */,
 				CD62E3F025A2068C00B89CEA /* allTestsP_DDCB80toff.swift */,
 				CD62E3F825A2169E00B89CEA /* allTestP_ED_ALL.swift */,
+				CD62E3FD25A2526200B89CEA /* allTestsP_FDCB00to7f.swift */,
+				CD62E40525A253EF00B89CEA /* allTestsP_FDCB80toff.swift */,
+				CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */,
 			);
 			path = inSpeccytorTests;
 			sourceTree = "<group>";
@@ -550,6 +559,7 @@
 				CD62E3D325A1C06700B89CEA /* allTestsP_CB00to7f.swift in Sources */,
 				CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */,
 				CD03E724259CF995005F0F83 /* RegisterPair.swift in Sources */,
+				CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */,
 				CD03E70F259CF963005F0F83 /* UInt16+Bitwise.swift in Sources */,
 				CD03E728259CF995005F0F83 /* RamByte.swift in Sources */,
 				CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */,
@@ -562,8 +572,10 @@
 				CD03E725259CF995005F0F83 /* Flag.swift in Sources */,
 				CD03E70C259CF963005F0F83 /* UIImage+Bitmap.swift in Sources */,
 				CD03E7C225A12B2E005F0F83 /* allTestsTo7f.swift in Sources */,
+				CD62E40625A253EF00B89CEA /* allTestsP_FDCB80toff.swift in Sources */,
 				CD03E719259CF989005F0F83 /* Color.swift in Sources */,
 				CD03E716259CF989005F0F83 /* MainTableViewCell.swift in Sources */,
+				CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */,
 				CD03E726259CF995005F0F83 /* CodeByteModel.swift in Sources */,
 				CD03E721259CF995005F0F83 /* Accumilator.swift in Sources */,
 				CD03E718259CF989005F0F83 /* AppDelegate.swift in Sources */,
