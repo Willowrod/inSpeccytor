@@ -530,8 +530,8 @@
             filePath = "inSpeccytor/Registers/Register.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "dec()"
             landmarkType = "7">
             <Locations>
@@ -626,8 +626,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "497"
-            endingLineNumber = "497"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
             landmarkName = "relativeJump(twos:)"
             landmarkType = "7">
             <Locations>
@@ -674,8 +674,8 @@
             filePath = "inSpeccytor/Z80.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
             landmarkName = "relativeJump(twos:)"
             landmarkType = "7">
             <Locations>
@@ -850,8 +850,8 @@
             filePath = "inSpeccytor/extensions/UInt8+Bitwise.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "testBit(bit:memPtr:)"
             landmarkType = "7">
             <Locations>
@@ -902,6 +902,582 @@
             endingLineNumber = "13"
             landmarkName = "sub(diff:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F75E0A87-C17C-4660-806B-4BF7CED989C6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/extensions/Z80+OpCodeDDFD.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "opCodeDDFD(reg:byte:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F75E0A87-C17C-4660-806B-4BF7CED989C6 - d8865b0488a0b98a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.Z80.opCodeDDFD(reg: inSpeccytor.RegisterPair, byte: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpCodeDDFD.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "2930">
+               </Location>
+               <Location
+                  uuid = "F75E0A87-C17C-4660-806B-4BF7CED989C6 - 33782c2a56dfc6f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.Z80.opCodeDDFD(reg: inSpeccytorTests.RegisterPair, byte: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpCodeDDFD.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "2930">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1AFF64CC-644A-41F0-A616-D08ECA61EC9F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/Accumilator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "aND(value:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1AFF64CC-644A-41F0-A616-D08ECA61EC9F - 6f74f518b225e9de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.Accumilator.aND(value: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/Accumilator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1AFF64CC-644A-41F0-A616-D08ECA61EC9F - b083db8e8769bfee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.Accumilator.aND(value: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/Accumilator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E52107D7-5989-48A6-95FE-09A2D48C39E6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "opCodeDDFDCB(reg:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E52107D7-5989-48A6-95FE-09A2D48C39E6 - f9400ab0167183f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.Z80.opCodeDDFDCB(reg: inSpeccytor.RegisterPair) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "1596">
+               </Location>
+               <Location
+                  uuid = "E52107D7-5989-48A6-95FE-09A2D48C39E6 - f4945a5722115e5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.Z80.opCodeDDFDCB(reg: inSpeccytorTests.RegisterPair) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "1596">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03B27C2D-B4D5-4145-A97D-C4773BA71A37"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "opCodeDDFDCB(reg:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "03B27C2D-B4D5-4145-A97D-C4773BA71A37 - f9400ab0167183f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.Z80.opCodeDDFDCB(reg: inSpeccytor.RegisterPair) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "1689">
+               </Location>
+               <Location
+                  uuid = "03B27C2D-B4D5-4145-A97D-C4773BA71A37 - f4945a5722115e5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.Z80.opCodeDDFDCB(reg: inSpeccytorTests.RegisterPair) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "1689">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E61BC402-0E78-41C4-BAE5-717E0E7F7709"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "opCodeDDFDCB(reg:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E61BC402-0E78-41C4-BAE5-717E0E7F7709 - f9400ab016718a29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.Z80.opCodeDDFDCB(reg: inSpeccytor.RegisterPair) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "8404">
+               </Location>
+               <Location
+                  uuid = "E61BC402-0E78-41C4-BAE5-717E0E7F7709 - f4945a5722115785"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.Z80.opCodeDDFDCB(reg: inSpeccytorTests.RegisterPair) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/extensions/Z80+OpcodeDDFDCB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "8404">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "234EFCC2-6159-4F86-A142-1D2AD06FB58B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/extensions/Z80+OpCodeDDFD.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "opCodeDDFD(reg:byte:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA598C2D-BD6C-41F7-8A8D-E4C88269E53E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/RegisterPair.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "sbc(diff:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA598C2D-BD6C-41F7-8A8D-E4C88269E53E - 2c613341043edd5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.RegisterPair.sbc(diff: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/RegisterPair.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "1508">
+               </Location>
+               <Location
+                  uuid = "FA598C2D-BD6C-41F7-8A8D-E4C88269E53E - 898762d2091ac4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.RegisterPair.sbc(diff: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/RegisterPair.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "1508">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C33DF43D-F370-4A1E-9051-8C615637A38C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "overFlowSB(passedValue:oldValue:newValue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C33DF43D-F370-4A1E-9051-8C615637A38C - 4739dedeffb3e8e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.FlagRegister.overFlowSB(passedValue: Swift.UInt16, oldValue: Swift.UInt16, newValue: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "C33DF43D-F370-4A1E-9051-8C615637A38C - 5a13bb4606b4501f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.FlagRegister.overFlowSB(passedValue: Swift.UInt16, oldValue: Swift.UInt16, newValue: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "286C5CC3-EF07-4358-95EE-7F5BAE13223E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "halfCarrySB(passedValue:oldValue:carry:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E907592A-B2E3-492A-987C-7177D3E5D8AA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "halfCarrySB(passedValue:oldValue:carry:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E907592A-B2E3-492A-987C-7177D3E5D8AA - 9f6148b6ac9edeb1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.FlagRegister.halfCarrySB(passedValue: Swift.UInt8, oldValue: Swift.UInt8, carry: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "194">
+               </Location>
+               <Location
+                  uuid = "E907592A-B2E3-492A-987C-7177D3E5D8AA - ce0379bf7bb40772"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.FlagRegister.halfCarrySB(passedValue: Swift.UInt8, oldValue: Swift.UInt8, carry: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "194">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5C89635-004F-4369-9067-5EDC1261BA3E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "halfCarrySB(passedValue:oldValue:carry:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B5C89635-004F-4369-9067-5EDC1261BA3E - 9f6148b6ac9edf73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.FlagRegister.halfCarrySB(passedValue: Swift.UInt8, oldValue: Swift.UInt8, carry: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "229">
+               </Location>
+               <Location
+                  uuid = "B5C89635-004F-4369-9067-5EDC1261BA3E - ce0379bf7bb406b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.FlagRegister.halfCarrySB(passedValue: Swift.UInt8, oldValue: Swift.UInt8, carry: Swift.UInt8) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "229">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D4D01F7F-60E3-4255-9EC5-23C5FEA63015"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "halfCarry(passedValue:oldValue:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC3ED7FF-5EAC-4EC5-865E-F41193400584"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "halfCarry(passedValue:oldValue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC3ED7FF-5EAC-4EC5-865E-F41193400584 - 91ec3678a59c5624"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.FlagRegister.halfCarry(passedValue: Swift.UInt16, oldValue: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "AC3ED7FF-5EAC-4EC5-865E-F41193400584 - 1d0270b44b16ded"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.FlagRegister.halfCarry(passedValue: Swift.UInt16, oldValue: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "244">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28D86121-F506-4F36-BD1C-ADF3E562CD30"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "inSpeccytor/Registers/FlagRegister.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "halfCarry(passedValue:oldValue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "28D86121-F506-4F36-BD1C-ADF3E562CD30 - 91ec3678a59c5662"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytor.FlagRegister.halfCarry(passedValue: Swift.UInt16, oldValue: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "209">
+               </Location>
+               <Location
+                  uuid = "28D86121-F506-4F36-BD1C-ADF3E562CD30 - 1d0270b44b16dab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "inSpeccytorTests.FlagRegister.halfCarry(passedValue: Swift.UInt16, oldValue: Swift.UInt16) -&gt; ()"
+                  moduleName = "inSpeccytorTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikehall/Src/Willowrod/Willowrod/inSpeccytor/inSpeccytor/Registers/FlagRegister.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "209">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

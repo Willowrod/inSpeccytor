@@ -59,10 +59,10 @@ extension Z80 {
             reg.low.ld(value: byte1)
             instructionComplete(states: 8, length: 2)
         case 0x34:
-            decRam(location: Int(targetByte))
+            incRam(location: Int(targetByte))
             instructionComplete(states: 23, length: 2)
         case 0x35:
-            incRam(location: Int(targetByte))
+            decRam(location: Int(targetByte))
             instructionComplete(states: 23, length: 2)
         case 0x36:
             ldRam(location: targetByte, value: byte2)
@@ -267,7 +267,10 @@ extension Z80 {
             instructionComplete(states: 19)
         case 0xE9:
             jump(location: reg.value())
-            instructionComplete(states: 4)
+            instructionComplete(states: 0, length: 0)
+        case 0xF9:
+            SP = reg.value()
+            instructionComplete(states: 0, length: 1)
         case 0xCB:
             opCodeDDFDCB(reg: reg)
         default:

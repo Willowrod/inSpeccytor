@@ -12,73 +12,73 @@ extension Z80 {
         let byte1: UInt8 = ram[Int(PC &+ 1)]
         let byte2: UInt8 = ram[Int(PC &+ 2)]
         let register = getRegister(byte: byte2)
-    //    let opCodeOffset = Int(byte2 / 8)
         let targetByte = byte1.isSet(bit: 7) ? reg.value() &- UInt16(byte1.twosCompliment()) : reg.value() &+ UInt16(byte1)
-        switch byte2 {
-        case 0x06: //RLC
+        let opCodeOffset = Int(byte2 / 8)
+        switch opCodeOffset {
+        case 0: //RLC
             ram[Int(targetByte)].rlc()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x0E: //RRC
+        case 1: //RRC
             ram[Int(targetByte)].rrc()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x16: //RL
+        case 2: //RL
             ram[Int(targetByte)].rl()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x1E: //RR
+        case 3: //RR
             ram[Int(targetByte)].rr()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x26: //SLA
+        case 4: //SLA
             ram[Int(targetByte)].sla()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x2E: //SRA
+        case 5: //SRA
             ram[Int(targetByte)].sra()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x3E: //SRL
+        case 6: //SLL // Undocumented
+            ram[Int(targetByte)].sll()
+            if let register = register {
+                register.ld(value: ram[Int(targetByte)])
+            }
+            instructionComplete(states: 23, length: 3)
+        case 7: //SRL
             ram[Int(targetByte)].srl()
             if let register = register {
                 register.ld(value: ram[Int(targetByte)])
             }
                 instructionComplete(states: 23, length: 3)
-        case 0x46...0x7E: //BIT 0
-            let opCodeOffset = Int(byte2 / 8)
-                ram[Int(targetByte)].testBit(bit: opCodeOffset - 8)
-//                if let register = register {
-//                    register.ld(value: ram[Int(targetByte)])
-//                }
+        case 8...15: //BIT 0
+            ram[Int(targetByte)].testBit(bit: opCodeOffset - 8, memPtr: targetByte)
                     instructionComplete(states: 20, length: 3)
-        case 0x86...0xBE: //BIT 0
-            let opCodeOffset = Int(byte2 / 8)
+        case 16...23: // CLEAR
             ram[Int(targetByte)].clear(bit: opCodeOffset - 16)
                 if let register = register {
                     register.ld(value: ram[Int(targetByte)])
                 }
                 instructionComplete(states: 23, length: 3)
-        case 0xC6...0xFE: //BIT 0
-            let opCodeOffset = Int(byte2 / 8)
+        case 24...31: //SET
             ram[Int(targetByte)].set(bit: opCodeOffset - 24)
                 if let register = register {
                     register.ld(value: ram[Int(targetByte)])
                 }
                 instructionComplete(states: 23, length: 3)
-        
+
         
         default:
             print("Potential unknown code CB\(String(byte2, radix: 16))")

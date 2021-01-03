@@ -107,20 +107,24 @@ class FlagRegister: Register {
         } else {
             clearBit(bit: Flag.OVERFLOW)
         }
-//        if passedValue > oldValue {
+    }
+    
+    func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){
+        overFlow(passedValue: passedValue.highByte(), oldValue: oldValue.highByte(), newValue: newValue.highByte())
+//        if oldValue.highByte() & FLAG_SIGN == passedValue.highByte() & FLAG_SIGN && newValue.highByte() & FLAG_SIGN != oldValue.highByte() & FLAG_SIGN {
 //            setBit(bit: Flag.OVERFLOW)
 //        } else {
 //            clearBit(bit: Flag.OVERFLOW)
 //        }
     }
     
-    func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){
-        if oldValue.highByte() & FLAG_SIGN == passedValue.highByte() & FLAG_SIGN && newValue.highByte() & FLAG_SIGN != oldValue.highByte() & FLAG_SIGN {
-            setBit(bit: Flag.OVERFLOW)
-        } else {
-            clearBit(bit: Flag.OVERFLOW)
-        }
-    }
+//    func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){
+//        if oldValue.highByte() & FLAG_SIGN == passedValue.highByte() & FLAG_SIGN && newValue.highByte() & FLAG_SIGN != oldValue.highByte() & FLAG_SIGN {
+//            setBit(bit: Flag.OVERFLOW)
+//        } else {
+//            clearBit(bit: Flag.OVERFLOW)
+//        }
+//    }
     
     func halfCarry(passedValue: UInt8, oldValue: UInt8, carry: UInt8 = 0){
         if (oldValue.lowerNibble() &+ passedValue.lowerNibble() &+ carry.lowerNibble()) & 0x10 > 0 {
@@ -131,7 +135,7 @@ class FlagRegister: Register {
     }
     
     func halfCarrySB(passedValue: UInt8, oldValue: UInt8, carry: UInt8 = 0){
-        if (oldValue.lowerNibble() &- passedValue.lowerNibble() &- carry.lowerNibble()) & 0x10 > 0 {
+        if (oldValue.lowerNibble() &- passedValue.lowerNibble()) & 0x10 > 0 {
             setBit(bit: Flag.HALF_CARRY)
         } else {
             clearBit(bit: Flag.HALF_CARRY)
@@ -142,6 +146,16 @@ class FlagRegister: Register {
         let passedBits: UInt16 = passedValue & 0x0fff
         let oldBits: UInt16 = oldValue & 0x0fff
         if (passedBits &+ oldBits) & 0x1000 > 0 {
+            setBit(bit: Flag.HALF_CARRY)
+        } else {
+            clearBit(bit: Flag.HALF_CARRY)
+        }
+    }
+    
+    func halfCarrySB(passedValue: UInt16, oldValue: UInt16){
+        let passedBits: UInt16 = passedValue & 0x0fff
+        let oldBits: UInt16 = oldValue & 0x0fff
+        if (oldBits &- passedBits) & 0x1000 > 0 {
             setBit(bit: Flag.HALF_CARRY)
         } else {
             clearBit(bit: Flag.HALF_CARRY)

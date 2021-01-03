@@ -433,23 +433,29 @@ class Z80 {
     }
     
     func decRam(location: Int){
-        let oldValue = ram[location]
-        ldRam(location: Int(location), value: ram[location] &- 1)
-        ram[location].s53()
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
+//        let oldValue = ram[location]
+//        ldRam(location: Int(location), value: ram[location] &- 1)
+//        ram[location].s53()
+//        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
+//        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
+//        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
+//        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
+        var ramByte: UInt8 = fetchRam(location: location)
+        ramByte.dec()
+        ldRam(location: location, value: ramByte)
     }
     
     func incRam(location: Int){
-        let oldValue = ram[location]
-        ldRam(location: Int(location), value: ram[location] &+ 1)
-        ram[location].s53()
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
-        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+        var ramByte: UInt8 = fetchRam(location: location)
+        ramByte.inc()
+        ldRam(location: location, value: ramByte)
+//        let oldValue = ram[location]
+//        ldRam(location: Int(location), value: ram[location] &+ 1)
+//        ram[location].s53()
+//        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
+//        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
+//        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
+//        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
     }
     
     func ldRam(location: Int, value: UInt8){

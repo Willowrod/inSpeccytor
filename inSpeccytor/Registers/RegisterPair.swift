@@ -38,20 +38,23 @@ class RegisterPair {
     func sbc(diff: UInt16){
         let oldValue:UInt16 = value()
         let carry: UInt16 = UInt16(Z80.F.byteValue) & 1
-            ld(value: oldValue &- carry &- diff)
+        let actualDiff = diff &+ carry
+            ld(value: oldValue &- actualDiff)
         Z80.F.sign(passedValue: value())
-        Z80.F.carrySB(passedValue: diff, oldValue: oldValue)
-        Z80.F.bits5And3(calculatedValue: value())
+        Z80.F.carrySB(passedValue: actualDiff, oldValue: oldValue)
+        Z80.F.bits5And3(calculatedValue: value().highByte())
         Z80.F.zero(passedValue: value())
-        Z80.F.overFlowSB(passedValue: diff &+ carry, oldValue: oldValue, newValue: value())
-        Z80.F.halfCarry(passedValue: diff &+ carry, oldValue: oldValue)
+        Z80.F.overFlowSB(passedValue: actualDiff.highByte(), oldValue: oldValue.highByte(), newValue: value().highByte())
+        Z80.F.halfCarrySB(passedValue: actualDiff, oldValue: oldValue)
         Z80.F.negative()
     }
     
     func adc(diff: UInt16){
         let current:UInt16 = value()
+        var actualDiff = diff
         if (Z80.F.readBit(bit: Flag.CARRY)){
             ld(value: current &+ 1 &+ diff)
+            actualDiff = actualDiff &+ 1
         } else {
             ld(value: current &+ diff)
         }
@@ -59,7 +62,9 @@ class RegisterPair {
         high.byteValue.s53()
         Z80.F.byteValue.set(bit: Flag.ZERO, value: value() == 0)
         Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highByte().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highByte().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
+       // Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highByte().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
+        Z80.F.halfCarry(passedValue: actualDiff.highByte(), oldValue: current.highByte())
+        Z80.F.positive()
     }
     
     

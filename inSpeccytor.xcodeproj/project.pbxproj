@@ -49,6 +49,12 @@
 		CD62E3C225A1A32200B89CEA /* allTests80toca.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3C125A1A32200B89CEA /* allTests80toca.swift */; };
 		CD62E3D325A1C06700B89CEA /* allTestsP_CB00to7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3D225A1C06700B89CEA /* allTestsP_CB00to7f.swift */; };
 		CD62E3D825A1D99A00B89CEA /* allTestsP_CB80toff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3D725A1D99A00B89CEA /* allTestsP_CB80toff.swift */; };
+		CD62E3DD25A1EEC800B89CEA /* allTestsP_DD00to7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3DC25A1EEC800B89CEA /* allTestsP_DD00to7f.swift */; };
+		CD62E3E225A1F44200B89CEA /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3E125A1F44200B89CEA /* BaseTest.swift */; };
+		CD62E3E725A1F49200B89CEA /* allTestsP_DD80toff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3E625A1F49200B89CEA /* allTestsP_DD80toff.swift */; };
+		CD62E3EC25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3EB25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift */; };
+		CD62E3F125A2068C00B89CEA /* allTestsP_DDCB80toff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3F025A2068C00B89CEA /* allTestsP_DDCB80toff.swift */; };
+		CD62E3F925A2169E00B89CEA /* allTestP_ED_ALL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3F825A2169E00B89CEA /* allTestP_ED_ALL.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
 		CD959D642599E1C40043FB91 /* RamByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D632599E1C40043FB91 /* RamByte.swift */; };
@@ -120,6 +126,12 @@
 		CD62E3C125A1A32200B89CEA /* allTests80toca.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTests80toca.swift; sourceTree = "<group>"; };
 		CD62E3D225A1C06700B89CEA /* allTestsP_CB00to7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_CB00to7f.swift; sourceTree = "<group>"; };
 		CD62E3D725A1D99A00B89CEA /* allTestsP_CB80toff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_CB80toff.swift; sourceTree = "<group>"; };
+		CD62E3DC25A1EEC800B89CEA /* allTestsP_DD00to7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_DD00to7f.swift; sourceTree = "<group>"; };
+		CD62E3E125A1F44200B89CEA /* BaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
+		CD62E3E625A1F49200B89CEA /* allTestsP_DD80toff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_DD80toff.swift; sourceTree = "<group>"; };
+		CD62E3EB25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_DDCB00to7f.swift; sourceTree = "<group>"; };
+		CD62E3F025A2068C00B89CEA /* allTestsP_DDCB80toff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_DDCB80toff.swift; sourceTree = "<group>"; };
+		CD62E3F825A2169E00B89CEA /* allTestP_ED_ALL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestP_ED_ALL.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
 		CD959D632599E1C40043FB91 /* RamByte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamByte.swift; sourceTree = "<group>"; };
@@ -283,6 +295,12 @@
 				CD62E3C125A1A32200B89CEA /* allTests80toca.swift */,
 				CD62E3D225A1C06700B89CEA /* allTestsP_CB00to7f.swift */,
 				CD62E3D725A1D99A00B89CEA /* allTestsP_CB80toff.swift */,
+				CD62E3DC25A1EEC800B89CEA /* allTestsP_DD00to7f.swift */,
+				CD62E3E125A1F44200B89CEA /* BaseTest.swift */,
+				CD62E3E625A1F49200B89CEA /* allTestsP_DD80toff.swift */,
+				CD62E3EB25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift */,
+				CD62E3F025A2068C00B89CEA /* allTestsP_DDCB80toff.swift */,
+				CD62E3F825A2169E00B89CEA /* allTestP_ED_ALL.swift */,
 			);
 			path = inSpeccytorTests;
 			sourceTree = "<group>";
@@ -519,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD62E3E225A1F44200B89CEA /* BaseTest.swift in Sources */,
 				CD03E70B259CF963005F0F83 /* Z80+OpCodeDDFD.swift in Sources */,
 				CD03E71C259CF989005F0F83 /* LineTableViewCell.swift in Sources */,
 				CD03E6F0259CF95B005F0F83 /* Z80.swift in Sources */,
@@ -539,6 +558,7 @@
 				CD62E3C225A1A32200B89CEA /* allTests80toca.swift in Sources */,
 				CD03E70A259CF963005F0F83 /* Z80+OpcodeCB.swift in Sources */,
 				CD03E706259CF963005F0F83 /* Data+String.swift in Sources */,
+				CD62E3EC25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift in Sources */,
 				CD03E725259CF995005F0F83 /* Flag.swift in Sources */,
 				CD03E70C259CF963005F0F83 /* UIImage+Bitmap.swift in Sources */,
 				CD03E7C225A12B2E005F0F83 /* allTestsTo7f.swift in Sources */,
@@ -550,11 +570,15 @@
 				CD03E709259CF963005F0F83 /* Int+Bitwise.swift in Sources */,
 				CD03E712259CF963005F0F83 /* StringExtensions.swift in Sources */,
 				CD62E3D825A1D99A00B89CEA /* allTestsP_CB80toff.swift in Sources */,
+				CD62E3F925A2169E00B89CEA /* allTestP_ED_ALL.swift in Sources */,
+				CD62E3F125A2068C00B89CEA /* allTestsP_DDCB80toff.swift in Sources */,
 				CD03E70E259CF963005F0F83 /* UInt8+Bitwise.swift in Sources */,
 				CD03E727259CF995005F0F83 /* RegisterModel.swift in Sources */,
 				CD03E723259CF995005F0F83 /* OpCode.swift in Sources */,
 				CD03E71B259CF989005F0F83 /* Bitmap.swift in Sources */,
+				CD62E3DD25A1EEC800B89CEA /* allTestsP_DD00to7f.swift in Sources */,
 				CD03E707259CF963005F0F83 /* Z80+OpcodeDDFDCB.swift in Sources */,
+				CD62E3E725A1F49200B89CEA /* allTestsP_DD80toff.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

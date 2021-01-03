@@ -25,7 +25,7 @@ extension UInt8 {
     
     func twosCompliment() -> UInt8 {
         var comp = ~self &+ 1
-        comp.clear(bit: 7)
+       // comp.clear(bit: 7)
         return comp
     }
     
@@ -40,21 +40,23 @@ extension UInt8 {
     mutating func inc() {
         let oldValue = self
         self = self &+ 1
-        self.s53()
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: self == 0)
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != self.isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 3) != self.isSet(bit: 3))
-        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
+        Z80.F.zero(passedValue: self)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue == 0x7f)
+        Z80.F.halfCarry(passedValue: 1, oldValue: oldValue)
+        Z80.F.positive()
+        Z80.F.sign(passedValue: self)
+        Z80.F.bits5And3(calculatedValue: self)
     }
     
     mutating func dec() {
         let oldValue = self
         self = self &- 1
-        self.s53()
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: self == 0)
-        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != self.isSet(bit: 7))
-        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != self.isSet(bit: 4))
-        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
+        Z80.F.zero(passedValue: self)
+        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue == 0x80)
+        Z80.F.halfCarrySB(passedValue: 1, oldValue: oldValue)
+        Z80.F.negative()
+        Z80.F.sign(passedValue: self)
+        Z80.F.bits5And3(calculatedValue: self)
         
     }
     
