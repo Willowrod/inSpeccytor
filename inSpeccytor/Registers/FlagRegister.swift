@@ -35,8 +35,8 @@ class FlagRegister: Register {
     
     func parity(passedValue: UInt8){
         var count = 0
-        for _ in 0...7 {
-            if passedValue.isSet(bit: 0){
+        for a in 0...7 {
+            if passedValue.isSet(bit: a){
                 count += 1
             }
         }
@@ -89,6 +89,14 @@ class FlagRegister: Register {
     
     func overFlow(passedValue: UInt8, oldValue: UInt8, newValue: UInt8){
         if oldValue & FLAG_SIGN == passedValue & FLAG_SIGN && newValue & FLAG_SIGN != oldValue & FLAG_SIGN {
+            setBit(bit: Flag.OVERFLOW)
+        } else {
+            clearBit(bit: Flag.OVERFLOW)
+        }
+    }
+    
+    func overFlowSB(passedValue: UInt8, oldValue: UInt8){
+        if passedValue > oldValue {
             setBit(bit: Flag.OVERFLOW)
         } else {
             clearBit(bit: Flag.OVERFLOW)
