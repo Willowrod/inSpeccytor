@@ -82,6 +82,14 @@ extension Z80 {
                 ram[Int(hl().value())].sra()
                 instructionComplete(states: 15)
             }
+        case 6: //SLL // Undocumented
+            if let register = register {
+                register.sll()
+                instructionComplete(states: 8)
+            } else {
+                ram[Int(hl().value())].sll()
+                instructionComplete(states: 15)
+            }
         case 7: //SRL
             if let register = register {
                 register.srl()
@@ -92,10 +100,10 @@ extension Z80 {
             }
         case 8...15: //BIT 0
             if let register = register {
-                register.byteValue.testBit(bit: opCodeOffset - 8)
+                register.testBit(bit: opCodeOffset - 8)
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].testBit(bit: opCodeOffset - 8)
+                ram[Int(hl().value())].testBit(bit: opCodeOffset - 8, memPtr: MEMPTR)
                 instructionComplete(states: 12)
             }
         case 16...23: //BIT 0

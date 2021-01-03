@@ -88,19 +88,30 @@ class FlagRegister: Register {
     }
     
     func overFlow(passedValue: UInt8, oldValue: UInt8, newValue: UInt8){
-        if oldValue & FLAG_SIGN == passedValue & FLAG_SIGN && newValue & FLAG_SIGN != oldValue & FLAG_SIGN {
+    if oldValue & FLAG_SIGN == passedValue & FLAG_SIGN && newValue & FLAG_SIGN != oldValue & FLAG_SIGN {
             setBit(bit: Flag.OVERFLOW)
         } else {
             clearBit(bit: Flag.OVERFLOW)
         }
     }
+
     
-    func overFlowSB(passedValue: UInt8, oldValue: UInt8){
-        if passedValue > oldValue {
+    func overFlowSB(passedValue: UInt8, oldValue: UInt8, newValue: UInt8){
+            let ov = (oldValue & FLAG_SIGN) > 0
+            let pv = (passedValue & FLAG_SIGN) > 0
+            let cv = (newValue & FLAG_SIGN) > 0
+        if (ov == pv) {
+            clearBit(bit: Flag.OVERFLOW)
+        } else if pv == cv {
             setBit(bit: Flag.OVERFLOW)
         } else {
             clearBit(bit: Flag.OVERFLOW)
         }
+//        if passedValue > oldValue {
+//            setBit(bit: Flag.OVERFLOW)
+//        } else {
+//            clearBit(bit: Flag.OVERFLOW)
+//        }
     }
     
     func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){

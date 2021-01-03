@@ -62,84 +62,39 @@ class Register {
     }
     
     func rlc(){
-        let bit7 = byteValue.isSet(bit: 7)
-        byteValue = byteValue << 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit7)
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        byteValue.set(bit: 0, value: bit7)
-        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.rlc()
     }
     
     func rrc(){
-        let bit0 = byteValue.isSet(bit: 0)
-        byteValue = byteValue >> 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit0)
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        byteValue.set(bit: 7, value: bit0)
-        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.rrc()
     }
     
     func rl(){
-        let bit7 = byteValue.isSet(bit: 7)
-        byteValue = byteValue << 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        byteValue.set(bit: 0, value: Z80.F.byteValue.isSet(bit: Flag.CARRY))
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit7)
-        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.rl()
     }
     
     func rr(){
-        let bit0 = byteValue.isSet(bit: 0)
-        byteValue = byteValue >> 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        byteValue.set(bit: 7, value: Z80.F.byteValue.isSet(bit: Flag.CARRY))
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit0)
-        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.rr()
     }
     
     func sla(){
-        let bit7 = byteValue.isSet(bit: 7)
-        byteValue = byteValue << 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        byteValue.clear(bit: 0)
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit7)
-        Z80.F.byteValue.set(bit: Flag.PARITY)
-        byteValue.set(bit: Flag.SIGN, value: byteValue.isSet(bit: 7))
+        byteValue.sla()
     }
     
     func sra(){
-        let bit0 = byteValue.isSet(bit: 0)
-        let bit7 = byteValue.isSet(bit: 7)
-        byteValue = byteValue >> 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        byteValue.clear(bit: 7)
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit0)
-        Z80.F.byteValue.set(bit: Flag.PARITY, value: byteValue.isSet(bit: 0))
-        byteValue.set(bit: Flag.SIGN, value: bit7)
+        byteValue.sra()
+    }
+    
+    func sll(){
+        byteValue.sll()
     }
     
     func srl(){
-        let bit0 = byteValue.isSet(bit: 0)
-        byteValue = byteValue >> 1
-        Z80.F.clearBit(bit: Flag.HALF_CARRY)
-        Z80.F.clearBit(bit: Flag.SUBTRACT)
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: byteValue == 0)
-        Z80.F.byteValue.set(bit: Flag.CARRY, value: bit0)
-        Z80.F.byteValue.set(bit: Flag.PARITY, value: byteValue.isSet(bit: 0))
-        byteValue.clear(bit: 7)
-        Z80.F.byteValue.clear(bit: Flag.SIGN)
+        byteValue.srl()
+    }
+    
+    func testBit(bit: Int){
+        byteValue.testBit(bit: bit)
     }
     
     func inCommand(byte: UInt8){

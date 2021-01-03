@@ -7,7 +7,7 @@
 
 import XCTest
 
-class allTests: XCTestCase {
+class allTestsTo7f: XCTestCase {
 
   
     let z80 = Z80()

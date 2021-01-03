@@ -15,7 +15,7 @@ class Accumilator: Register {
         byteValue = byteValue16.lowBit()
         
         Z80.F.zero(passedValue: byteValue)
-        Z80.F.overFlowSB(passedValue: diff, oldValue: oldValue)
+        Z80.F.overFlowSB(passedValue: diff, oldValue: oldValue, newValue: byteValue)
         Z80.F.halfCarrySB(passedValue: diff, oldValue: oldValue)
         Z80.F.sign(passedValue: byteValue)
         Z80.F.bits5And3(calculatedValue: byteValue)
@@ -46,7 +46,8 @@ class Accumilator: Register {
         Z80.F.sign(passedValue: byteValue)
         Z80.F.zero(passedValue: byteValue)
         let totalDiff = diff &+ carry
-        Z80.F.overFlowSB(passedValue: totalDiff, oldValue: oldValue)
+        Z80.F.overFlowSB(passedValue: diff, oldValue: oldValue, newValue: byteValue)
+        //Z80.F.overFlowSB(passedValue: totalDiff, oldValue: oldValue)
         Z80.F.halfCarrySB(passedValue: diff, oldValue: oldValue, carry: carry)
         Z80.F.bits5And3(calculatedValue: byteValue)
         Z80.F.negative()
@@ -132,7 +133,8 @@ class Accumilator: Register {
             let byteValue16: UInt16 = UInt16(byteValue) &- UInt16(value)
             Z80.F.sign(passedValue: byteValue16.lowBit())
             Z80.F.zero(passedValue: byteValue16.lowBit())
-            Z80.F.overFlowSB(passedValue: value, oldValue: byteValue)
+            Z80.F.overFlowSB(passedValue: value, oldValue: byteValue, newValue: byteValue16.lowBit())
+            //Z80.F.overFlowSB(passedValue: value, oldValue: byteValue)
             Z80.F.halfCarrySB(passedValue: byteValue16.lowBit(), oldValue: byteValue)
             Z80.F.bits5And3(calculatedValue: value)
             Z80.F.negative()

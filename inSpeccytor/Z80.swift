@@ -39,6 +39,8 @@ class Z80 {
     var PC: UInt16 = 0
     var SP: UInt16 = 0
     
+    var MEMPTR: UInt16 = 0
+    
     var interuptMode = 1
     
     var screenWriteComplete = true
