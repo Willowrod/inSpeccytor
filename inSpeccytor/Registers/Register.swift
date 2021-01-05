@@ -40,27 +40,10 @@ class Register {
     
     func inc() {
         byteValue.inc()
-//        let oldValue = byteValue
-//        byteValue = byteValue &+ 1
-//        Z80.F.zero(passedValue: byteValue)
-//        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue == 0x7f)
-//        Z80.F.halfCarry(passedValue: 1, oldValue: oldValue)
-//        Z80.F.positive()
-//        Z80.F.sign(passedValue: byteValue)
-//        Z80.F.bits5And3(calculatedValue: byteValue)
     }
     
     func dec() {
         byteValue.dec()
-//        let oldValue = byteValue
-//        byteValue = byteValue &- 1
-//        Z80.F.zero(passedValue: byteValue)
-//        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue == 0x80)
-//        Z80.F.halfCarrySB(passedValue: 1, oldValue: oldValue)
-//        Z80.F.negative()
-//        Z80.F.sign(passedValue: byteValue)
-//        Z80.F.bits5And3(calculatedValue: byteValue)
-        
     }
     
     func rlc(){

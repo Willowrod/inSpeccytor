@@ -62,11 +62,9 @@ class RegisterPair {
         high.byteValue.s53()
         Z80.F.byteValue.set(bit: Flag.ZERO, value: value() == 0)
         Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: current.highByte().isSet(bit: 7) != high.byteValue.isSet(bit: 7))
-       // Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: current.highByte().isSet(bit: 4) != high.byteValue.isSet(bit: 4))
         Z80.F.halfCarry(passedValue: actualDiff.highByte(), oldValue: current.highByte())
         Z80.F.positive()
     }
-    
     
     func sub(diff: UInt16){
         let current:UInt16 = value()

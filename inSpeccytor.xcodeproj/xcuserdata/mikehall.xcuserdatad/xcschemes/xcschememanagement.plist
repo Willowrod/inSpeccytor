@@ -4,10 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>inSpeccytor-release.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>inSpeccytor.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CDF8A1CE2531CC2700F0D216</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDF8A1E72531CC2A00F0D216</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDF8A1F22531CC2A00F0D216</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

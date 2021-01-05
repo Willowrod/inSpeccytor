@@ -89,18 +89,14 @@ struct RegisterModel: Codable {
         registerBC2 = registerPair(l: registerC2, h: registerB2)
         registerAF2 = registerPair(l: registerF2, h: registerA2)
 
-        print("PC is stored at \(registerSP)")
-
         if let stackStart = header.firstIndex(where: {$0.lineNumber == registerSP}){
             registerPC = registerPair(l: header[stackStart].intValue, h: header[stackStart+1].intValue)//Int(stackStart.intValue)
-            print("PC is \(registerPC)")
         }
         
         
     }
     
     func registerPair(l: Int, h: Int) -> Int{
-        print("Low: \(l) : High: \(h)")
         return (h * 256) + l
     }
     

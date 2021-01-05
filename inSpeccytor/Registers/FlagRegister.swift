@@ -7,7 +7,6 @@
 
 import Foundation
 class FlagRegister: Register {
-    
     private let FLAG_CARRY: UInt8 = 1
     private let FLAG_NEGATIVE: UInt8 = 2
     private let FLAG_PARITYOVERFLOW: UInt8 = 4
@@ -95,7 +94,6 @@ class FlagRegister: Register {
         }
     }
 
-    
     func overFlowSB(passedValue: UInt8, oldValue: UInt8, newValue: UInt8){
             let ov = (oldValue & FLAG_SIGN) > 0
             let pv = (passedValue & FLAG_SIGN) > 0
@@ -111,20 +109,7 @@ class FlagRegister: Register {
     
     func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){
         overFlow(passedValue: passedValue.highByte(), oldValue: oldValue.highByte(), newValue: newValue.highByte())
-//        if oldValue.highByte() & FLAG_SIGN == passedValue.highByte() & FLAG_SIGN && newValue.highByte() & FLAG_SIGN != oldValue.highByte() & FLAG_SIGN {
-//            setBit(bit: Flag.OVERFLOW)
-//        } else {
-//            clearBit(bit: Flag.OVERFLOW)
-//        }
     }
-    
-//    func overFlowSB(passedValue: UInt16, oldValue: UInt16, newValue: UInt16){
-//        if oldValue.highByte() & FLAG_SIGN == passedValue.highByte() & FLAG_SIGN && newValue.highByte() & FLAG_SIGN != oldValue.highByte() & FLAG_SIGN {
-//            setBit(bit: Flag.OVERFLOW)
-//        } else {
-//            clearBit(bit: Flag.OVERFLOW)
-//        }
-//    }
     
     func halfCarry(passedValue: UInt8, oldValue: UInt8, carry: UInt8 = 0){
         if (oldValue.lowerNibble() &+ passedValue.lowerNibble() &+ carry.lowerNibble()) & 0x10 > 0 {
@@ -171,7 +156,6 @@ class FlagRegister: Register {
     }
     
     func ccf(acc: UInt8){
-        
         byteValue.set(bit: Flag.HALF_CARRY, value: byteValue.isSet(bit: Flag.CARRY))
         clearBit(bit: Flag.SUBTRACT)
         byteValue.set(bit: Flag.CARRY, value: !byteValue.isSet(bit: Flag.CARRY))

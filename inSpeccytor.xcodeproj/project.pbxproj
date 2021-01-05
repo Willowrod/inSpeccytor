@@ -39,7 +39,6 @@
 		CD03E725259CF995005F0F83 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0925949FF400862DE0 /* Flag.swift */; };
 		CD03E726259CF995005F0F83 /* CodeByteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */; };
 		CD03E727259CF995005F0F83 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8C47825335F8C0014A587 /* RegisterModel.swift */; };
-		CD03E728259CF995005F0F83 /* RamByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D632599E1C40043FB91 /* RamByte.swift */; };
 		CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD03E7C225A12B2E005F0F83 /* allTestsTo7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03E7C125A12B2D005F0F83 /* allTestsTo7f.swift */; };
@@ -58,9 +57,9 @@
 		CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3FD25A2526200B89CEA /* allTestsP_FDCB00to7f.swift */; };
 		CD62E40625A253EF00B89CEA /* allTestsP_FDCB80toff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E40525A253EF00B89CEA /* allTestsP_FDCB80toff.swift */; };
 		CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */; };
+		CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E43D25A4C44600B89CEA /* AudioStreamer.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
-		CD959D642599E1C40043FB91 /* RamByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D632599E1C40043FB91 /* RamByte.swift */; };
 		CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */; };
 		CD959D712599F6680043FB91 /* Z80+OpCodeDDFD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */; };
 		CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */; };
@@ -138,9 +137,9 @@
 		CD62E3FD25A2526200B89CEA /* allTestsP_FDCB00to7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FDCB00to7f.swift; sourceTree = "<group>"; };
 		CD62E40525A253EF00B89CEA /* allTestsP_FDCB80toff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FDCB80toff.swift; sourceTree = "<group>"; };
 		CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FD_ALL.swift; sourceTree = "<group>"; };
+		CD62E43D25A4C44600B89CEA /* AudioStreamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStreamer.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
-		CD959D632599E1C40043FB91 /* RamByte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamByte.swift; sourceTree = "<group>"; };
 		CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeDDFDCB.swift"; sourceTree = "<group>"; };
 		CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpCodeDDFD.swift"; sourceTree = "<group>"; };
 		CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCodeDefs.swift; sourceTree = "<group>"; };
@@ -228,7 +227,6 @@
 				CDE3ECB5258CE84D00C8E8AF /* Register.swift */,
 				CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */,
 				CDE3ECC2258CFC8B00C8E8AF /* Accumilator.swift */,
-				CD959D632599E1C40043FB91 /* RamByte.swift */,
 				CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */,
 			);
 			path = Registers;
@@ -275,6 +273,7 @@
 				CDF8A2642531DA6300F0D216 /* extensions */,
 				CDF8A2082531CC4A00F0D216 /* inSpeccytor.entitlements */,
 				CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */,
+				CD62E43D25A4C44600B89CEA /* AudioStreamer.swift */,
 				CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */,
 				CDF8A1D62531CC2700F0D216 /* ViewController.swift */,
 				CDF8A1D82531CC2700F0D216 /* Main.storyboard */,
@@ -513,6 +512,7 @@
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
+				CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */,
 				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
 				CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
@@ -525,7 +525,6 @@
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
 				CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */,
 				CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */,
-				CD959D642599E1C40043FB91 /* RamByte.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
@@ -561,7 +560,6 @@
 				CD03E724259CF995005F0F83 /* RegisterPair.swift in Sources */,
 				CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */,
 				CD03E70F259CF963005F0F83 /* UInt16+Bitwise.swift in Sources */,
-				CD03E728259CF995005F0F83 /* RamByte.swift in Sources */,
 				CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */,
 				CD03E71A259CF989005F0F83 /* OpCodeDefs.swift in Sources */,
 				CD03E717259CF989005F0F83 /* SceneDelegate.swift in Sources */,
@@ -765,6 +763,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FAGJTP495D;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = inSpeccytor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

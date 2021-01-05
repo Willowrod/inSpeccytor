@@ -24,9 +24,7 @@ extension UInt8 {
     }
     
     func twosCompliment() -> UInt8 {
-        var comp = ~self &+ 1
-       // comp.clear(bit: 7)
-        return comp
+        return ~self &+ 1
     }
     
     func lowerNibble() -> UInt8 {

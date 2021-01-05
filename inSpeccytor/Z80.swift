@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 protocol Z80Delegate {
     func updateView(bitmap: Bitmap?)
@@ -14,66 +15,47 @@ protocol Z80Delegate {
 }
 
 class Z80 {
-    
     var A: Accumilator = Accumilator()
     static var F: FlagRegister = FlagRegister()
     var AF: RegisterPair = RegisterPair()
     var HL: RegisterPair = RegisterPair()
     var BC: RegisterPair = RegisterPair()
     var DE: RegisterPair = RegisterPair()
-
-    
     var IX: RegisterPair = RegisterPair()
     var IY: RegisterPair = RegisterPair()
-
     var AF2: RegisterPair = RegisterPair()
     var HL2: RegisterPair = RegisterPair()
     var BC2: RegisterPair = RegisterPair()
     var DE2: RegisterPair = RegisterPair()
-    
     var I: Register = Register()
     var interupt: Bool = true
     var interupt2: Bool = true
     var R: Register = Register()
-    
     var PC: UInt16 = 0
     var SP: UInt16 = 0
-    
     var MEMPTR: UInt16 = 0
-    
     var interuptMode = 1
-    
     var screenWriteComplete = true
-    
     var ram: Array<UInt8> = []
     var keyboard: Array<UInt8> = []
-    
     var screenBuffer = Bitmap(width: 256, height: 192, color: .white)
-    
     let tStatesPerFrame = 69888
     var currentTStates = 0
-    
     var frameEnds = true
     var frameStarted: TimeInterval = Date().timeIntervalSince1970
-    
     var flashCount = 0
     var flashOn = false
-    
     var delegate: Z80Delegate?
-    
     var halt = false
-    
     var stackSize = 0
-    
     var shouldRunInterupt = false
-    
     var shouldBreak = false
     var shouldStep = false
     var shouldForceBreak = false
-    
-    
-    
     var breakPoints: Array<UInt16> = []
+    let beeper = AudioStreamer()
+    
+    var clicks: UInt8 = 0
     
     init() {
         ram = Array(repeating: 0, count: 65536)
@@ -88,143 +70,127 @@ class Z80 {
         iy().ld(value: 23610)
         PC = 0
         SP = 0
+        
+        beeper.ticksPerFrame = tStatesPerFrame
+
+        
+        
     }
     
     func accumilator() -> Accumilator{
-         return A
+        return A
     }
     
     static func flag() -> Register{
-     return F
+        return F
     }
     
     func aR() -> Accumilator{
-         return A
+        return A
     }
     
     static func fR() -> Register{
-         return F
+        return F
     }
     
     func hR() -> Register{
-         return HL.high
+        return HL.high
     }
     
     func lR() -> Register{
-         return HL.low
+        return HL.low
     }
     
     func bR() -> Register{
-         return BC.high
+        return BC.high
     }
     
     func cR() -> Register{
-         return BC.low
+        return BC.low
     }
     
     func dR() -> Register{
-         return DE.high
+        return DE.high
     }
     
     func eR() -> Register{
-         return DE.low
+        return DE.low
     }
     
     func a() -> UInt8{
         return A.byteValue
-        }
-        
-        func f() -> UInt8{
-            return Z80.F.byteValue
-            
-        }
-        
-        func h() -> UInt8{
-            return HL.high.byteValue
-        }
-        
-        func l() -> UInt8{
-             return HL.low.byteValue
-        }
-        
-        func b() -> UInt8{
-             return BC.high.byteValue
-        }
-        
-        func c() -> UInt8{
-             return BC.low.byteValue
-        }
-        
-        func d() -> UInt8{
-             return DE.high.byteValue
-        }
-        
-        func e() -> UInt8{
-             return DE.low.byteValue
-        }
+    }
     
+    func f() -> UInt8{
+        return Z80.F.byteValue
+    }
     
+    func h() -> UInt8{
+        return HL.high.byteValue
+    }
     
+    func l() -> UInt8{
+        return HL.low.byteValue
+    }
     
+    func b() -> UInt8{
+        return BC.high.byteValue
+    }
     
+    func c() -> UInt8{
+        return BC.low.byteValue
+    }
+    
+    func d() -> UInt8{
+        return DE.high.byteValue
+    }
+    
+    func e() -> UInt8{
+        return DE.low.byteValue
+    }
     
     func af() -> RegisterPair{
-         return AF
+        return AF
     }
     
     func hl() -> RegisterPair{
-         return HL
+        return HL
     }
     
     func bc() -> RegisterPair{
-         return BC
+        return BC
     }
     
     func de() -> RegisterPair{
-         return DE
+        return DE
     }
     
     func af2() -> RegisterPair{
-         return AF2
+        return AF2
     }
     
     func hl2() -> RegisterPair{
-         return HL2
+        return HL2
     }
     
     func bc2() -> RegisterPair{
-         return BC2
+        return BC2
     }
     
     func de2() -> RegisterPair{
-         return DE2
+        return DE2
     }
     
     func ix() -> RegisterPair{
-         return IX
+        return IX
     }
     
     func iy() -> RegisterPair{
-         return IY
+        return IY
     }
     
     func testRegisters(){
-        bc().ld(value: 1257)
-        print("B: \(b())")
-        print("C: \(c())")
-        dR().ld(value: 12)
-        print("DC: \(de().value())")
-        print("A: \(a()) (pre add)")
-        aR().add(diff: 50)
-        print("A: \(a()) (post add)")
-        Z80.F.ld(value: 255)
-        print("F: \(Z80.F.value()) (pre clear)")
-        //Z80.F.clearBit(bit: 2)
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: false)
-        print("F: \(Z80.F.value()) (post clear)")
-        Z80.F.byteValue.set(bit: Flag.ZERO, value: true)
-        print("F: \(Z80.F.value()) (post post clear)")
-        print ("twos of 250 = \(UInt8(250).twosCompliment())")
+        
     }
     
     func exchange(working: RegisterPair, spare: RegisterPair){
@@ -240,7 +206,6 @@ class Z80 {
         exchange(working: HL, spare: HL2)
     }
     
-    
     func initialiseRegisters(header: RegisterModel){
         testRegisters()
         aR().ld(value: UInt8(header.registerA))
@@ -248,21 +213,29 @@ class Z80 {
         bc().ld(value: UInt16(header.registerBC))
         de().ld(value: UInt16(header.registerDE))
         hl().ld(value: UInt16(header.registerHL))
-        
-
         SP = UInt16(header.registerSP)
-        ret()
-       // PC = 0x9a2d  //UInt16(header.registerPC)
         ix().ld(value: UInt16(header.registerIX))
         iy().ld(value: UInt16(header.registerIY))
-        
         af2().high.ld(value: UInt8(header.registerA2))
         af2().low.ld(value: UInt8(header.registerF2))
         bc2().ld(value: UInt16(header.registerBC2))
         de2().ld(value: UInt16(header.registerDE2))
         hl2().ld(value: UInt16(header.registerHL2))
+        ret()
         
     }
+    
+//    func playBeep(freq: Double, length: Double){
+//            //let freq =   //440.0 * pow(2.0, Double(freq))
+//            beepTone.frequency = freq
+//            beepTone.preparePlaying()
+//            beepTone.play()
+//            beeper.mainMixerNode.volume = 1.0
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + length) { // Change `2.0` to the desired number of seconds.
+//            self.beepTone.stop()
+//        }
+//    }
     
     func writeRAM(dataModel: Array<CodeByteModel>, ignoreHeader: Bool, startAddress: Int = 0){
         var count = startAddress
@@ -273,6 +246,7 @@ class Z80 {
     }
     
     func renderFrame(){
+        beeper.endFrame()
         flashCount += 1
         if (flashCount >= 16){
             flashCount = 0
@@ -288,97 +262,62 @@ class Z80 {
     
     func blitMeAScreen(){
         screenBuffer.setAttributes(bytes: ram[22528...23295], flashing: flashOn)
-       screenBuffer.blit(bytes: ram[16384...22527])
+        screenBuffer.blit(bytes: ram[16384...22527])
     }
     
     func process() {
         currentTStates = 0
-        var canLog = false
-        var myCount = 0
-       // PC = 49999
         while true {
-//            if (!frameEnds) {
-                if (shouldRunInterupt){
-                    interupt = false
-                    interupt2 = false
-                    push(value: PC)
-                    switch interuptMode {
-                    case 0:
-                        PC = 0x0066
-                    case 1:
-                        PC = 0x0038
-                    default:
-                        PC = UInt16(I.byteValue) * 256 // TODO: This needs to react to a low byte from a peripheral occasionally?
-                    }
-                    halt = false
-                    shouldRunInterupt = false
+                        if (!frameEnds) {
+            if (shouldRunInterupt){
+                interupt = false
+                interupt2 = false
+                push(value: PC)
+                switch interuptMode {
+                case 0:
+                    PC = 0x0066
+                case 1:
+                    PC = 0x0038
+                default:
+                    PC = UInt16(I.byteValue) * 256 // TODO: This needs to react to a low byte from a peripheral occasionally?
                 }
-                    if (halt){
-                        instructionComplete(states: 4, length: 0)
-                        halt = false
-                    } else {
+                halt = false
+                shouldRunInterupt = false
+            }
+            if (halt){
+                instructionComplete(states: 4, length: 0)
+                halt = false
+            } else {
                 let byte = ram[Int(PC)]
-      //                  print("Processing line \(PC) (\(String(PC, radix: 16).padded(size: 4))) - \(String(byte, radix: 16)) - hl: \(hl().value())"  )// - a: \(a()) - b: \(b())")
-                        
- //  print("Processing line \(String(PC, radix: 16)) - \(String(byte, radix: 16)) - hl: \(hl().value()) - b: \(b())"  ) //- SP: \(SP)"  )// - a: \(a()) - b: \(b())")   //  ")//
-                        
-    
-                        let executed = PC
- //                      print("Processing line \(String(PC, radix: 16)) - \(String(byte, radix: 16))")
-//                        if (executed == 0x0c4c){
-//                            print("Executing....")
-//
-//                        }
-  //                         print("\(String(executed, radix: 16))")
-                        
-                         shouldBreak = breakPoints.contains(PC) || shouldStep || shouldForceBreak
-                        if (shouldBreak){
-                            
-                            print("Breakpoint hit at \(PC)")
-                            
-                            print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
-                            DispatchQueue.main.sync {
-                                delegate?.updateRegisters()
-                                delegate?.updateDebug(line: PC)
-                            }
-                        while shouldBreak {
-                        }
-                        }
-                            
-                        shouldForceBreak = false
-                        
-          opCode(byte: byte)
-        
-                        //                       opCode(byte: 3)
- //                      print("\(String(executed, radix: 16))")
-
-//                        print("PC: \(String(executed, radix:16)) a: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16)) HL2: \(String(HL2.value(), radix: 16)) BC2: \(String(BC2.value(), radix: 16)) DE2: \(String(DE2.value(), radix: 16))")
-//                        if (canLog){
-//                        print("PC: \(String(executed, radix:16)) Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
-//                        }
-//                        if (PC == 0xf53c){
-//                            canLog = true
-//                                   print("....... \(String(UnicodeScalar(a()))) .........")
-//                                }
-    //                    ..                     print(".")
+                shouldBreak = breakPoints.contains(PC) || shouldStep || shouldForceBreak
+                if (shouldBreak){
+                    DispatchQueue.main.sync {
+                        delegate?.updateRegisters()
+                        delegate?.updateDebug(line: PC)
+                    }
+                    while shouldBreak {
+                    }
                 }
                 
-                if currentTStates >= tStatesPerFrame {
-                    currentTStates = 0
-                    renderFrame()
-                }
-                        
-//            }
-//            else {
-//                let time = Date().timeIntervalSince1970
-//                if (frameStarted + 0.02 <= time){
-//                    frameStarted = time
-//                    frameEnds = false
-//                }
-//            }
+                shouldForceBreak = false
+                
+                opCode(byte: byte)
+                beeper.updateSample(UInt32(currentTStates), beep: clicks)
+                //      print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+            }
+            if currentTStates >= tStatesPerFrame {
+                currentTStates = 0
+                renderFrame()
+            }
             
-
-            
+                        }
+                        else {
+                            let time = Date().timeIntervalSince1970
+                            if (frameStarted + 0.02 <= time){
+                                frameStarted = time
+                                frameEnds = false
+                            }
+                        }
         }
     }
     
@@ -391,10 +330,6 @@ class Z80 {
     func instructionComplete(states: Int, length: UInt16 = 1) {
         currentTStates += states
         PC = PC &+ length
-//        if currentTStates >= tStatesPerFrame {
-//            currentTStates = 0
-//            renderFrame()
-//        }
     }
     
     func call(location: UInt16, length: UInt16 = 1){
@@ -411,21 +346,13 @@ class Z80 {
         SP = SP &- 2
         ldRam(location: SP, value: value)
         stackSize += 1
-  //      print ("PC: \(String(PC, radix:16)) Pushing \(value) (l:\(value.lowBit()) h:\(value.highBit())) to stack position \(SP) (\(String(SP, radix: 16)) - Stacksize:\(stackSize)")
     }
     
     func pop() -> UInt16 {
-  //      if (stackSize > 0){
         let value = fetchRamWord(location: SP)
-            stackSize -= 1
-   //     print ("PC: \(String(PC, radix:16)) Popping \(value) (l:\(value.lowBit()) h:\(value.highBit())) from stack position \(SP) (\(String(SP, radix: 16)) - Stacksize:\(stackSize)")
+        stackSize -= 1
         SP = SP &+ 2
         return value
-//        }
-//        else {
-//            print("Stack discrepancy - more pops than pushes!")
-//            return 0
-//        }
     }
     
     func ret(){
@@ -433,13 +360,6 @@ class Z80 {
     }
     
     func decRam(location: Int){
-//        let oldValue = ram[location]
-//        ldRam(location: Int(location), value: ram[location] &- 1)
-//        ram[location].s53()
-//        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
-//        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
-//        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
-//        Z80.F.byteValue.set(bit: Flag.SUBTRACT)
         var ramByte: UInt8 = fetchRam(location: location)
         ramByte.dec()
         ldRam(location: location, value: ramByte)
@@ -449,21 +369,10 @@ class Z80 {
         var ramByte: UInt8 = fetchRam(location: location)
         ramByte.inc()
         ldRam(location: location, value: ramByte)
-//        let oldValue = ram[location]
-//        ldRam(location: Int(location), value: ram[location] &+ 1)
-//        ram[location].s53()
-//        Z80.F.byteValue.set(bit: Flag.ZERO, value: ram[location] == 0)
-//        Z80.F.byteValue.set(bit: Flag.OVERFLOW, value: oldValue.isSet(bit: 7) != ram[location].isSet(bit: 7))
-//        Z80.F.byteValue.set(bit: Flag.HALF_CARRY, value: oldValue.isSet(bit: 4) != ram[location].isSet(bit: 4))
-//        Z80.F.byteValue.clear(bit: Flag.SUBTRACT)
     }
     
     func ldRam(location: Int, value: UInt8){
-//        if (location < 0x4000){
-//            print("location \(location) is being changed, that's not right!")
-//        } else {
         ram[location] = value
-//        }
     }
     
     func ldRam(location: Int, value: UInt16){
@@ -502,22 +411,16 @@ class Z80 {
         if subt{
             PC = PC &- UInt16(comp)
         } else {
-        PC = PC &+ UInt16(twos)
+            PC = PC &+ UInt16(twos)
         }
-//        print ("TC of \(twos) = \(subt ? "-" :  "")\(comp)")
     }
-    
-    
-    
     
     func iYOffset(twos: UInt8) -> UInt16 {
         let subt = twos.isSet(bit: 7)
         let comp = twos.twosCompliment()
         if subt{
-//        print ("IY TC of \(twos) = -\(comp)")
             return iy().value() &- UInt16(comp)
         } else {
-//    print ("IY TC of \(twos) = \(comp)")
             return iy().value() &+ UInt16(comp)
         }
     }

@@ -21,6 +21,4 @@ class CodeByteModel: Codable {
             intValue = -1
         }
     }
-    
-    
 }

@@ -26,9 +26,20 @@ extension String {
         for subString in subStringArray {
             stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
             lineNumber+=1
-//            if (lineNumber == 27){
-//                lineNumber = 16384
-//            }
+            if (lineNumber == 27){
+                lineNumber = 16384
+            }
+        }
+        return stringArray
+    }
+    
+    func splitToBytesROM(separator: Character, startFrom: Int = 0) -> [CodeByteModel] {
+        let subStringArray = self.split(separator: separator)
+        var stringArray: [CodeByteModel] = []
+        var lineNumber: Int = 0
+        for subString in subStringArray {
+            stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
+            lineNumber+=1
         }
         return stringArray
     }

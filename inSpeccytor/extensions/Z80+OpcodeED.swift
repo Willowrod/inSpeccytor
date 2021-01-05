@@ -143,10 +143,8 @@ extension Z80 {
             let hlRef = fetchRam(location: hl().value())
             let hlLN = hlRef.lowerNibble()
             let hlHN = hlRef.upperNibble()
-            
             let nHL = (aLN << 4) &+ hlHN
             let nA = (a() & 240) &+ hlLN
-            
             aR().ld(value: nA)
             ldRam(location: hl().value(), value: nHL)
         instructionComplete(states: 18)
@@ -213,7 +211,6 @@ extension Z80 {
             interuptMode = 1
         instructionComplete(states: 8)
         case 0x78: // TODO: IN A,(C)
-            
             if (c() == 0xfe){
                 aR().inCommand(byte: keyboard[Int(l() &- 0x28)])
             }

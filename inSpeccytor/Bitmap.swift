@@ -118,7 +118,6 @@ struct Bitmap {
                 }
             }
         }
-   //     print (positions)
     }
     
 }

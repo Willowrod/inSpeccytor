@@ -15,8 +15,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var programCounter: UITextField!
     @IBOutlet weak var screenRender: UIImageView!
-    
-    
     @IBOutlet weak var a: UILabel!
     @IBOutlet weak var f: UILabel!
     @IBOutlet weak var b: UILabel!
@@ -25,46 +23,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var e: UILabel!
     @IBOutlet weak var h: UILabel!
     @IBOutlet weak var l: UILabel!
-    
-    
-    
-    
-    
-    
-    
+    @IBOutlet weak var jumpBox: UITextField!
+    @IBOutlet weak var baseSelector: UISegmentedControl!
+
     let pCOffset = 16384 - 27
-    
     let lineCellIdentifier = "lineCell"
     let mainCellIdentifier = "codeCell"
-    
     var model: Array<CodeByteModel> = []
     var opCodes: Array<OpCode> = []
     var header: RegisterModel = RegisterModel()
-    
     var stopAfterEachOpCode = false
-    
     var shouldDisplayScreen = false
-    
     let borderX = 0 //32
     let borderY = 0 //24
-    
     let z80 = Z80()
-    
     let opcodeLookup = OpCodeDefs()
-    
     var frames = 1
     var seconds = 1
     var lastcount = 0
-    
     var lastFlashChange = 0.0
     var flashOn = false
-    
-    
-    
     var useHexValues = false
-    
     var lastSecond: TimeInterval = Date.init().timeIntervalSince1970
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +54,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
- //       doIt()
+        doIt()
     }
-    
     
     @IBAction func debugStep(_ sender: Any) {
         z80.shouldStep = true
@@ -93,12 +72,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         z80.shouldForceBreak = false
     }
     
+    @IBAction func debugJump(_ sender: Any) {
+        if jumpBox.hasText {
+            var jumpTo: Int = 0
+            if baseSelector.selectedSegmentIndex == 0 {
+                jumpTo = Int(jumpBox.text ?? "5B00", radix: 16) ?? 23296
+            } else {
+              jumpTo = Int(jumpBox.text ?? "23296") ?? 23296
+            }
+            updateDebug(line: UInt16(jumpTo))
+        }
+        jumpBox.resignFirstResponder()
+    }
+    
+    @IBAction func baseChanged(_ sender: Any) {
+        tableView.reloadData()
+    }
+    
     func updateDebug(line: UInt16){
         var targLine = Int(line) - 4
         if targLine < 0 {
             targLine = 0
         }
-        let targetRowIndexPath = IndexPath(row: targLine, section: 0)
+        guard let index = model.firstIndex(where: {$0.lineNumber == targLine}) else { return }
+        let targetRowIndexPath = IndexPath(row: index, section: 0)
         tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
     }
     
@@ -146,7 +143,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func expandROM(data: String?){
-        if let dataModel = data?.splitToBytes(separator: " "){
+        if let dataModel = data?.splitToBytesROM(separator: " "){
             self.model = dataModel
             z80.writeRAM(dataModel: dataModel, ignoreHeader: false)
         } else {
@@ -156,7 +153,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func doIt(){
         loadROM()
-        loadSnapshot(sna: "ab")
+        loadSnapshot(sna: "actionbiker")
         startProcessor()
     }
     
@@ -313,25 +310,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         if bank >= 0 && bit >= 0 {
             pressed ? z80.keyboard[bank].clear(bit: bit) : z80.keyboard[bank].set(bit: bit)
-            
-            print("Bank \(bank) = \(z80.keyboard[bank].bin())")
-            
-            
         }
-        
     }
-    
-    
-    
     
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         guard let key = presses.first?.key else {
             return
         }
         
-        print("Key pressed: \(key.keyCode.rawValue)")
+      //  print("Key pressed: \(key.keyCode.rawValue)")
         keyboardInteraction(key: key.keyCode.rawValue, pressed: true)
-        
     }
     
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
@@ -339,7 +327,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        print("Key released: \(key.keyCode.rawValue)")
+     //   print("Key released: \(key.keyCode.rawValue)")
         keyboardInteraction(key: key.keyCode.rawValue, pressed: false)
     }
     
@@ -367,7 +355,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         updatePC()
         parseLine()
     }
-    
     
     @IBAction func stepFromPC(_ sender: Any) {
         stopAfterEachOpCode = true
@@ -400,9 +387,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func getCodeByte() -> CodeByteModel {
-        let modelPosition = header.registerPC // - pCOffset
-        
-        //         print("fetching line \(header.registerPC) from model size \(model.count) in position \(modelPosition)")
+        let modelPosition = header.registerPC
         if (modelPosition < model.count){
             return model[modelPosition]
         } else {
@@ -566,7 +551,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
             let thisLine = self.model[row]
-            cell.lineNumber.text = "\(String(thisLine.lineNumber, radix: 16)) - \(thisLine.lineNumber)"
+            if baseSelector.selectedSegmentIndex == 0 {
+            cell.lineNumber.text = "\(String(thisLine.lineNumber, radix: 16))"
+            } else {
+                cell.lineNumber.text = "\(thisLine.lineNumber)"
+                }
             cell.hexValue.text = thisLine.hexValue
             cell.intValue.text = "\(thisLine.intValue)"
             let breakPoint = UInt16(thisLine.lineNumber)
