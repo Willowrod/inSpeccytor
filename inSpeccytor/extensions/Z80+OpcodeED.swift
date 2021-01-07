@@ -386,6 +386,7 @@ extension Z80 {
             print("Potential Unknown code ED\(String(byte, radix: 16))")
             print("-")
         }
+        R.inc()
     }
     
     

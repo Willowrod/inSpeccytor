@@ -277,5 +277,6 @@ extension Z80 {
             print("Potential Unknown code FD\(String(byte, radix: 16)) \(byte1) \(byte2) \(word)")
             print("-")
         }
+        R.inc()
     }
 }

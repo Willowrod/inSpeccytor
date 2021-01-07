@@ -30,7 +30,7 @@ class Z80 {
     var I: Register = Register()
     var interupt: Bool = true
     var interupt2: Bool = true
-    var R: Register = Register()
+    var R: Register = Refresh()
     var PC: UInt16 = 0
     var SP: UInt16 = 0
     var MEMPTR: UInt16 = 0
@@ -279,7 +279,7 @@ class Z80 {
                 case 1:
                     PC = 0x0038
                 default:
-                    PC = UInt16(I.byteValue) * 256 // TODO: This needs to react to a low byte from a peripheral occasionally?
+                    PC = (UInt16(I.byteValue) * 256) + UInt16(R.byteValue)
                 }
                 halt = false
                 shouldRunInterupt = false

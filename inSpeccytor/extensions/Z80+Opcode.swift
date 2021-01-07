@@ -947,6 +947,7 @@ extension Z80 {
             //            print("-")
             instructionComplete(states: 4, length: 0)
         }
+        R.inc()
     }
     
 }

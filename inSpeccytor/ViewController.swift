@@ -54,7 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
-        doIt()
+  //      doIt()
     }
     
     @IBAction func debugStep(_ sender: Any) {

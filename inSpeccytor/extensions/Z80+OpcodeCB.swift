@@ -126,6 +126,7 @@ extension Z80 {
             print("Potential unknown code CB\(String(byte, radix: 16))")
             print("-")
         }
+        R.inc()
     }
     
 }
