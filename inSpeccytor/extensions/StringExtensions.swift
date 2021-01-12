@@ -19,7 +19,7 @@ extension String {
         return result
     }
     
-    func splitToBytes(separator: Character, startFrom: Int = 0) -> [CodeByteModel] {
+    func splitToCodeByteModel(separator: Character, startFrom: Int = 0) -> [CodeByteModel] {
         let subStringArray = self.split(separator: separator)
         var stringArray: [CodeByteModel] = []
         var lineNumber: Int = 0
@@ -31,6 +31,20 @@ extension String {
             }
         }
         return stringArray
+    }
+    
+    func splitToBytes(separator: Character, startFrom: Int = 0) -> [Substring] {
+        let subStringArray = self.split(separator: separator)
+//        var stringArray: [CodeByteModel] = []
+//        var lineNumber: Int = 0
+//        for subString in subStringArray {
+//            stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
+//            lineNumber+=1
+//            if (lineNumber == 27){
+//                lineNumber = 16384
+//            }
+//        }
+        return subStringArray
     }
     
     func splitToBytesROM(separator: Character, startFrom: Int = 0) -> [CodeByteModel] {

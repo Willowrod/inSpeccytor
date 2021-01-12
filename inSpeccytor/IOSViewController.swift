@@ -1,25 +1,19 @@
 //
-//  ViewController.swift
+//  IOSViewController.swift
 //  inSpeccytor
 //
-//  Created by Mike Hall on 10/10/2020.
+//  Created by Mike Hall on 11/01/2021.
 //
 
 import UIKit
 
-class ViewController: BaseViewController {
-    
+class IOSViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Z80Delegate {
+    @IBOutlet weak var fileName: UILabel!
+    @IBOutlet weak var hexView: UITextView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var programCounter: UITextField!
-    @IBOutlet weak var a: UILabel!
-    @IBOutlet weak var f: UILabel!
-    @IBOutlet weak var b: UILabel!
-    @IBOutlet weak var c: UILabel!
-    @IBOutlet weak var d: UILabel!
-    @IBOutlet weak var e: UILabel!
-    @IBOutlet weak var h: UILabel!
-    @IBOutlet weak var l: UILabel!
-    @IBOutlet weak var jumpBox: UITextField!
-    @IBOutlet weak var baseSelector: UISegmentedControl!
+    @IBOutlet weak var screenRender: UIImageView!
 
     let pCOffset = 16384 - 27
     let lineCellIdentifier = "lineCell"
@@ -49,8 +43,12 @@ class ViewController: BaseViewController {
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
-  //      doIt()
-        importTZX(tzxFile: "ticket_to_ride")
+       doIt()
+        //       importTZX(tzxFile: "ticket_to_ride")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        screenRender.becomeFirstResponder()
     }
     
     @IBAction func debugStep(_ sender: Any) {
@@ -69,16 +67,16 @@ class ViewController: BaseViewController {
     }
     
     @IBAction func debugJump(_ sender: Any) {
-        if jumpBox.hasText {
-            var jumpTo: Int = 0
-            if baseSelector.selectedSegmentIndex == 0 {
-                jumpTo = Int(jumpBox.text ?? "5B00", radix: 16) ?? 23296
-            } else {
-              jumpTo = Int(jumpBox.text ?? "23296") ?? 23296
-            }
-            updateDebug(line: UInt16(jumpTo))
-        }
-        jumpBox.resignFirstResponder()
+//        if jumpBox.hasText {
+//            var jumpTo: Int = 0
+//            if baseSelector.selectedSegmentIndex == 0 {
+//                jumpTo = Int(jumpBox.text ?? "5B00", radix: 16) ?? 23296
+//            } else {
+//              jumpTo = Int(jumpBox.text ?? "23296") ?? 23296
+//            }
+//            updateDebug(line: UInt16(jumpTo))
+//        }
+//        jumpBox.resignFirstResponder()
     }
     
     @IBAction func baseChanged(_ sender: Any) {
@@ -96,14 +94,14 @@ class ViewController: BaseViewController {
     }
     
     func updateRegisters(){
-        a.text = useHexValues ? z80.A.hexValue() : z80.A.stringValue()
-        f.text = useHexValues ? Z80.F.hexValue() : Z80.F.stringValue()
-        b.text = useHexValues ? z80.bR().hexValue() : "\(z80.b())"
-        c.text = useHexValues ? z80.cR().hexValue() : z80.cR().stringValue()
-        d.text = useHexValues ? z80.dR().hexValue() : z80.dR().stringValue()
-        e.text = useHexValues ? z80.eR().hexValue() : z80.eR().stringValue()
-        h.text = useHexValues ? z80.hR().hexValue() : z80.hR().stringValue()
-        l.text = useHexValues ? z80.lR().hexValue() : z80.lR().stringValue()
+//        a.text = useHexValues ? z80.A.hexValue() : z80.A.stringValue()
+//        f.text = useHexValues ? Z80.F.hexValue() : Z80.F.stringValue()
+//        b.text = useHexValues ? z80.bR().hexValue() : "\(z80.b())"
+//        c.text = useHexValues ? z80.cR().hexValue() : z80.cR().stringValue()
+//        d.text = useHexValues ? z80.dR().hexValue() : z80.dR().stringValue()
+//        e.text = useHexValues ? z80.eR().hexValue() : z80.eR().stringValue()
+//        h.text = useHexValues ? z80.hR().hexValue() : z80.hR().stringValue()
+//        l.text = useHexValues ? z80.lR().hexValue() : z80.lR().stringValue()
     }
     
     func updateFPS(){
@@ -330,6 +328,15 @@ class ViewController: BaseViewController {
         }
     }
     
+    
+    @IBAction func keyPressed(_ sender: UIButton) {
+        keyboardInteraction(key: sender.tag, pressed: true)
+    }
+    
+    @IBAction func keyReleased(_ sender: UIButton) {
+        keyboardInteraction(key: sender.tag, pressed: false)
+    }
+    
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         guard let key = presses.first?.key else {
             return
@@ -363,152 +370,9 @@ class ViewController: BaseViewController {
         if let dataModel = data?.splitToHeader(separator: " "){
             header = RegisterModel.init(header: dataModel)
             z80.initialiseRegisters(header: header)
-            updatePCUI(pc: 0) //23296
+     //       updatePCUI(pc: 0) //23296
         }
     }
-    
-    @IBAction func runFromPC(_ sender: Any) {
-        stopAfterEachOpCode = false
-        updatePC()
-        parseLine()
-    }
-    
-    @IBAction func stepFromPC(_ sender: Any) {
-        stopAfterEachOpCode = true
-        updatePC()
-        parseLine()
-    }
-    
-    func updatePC(){
-        if let pc = programCounter.text, pc.count == 5, let pcInt = Int(pc) {
-            header.registerPC = pcInt
-        }
-    }
-    
-    func updatePCUI(){
-        programCounter.text = "\(header.registerPC)"
-        let modelPosition = header.registerPC - pCOffset
-        if (modelPosition < model.count){
-            let targetRowIndexPath = IndexPath(row: modelPosition, section: 0)
-            tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
-        }
-    }
-    
-    func updatePCUI(pc: Int){
-        programCounter.text = "\(pc)"
-        let modelPosition = pc - pCOffset
-        if (modelPosition < model.count){
-            let targetRowIndexPath = IndexPath(row: modelPosition, section: 0)
-            //   tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
-        }
-    }
-    
-    func getCodeByte() -> CodeByteModel {
-        let modelPosition = header.registerPC
-        if (modelPosition < model.count){
-            return model[modelPosition]
-        } else {
-            return model.first ?? CodeByteModel(withHex: "00", line: modelPosition)
-        }
-    }
-    
-    func getCodeByteValue(position: Int) -> Int {
-        let modelPosition = position // - pCOffset
-        if (modelPosition < model.count){
-            return model[modelPosition].intValue
-        }
-        return 0
-    }
-    
-    func parseLine(){
-        var runLoop = true
-        while runLoop{
-            let lineAsInt = header.registerPC
-            var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
-            header.registerPC += 1
-            if opCode.isPreCode {
-                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(getCodeByte().hexValue)")
-                header.registerPC += 1
-            }
-            if opCode.length == 2 {
-                let byte: UInt8 = UInt8(getCodeByte().intValue)
-                if opCode.code.contains("±"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(byte)")
-                } else if opCode.code.contains("$$"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(byte)")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
-                    //opCode.code = "###\(opCode.code)"
-                } else if opCode.code.contains("##"){ // Two's compliment
-                    var twos = Int8(bitPattern: ~byte)
-                    if (byte == 127){
-                        twos = -1
-                    } else {
-                        twos -= 1 // Why is this -1 and not 1?
-                    }
-                    let targetLine = header.registerPC - 1 - Int(twos)
-                    opCode.target = targetLine
-                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(targetLine)")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(twos)")
-                }
-                opCode.meaning = opCode.meaning.replacingOccurrences(of: "±", with: "\(byte)")
-                header.registerPC += 1
-            } else if opCode.length == 3 {
-                let low = getCodeByte().intValue
-                header.registerPC += 1
-                let high = getCodeByte().intValue
-                
-                if (opCode.code.contains("$$")){
-                    let word = (high * 256) + low
-                    opCode.target = word
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word)")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(word)")
-                } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
-                }
-                header.registerPC += 1
-            }
-            opCode.line = lineAsInt
-            opCodes.append(opCode)
-            //            print("\(lineAsInt): \(opCode.toString())")
-            //        if (opCode.isEndOfRoutine){
-            //            if (stopAfterEachOpCode){
-            //                runLoop = false
-            //                updatePCUI()
-            //            } else {
-            //                print(" ---------------------- ")
-            //                mainTableView.reloadData()
-            //            }
-            //        }
-            
-            if (header.registerPC >= model.count){
-                //             print("End Of File")
-                runLoop = false
-                header.registerPC -= 1
-                updatePCUI()
-                mainTableView.reloadData()
-                markPositions()
-            }
-        }
-        
-    }
-    
-    func markPositions(){
-        let tempCodes = opCodes
-        tempCodes.forEach({ opCode in
-            if (opCode.target > 0){
-                if let target = self.opCodes.firstIndex(where: {$0.line == opCode.target}) {
-                    // print("Target: \(target.line) is jump position")
-                    //                    let jumpPos = opCodes[target]
-                    //                    print("Target: \(jumpPos.line) is jump position")
-                    //opCodes[target].isJumpPosition = true
-                    opCodes[target].lineType = opCode.targetType
-                }
-            }
-        })
-        mainTableView.reloadData()
-    }
-    
     
     func startProcessor(){
         DispatchQueue.background(background: {
@@ -518,11 +382,102 @@ class ViewController: BaseViewController {
         })
     }
     
-
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (tableView == mainTableView){
+            return self.opCodes.count
+        }
+        return self.model.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        if (tableView == mainTableView){
+            let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
+            let thisLine = self.opCodes[row]
+            switch (thisLine.lineType){
+            case .CODE:
+                cell.lineNumber.text = "++ \(thisLine.line)"
+                break
+            case .RELATIVE:
+                cell.lineNumber.text = "+ \(thisLine.line)"
+                break
+            case .DATA:
+                cell.lineNumber.text = "D \(thisLine.line)"
+                break
+            case .TEXT:
+                cell.lineNumber.text = "T \(thisLine.line)"
+                break
+            case .GRAPHICS:
+                cell.lineNumber.text = "G \(thisLine.line)"
+                break
+            default:
+                cell.lineNumber.text = "\(thisLine.line)"
+                break
+                
+                
+            }
+            cell.opCode.text = thisLine.code
+            cell.meaning.text = "\(thisLine.meaning)"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
+            let thisLine = self.model[row]
+        //    if baseSelector.selectedSegmentIndex == 0 {
+            cell.lineNumber.text = "\(String(thisLine.lineNumber, radix: 16))"
+//            } else {
+//                cell.lineNumber.text = "\(thisLine.lineNumber)"
+//                }
+            cell.hexValue.text = thisLine.hexValue
+            cell.intValue.text = "\(thisLine.intValue)"
+            let breakPoint = UInt16(thisLine.lineNumber)
+            if (z80.breakPoints.contains(breakPoint)){
+                cell.backgroundColor = UIColor.yellow
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView == mainTableView){
+            let row = indexPath.row
+            let thisLine = self.opCodes[row]
+            if (thisLine.target > 0){
+                if let target = self.opCodes.firstIndex(where: {$0.line == thisLine.target}) {
+                    let targetRowIndexPath = IndexPath(row: target, section: 0)
+                    tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+                    mainTableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+                }
+                
+            }
+        } else if (tableView == self.tableView){
+            let row = indexPath.row
+            let thisLine = self.model[row]
+            let breakPoint = UInt16(thisLine.lineNumber)
+            if (z80.breakPoints.contains(breakPoint)){
+                while z80.breakPoints.contains(breakPoint){
+                    if let index = z80.breakPoints.firstIndex(of: breakPoint) {
+                        z80.breakPoints.remove(at: index)
+                    }
+                }
+                
+            } else {
+                z80.breakPoints.append(breakPoint)
+            }
+            tableView.reloadData()
+        }
+    }
     
 }
 
-extension ViewController {
+extension IOSViewController {
     func setUpImageView() {
         screenRender.translatesAutoresizingMaskIntoConstraints = false
         screenRender.layer.magnificationFilter = .nearest

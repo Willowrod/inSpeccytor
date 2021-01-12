@@ -61,6 +61,17 @@
 		CD62E45A25A5C1A200B89CEA /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E43D25A4C44600B89CEA /* AudioStreamer.swift */; };
 		CD62E45F25A6F35E00B89CEA /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E45E25A6F35E00B89CEA /* Refresh.swift */; };
 		CD62E46025A6F35E00B89CEA /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E45E25A6F35E00B89CEA /* Refresh.swift */; };
+		CD62E46525A79DD200B89CEA /* ticket_to_ride.tzx in Resources */ = {isa = PBXBuildFile; fileRef = CD62E46425A79DD200B89CEA /* ticket_to_ride.tzx */; };
+		CD62E46625A79DD200B89CEA /* ticket_to_ride.tzx in Resources */ = {isa = PBXBuildFile; fileRef = CD62E46425A79DD200B89CEA /* ticket_to_ride.tzx */; };
+		CD62E46C25A79E8700B89CEA /* BaseFileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E46B25A79E8700B89CEA /* BaseFileFormat.swift */; };
+		CD62E46D25A79E8700B89CEA /* BaseFileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E46B25A79E8700B89CEA /* BaseFileFormat.swift */; };
+		CD62E47525A79FCB00B89CEA /* TXZFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E47425A79FCB00B89CEA /* TXZFormat.swift */; };
+		CD62E47625A79FCB00B89CEA /* TXZFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E47425A79FCB00B89CEA /* TXZFormat.swift */; };
+		CD62E47B25A84EF900B89CEA /* Action Biker.tzx in Resources */ = {isa = PBXBuildFile; fileRef = CD62E47A25A84EF900B89CEA /* Action Biker.tzx */; };
+		CD62E47C25A84EF900B89CEA /* Action Biker.tzx in Resources */ = {isa = PBXBuildFile; fileRef = CD62E47A25A84EF900B89CEA /* Action Biker.tzx */; };
+		CD62E48125ACDAB900B89CEA /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E48025ACDAB900B89CEA /* IOSViewController.swift */; };
+		CD62E48225ACDAB900B89CEA /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E48025ACDAB900B89CEA /* IOSViewController.swift */; };
+		CD62E48725ACE58900B89CEA /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD62E48625ACE58900B89CEA /* images.xcassets */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
 		CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */; };
@@ -73,6 +84,12 @@
 		CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */; };
 		CDCB61DD2588DC56008DD916 /* Int+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */; };
 		CDCB61E22588F030008DD916 /* aticatac.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDCB61E12588F030008DD916 /* aticatac.sna */; };
+		CDD9020E25ADFD5500AB93FD /* SNAFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */; };
+		CDD9020F25ADFD5500AB93FD /* SNAFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */; };
+		CDD9021425AE05A100AB93FD /* FileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021325AE05A000AB93FD /* FileFormat.swift */; };
+		CDD9021525AE05A100AB93FD /* FileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021325AE05A000AB93FD /* FileFormat.swift */; };
+		CDD9021B25AE08E500AB93FD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021A25AE08E500AB93FD /* BaseViewController.swift */; };
+		CDD9021C25AE08E500AB93FD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021A25AE08E500AB93FD /* BaseViewController.swift */; };
 		CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECAF258CE7D900C8E8AF /* Z80.swift */; };
 		CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECB5258CE84D00C8E8AF /* Register.swift */; };
 		CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */; };
@@ -142,6 +159,12 @@
 		CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsP_FD_ALL.swift; sourceTree = "<group>"; };
 		CD62E43D25A4C44600B89CEA /* AudioStreamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStreamer.swift; sourceTree = "<group>"; };
 		CD62E45E25A6F35E00B89CEA /* Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
+		CD62E46425A79DD200B89CEA /* ticket_to_ride.tzx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ticket_to_ride.tzx; sourceTree = "<group>"; };
+		CD62E46B25A79E8700B89CEA /* BaseFileFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFileFormat.swift; sourceTree = "<group>"; };
+		CD62E47425A79FCB00B89CEA /* TXZFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TXZFormat.swift; sourceTree = "<group>"; };
+		CD62E47A25A84EF900B89CEA /* Action Biker.tzx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Action Biker.tzx"; sourceTree = "<group>"; };
+		CD62E48025ACDAB900B89CEA /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
+		CD62E48625ACE58900B89CEA /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
 		CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeDDFDCB.swift"; sourceTree = "<group>"; };
@@ -154,6 +177,9 @@
 		CDCB61D72588C80B008DD916 /* Int+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bitwise.swift"; sourceTree = "<group>"; };
 		CDCB61DC2588DC56008DD916 /* Int+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Attributes.swift"; sourceTree = "<group>"; };
 		CDCB61E12588F030008DD916 /* aticatac.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = aticatac.sna; sourceTree = "<group>"; };
+		CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAFormat.swift; sourceTree = "<group>"; };
+		CDD9021325AE05A000AB93FD /* FileFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFormat.swift; sourceTree = "<group>"; };
+		CDD9021A25AE08E500AB93FD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CDE3ECAF258CE7D900C8E8AF /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
 		CDE3ECB5258CE84D00C8E8AF /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPair.swift; sourceTree = "<group>"; };
@@ -221,8 +247,27 @@
 			children = (
 				CD59ED07254EC83B00B56C1A /* TargetType.swift */,
 				CDED0C0925949FF400862DE0 /* Flag.swift */,
+				CDD9021325AE05A000AB93FD /* FileFormat.swift */,
 			);
 			path = constants;
+			sourceTree = "<group>";
+		};
+		CD62E46A25A79E4E00B89CEA /* file_formats */ = {
+			isa = PBXGroup;
+			children = (
+				CD62E46B25A79E8700B89CEA /* BaseFileFormat.swift */,
+				CD62E47425A79FCB00B89CEA /* TXZFormat.swift */,
+				CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */,
+			);
+			path = file_formats;
+			sourceTree = "<group>";
+		};
+		CDD9021925AE08C600AB93FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CDD9021A25AE08E500AB93FD /* BaseViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CDE3ECB4258CE83700C8E8AF /* Registers */ = {
@@ -272,6 +317,8 @@
 		CDF8A1D12531CC2700F0D216 /* inSpeccytor */ = {
 			isa = PBXGroup;
 			children = (
+				CDD9021925AE08C600AB93FD /* Views */,
+				CD62E46A25A79E4E00B89CEA /* file_formats */,
 				CDE3ECB4258CE83700C8E8AF /* Registers */,
 				CD59ECF5254EC54C00B56C1A /* constants */,
 				CDF8A2722531E86D00F0D216 /* models */,
@@ -293,6 +340,8 @@
 				CDCB61CD258817C8008DD916 /* Bitmap.swift */,
 				CDE3ECAF258CE7D900C8E8AF /* Z80.swift */,
 				CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */,
+				CD62E48025ACDAB900B89CEA /* IOSViewController.swift */,
+				CD62E48625ACE58900B89CEA /* images.xcassets */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -332,6 +381,8 @@
 			children = (
 				CDE3ECC7258F523C00C8E8AF /* roms */,
 				CDCB61E12588F030008DD916 /* aticatac.sna */,
+				CD62E47A25A84EF900B89CEA /* Action Biker.tzx */,
+				CD62E46425A79DD200B89CEA /* ticket_to_ride.tzx */,
 				CD03E6E4259C7827005F0F83 /* ab.sna */,
 				CD03E6D7259BC8DE005F0F83 /* testand.sna */,
 				CD03E6DF259BD501005F0F83 /* testz80.sna */,
@@ -474,15 +525,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD03E6E5259C7827005F0F83 /* ab.sna in Resources */,
+				CD62E48725ACE58900B89CEA /* images.xcassets in Resources */,
 				CDF8A1E22531CC2A00F0D216 /* LaunchScreen.storyboard in Resources */,
 				CDF8A1DF2531CC2A00F0D216 /* Assets.xcassets in Resources */,
 				CDE3ECCE258F525500C8E8AF /* 48k.rom in Resources */,
 				CDE3ECCC258F525500C8E8AF /* 128k+3.rom in Resources */,
+				CD62E46525A79DD200B89CEA /* ticket_to_ride.tzx in Resources */,
 				CD03E6D8259BC8DE005F0F83 /* testand.sna in Resources */,
 				CD03E6E0259BD501005F0F83 /* testz80.sna in Resources */,
 				CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */,
 				CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
+				CD62E47B25A84EF900B89CEA /* Action Biker.tzx in Resources */,
 				CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */,
 				CDCB61E22588F030008DD916 /* aticatac.sna in Resources */,
 				CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */,
@@ -493,6 +547,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD62E46625A79DD200B89CEA /* ticket_to_ride.tzx in Resources */,
+				CD62E47C25A84EF900B89CEA /* Action Biker.tzx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,7 +571,9 @@
 				CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
+				CDD9021B25AE08E500AB93FD /* BaseViewController.swift in Sources */,
 				CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */,
+				CD62E48125ACDAB900B89CEA /* IOSViewController.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
 				CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */,
 				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
@@ -532,12 +590,16 @@
 				CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
 				CD62E45F25A6F35E00B89CEA /* Refresh.swift in Sources */,
+				CDD9020E25ADFD5500AB93FD /* SNAFormat.swift in Sources */,
 				CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
 				CDCB61C925881786008DD916 /* Color.swift in Sources */,
+				CD62E47525A79FCB00B89CEA /* TXZFormat.swift in Sources */,
+				CDD9021425AE05A100AB93FD /* FileFormat.swift in Sources */,
 				CD959D712599F6680043FB91 /* Z80+OpCodeDDFD.swift in Sources */,
 				CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */,
 				CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */,
+				CD62E46C25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
@@ -564,6 +626,7 @@
 				CD03E71D259CF989005F0F83 /* ViewController.swift in Sources */,
 				CD62E3D325A1C06700B89CEA /* allTestsP_CB00to7f.swift in Sources */,
 				CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */,
+				CDD9021C25AE08E500AB93FD /* BaseViewController.swift in Sources */,
 				CD03E724259CF995005F0F83 /* RegisterPair.swift in Sources */,
 				CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */,
 				CD03E70F259CF963005F0F83 /* UInt16+Bitwise.swift in Sources */,
@@ -574,13 +637,16 @@
 				CD03E70A259CF963005F0F83 /* Z80+OpcodeCB.swift in Sources */,
 				CD62E46025A6F35E00B89CEA /* Refresh.swift in Sources */,
 				CD03E706259CF963005F0F83 /* Data+String.swift in Sources */,
+				CDD9020F25ADFD5500AB93FD /* SNAFormat.swift in Sources */,
 				CD62E3EC25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift in Sources */,
 				CD03E725259CF995005F0F83 /* Flag.swift in Sources */,
+				CD62E47625A79FCB00B89CEA /* TXZFormat.swift in Sources */,
 				CD03E70C259CF963005F0F83 /* UIImage+Bitmap.swift in Sources */,
 				CD03E7C225A12B2E005F0F83 /* allTestsTo7f.swift in Sources */,
 				CD62E40625A253EF00B89CEA /* allTestsP_FDCB80toff.swift in Sources */,
 				CD03E719259CF989005F0F83 /* Color.swift in Sources */,
 				CD03E716259CF989005F0F83 /* MainTableViewCell.swift in Sources */,
+				CD62E46D25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
 				CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */,
 				CD03E726259CF995005F0F83 /* CodeByteModel.swift in Sources */,
 				CD03E721259CF995005F0F83 /* Accumilator.swift in Sources */,
@@ -591,10 +657,12 @@
 				CD62E3F925A2169E00B89CEA /* allTestP_ED_ALL.swift in Sources */,
 				CD62E3F125A2068C00B89CEA /* allTestsP_DDCB80toff.swift in Sources */,
 				CD03E70E259CF963005F0F83 /* UInt8+Bitwise.swift in Sources */,
+				CDD9021525AE05A100AB93FD /* FileFormat.swift in Sources */,
 				CD03E727259CF995005F0F83 /* RegisterModel.swift in Sources */,
 				CD03E723259CF995005F0F83 /* OpCode.swift in Sources */,
 				CD03E71B259CF989005F0F83 /* Bitmap.swift in Sources */,
 				CD62E3DD25A1EEC800B89CEA /* allTestsP_DD00to7f.swift in Sources */,
+				CD62E48225ACDAB900B89CEA /* IOSViewController.swift in Sources */,
 				CD03E707259CF963005F0F83 /* Z80+OpcodeDDFDCB.swift in Sources */,
 				CD62E3E725A1F49200B89CEA /* allTestsP_DD80toff.swift in Sources */,
 			);
