@@ -35,4 +35,8 @@ struct OpCode {
     func toString() -> String {
         return "\(value):\(code) - \(meaning)"
     }
+    
+    func isJumpTarget() -> Bool{
+        return targetType == .CODE || targetType == .RELATIVE || targetType == .RST
+    }
 }
