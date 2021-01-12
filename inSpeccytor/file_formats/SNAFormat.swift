@@ -30,6 +30,7 @@ class SNAFormat: BaseFileFormat {
     
     
     init(fileName: String){
+        super.init()
         if let filePath = Bundle.main.path(forResource: fileName, ofType: "sna"){
             print("File found - \(filePath)")
             let contents = NSData(contentsOfFile: filePath)
@@ -46,11 +47,14 @@ class SNAFormat: BaseFileFormat {
     
     func process(){
         sortHeaderData()
+        ramBanks = []
+        ramBanks.append(Array(snaData[27...]))
+        importSuccessful = true
     }
     
     func importDataFromString(data: String){
             data.splitToBytes(separator: " ").forEach {byte in
-                snaData.append(UInt8(byte))
+                snaData.append(UInt8(byte, radix: 16) ?? 0x00)
             }
     }
     
@@ -86,12 +90,14 @@ class SNAFormat: BaseFileFormat {
         registers.primary.registerB = snaData[14]
         registers.registerIY = registers.registerPair(l:snaData[15], h:snaData[16])
         registers.registerIX = registers.registerPair(l:snaData[17], h:snaData[18])
-        registers.interupt = Int(snaData[19])
+        let interuptFlag = snaData[19]
+        registers.interuptEnabled = interuptFlag.isSet(bit: 2)
         registers.registerR = snaData[20]
         registers.primary.registerF = snaData[21]
         registers.primary.registerA = snaData[22]
         registers.registerSP = registers.registerPair(l:snaData[23], h:snaData[24])
-            
+        registers.interuptMode = Int(snaData[25])
+        registers.shouldReturn = true
         }
         
 }

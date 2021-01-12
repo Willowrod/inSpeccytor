@@ -24,7 +24,10 @@ struct RegisterModel: Codable {
     var registerSP: UInt16 = 0 // Stack pointer
     var registerPC: UInt16 = 0 // Program counter
     
-    var interupt: Int = 0
+    var interuptMode: Int = 0
+    var interuptEnabled: Bool = false
+    
+    var shouldReturn: Bool = false
     
     func registerPair(l: UInt8, h: UInt8) -> UInt16{
         return (UInt16(h) * 256) + UInt16(l)

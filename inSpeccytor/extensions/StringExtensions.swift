@@ -47,15 +47,24 @@ extension String {
         return subStringArray
     }
     
-    func splitToBytesROM(separator: Character, startFrom: Int = 0) -> [CodeByteModel] {
+//    func splitToBytesROM(separator: Character, startFrom: Int = 0) -> [CodeByteModel] {
+//        let subStringArray = self.split(separator: separator)
+//        var stringArray: [CodeByteModel] = []
+//        var lineNumber: Int = 0
+//        for subString in subStringArray {
+//            stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
+//            lineNumber+=1
+//        }
+//        return stringArray
+//    }
+    
+    func splitToBytesROM(separator: Character, startFrom: Int = 0) -> [UInt8] {
         let subStringArray = self.split(separator: separator)
-        var stringArray: [CodeByteModel] = []
-        var lineNumber: Int = 0
+        var rom: [UInt8] = []
         for subString in subStringArray {
-            stringArray.append(CodeByteModel(withHex: "\(subString.uppercased())", line: lineNumber))
-            lineNumber+=1
+            rom.append(UInt8(subString, radix: 16) ?? 0x00)
         }
-        return stringArray
+        return rom
     }
     
     func splitToHeader(separator: Character) -> [CodeByteModel] {

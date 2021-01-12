@@ -23,7 +23,7 @@ class TZXFormat: BaseFileFormat {
         super.init()
         if let tzxBytes = data?.splitToBytes(separator: " "){
             tzxBytes.forEach{byte in
-                tzxData.append(UInt8(byte.intValue))
+                tzxData.append(UInt8(byte) ?? 0x00)
             }
         process()
         }

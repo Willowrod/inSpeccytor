@@ -208,39 +208,42 @@ class Z80 {
     
     func initialiseRegisters(header: RegisterModel){
         testRegisters()
-        aR().ld(value: UInt8(header.registerA))
-        Z80.fR().ld(value: UInt8(header.registerF))
-        bc().ld(value: UInt16(header.registerBC))
-        de().ld(value: UInt16(header.registerDE))
-        hl().ld(value: UInt16(header.registerHL))
-        SP = UInt16(header.registerSP)
-        ix().ld(value: UInt16(header.registerIX))
-        iy().ld(value: UInt16(header.registerIY))
-        af2().high.ld(value: UInt8(header.registerA2))
-        af2().low.ld(value: UInt8(header.registerF2))
-        bc2().ld(value: UInt16(header.registerBC2))
-        de2().ld(value: UInt16(header.registerDE2))
-        hl2().ld(value: UInt16(header.registerHL2))
-        ret()
+        aR().ld(value:header.primary.registerA)
+        Z80.fR().ld(value:header.primary.registerF)
+        bR().ld(value:header.primary.registerB)
+        cR().ld(value:header.primary.registerC)
+        dR().ld(value:header.primary.registerD)
+        eR().ld(value:header.primary.registerE)
+        hR().ld(value:header.primary.registerH)
+        lR().ld(value:header.primary.registerL)
         
+        BC2.ld(value:header.registerPair(l: header.swap.registerC, h: header.swap.registerB))
+        DE2.ld(value:header.registerPair(l: header.swap.registerE, h: header.swap.registerD))
+        HL2.ld(value:header.registerPair(l: header.swap.registerL, h: header.swap.registerH))
+        AF2.ld(value:header.registerPair(l: header.swap.registerF, h: header.swap.registerA))
+
+        SP = header.registerSP
+        ix().ld(value: header.registerIX)
+        iy().ld(value: header.registerIY)
+        
+        I.ld(value: header.registerI)
+        R.ld(value: header.registerR)
+        
+        interuptMode = header.interuptMode
+        interupt = header.interuptEnabled
+        interupt2 = interupt
+        
+        if (header.shouldReturn){
+        ret()
+        } else {
+            PC = header.registerPC
+        }
     }
     
-//    func playBeep(freq: Double, length: Double){
-//            //let freq =   //440.0 * pow(2.0, Double(freq))
-//            beepTone.frequency = freq
-//            beepTone.preparePlaying()
-//            beepTone.play()
-//            beeper.mainMixerNode.volume = 1.0
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + length) { // Change `2.0` to the desired number of seconds.
-//            self.beepTone.stop()
-//        }
-//    }
-    
-    func writeRAM(dataModel: Array<CodeByteModel>, ignoreHeader: Bool, startAddress: Int = 0){
+    func writeRAM(dataModel: Array<UInt8>, startAddress: Int = 0){
         var count = startAddress
         dataModel.forEach { byte in
-            ram[count] = UInt8(byte.intValue)
+            ram[count] = byte
             count += 1
         }
     }
@@ -303,7 +306,7 @@ class Z80 {
                 
                 opCode(byte: byte)
                 beeper.updateSample(UInt32(currentTStates), beep: clicks)
-                //      print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+                  //    print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
             }
             if currentTStates >= tStatesPerFrame {
                 currentTStates = 0
@@ -393,6 +396,7 @@ class Z80 {
     }
     
     func fetchRamWord(location: Int) -> UInt16 {
+        
         return UInt16(ram[location]) &+ (UInt16(ram[location &+ 1]) * 256)
     }
     
