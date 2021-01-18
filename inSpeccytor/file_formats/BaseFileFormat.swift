@@ -12,5 +12,5 @@ class BaseFileFormat {
     var importSuccessful = false
     var ramBanks: [[UInt8]] = []
     var registers: RegisterModel = RegisterModel()
-    
+    var dataStart: Int = 27
 }

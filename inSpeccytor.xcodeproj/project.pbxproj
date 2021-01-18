@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CD03E6D8259BC8DE005F0F83 /* testand.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD03E6D7259BC8DE005F0F83 /* testand.sna */; };
 		CD03E6E0259BD501005F0F83 /* testz80.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD03E6DF259BD501005F0F83 /* testz80.sna */; };
-		CD03E6E5259C7827005F0F83 /* ab.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD03E6E4259C7827005F0F83 /* ab.sna */; };
 		CD03E6F0259CF95B005F0F83 /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECAF258CE7D900C8E8AF /* Z80.swift */; };
 		CD03E706259CF963005F0F83 /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A2652531DA7900F0D216 /* Data+String.swift */; };
 		CD03E707259CF963005F0F83 /* Z80+OpcodeDDFDCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */; };
@@ -78,6 +77,197 @@
 		CD959D712599F6680043FB91 /* Z80+OpCodeDDFD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */; };
 		CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */; };
 		CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB3F3E253B371800A1FFC0 /* OpCode.swift */; };
+		CDBC542D25B34FA0004FAA55 /* Constraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC542C25B34FA0004FAA55 /* Constraint+Multiplier.swift */; };
+		CDBC543225B4927C004FAA55 /* Z80Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC543125B4927C004FAA55 /* Z80Format.swift */; };
+		CDBC543325B4927C004FAA55 /* Z80Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC543125B4927C004FAA55 /* Z80Format.swift */; };
+		CDBC543C25B4A08E004FAA55 /* CYBERUN2.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBC543A25B4A08D004FAA55 /* CYBERUN2.z80 */; };
+		CDBC543D25B4A08E004FAA55 /* CYBERUN2.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBC543A25B4A08D004FAA55 /* CYBERUN2.z80 */; };
+		CDBC543E25B4A08E004FAA55 /* CYBERRUN.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC543B25B4A08E004FAA55 /* CYBERRUN.sna */; };
+		CDBC543F25B4A08E004FAA55 /* CYBERRUN.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC543B25B4A08E004FAA55 /* CYBERRUN.sna */; };
+		CDBC54A525B4BFD7004FAA55 /* superspy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544925B4BFD0004FAA55 /* superspy.sna */; };
+		CDBC54A625B4BFD7004FAA55 /* superspy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544925B4BFD0004FAA55 /* superspy.sna */; };
+		CDBC54A725B4BFD7004FAA55 /* zzzz.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544A25B4BFD0004FAA55 /* zzzz.sna */; };
+		CDBC54A825B4BFD7004FAA55 /* zzzz.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544A25B4BFD0004FAA55 /* zzzz.sna */; };
+		CDBC54A925B4BFD7004FAA55 /* emotion.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544B25B4BFD0004FAA55 /* emotion.sna */; };
+		CDBC54AA25B4BFD7004FAA55 /* emotion.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544B25B4BFD0004FAA55 /* emotion.sna */; };
+		CDBC54AB25B4BFD7004FAA55 /* hunchback2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544C25B4BFD0004FAA55 /* hunchback2.sna */; };
+		CDBC54AC25B4BFD7004FAA55 /* hunchback2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544C25B4BFD0004FAA55 /* hunchback2.sna */; };
+		CDBC54AD25B4BFD7004FAA55 /* redmoon.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544D25B4BFD0004FAA55 /* redmoon.sna */; };
+		CDBC54AE25B4BFD7004FAA55 /* redmoon.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544D25B4BFD0004FAA55 /* redmoon.sna */; };
+		CDBC54AF25B4BFD7004FAA55 /* fivedoctors.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544E25B4BFD0004FAA55 /* fivedoctors.sna */; };
+		CDBC54B025B4BFD7004FAA55 /* fivedoctors.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544E25B4BFD0004FAA55 /* fivedoctors.sna */; };
+		CDBC54B125B4BFD7004FAA55 /* dundarach.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544F25B4BFD0004FAA55 /* dundarach.sna */; };
+		CDBC54B225B4BFD7004FAA55 /* dundarach.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC544F25B4BFD0004FAA55 /* dundarach.sna */; };
+		CDBC54B325B4BFD7004FAA55 /* henryshoard.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545025B4BFD0004FAA55 /* henryshoard.sna */; };
+		CDBC54B425B4BFD7004FAA55 /* henryshoard.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545025B4BFD0004FAA55 /* henryshoard.sna */; };
+		CDBC54B525B4BFD7004FAA55 /* penetrator.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545125B4BFD0004FAA55 /* penetrator.sna */; };
+		CDBC54B625B4BFD7004FAA55 /* penetrator.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545125B4BFD0004FAA55 /* penetrator.sna */; };
+		CDBC54B725B4BFD7004FAA55 /* youngones.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545225B4BFD0004FAA55 /* youngones.sna */; };
+		CDBC54B825B4BFD7004FAA55 /* youngones.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545225B4BFD0004FAA55 /* youngones.sna */; };
+		CDBC54B925B4BFD7004FAA55 /* tripods.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545325B4BFD0004FAA55 /* tripods.sna */; };
+		CDBC54BA25B4BFD7004FAA55 /* tripods.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545325B4BFD0004FAA55 /* tripods.sna */; };
+		CDBC54BB25B4BFD7004FAA55 /* footballmanager2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545425B4BFD1004FAA55 /* footballmanager2.sna */; };
+		CDBC54BC25B4BFD7004FAA55 /* footballmanager2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545425B4BFD1004FAA55 /* footballmanager2.sna */; };
+		CDBC54BD25B4BFD7004FAA55 /* seabasedelta.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545525B4BFD1004FAA55 /* seabasedelta.sna */; };
+		CDBC54BE25B4BFD7004FAA55 /* seabasedelta.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545525B4BFD1004FAA55 /* seabasedelta.sna */; };
+		CDBC54BF25B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545625B4BFD1004FAA55 /* footballmanager2_wh.sna */; };
+		CDBC54C025B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545625B4BFD1004FAA55 /* footballmanager2_wh.sna */; };
+		CDBC54C125B4BFD7004FAA55 /* subsunk.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545725B4BFD1004FAA55 /* subsunk.sna */; };
+		CDBC54C225B4BFD7004FAA55 /* subsunk.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545725B4BFD1004FAA55 /* subsunk.sna */; };
+		CDBC54C325B4BFD7004FAA55 /* necrisdome.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545825B4BFD1004FAA55 /* necrisdome.sna */; };
+		CDBC54C425B4BFD7004FAA55 /* necrisdome.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545825B4BFD1004FAA55 /* necrisdome.sna */; };
+		CDBC54C525B4BFD7004FAA55 /* lordoftherings.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545925B4BFD1004FAA55 /* lordoftherings.sna */; };
+		CDBC54C625B4BFD7004FAA55 /* lordoftherings.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545925B4BFD1004FAA55 /* lordoftherings.sna */; };
+		CDBC54C725B4BFD7004FAA55 /* blizzardpass.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545A25B4BFD1004FAA55 /* blizzardpass.sna */; };
+		CDBC54C825B4BFD7004FAA55 /* blizzardpass.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545A25B4BFD1004FAA55 /* blizzardpass.sna */; };
+		CDBC54C925B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545B25B4BFD1004FAA55 /* twinkingdomvalley.sna */; };
+		CDBC54CA25B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545B25B4BFD1004FAA55 /* twinkingdomvalley.sna */; };
+		CDBC54CB25B4BFD7004FAA55 /* crimebusters_notthatone.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545C25B4BFD1004FAA55 /* crimebusters_notthatone.sna */; };
+		CDBC54CC25B4BFD7004FAA55 /* crimebusters_notthatone.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545C25B4BFD1004FAA55 /* crimebusters_notthatone.sna */; };
+		CDBC54CD25B4BFD7004FAA55 /* cyberrun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545D25B4BFD1004FAA55 /* cyberrun.sna */; };
+		CDBC54CE25B4BFD7004FAA55 /* cyberrun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545D25B4BFD1004FAA55 /* cyberrun.sna */; };
+		CDBC54CF25B4BFD7004FAA55 /* boredoftherings.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545E25B4BFD1004FAA55 /* boredoftherings.sna */; };
+		CDBC54D025B4BFD7004FAA55 /* boredoftherings.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545E25B4BFD1004FAA55 /* boredoftherings.sna */; };
+		CDBC54D125B4BFD7004FAA55 /* robinofsherlock.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545F25B4BFD1004FAA55 /* robinofsherlock.sna */; };
+		CDBC54D225B4BFD7004FAA55 /* robinofsherlock.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC545F25B4BFD1004FAA55 /* robinofsherlock.sna */; };
+		CDBC54D325B4BFD7004FAA55 /* dynamitedan2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546025B4BFD2004FAA55 /* dynamitedan2.sna */; };
+		CDBC54D425B4BFD7004FAA55 /* dynamitedan2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546025B4BFD2004FAA55 /* dynamitedan2.sna */; };
+		CDBC54D525B4BFD7004FAA55 /* completebastard.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546125B4BFD2004FAA55 /* completebastard.sna */; };
+		CDBC54D625B4BFD7004FAA55 /* completebastard.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546125B4BFD2004FAA55 /* completebastard.sna */; };
+		CDBC54D725B4BFD7004FAA55 /* adayinthelife.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546225B4BFD2004FAA55 /* adayinthelife.sna */; };
+		CDBC54D825B4BFD7004FAA55 /* adayinthelife.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546225B4BFD2004FAA55 /* adayinthelife.sna */; };
+		CDBC54D925B4BFD7004FAA55 /* marsport.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546325B4BFD2004FAA55 /* marsport.sna */; };
+		CDBC54DA25B4BFD7004FAA55 /* marsport.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546325B4BFD2004FAA55 /* marsport.sna */; };
+		CDBC54DB25B4BFD7004FAA55 /* ericandthefloaters.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546425B4BFD2004FAA55 /* ericandthefloaters.sna */; };
+		CDBC54DC25B4BFD7004FAA55 /* ericandthefloaters.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546425B4BFD2004FAA55 /* ericandthefloaters.sna */; };
+		CDBC54DD25B4BFD7004FAA55 /* matchday2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546525B4BFD2004FAA55 /* matchday2.sna */; };
+		CDBC54DE25B4BFD7004FAA55 /* matchday2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546525B4BFD2004FAA55 /* matchday2.sna */; };
+		CDBC54DF25B4BFD7004FAA55 /* supersprint.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546625B4BFD2004FAA55 /* supersprint.sna */; };
+		CDBC54E025B4BFD7004FAA55 /* supersprint.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546625B4BFD2004FAA55 /* supersprint.sna */; };
+		CDBC54E125B4BFD7004FAA55 /* universalhero.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546725B4BFD2004FAA55 /* universalhero.sna */; };
+		CDBC54E225B4BFD7004FAA55 /* universalhero.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546725B4BFD2004FAA55 /* universalhero.sna */; };
+		CDBC54E325B4BFD7004FAA55 /* wildbunch.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546825B4BFD2004FAA55 /* wildbunch.sna */; };
+		CDBC54E425B4BFD7004FAA55 /* wildbunch.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546825B4BFD2004FAA55 /* wildbunch.sna */; };
+		CDBC54E525B4BFD7004FAA55 /* cavesofdoom.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546925B4BFD2004FAA55 /* cavesofdoom.sna */; };
+		CDBC54E625B4BFD7004FAA55 /* cavesofdoom.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546925B4BFD2004FAA55 /* cavesofdoom.sna */; };
+		CDBC54E725B4BFD7004FAA55 /* montyontherun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546A25B4BFD2004FAA55 /* montyontherun.sna */; };
+		CDBC54E825B4BFD7004FAA55 /* montyontherun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546A25B4BFD2004FAA55 /* montyontherun.sna */; };
+		CDBC54E925B4BFD7004FAA55 /* stevedavissnooker.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546B25B4BFD2004FAA55 /* stevedavissnooker.sna */; };
+		CDBC54EA25B4BFD7004FAA55 /* stevedavissnooker.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546B25B4BFD2004FAA55 /* stevedavissnooker.sna */; };
+		CDBC54EB25B4BFD7004FAA55 /* invincibleisland.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546C25B4BFD2004FAA55 /* invincibleisland.sna */; };
+		CDBC54EC25B4BFD7004FAA55 /* invincibleisland.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546C25B4BFD2004FAA55 /* invincibleisland.sna */; };
+		CDBC54ED25B4BFD7004FAA55 /* matchoftheday.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546D25B4BFD3004FAA55 /* matchoftheday.sna */; };
+		CDBC54EE25B4BFD7004FAA55 /* matchoftheday.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546D25B4BFD3004FAA55 /* matchoftheday.sna */; };
+		CDBC54EF25B4BFD7004FAA55 /* hunchback.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546E25B4BFD3004FAA55 /* hunchback.sna */; };
+		CDBC54F025B4BFD7004FAA55 /* hunchback.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546E25B4BFD3004FAA55 /* hunchback.sna */; };
+		CDBC54F125B4BFD7004FAA55 /* minder.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546F25B4BFD3004FAA55 /* minder.sna */; };
+		CDBC54F225B4BFD7004FAA55 /* minder.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC546F25B4BFD3004FAA55 /* minder.sna */; };
+		CDBC54F325B4BFD7004FAA55 /* lordoftherings_2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547025B4BFD3004FAA55 /* lordoftherings_2.sna */; };
+		CDBC54F425B4BFD7004FAA55 /* lordoftherings_2.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547025B4BFD3004FAA55 /* lordoftherings_2.sna */; };
+		CDBC54F525B4BFD7004FAA55 /* crimebustersinc.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547125B4BFD3004FAA55 /* crimebustersinc.sna */; };
+		CDBC54F625B4BFD7004FAA55 /* crimebustersinc.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547125B4BFD3004FAA55 /* crimebustersinc.sna */; };
+		CDBC54F725B4BFD7004FAA55 /* mugsy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547225B4BFD3004FAA55 /* mugsy.sna */; };
+		CDBC54F825B4BFD7004FAA55 /* mugsy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547225B4BFD3004FAA55 /* mugsy.sna */; };
+		CDBC54F925B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547325B4BFD3004FAA55 /* incredibleshrinkingfireman.sna */; };
+		CDBC54FA25B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547325B4BFD3004FAA55 /* incredibleshrinkingfireman.sna */; };
+		CDBC54FB25B4BFD7004FAA55 /* mugsysrevenge.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547425B4BFD3004FAA55 /* mugsysrevenge.sna */; };
+		CDBC54FC25B4BFD7004FAA55 /* mugsysrevenge.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547425B4BFD3004FAA55 /* mugsysrevenge.sna */; };
+		CDBC54FD25B4BFD7004FAA55 /* rocknwrestle.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547525B4BFD3004FAA55 /* rocknwrestle.sna */; };
+		CDBC54FE25B4BFD7004FAA55 /* rocknwrestle.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547525B4BFD3004FAA55 /* rocknwrestle.sna */; };
+		CDBC54FF25B4BFD7004FAA55 /* dizzy_ck.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547625B4BFD3004FAA55 /* dizzy_ck.sna */; };
+		CDBC550025B4BFD7004FAA55 /* dizzy_ck.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547625B4BFD3004FAA55 /* dizzy_ck.sna */; };
+		CDBC550125B4BFD7004FAA55 /* redhawk_side1.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547725B4BFD3004FAA55 /* redhawk_side1.sna */; };
+		CDBC550225B4BFD7004FAA55 /* redhawk_side1.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547725B4BFD3004FAA55 /* redhawk_side1.sna */; };
+		CDBC550325B4BFD7004FAA55 /* galaxians.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547825B4BFD3004FAA55 /* galaxians.sna */; };
+		CDBC550425B4BFD7004FAA55 /* galaxians.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547825B4BFD3004FAA55 /* galaxians.sna */; };
+		CDBC550525B4BFD7004FAA55 /* ianbothamstestmatch.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547925B4BFD3004FAA55 /* ianbothamstestmatch.sna */; };
+		CDBC550625B4BFD7004FAA55 /* ianbothamstestmatch.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547925B4BFD3004FAA55 /* ianbothamstestmatch.sna */; };
+		CDBC550725B4BFD7004FAA55 /* shakenbutnotstired.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547A25B4BFD4004FAA55 /* shakenbutnotstired.sna */; };
+		CDBC550825B4BFD7004FAA55 /* shakenbutnotstired.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547A25B4BFD4004FAA55 /* shakenbutnotstired.sna */; };
+		CDBC550925B4BFD7004FAA55 /* shipoftheline.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547B25B4BFD4004FAA55 /* shipoftheline.sna */; };
+		CDBC550A25B4BFD7004FAA55 /* shipoftheline.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547B25B4BFD4004FAA55 /* shipoftheline.sna */; };
+		CDBC550B25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547C25B4BFD4004FAA55 /* threeweeksinparadise.sna */; };
+		CDBC550C25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547C25B4BFD4004FAA55 /* threeweeksinparadise.sna */; };
+		CDBC550D25B4BFD7004FAA55 /* worminparadise.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547D25B4BFD4004FAA55 /* worminparadise.sna */; };
+		CDBC550E25B4BFD7004FAA55 /* worminparadise.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547D25B4BFD4004FAA55 /* worminparadise.sna */; };
+		CDBC550F25B4BFD7004FAA55 /* wriggler.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547E25B4BFD4004FAA55 /* wriggler.sna */; };
+		CDBC551025B4BFD7004FAA55 /* wriggler.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547E25B4BFD4004FAA55 /* wriggler.sna */; };
+		CDBC551125B4BFD7004FAA55 /* dizzy_potyf.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547F25B4BFD4004FAA55 /* dizzy_potyf.sna */; };
+		CDBC551225B4BFD7004FAA55 /* dizzy_potyf.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC547F25B4BFD4004FAA55 /* dizzy_potyf.sna */; };
+		CDBC551325B4BFD7004FAA55 /* bugsy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548025B4BFD4004FAA55 /* bugsy.sna */; };
+		CDBC551425B4BFD7004FAA55 /* bugsy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548025B4BFD4004FAA55 /* bugsy.sna */; };
+		CDBC551525B4BFD7004FAA55 /* stbernard.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548125B4BFD4004FAA55 /* stbernard.sna */; };
+		CDBC551625B4BFD7004FAA55 /* stbernard.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548125B4BFD4004FAA55 /* stbernard.sna */; };
+		CDBC551725B4BFD7004FAA55 /* tirnanog.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548225B4BFD4004FAA55 /* tirnanog.sna */; };
+		CDBC551825B4BFD7004FAA55 /* tirnanog.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548225B4BFD4004FAA55 /* tirnanog.sna */; };
+		CDBC551925B4BFD7004FAA55 /* everyonesawally.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548325B4BFD4004FAA55 /* everyonesawally.sna */; };
+		CDBC551A25B4BFD7004FAA55 /* everyonesawally.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548325B4BFD4004FAA55 /* everyonesawally.sna */; };
+		CDBC551B25B4BFD7004FAA55 /* xcel.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548425B4BFD5004FAA55 /* xcel.sna */; };
+		CDBC551C25B4BFD7004FAA55 /* xcel.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548425B4BFD5004FAA55 /* xcel.sna */; };
+		CDBC551D25B4BFD7004FAA55 /* dandy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548525B4BFD5004FAA55 /* dandy.sna */; };
+		CDBC551E25B4BFD7004FAA55 /* dandy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548525B4BFD5004FAA55 /* dandy.sna */; };
+		CDBC551F25B4BFD7004FAA55 /* dizzy_Magicland.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548625B4BFD5004FAA55 /* dizzy_Magicland.sna */; };
+		CDBC552025B4BFD7004FAA55 /* dizzy_Magicland.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548625B4BFD5004FAA55 /* dizzy_Magicland.sna */; };
+		CDBC552125B4BFD7004FAA55 /* chubby.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548725B4BFD5004FAA55 /* chubby.sna */; };
+		CDBC552225B4BFD7004FAA55 /* chubby.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548725B4BFD5004FAA55 /* chubby.sna */; };
+		CDBC552325B4BFD7004FAA55 /* transylvaniantower.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548825B4BFD5004FAA55 /* transylvaniantower.sna */; };
+		CDBC552425B4BFD7004FAA55 /* transylvaniantower.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548825B4BFD5004FAA55 /* transylvaniantower.sna */; };
+		CDBC552525B4BFD7004FAA55 /* kwah.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548925B4BFD5004FAA55 /* kwah.sna */; };
+		CDBC552625B4BFD7004FAA55 /* kwah.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548925B4BFD5004FAA55 /* kwah.sna */; };
+		CDBC552725B4BFD7004FAA55 /* contactsamcruise.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548A25B4BFD5004FAA55 /* contactsamcruise.sna */; };
+		CDBC552825B4BFD7004FAA55 /* contactsamcruise.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548A25B4BFD5004FAA55 /* contactsamcruise.sna */; };
+		CDBC552925B4BFD7004FAA55 /* Dizzy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548B25B4BFD5004FAA55 /* Dizzy.sna */; };
+		CDBC552A25B4BFD7004FAA55 /* Dizzy.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548B25B4BFD5004FAA55 /* Dizzy.sna */; };
+		CDBC552B25B4BFD7004FAA55 /* survival_adventure.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548C25B4BFD5004FAA55 /* survival_adventure.sna */; };
+		CDBC552C25B4BFD7004FAA55 /* survival_adventure.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548C25B4BFD5004FAA55 /* survival_adventure.sna */; };
+		CDBC552D25B4BFD7004FAA55 /* curseofsherwood.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548D25B4BFD5004FAA55 /* curseofsherwood.sna */; };
+		CDBC552E25B4BFD7004FAA55 /* curseofsherwood.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548D25B4BFD5004FAA55 /* curseofsherwood.sna */; };
+		CDBC552F25B4BFD7004FAA55 /* specialoperations.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548E25B4BFD5004FAA55 /* specialoperations.sna */; };
+		CDBC553025B4BFD7004FAA55 /* specialoperations.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548E25B4BFD5004FAA55 /* specialoperations.sna */; };
+		CDBC553125B4BFD7004FAA55 /* grumpygumphrey.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548F25B4BFD5004FAA55 /* grumpygumphrey.sna */; };
+		CDBC553225B4BFD7004FAA55 /* grumpygumphrey.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC548F25B4BFD5004FAA55 /* grumpygumphrey.sna */; };
+		CDBC553325B4BFD7004FAA55 /* brian.szx in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549025B4BFD5004FAA55 /* brian.szx */; };
+		CDBC553425B4BFD7004FAA55 /* brian.szx in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549025B4BFD5004FAA55 /* brian.szx */; };
+		CDBC553525B4BFD7004FAA55 /* booty.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549125B4BFD6004FAA55 /* booty.sna */; };
+		CDBC553625B4BFD7004FAA55 /* booty.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549125B4BFD6004FAA55 /* booty.sna */; };
+		CDBC553725B4BFD7004FAA55 /* hampstead.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549225B4BFD6004FAA55 /* hampstead.sna */; };
+		CDBC553825B4BFD7004FAA55 /* hampstead.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549225B4BFD6004FAA55 /* hampstead.sna */; };
+		CDBC553925B4BFD7004FAA55 /* dynamitedan.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549325B4BFD6004FAA55 /* dynamitedan.sna */; };
+		CDBC553A25B4BFD7004FAA55 /* dynamitedan.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549325B4BFD6004FAA55 /* dynamitedan.sna */; };
+		CDBC553B25B4BFD7004FAA55 /* megabucks.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549425B4BFD6004FAA55 /* megabucks.sna */; };
+		CDBC553C25B4BFD7004FAA55 /* megabucks.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549425B4BFD6004FAA55 /* megabucks.sna */; };
+		CDBC553D25B4BFD7004FAA55 /* repton.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549525B4BFD6004FAA55 /* repton.sna */; };
+		CDBC553E25B4BFD7004FAA55 /* repton.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549525B4BFD6004FAA55 /* repton.sna */; };
+		CDBC553F25B4BFD7004FAA55 /* trevorbrooking.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549625B4BFD6004FAA55 /* trevorbrooking.sna */; };
+		CDBC554025B4BFD7004FAA55 /* trevorbrooking.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549625B4BFD6004FAA55 /* trevorbrooking.sna */; };
+		CDBC554125B4BFD7004FAA55 /* dizzy_fw.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549725B4BFD6004FAA55 /* dizzy_fw.sna */; };
+		CDBC554225B4BFD7004FAA55 /* dizzy_fw.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549725B4BFD6004FAA55 /* dizzy_fw.sna */; };
+		CDBC554325B4BFD7004FAA55 /* inferno.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549825B4BFD6004FAA55 /* inferno.sna */; };
+		CDBC554425B4BFD7004FAA55 /* inferno.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549825B4BFD6004FAA55 /* inferno.sna */; };
+		CDBC554525B4BFD7004FAA55 /* deflektor.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549925B4BFD6004FAA55 /* deflektor.sna */; };
+		CDBC554625B4BFD7004FAA55 /* deflektor.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549925B4BFD6004FAA55 /* deflektor.sna */; };
+		CDBC554725B4BFD7004FAA55 /* dontpanic.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549A25B4BFD6004FAA55 /* dontpanic.sna */; };
+		CDBC554825B4BFD7004FAA55 /* dontpanic.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549A25B4BFD6004FAA55 /* dontpanic.sna */; };
+		CDBC554925B4BFD7004FAA55 /* dizzy_TI.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549B25B4BFD6004FAA55 /* dizzy_TI.sna */; };
+		CDBC554A25B4BFD7004FAA55 /* dizzy_TI.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549B25B4BFD6004FAA55 /* dizzy_TI.sna */; };
+		CDBC554B25B4BFD7004FAA55 /* lordsoftime.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549C25B4BFD6004FAA55 /* lordsoftime.sna */; };
+		CDBC554C25B4BFD7004FAA55 /* lordsoftime.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549C25B4BFD6004FAA55 /* lordsoftime.sna */; };
+		CDBC554D25B4BFD7004FAA55 /* questfortheholygrail.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549D25B4BFD7004FAA55 /* questfortheholygrail.sna */; };
+		CDBC554E25B4BFD7004FAA55 /* questfortheholygrail.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549D25B4BFD7004FAA55 /* questfortheholygrail.sna */; };
+		CDBC554F25B4BFD7004FAA55 /* mooncresta.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549E25B4BFD7004FAA55 /* mooncresta.sna */; };
+		CDBC555025B4BFD7004FAA55 /* mooncresta.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549E25B4BFD7004FAA55 /* mooncresta.sna */; };
+		CDBC555125B4BFD7004FAA55 /* sherlock.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549F25B4BFD7004FAA55 /* sherlock.sna */; };
+		CDBC555225B4BFD7004FAA55 /* sherlock.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC549F25B4BFD7004FAA55 /* sherlock.sna */; };
+		CDBC555325B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A025B4BFD7004FAA55 /* rockstaratemyhamster.sna */; };
+		CDBC555425B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A025B4BFD7004FAA55 /* rockstaratemyhamster.sna */; };
+		CDBC555525B4BFD7004FAA55 /* urbanupstart.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A125B4BFD7004FAA55 /* urbanupstart.sna */; };
+		CDBC555625B4BFD7004FAA55 /* urbanupstart.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A125B4BFD7004FAA55 /* urbanupstart.sna */; };
+		CDBC555725B4BFD7004FAA55 /* knightorc_1.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A225B4BFD7004FAA55 /* knightorc_1.sna */; };
+		CDBC555825B4BFD7004FAA55 /* knightorc_1.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A225B4BFD7004FAA55 /* knightorc_1.sna */; };
+		CDBC555925B4BFD7004FAA55 /* dizzy.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A325B4BFD7004FAA55 /* dizzy.z80 */; };
+		CDBC555A25B4BFD7004FAA55 /* dizzy.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A325B4BFD7004FAA55 /* dizzy.z80 */; };
+		CDBC555B25B4BFD7004FAA55 /* brian.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A425B4BFD7004FAA55 /* brian.sna */; };
+		CDBC555C25B4BFD7004FAA55 /* brian.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A425B4BFD7004FAA55 /* brian.sna */; };
 		CDCB61C925881786008DD916 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61C825881786008DD916 /* Color.swift */; };
 		CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61CD258817C8008DD916 /* Bitmap.swift */; };
 		CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */; };
@@ -140,7 +330,6 @@
 /* Begin PBXFileReference section */
 		CD03E6D7259BC8DE005F0F83 /* testand.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testand.sna; sourceTree = "<group>"; };
 		CD03E6DF259BD501005F0F83 /* testz80.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testz80.sna; sourceTree = "<group>"; };
-		CD03E6E4259C7827005F0F83 /* ab.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = ab.sna; sourceTree = "<group>"; };
 		CD03E7C125A12B2D005F0F83 /* allTestsTo7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsTo7f.swift; sourceTree = "<group>"; };
 		CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagRegister.swift; sourceTree = "<group>"; };
 		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +360,102 @@
 		CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpCodeDDFD.swift"; sourceTree = "<group>"; };
 		CDBB3F39253B360F00A1FFC0 /* OpCodeDefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCodeDefs.swift; sourceTree = "<group>"; };
 		CDBB3F3E253B371800A1FFC0 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
+		CDBC542C25B34FA0004FAA55 /* Constraint+Multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraint+Multiplier.swift"; sourceTree = "<group>"; };
+		CDBC543125B4927C004FAA55 /* Z80Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80Format.swift; sourceTree = "<group>"; };
+		CDBC543A25B4A08D004FAA55 /* CYBERUN2.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CYBERUN2.z80; sourceTree = "<group>"; };
+		CDBC543B25B4A08E004FAA55 /* CYBERRUN.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = CYBERRUN.sna; sourceTree = "<group>"; };
+		CDBC544925B4BFD0004FAA55 /* superspy.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = superspy.sna; sourceTree = "<group>"; };
+		CDBC544A25B4BFD0004FAA55 /* zzzz.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = zzzz.sna; sourceTree = "<group>"; };
+		CDBC544B25B4BFD0004FAA55 /* emotion.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = emotion.sna; sourceTree = "<group>"; };
+		CDBC544C25B4BFD0004FAA55 /* hunchback2.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = hunchback2.sna; sourceTree = "<group>"; };
+		CDBC544D25B4BFD0004FAA55 /* redmoon.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = redmoon.sna; sourceTree = "<group>"; };
+		CDBC544E25B4BFD0004FAA55 /* fivedoctors.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = fivedoctors.sna; sourceTree = "<group>"; };
+		CDBC544F25B4BFD0004FAA55 /* dundarach.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dundarach.sna; sourceTree = "<group>"; };
+		CDBC545025B4BFD0004FAA55 /* henryshoard.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = henryshoard.sna; sourceTree = "<group>"; };
+		CDBC545125B4BFD0004FAA55 /* penetrator.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = penetrator.sna; sourceTree = "<group>"; };
+		CDBC545225B4BFD0004FAA55 /* youngones.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = youngones.sna; sourceTree = "<group>"; };
+		CDBC545325B4BFD0004FAA55 /* tripods.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = tripods.sna; sourceTree = "<group>"; };
+		CDBC545425B4BFD1004FAA55 /* footballmanager2.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = footballmanager2.sna; sourceTree = "<group>"; };
+		CDBC545525B4BFD1004FAA55 /* seabasedelta.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = seabasedelta.sna; sourceTree = "<group>"; };
+		CDBC545625B4BFD1004FAA55 /* footballmanager2_wh.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = footballmanager2_wh.sna; sourceTree = "<group>"; };
+		CDBC545725B4BFD1004FAA55 /* subsunk.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = subsunk.sna; sourceTree = "<group>"; };
+		CDBC545825B4BFD1004FAA55 /* necrisdome.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = necrisdome.sna; sourceTree = "<group>"; };
+		CDBC545925B4BFD1004FAA55 /* lordoftherings.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = lordoftherings.sna; sourceTree = "<group>"; };
+		CDBC545A25B4BFD1004FAA55 /* blizzardpass.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = blizzardpass.sna; sourceTree = "<group>"; };
+		CDBC545B25B4BFD1004FAA55 /* twinkingdomvalley.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = twinkingdomvalley.sna; sourceTree = "<group>"; };
+		CDBC545C25B4BFD1004FAA55 /* crimebusters_notthatone.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = crimebusters_notthatone.sna; sourceTree = "<group>"; };
+		CDBC545D25B4BFD1004FAA55 /* cyberrun.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = cyberrun.sna; sourceTree = "<group>"; };
+		CDBC545E25B4BFD1004FAA55 /* boredoftherings.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = boredoftherings.sna; sourceTree = "<group>"; };
+		CDBC545F25B4BFD1004FAA55 /* robinofsherlock.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = robinofsherlock.sna; sourceTree = "<group>"; };
+		CDBC546025B4BFD2004FAA55 /* dynamitedan2.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dynamitedan2.sna; sourceTree = "<group>"; };
+		CDBC546125B4BFD2004FAA55 /* completebastard.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = completebastard.sna; sourceTree = "<group>"; };
+		CDBC546225B4BFD2004FAA55 /* adayinthelife.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = adayinthelife.sna; sourceTree = "<group>"; };
+		CDBC546325B4BFD2004FAA55 /* marsport.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = marsport.sna; sourceTree = "<group>"; };
+		CDBC546425B4BFD2004FAA55 /* ericandthefloaters.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = ericandthefloaters.sna; sourceTree = "<group>"; };
+		CDBC546525B4BFD2004FAA55 /* matchday2.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = matchday2.sna; sourceTree = "<group>"; };
+		CDBC546625B4BFD2004FAA55 /* supersprint.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = supersprint.sna; sourceTree = "<group>"; };
+		CDBC546725B4BFD2004FAA55 /* universalhero.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = universalhero.sna; sourceTree = "<group>"; };
+		CDBC546825B4BFD2004FAA55 /* wildbunch.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = wildbunch.sna; sourceTree = "<group>"; };
+		CDBC546925B4BFD2004FAA55 /* cavesofdoom.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = cavesofdoom.sna; sourceTree = "<group>"; };
+		CDBC546A25B4BFD2004FAA55 /* montyontherun.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = montyontherun.sna; sourceTree = "<group>"; };
+		CDBC546B25B4BFD2004FAA55 /* stevedavissnooker.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = stevedavissnooker.sna; sourceTree = "<group>"; };
+		CDBC546C25B4BFD2004FAA55 /* invincibleisland.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = invincibleisland.sna; sourceTree = "<group>"; };
+		CDBC546D25B4BFD3004FAA55 /* matchoftheday.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = matchoftheday.sna; sourceTree = "<group>"; };
+		CDBC546E25B4BFD3004FAA55 /* hunchback.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = hunchback.sna; sourceTree = "<group>"; };
+		CDBC546F25B4BFD3004FAA55 /* minder.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = minder.sna; sourceTree = "<group>"; };
+		CDBC547025B4BFD3004FAA55 /* lordoftherings_2.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = lordoftherings_2.sna; sourceTree = "<group>"; };
+		CDBC547125B4BFD3004FAA55 /* crimebustersinc.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = crimebustersinc.sna; sourceTree = "<group>"; };
+		CDBC547225B4BFD3004FAA55 /* mugsy.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = mugsy.sna; sourceTree = "<group>"; };
+		CDBC547325B4BFD3004FAA55 /* incredibleshrinkingfireman.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = incredibleshrinkingfireman.sna; sourceTree = "<group>"; };
+		CDBC547425B4BFD3004FAA55 /* mugsysrevenge.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = mugsysrevenge.sna; sourceTree = "<group>"; };
+		CDBC547525B4BFD3004FAA55 /* rocknwrestle.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = rocknwrestle.sna; sourceTree = "<group>"; };
+		CDBC547625B4BFD3004FAA55 /* dizzy_ck.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy_ck.sna; sourceTree = "<group>"; };
+		CDBC547725B4BFD3004FAA55 /* redhawk_side1.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = redhawk_side1.sna; sourceTree = "<group>"; };
+		CDBC547825B4BFD3004FAA55 /* galaxians.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = galaxians.sna; sourceTree = "<group>"; };
+		CDBC547925B4BFD3004FAA55 /* ianbothamstestmatch.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = ianbothamstestmatch.sna; sourceTree = "<group>"; };
+		CDBC547A25B4BFD4004FAA55 /* shakenbutnotstired.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = shakenbutnotstired.sna; sourceTree = "<group>"; };
+		CDBC547B25B4BFD4004FAA55 /* shipoftheline.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = shipoftheline.sna; sourceTree = "<group>"; };
+		CDBC547C25B4BFD4004FAA55 /* threeweeksinparadise.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = threeweeksinparadise.sna; sourceTree = "<group>"; };
+		CDBC547D25B4BFD4004FAA55 /* worminparadise.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = worminparadise.sna; sourceTree = "<group>"; };
+		CDBC547E25B4BFD4004FAA55 /* wriggler.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = wriggler.sna; sourceTree = "<group>"; };
+		CDBC547F25B4BFD4004FAA55 /* dizzy_potyf.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy_potyf.sna; sourceTree = "<group>"; };
+		CDBC548025B4BFD4004FAA55 /* bugsy.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = bugsy.sna; sourceTree = "<group>"; };
+		CDBC548125B4BFD4004FAA55 /* stbernard.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = stbernard.sna; sourceTree = "<group>"; };
+		CDBC548225B4BFD4004FAA55 /* tirnanog.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = tirnanog.sna; sourceTree = "<group>"; };
+		CDBC548325B4BFD4004FAA55 /* everyonesawally.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = everyonesawally.sna; sourceTree = "<group>"; };
+		CDBC548425B4BFD5004FAA55 /* xcel.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = xcel.sna; sourceTree = "<group>"; };
+		CDBC548525B4BFD5004FAA55 /* dandy.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dandy.sna; sourceTree = "<group>"; };
+		CDBC548625B4BFD5004FAA55 /* dizzy_Magicland.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy_Magicland.sna; sourceTree = "<group>"; };
+		CDBC548725B4BFD5004FAA55 /* chubby.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = chubby.sna; sourceTree = "<group>"; };
+		CDBC548825B4BFD5004FAA55 /* transylvaniantower.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = transylvaniantower.sna; sourceTree = "<group>"; };
+		CDBC548925B4BFD5004FAA55 /* kwah.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = kwah.sna; sourceTree = "<group>"; };
+		CDBC548A25B4BFD5004FAA55 /* contactsamcruise.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = contactsamcruise.sna; sourceTree = "<group>"; };
+		CDBC548B25B4BFD5004FAA55 /* Dizzy.sna */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dizzy.sna; sourceTree = "<group>"; };
+		CDBC548C25B4BFD5004FAA55 /* survival_adventure.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = survival_adventure.sna; sourceTree = "<group>"; };
+		CDBC548D25B4BFD5004FAA55 /* curseofsherwood.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = curseofsherwood.sna; sourceTree = "<group>"; };
+		CDBC548E25B4BFD5004FAA55 /* specialoperations.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = specialoperations.sna; sourceTree = "<group>"; };
+		CDBC548F25B4BFD5004FAA55 /* grumpygumphrey.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = grumpygumphrey.sna; sourceTree = "<group>"; };
+		CDBC549025B4BFD5004FAA55 /* brian.szx */ = {isa = PBXFileReference; lastKnownFileType = file; path = brian.szx; sourceTree = "<group>"; };
+		CDBC549125B4BFD6004FAA55 /* booty.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = booty.sna; sourceTree = "<group>"; };
+		CDBC549225B4BFD6004FAA55 /* hampstead.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = hampstead.sna; sourceTree = "<group>"; };
+		CDBC549325B4BFD6004FAA55 /* dynamitedan.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dynamitedan.sna; sourceTree = "<group>"; };
+		CDBC549425B4BFD6004FAA55 /* megabucks.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = megabucks.sna; sourceTree = "<group>"; };
+		CDBC549525B4BFD6004FAA55 /* repton.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = repton.sna; sourceTree = "<group>"; };
+		CDBC549625B4BFD6004FAA55 /* trevorbrooking.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = trevorbrooking.sna; sourceTree = "<group>"; };
+		CDBC549725B4BFD6004FAA55 /* dizzy_fw.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy_fw.sna; sourceTree = "<group>"; };
+		CDBC549825B4BFD6004FAA55 /* inferno.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = inferno.sna; sourceTree = "<group>"; };
+		CDBC549925B4BFD6004FAA55 /* deflektor.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = deflektor.sna; sourceTree = "<group>"; };
+		CDBC549A25B4BFD6004FAA55 /* dontpanic.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dontpanic.sna; sourceTree = "<group>"; };
+		CDBC549B25B4BFD6004FAA55 /* dizzy_TI.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy_TI.sna; sourceTree = "<group>"; };
+		CDBC549C25B4BFD6004FAA55 /* lordsoftime.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = lordsoftime.sna; sourceTree = "<group>"; };
+		CDBC549D25B4BFD7004FAA55 /* questfortheholygrail.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = questfortheholygrail.sna; sourceTree = "<group>"; };
+		CDBC549E25B4BFD7004FAA55 /* mooncresta.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = mooncresta.sna; sourceTree = "<group>"; };
+		CDBC549F25B4BFD7004FAA55 /* sherlock.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = sherlock.sna; sourceTree = "<group>"; };
+		CDBC54A025B4BFD7004FAA55 /* rockstaratemyhamster.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = rockstaratemyhamster.sna; sourceTree = "<group>"; };
+		CDBC54A125B4BFD7004FAA55 /* urbanupstart.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = urbanupstart.sna; sourceTree = "<group>"; };
+		CDBC54A225B4BFD7004FAA55 /* knightorc_1.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = knightorc_1.sna; sourceTree = "<group>"; };
+		CDBC54A325B4BFD7004FAA55 /* dizzy.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy.z80; sourceTree = "<group>"; };
+		CDBC54A425B4BFD7004FAA55 /* brian.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = brian.sna; sourceTree = "<group>"; };
 		CDCB61C825881786008DD916 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CDCB61CD258817C8008DD916 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Bitmap.swift"; sourceTree = "<group>"; };
@@ -258,6 +543,7 @@
 				CD62E46B25A79E8700B89CEA /* BaseFileFormat.swift */,
 				CD62E47425A79FCB00B89CEA /* TXZFormat.swift */,
 				CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */,
+				CDBC543125B4927C004FAA55 /* Z80Format.swift */,
 			);
 			path = file_formats;
 			sourceTree = "<group>";
@@ -285,6 +571,98 @@
 		CDE3ECC7258F523C00C8E8AF /* roms */ = {
 			isa = PBXGroup;
 			children = (
+				CDBC546225B4BFD2004FAA55 /* adayinthelife.sna */,
+				CDBC545A25B4BFD1004FAA55 /* blizzardpass.sna */,
+				CDBC549125B4BFD6004FAA55 /* booty.sna */,
+				CDBC545E25B4BFD1004FAA55 /* boredoftherings.sna */,
+				CDBC54A425B4BFD7004FAA55 /* brian.sna */,
+				CDBC549025B4BFD5004FAA55 /* brian.szx */,
+				CDBC548025B4BFD4004FAA55 /* bugsy.sna */,
+				CDBC546925B4BFD2004FAA55 /* cavesofdoom.sna */,
+				CDBC548725B4BFD5004FAA55 /* chubby.sna */,
+				CDBC546125B4BFD2004FAA55 /* completebastard.sna */,
+				CDBC548A25B4BFD5004FAA55 /* contactsamcruise.sna */,
+				CDBC545C25B4BFD1004FAA55 /* crimebusters_notthatone.sna */,
+				CDBC547125B4BFD3004FAA55 /* crimebustersinc.sna */,
+				CDBC548D25B4BFD5004FAA55 /* curseofsherwood.sna */,
+				CDBC545D25B4BFD1004FAA55 /* cyberrun.sna */,
+				CDBC548525B4BFD5004FAA55 /* dandy.sna */,
+				CDBC549925B4BFD6004FAA55 /* deflektor.sna */,
+				CDBC547625B4BFD3004FAA55 /* dizzy_ck.sna */,
+				CDBC549725B4BFD6004FAA55 /* dizzy_fw.sna */,
+				CDBC548625B4BFD5004FAA55 /* dizzy_Magicland.sna */,
+				CDBC547F25B4BFD4004FAA55 /* dizzy_potyf.sna */,
+				CDBC549B25B4BFD6004FAA55 /* dizzy_TI.sna */,
+				CDBC548B25B4BFD5004FAA55 /* Dizzy.sna */,
+				CDBC54A325B4BFD7004FAA55 /* dizzy.z80 */,
+				CDBC549A25B4BFD6004FAA55 /* dontpanic.sna */,
+				CDBC544F25B4BFD0004FAA55 /* dundarach.sna */,
+				CDBC549325B4BFD6004FAA55 /* dynamitedan.sna */,
+				CDBC546025B4BFD2004FAA55 /* dynamitedan2.sna */,
+				CDBC544B25B4BFD0004FAA55 /* emotion.sna */,
+				CDBC546425B4BFD2004FAA55 /* ericandthefloaters.sna */,
+				CDBC548325B4BFD4004FAA55 /* everyonesawally.sna */,
+				CDBC544E25B4BFD0004FAA55 /* fivedoctors.sna */,
+				CDBC545625B4BFD1004FAA55 /* footballmanager2_wh.sna */,
+				CDBC545425B4BFD1004FAA55 /* footballmanager2.sna */,
+				CDBC547825B4BFD3004FAA55 /* galaxians.sna */,
+				CDBC548F25B4BFD5004FAA55 /* grumpygumphrey.sna */,
+				CDBC549225B4BFD6004FAA55 /* hampstead.sna */,
+				CDBC545025B4BFD0004FAA55 /* henryshoard.sna */,
+				CDBC546E25B4BFD3004FAA55 /* hunchback.sna */,
+				CDBC544C25B4BFD0004FAA55 /* hunchback2.sna */,
+				CDBC547925B4BFD3004FAA55 /* ianbothamstestmatch.sna */,
+				CDBC547325B4BFD3004FAA55 /* incredibleshrinkingfireman.sna */,
+				CDBC549825B4BFD6004FAA55 /* inferno.sna */,
+				CDBC546C25B4BFD2004FAA55 /* invincibleisland.sna */,
+				CDBC54A225B4BFD7004FAA55 /* knightorc_1.sna */,
+				CDBC548925B4BFD5004FAA55 /* kwah.sna */,
+				CDBC547025B4BFD3004FAA55 /* lordoftherings_2.sna */,
+				CDBC545925B4BFD1004FAA55 /* lordoftherings.sna */,
+				CDBC549C25B4BFD6004FAA55 /* lordsoftime.sna */,
+				CDBC546325B4BFD2004FAA55 /* marsport.sna */,
+				CDBC546525B4BFD2004FAA55 /* matchday2.sna */,
+				CDBC546D25B4BFD3004FAA55 /* matchoftheday.sna */,
+				CDBC549425B4BFD6004FAA55 /* megabucks.sna */,
+				CDBC546F25B4BFD3004FAA55 /* minder.sna */,
+				CDBC546A25B4BFD2004FAA55 /* montyontherun.sna */,
+				CDBC549E25B4BFD7004FAA55 /* mooncresta.sna */,
+				CDBC547225B4BFD3004FAA55 /* mugsy.sna */,
+				CDBC547425B4BFD3004FAA55 /* mugsysrevenge.sna */,
+				CDBC545825B4BFD1004FAA55 /* necrisdome.sna */,
+				CDBC545125B4BFD0004FAA55 /* penetrator.sna */,
+				CDBC549D25B4BFD7004FAA55 /* questfortheholygrail.sna */,
+				CDBC547725B4BFD3004FAA55 /* redhawk_side1.sna */,
+				CDBC544D25B4BFD0004FAA55 /* redmoon.sna */,
+				CDBC549525B4BFD6004FAA55 /* repton.sna */,
+				CDBC545F25B4BFD1004FAA55 /* robinofsherlock.sna */,
+				CDBC547525B4BFD3004FAA55 /* rocknwrestle.sna */,
+				CDBC54A025B4BFD7004FAA55 /* rockstaratemyhamster.sna */,
+				CDBC545525B4BFD1004FAA55 /* seabasedelta.sna */,
+				CDBC547A25B4BFD4004FAA55 /* shakenbutnotstired.sna */,
+				CDBC549F25B4BFD7004FAA55 /* sherlock.sna */,
+				CDBC547B25B4BFD4004FAA55 /* shipoftheline.sna */,
+				CDBC548E25B4BFD5004FAA55 /* specialoperations.sna */,
+				CDBC548125B4BFD4004FAA55 /* stbernard.sna */,
+				CDBC546B25B4BFD2004FAA55 /* stevedavissnooker.sna */,
+				CDBC545725B4BFD1004FAA55 /* subsunk.sna */,
+				CDBC546625B4BFD2004FAA55 /* supersprint.sna */,
+				CDBC544925B4BFD0004FAA55 /* superspy.sna */,
+				CDBC548C25B4BFD5004FAA55 /* survival_adventure.sna */,
+				CDBC547C25B4BFD4004FAA55 /* threeweeksinparadise.sna */,
+				CDBC548225B4BFD4004FAA55 /* tirnanog.sna */,
+				CDBC548825B4BFD5004FAA55 /* transylvaniantower.sna */,
+				CDBC549625B4BFD6004FAA55 /* trevorbrooking.sna */,
+				CDBC545325B4BFD0004FAA55 /* tripods.sna */,
+				CDBC545B25B4BFD1004FAA55 /* twinkingdomvalley.sna */,
+				CDBC546725B4BFD2004FAA55 /* universalhero.sna */,
+				CDBC54A125B4BFD7004FAA55 /* urbanupstart.sna */,
+				CDBC546825B4BFD2004FAA55 /* wildbunch.sna */,
+				CDBC547D25B4BFD4004FAA55 /* worminparadise.sna */,
+				CDBC547E25B4BFD4004FAA55 /* wriggler.sna */,
+				CDBC548425B4BFD5004FAA55 /* xcel.sna */,
+				CDBC545225B4BFD0004FAA55 /* youngones.sna */,
+				CDBC544A25B4BFD0004FAA55 /* zzzz.sna */,
 				CDE3ECCA258F525500C8E8AF /* 48k.rom */,
 				CDE3ECCB258F525500C8E8AF /* 128k.rom */,
 				CDE3ECC9258F525500C8E8AF /* 128k+2.rom */,
@@ -381,9 +759,10 @@
 			children = (
 				CDE3ECC7258F523C00C8E8AF /* roms */,
 				CDCB61E12588F030008DD916 /* aticatac.sna */,
+				CDBC543B25B4A08E004FAA55 /* CYBERRUN.sna */,
+				CDBC543A25B4A08D004FAA55 /* CYBERUN2.z80 */,
 				CD62E47A25A84EF900B89CEA /* Action Biker.tzx */,
 				CD62E46425A79DD200B89CEA /* ticket_to_ride.tzx */,
-				CD03E6E4259C7827005F0F83 /* ab.sna */,
 				CD03E6D7259BC8DE005F0F83 /* testand.sna */,
 				CD03E6DF259BD501005F0F83 /* testz80.sna */,
 				CDF8A20D2531CCB700F0D216 /* actionbiker.sna */,
@@ -407,6 +786,7 @@
 				CDED0C112598967700862DE0 /* UInt16+Bitwise.swift */,
 				CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */,
 				CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */,
+				CDBC542C25B34FA0004FAA55 /* Constraint+Multiplier.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -524,22 +904,115 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD03E6E5259C7827005F0F83 /* ab.sna in Resources */,
+				CDBC54C325B4BFD7004FAA55 /* necrisdome.sna in Resources */,
 				CD62E48725ACE58900B89CEA /* images.xcassets in Resources */,
 				CDF8A1E22531CC2A00F0D216 /* LaunchScreen.storyboard in Resources */,
+				CDBC552525B4BFD7004FAA55 /* kwah.sna in Resources */,
+				CDBC555B25B4BFD7004FAA55 /* brian.sna in Resources */,
 				CDF8A1DF2531CC2A00F0D216 /* Assets.xcassets in Resources */,
 				CDE3ECCE258F525500C8E8AF /* 48k.rom in Resources */,
+				CDBC551725B4BFD7004FAA55 /* tirnanog.sna in Resources */,
+				CDBC54DB25B4BFD7004FAA55 /* ericandthefloaters.sna in Resources */,
+				CDBC54FB25B4BFD7004FAA55 /* mugsysrevenge.sna in Resources */,
+				CDBC543E25B4A08E004FAA55 /* CYBERRUN.sna in Resources */,
+				CDBC54CD25B4BFD7004FAA55 /* cyberrun.sna in Resources */,
+				CDBC54E125B4BFD7004FAA55 /* universalhero.sna in Resources */,
+				CDBC550525B4BFD7004FAA55 /* ianbothamstestmatch.sna in Resources */,
+				CDBC550925B4BFD7004FAA55 /* shipoftheline.sna in Resources */,
 				CDE3ECCC258F525500C8E8AF /* 128k+3.rom in Resources */,
+				CDBC553B25B4BFD7004FAA55 /* megabucks.sna in Resources */,
+				CDBC552D25B4BFD7004FAA55 /* curseofsherwood.sna in Resources */,
+				CDBC54DF25B4BFD7004FAA55 /* supersprint.sna in Resources */,
+				CDBC54C125B4BFD7004FAA55 /* subsunk.sna in Resources */,
 				CD62E46525A79DD200B89CEA /* ticket_to_ride.tzx in Resources */,
+				CDBC551525B4BFD7004FAA55 /* stbernard.sna in Resources */,
+				CDBC553725B4BFD7004FAA55 /* hampstead.sna in Resources */,
+				CDBC54AD25B4BFD7004FAA55 /* redmoon.sna in Resources */,
+				CDBC555125B4BFD7004FAA55 /* sherlock.sna in Resources */,
+				CDBC54EB25B4BFD7004FAA55 /* invincibleisland.sna in Resources */,
+				CDBC551325B4BFD7004FAA55 /* bugsy.sna in Resources */,
+				CDBC552325B4BFD7004FAA55 /* transylvaniantower.sna in Resources */,
+				CDBC54B925B4BFD7004FAA55 /* tripods.sna in Resources */,
+				CDBC551B25B4BFD7004FAA55 /* xcel.sna in Resources */,
+				CDBC552125B4BFD7004FAA55 /* chubby.sna in Resources */,
+				CDBC54C725B4BFD7004FAA55 /* blizzardpass.sna in Resources */,
+				CDBC553F25B4BFD7004FAA55 /* trevorbrooking.sna in Resources */,
+				CDBC554525B4BFD7004FAA55 /* deflektor.sna in Resources */,
+				CDBC555525B4BFD7004FAA55 /* urbanupstart.sna in Resources */,
+				CDBC54A725B4BFD7004FAA55 /* zzzz.sna in Resources */,
+				CDBC54F925B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */,
+				CDBC54C925B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */,
+				CDBC553125B4BFD7004FAA55 /* grumpygumphrey.sna in Resources */,
+				CDBC553925B4BFD7004FAA55 /* dynamitedan.sna in Resources */,
+				CDBC54C525B4BFD7004FAA55 /* lordoftherings.sna in Resources */,
+				CDBC550325B4BFD7004FAA55 /* galaxians.sna in Resources */,
+				CDBC54AB25B4BFD7004FAA55 /* hunchback2.sna in Resources */,
+				CDBC543C25B4A08E004FAA55 /* CYBERUN2.z80 in Resources */,
+				CDBC555925B4BFD7004FAA55 /* dizzy.z80 in Resources */,
+				CDBC552B25B4BFD7004FAA55 /* survival_adventure.sna in Resources */,
+				CDBC54CB25B4BFD7004FAA55 /* crimebusters_notthatone.sna in Resources */,
+				CDBC54FD25B4BFD7004FAA55 /* rocknwrestle.sna in Resources */,
+				CDBC54F525B4BFD7004FAA55 /* crimebustersinc.sna in Resources */,
+				CDBC54B725B4BFD7004FAA55 /* youngones.sna in Resources */,
+				CDBC550125B4BFD7004FAA55 /* redhawk_side1.sna in Resources */,
+				CDBC553325B4BFD7004FAA55 /* brian.szx in Resources */,
 				CD03E6D8259BC8DE005F0F83 /* testand.sna in Resources */,
+				CDBC54D525B4BFD7004FAA55 /* completebastard.sna in Resources */,
+				CDBC550F25B4BFD7004FAA55 /* wriggler.sna in Resources */,
+				CDBC554125B4BFD7004FAA55 /* dizzy_fw.sna in Resources */,
+				CDBC54D125B4BFD7004FAA55 /* robinofsherlock.sna in Resources */,
+				CDBC54A925B4BFD7004FAA55 /* emotion.sna in Resources */,
+				CDBC554925B4BFD7004FAA55 /* dizzy_TI.sna in Resources */,
+				CDBC54F725B4BFD7004FAA55 /* mugsy.sna in Resources */,
 				CD03E6E0259BD501005F0F83 /* testz80.sna in Resources */,
+				CDBC54E325B4BFD7004FAA55 /* wildbunch.sna in Resources */,
+				CDBC54E725B4BFD7004FAA55 /* montyontherun.sna in Resources */,
+				CDBC554D25B4BFD7004FAA55 /* questfortheholygrail.sna in Resources */,
+				CDBC54E525B4BFD7004FAA55 /* cavesofdoom.sna in Resources */,
+				CDBC551125B4BFD7004FAA55 /* dizzy_potyf.sna in Resources */,
+				CDBC54B325B4BFD7004FAA55 /* henryshoard.sna in Resources */,
+				CDBC54F325B4BFD7004FAA55 /* lordoftherings_2.sna in Resources */,
+				CDBC54E925B4BFD7004FAA55 /* stevedavissnooker.sna in Resources */,
+				CDBC553D25B4BFD7004FAA55 /* repton.sna in Resources */,
+				CDBC54EF25B4BFD7004FAA55 /* hunchback.sna in Resources */,
+				CDBC551F25B4BFD7004FAA55 /* dizzy_Magicland.sna in Resources */,
 				CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */,
+				CDBC554725B4BFD7004FAA55 /* dontpanic.sna in Resources */,
+				CDBC54B125B4BFD7004FAA55 /* dundarach.sna in Resources */,
+				CDBC554325B4BFD7004FAA55 /* inferno.sna in Resources */,
+				CDBC550725B4BFD7004FAA55 /* shakenbutnotstired.sna in Resources */,
+				CDBC54AF25B4BFD7004FAA55 /* fivedoctors.sna in Resources */,
+				CDBC54A525B4BFD7004FAA55 /* superspy.sna in Resources */,
+				CDBC54CF25B4BFD7004FAA55 /* boredoftherings.sna in Resources */,
+				CDBC552725B4BFD7004FAA55 /* contactsamcruise.sna in Resources */,
+				CDBC54BB25B4BFD7004FAA55 /* footballmanager2.sna in Resources */,
+				CDBC54F125B4BFD7004FAA55 /* minder.sna in Resources */,
+				CDBC54D925B4BFD7004FAA55 /* marsport.sna in Resources */,
+				CDBC54BD25B4BFD7004FAA55 /* seabasedelta.sna in Resources */,
 				CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */,
+				CDBC54DD25B4BFD7004FAA55 /* matchday2.sna in Resources */,
+				CDBC550D25B4BFD7004FAA55 /* worminparadise.sna in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
+				CDBC555725B4BFD7004FAA55 /* knightorc_1.sna in Resources */,
+				CDBC553525B4BFD7004FAA55 /* booty.sna in Resources */,
 				CD62E47B25A84EF900B89CEA /* Action Biker.tzx in Resources */,
+				CDBC551925B4BFD7004FAA55 /* everyonesawally.sna in Resources */,
 				CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */,
 				CDCB61E22588F030008DD916 /* aticatac.sna in Resources */,
+				CDBC54ED25B4BFD7004FAA55 /* matchoftheday.sna in Resources */,
+				CDBC54B525B4BFD7004FAA55 /* penetrator.sna in Resources */,
+				CDBC54D325B4BFD7004FAA55 /* dynamitedan2.sna in Resources */,
+				CDBC552F25B4BFD7004FAA55 /* specialoperations.sna in Resources */,
+				CDBC554F25B4BFD7004FAA55 /* mooncresta.sna in Resources */,
 				CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */,
+				CDBC551D25B4BFD7004FAA55 /* dandy.sna in Resources */,
+				CDBC555325B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */,
+				CDBC54BF25B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */,
+				CDBC554B25B4BFD7004FAA55 /* lordsoftime.sna in Resources */,
+				CDBC54D725B4BFD7004FAA55 /* adayinthelife.sna in Resources */,
+				CDBC54FF25B4BFD7004FAA55 /* dizzy_ck.sna in Resources */,
+				CDBC550B25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */,
+				CDBC552925B4BFD7004FAA55 /* Dizzy.sna in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,8 +1020,102 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDBC552225B4BFD7004FAA55 /* chubby.sna in Resources */,
+				CDBC551625B4BFD7004FAA55 /* stbernard.sna in Resources */,
+				CDBC54C225B4BFD7004FAA55 /* subsunk.sna in Resources */,
+				CDBC552025B4BFD7004FAA55 /* dizzy_Magicland.sna in Resources */,
+				CDBC54BA25B4BFD7004FAA55 /* tripods.sna in Resources */,
+				CDBC555C25B4BFD7004FAA55 /* brian.sna in Resources */,
+				CDBC54DA25B4BFD7004FAA55 /* marsport.sna in Resources */,
+				CDBC54D025B4BFD7004FAA55 /* boredoftherings.sna in Resources */,
+				CDBC554825B4BFD7004FAA55 /* dontpanic.sna in Resources */,
+				CDBC543D25B4A08E004FAA55 /* CYBERUN2.z80 in Resources */,
+				CDBC553E25B4BFD7004FAA55 /* repton.sna in Resources */,
+				CDBC54FC25B4BFD7004FAA55 /* mugsysrevenge.sna in Resources */,
+				CDBC54BE25B4BFD7004FAA55 /* seabasedelta.sna in Resources */,
+				CDBC551E25B4BFD7004FAA55 /* dandy.sna in Resources */,
 				CD62E46625A79DD200B89CEA /* ticket_to_ride.tzx in Resources */,
+				CDBC54B425B4BFD7004FAA55 /* henryshoard.sna in Resources */,
+				CDBC550425B4BFD7004FAA55 /* galaxians.sna in Resources */,
+				CDBC552825B4BFD7004FAA55 /* contactsamcruise.sna in Resources */,
+				CDBC54BC25B4BFD7004FAA55 /* footballmanager2.sna in Resources */,
+				CDBC550825B4BFD7004FAA55 /* shakenbutnotstired.sna in Resources */,
+				CDBC54CE25B4BFD7004FAA55 /* cyberrun.sna in Resources */,
+				CDBC54C625B4BFD7004FAA55 /* lordoftherings.sna in Resources */,
+				CDBC552E25B4BFD7004FAA55 /* curseofsherwood.sna in Resources */,
+				CDBC54A825B4BFD7004FAA55 /* zzzz.sna in Resources */,
+				CDBC54C825B4BFD7004FAA55 /* blizzardpass.sna in Resources */,
+				CDBC54C025B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */,
+				CDBC551825B4BFD7004FAA55 /* tirnanog.sna in Resources */,
+				CDBC555A25B4BFD7004FAA55 /* dizzy.z80 in Resources */,
+				CDBC551025B4BFD7004FAA55 /* wriggler.sna in Resources */,
+				CDBC54B225B4BFD7004FAA55 /* dundarach.sna in Resources */,
+				CDBC550625B4BFD7004FAA55 /* ianbothamstestmatch.sna in Resources */,
+				CDBC54E225B4BFD7004FAA55 /* universalhero.sna in Resources */,
+				CDBC54D825B4BFD7004FAA55 /* adayinthelife.sna in Resources */,
+				CDBC54D625B4BFD7004FAA55 /* completebastard.sna in Resources */,
+				CDBC553225B4BFD7004FAA55 /* grumpygumphrey.sna in Resources */,
+				CDBC550025B4BFD7004FAA55 /* dizzy_ck.sna in Resources */,
+				CDBC553425B4BFD7004FAA55 /* brian.szx in Resources */,
+				CDBC554625B4BFD7004FAA55 /* deflektor.sna in Resources */,
+				CDBC54EC25B4BFD7004FAA55 /* invincibleisland.sna in Resources */,
+				CDBC54F225B4BFD7004FAA55 /* minder.sna in Resources */,
+				CDBC554425B4BFD7004FAA55 /* inferno.sna in Resources */,
+				CDBC553625B4BFD7004FAA55 /* booty.sna in Resources */,
+				CDBC54B025B4BFD7004FAA55 /* fivedoctors.sna in Resources */,
+				CDBC54EA25B4BFD7004FAA55 /* stevedavissnooker.sna in Resources */,
+				CDBC54E825B4BFD7004FAA55 /* montyontherun.sna in Resources */,
+				CDBC552A25B4BFD7004FAA55 /* Dizzy.sna in Resources */,
+				CDBC54FE25B4BFD7004FAA55 /* rocknwrestle.sna in Resources */,
+				CDBC550A25B4BFD7004FAA55 /* shipoftheline.sna in Resources */,
+				CDBC54C425B4BFD7004FAA55 /* necrisdome.sna in Resources */,
+				CDBC552C25B4BFD7004FAA55 /* survival_adventure.sna in Resources */,
+				CDBC54CC25B4BFD7004FAA55 /* crimebusters_notthatone.sna in Resources */,
+				CDBC555025B4BFD7004FAA55 /* mooncresta.sna in Resources */,
+				CDBC54B825B4BFD7004FAA55 /* youngones.sna in Resources */,
+				CDBC551C25B4BFD7004FAA55 /* xcel.sna in Resources */,
+				CDBC554225B4BFD7004FAA55 /* dizzy_fw.sna in Resources */,
+				CDBC550E25B4BFD7004FAA55 /* worminparadise.sna in Resources */,
+				CDBC553A25B4BFD7004FAA55 /* dynamitedan.sna in Resources */,
+				CDBC54E625B4BFD7004FAA55 /* cavesofdoom.sna in Resources */,
+				CDBC54F625B4BFD7004FAA55 /* crimebustersinc.sna in Resources */,
+				CDBC554A25B4BFD7004FAA55 /* dizzy_TI.sna in Resources */,
+				CDBC54F025B4BFD7004FAA55 /* hunchback.sna in Resources */,
+				CDBC54D225B4BFD7004FAA55 /* robinofsherlock.sna in Resources */,
+				CDBC543F25B4A08E004FAA55 /* CYBERRUN.sna in Resources */,
+				CDBC554E25B4BFD7004FAA55 /* questfortheholygrail.sna in Resources */,
+				CDBC551225B4BFD7004FAA55 /* dizzy_potyf.sna in Resources */,
+				CDBC550225B4BFD7004FAA55 /* redhawk_side1.sna in Resources */,
+				CDBC553025B4BFD7004FAA55 /* specialoperations.sna in Resources */,
+				CDBC555425B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */,
+				CDBC550C25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */,
+				CDBC54FA25B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */,
+				CDBC54D425B4BFD7004FAA55 /* dynamitedan2.sna in Resources */,
+				CDBC551A25B4BFD7004FAA55 /* everyonesawally.sna in Resources */,
+				CDBC54CA25B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */,
+				CDBC54A625B4BFD7004FAA55 /* superspy.sna in Resources */,
+				CDBC553C25B4BFD7004FAA55 /* megabucks.sna in Resources */,
 				CD62E47C25A84EF900B89CEA /* Action Biker.tzx in Resources */,
+				CDBC54AE25B4BFD7004FAA55 /* redmoon.sna in Resources */,
+				CDBC54E425B4BFD7004FAA55 /* wildbunch.sna in Resources */,
+				CDBC552425B4BFD7004FAA55 /* transylvaniantower.sna in Resources */,
+				CDBC54AA25B4BFD7004FAA55 /* emotion.sna in Resources */,
+				CDBC54DC25B4BFD7004FAA55 /* ericandthefloaters.sna in Resources */,
+				CDBC54EE25B4BFD7004FAA55 /* matchoftheday.sna in Resources */,
+				CDBC54B625B4BFD7004FAA55 /* penetrator.sna in Resources */,
+				CDBC552625B4BFD7004FAA55 /* kwah.sna in Resources */,
+				CDBC555825B4BFD7004FAA55 /* knightorc_1.sna in Resources */,
+				CDBC554C25B4BFD7004FAA55 /* lordsoftime.sna in Resources */,
+				CDBC54AC25B4BFD7004FAA55 /* hunchback2.sna in Resources */,
+				CDBC553825B4BFD7004FAA55 /* hampstead.sna in Resources */,
+				CDBC54F825B4BFD7004FAA55 /* mugsy.sna in Resources */,
+				CDBC554025B4BFD7004FAA55 /* trevorbrooking.sna in Resources */,
+				CDBC54E025B4BFD7004FAA55 /* supersprint.sna in Resources */,
+				CDBC54DE25B4BFD7004FAA55 /* matchday2.sna in Resources */,
+				CDBC555225B4BFD7004FAA55 /* sherlock.sna in Resources */,
+				CDBC54F425B4BFD7004FAA55 /* lordoftherings_2.sna in Resources */,
+				CDBC551425B4BFD7004FAA55 /* bugsy.sna in Resources */,
+				CDBC555625B4BFD7004FAA55 /* urbanupstart.sna in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +1140,7 @@
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDD9021B25AE08E500AB93FD /* BaseViewController.swift in Sources */,
 				CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */,
+				CDBC543225B4927C004FAA55 /* Z80Format.swift in Sources */,
 				CD62E48125ACDAB900B89CEA /* IOSViewController.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
 				CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */,
@@ -580,6 +1148,7 @@
 				CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
 				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
+				CDBC542D25B34FA0004FAA55 /* Constraint+Multiplier.swift in Sources */,
 				CDED0BFB25949B2D00862DE0 /* Z80+OpcodeCB.swift in Sources */,
 				CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */,
 				CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */,
@@ -616,6 +1185,7 @@
 				CD62E3E225A1F44200B89CEA /* BaseTest.swift in Sources */,
 				CD03E70B259CF963005F0F83 /* Z80+OpCodeDDFD.swift in Sources */,
 				CD62E45A25A5C1A200B89CEA /* AudioStreamer.swift in Sources */,
+				CDBC543325B4927C004FAA55 /* Z80Format.swift in Sources */,
 				CD03E71C259CF989005F0F83 /* LineTableViewCell.swift in Sources */,
 				CD03E6F0259CF95B005F0F83 /* Z80.swift in Sources */,
 				CD03E70D259CF963005F0F83 /* Z80+Opcode.swift in Sources */,

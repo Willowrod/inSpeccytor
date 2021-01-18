@@ -25,6 +25,7 @@ class SNAFormat: BaseFileFormat {
         
         importDataFromString(data: dataString)
         process()
+        registers.shouldReturn = true
     }
     
     

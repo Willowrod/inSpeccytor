@@ -213,4 +213,8 @@ extension UInt8 {
         return String(self, radix: 2).padded(size: 8)
     }
     
+    func createCodeByte(lineNumber: Int = 0) -> CodeByteModel {
+        return CodeByteModel(withHex: "\(self.hex())", line: lineNumber)
+    }
+    
 }

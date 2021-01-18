@@ -54,7 +54,7 @@ class Z80 {
     var shouldForceBreak = false
     var breakPoints: Array<UInt16> = []
     let beeper = AudioStreamer()
-    
+    var pauseProcessor = false
     var clicks: UInt8 = 0
     
     init() {
@@ -241,11 +241,14 @@ class Z80 {
     }
     
     func writeRAM(dataModel: Array<UInt8>, startAddress: Int = 0){
+        pauseProcessor = true
+        interupt = false
         var count = startAddress
         dataModel.forEach { byte in
             ram[count] = byte
             count += 1
         }
+        pauseProcessor = false
     }
     
     func renderFrame(){
@@ -268,9 +271,30 @@ class Z80 {
         screenBuffer.blit(bytes: ram[16384...22527])
     }
     
+    func performIn(port: UInt8, map: UInt8, destination: Register){
+        if (port == 0xfe){
+        switch map{
+        case 0x28...0x28 &+ 7:
+            destination.inCommand(byte: keyboard[Int(l() &- 0x28)])
+            
+        default:
+            print("checking Keyboard for \(map.hex())")
+        }
+        } else if port == 0x7f {
+            print("Checking for Kempston Joystick")
+        } else if port == 0x1f {
+            print("Checking for Fuller Joystick")
+        } else {
+            print("Checking port \(port.hex())")
+        }
+    }
+    
     func process() {
         currentTStates = 0
         while true {
+            if pauseProcessor {
+                break
+            }
                         if (!frameEnds) {
             if (shouldRunInterupt){
                 interupt = false
@@ -303,10 +327,10 @@ class Z80 {
                 }
                 
                 shouldForceBreak = false
-                
+    //            print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
                 opCode(byte: byte)
                 beeper.updateSample(UInt32(currentTStates), beep: clicks)
-                  //    print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+        
             }
             if currentTStates >= tStatesPerFrame {
                 currentTStates = 0
@@ -375,7 +399,11 @@ class Z80 {
     }
     
     func ldRam(location: Int, value: UInt8){
+        if location >= 0x4000 && location <= 0xFFFF{
         ram[location] = value
+        } else {
+            print("Attempting to write to invalid memory location \(String(location, radix: 16))")
+        }
     }
     
     func ldRam(location: Int, value: UInt16){

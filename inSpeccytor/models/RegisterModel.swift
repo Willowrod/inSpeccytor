@@ -27,6 +27,8 @@ struct RegisterModel: Codable {
     var interuptMode: Int = 0
     var interuptEnabled: Bool = false
     
+    var borderColour: UInt8 = 0
+    
     var shouldReturn: Bool = false
     
     func registerPair(l: UInt8, h: UInt8) -> UInt16{

@@ -38,7 +38,12 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var flashOn = false
     var useHexValues = false
     var lastSecond: TimeInterval = Date.init().timeIntervalSince1970
+    var pCInDisAssembler = 0
 
+    var entryPoints: [Int] = []
+    var currentEntryPoint = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         z80.delegate = self
@@ -49,7 +54,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func bootEmulator(){
         loadROM()
-     //   loadSnapshot(sna: "actionbiker")
+        loadSnapshot(sna: "dizzy_fw")
         startProcessor()
     }
     
@@ -65,6 +70,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             hexView.text = "- - - - - - - -"
             print("file not found")
         }
+        writeCodeBytes()
     }
     
     func expandROM(data: String?){
@@ -117,7 +123,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             bit = 2
         case 13: // j
             bank = 1
-            bit = 2
+            bit = 3
         case 14: // k
             bank = 1
             bit = 2
@@ -230,7 +236,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             case "sna":
                 loadSnapshot(sna: name)
             case "z80":
-                loadZ80(z80: name)
+                loadZ80(z80Snap: name)
             case "tzx":
                 importTZX(tzxFile: name)
             default:
@@ -243,30 +249,16 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadSnapshot(sna: String){
             let snapShot = SNAFormat(fileName: sna)
-        z80.initialiseRegisters(header: snapShot.registers)
         z80.writeRAM(dataModel: snapShot.ramBanks[0], startAddress: 16384)
+        z80.initialiseRegisters(header: snapShot.registers)
+        writeCodeBytes()
     }
     
-    func loadZ80(z80: String){
-//        if let filePath = Bundle.main.path(forResource: sna, ofType: "sna"){
-//            print("File found - \(filePath)")
-//            if let index = filePath.lastIndex(of: "/"){
-//                let name = filePath.substring(from: index)
-//                fileName.text = name
-//            } else {
-//                fileName.text = "Unknown Snapshot"
-//                hexView.text = "- - - - - - - -"
-//            }
-//            let contents = NSData(contentsOfFile: filePath)
-//            let data = contents! as Data
-//            let dataString = data.hexString
-//            expandData(data: dataString)
-//            sortHeaderDataPass(data: dataString)
-//        } else {
-//            fileName.text = "Snapshot failed to load"
-//            hexView.text = "- - - - - - - -"
-//            print("file not found")
-//        }
+    func loadZ80(z80Snap: String){
+        let snapShot = Z80Format(fileName: z80Snap)
+    z80.writeRAM(dataModel: snapShot.ramBanks[0], startAddress: 16384)
+    z80.initialiseRegisters(header: snapShot.registers)
+        writeCodeBytes()
     }
     
     func importTZX(tzxFile: String){
@@ -300,6 +292,147 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         frames += 1
     }
     
+    func writeCodeBytes(){
+        model.removeAll()
+        var id = 0
+        z80.ram.forEach{byte in
+            model.append(byte.createCodeByte(lineNumber: id))
+            id += 1
+        }
+    }
+    
+    // Disassembler
+    
+    func updatePC(){
+        if let pc = programCounter.text, pc.count == 5, let pcUint = Int(pc) {
+            pCInDisAssembler = pcUint
+        } else {
+            pCInDisAssembler = Int(header.registerPC)
+        }
+    }
+
+    func updatePCUI(){
+        programCounter.text = "\(pCInDisAssembler)"
+        if (pCInDisAssembler < model.count){
+            let targetRowIndexPath = IndexPath(row: pCInDisAssembler, section: 0)
+            tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+        }
+    }
+
+    func updatePCUI(pc: Int){
+        programCounter.text = "\(pc)"
+        let modelPosition = pc - pCOffset
+        if (modelPosition < model.count){
+            let targetRowIndexPath = IndexPath(row: modelPosition, section: 0)
+               tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+        }
+    }
+
+    func getCodeByte() -> CodeByteModel {
+        let modelPosition = Int(pCInDisAssembler)
+        if (modelPosition < model.count){
+            return model[modelPosition]
+        } else {
+            return model.first ?? CodeByteModel(withHex: "00", line: modelPosition)
+        }
+    }
+
+    func getCodeByteValue(position: Int) -> Int {
+        let modelPosition = position // - pCOffset
+        if (modelPosition < model.count){
+            return model[modelPosition].intValue
+        }
+        return 0
+    }
+
+    func parseLine(){
+        var runLoop = true
+        while runLoop{
+            let lineAsInt = pCInDisAssembler
+            var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
+            pCInDisAssembler += 1
+            if opCode.isPreCode {
+                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(getCodeByte().hexValue)")
+                pCInDisAssembler += 1
+            }
+            if opCode.length == 2 {
+                let byte: UInt8 = UInt8(getCodeByte().intValue)
+                if opCode.code.contains("±"){
+                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(byte)")
+                } else if opCode.code.contains("$$"){
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(byte)")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
+                    //opCode.code = "###\(opCode.code)"
+                } else if opCode.code.contains("##"){ // Two's compliment
+                    let subt = byte.isSet(bit: 7)
+                    var comp: Int = -Int(byte.twosCompliment())
+                    if !subt{
+                        comp = Int(byte)
+                    }
+                    opCode.target = pCInDisAssembler + comp
+                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target)")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp)")
+                }
+                opCode.meaning = opCode.meaning.replacingOccurrences(of: "±", with: "\(byte)")
+                pCInDisAssembler += 1
+            } else if opCode.length == 3 {
+                let low = getCodeByte().intValue
+                pCInDisAssembler += 1
+                let high = getCodeByte().intValue
+
+                if (opCode.code.contains("$$")){
+                    let word = (high * 256) + low
+                    opCode.target = word
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word)")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(word)")
+                } else {
+                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
+                }
+                pCInDisAssembler += 1
+            }
+            opCode.line = Int(lineAsInt)
+            opCodes.append(opCode)
+            //            print("\(lineAsInt): \(opCode.toString())")
+            //        if (opCode.isEndOfRoutine){
+            //            if (stopAfterEachOpCode){
+            //                runLoop = false
+            //                updatePCUI()
+            //            } else {
+            //                print(" ---------------------- ")
+            //                mainTableView.reloadData()
+            //            }
+            //        }
+
+            if (pCInDisAssembler >= model.count){
+                //             print("End Of File")
+                runLoop = false
+                //header.registerPC -= 1
+                updatePCUI()
+                mainTableView.reloadData()
+ //              markPositions()
+            }
+        }
+
+    }
+    
+    
+    func markPositions(){
+        let tempCodes = opCodes
+        tempCodes.forEach({ opCode in
+            if (opCode.target > 0){
+                if let target = self.opCodes.firstIndex(where: {$0.line == opCode.target}) {
+                    // print("Target: \(target.line) is jump position")
+                    //                    let jumpPos = opCodes[target]
+                    //                    print("Target: \(jumpPos.line) is jump position")
+                    //opCodes[target].isJumpPosition = true
+                    opCodes[target].lineType = opCode.targetType
+                }
+            }
+        })
+        mainTableView.reloadData()
+    }
+
     
     // Delegates
     
@@ -314,7 +447,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateView(bitmap: Bitmap?) {
         updateFPS()
         if let bitmap = bitmap{
-            screenRender.image = (UIImage(bitmap: bitmap))
+ //           screenRender.image = (UIImage(bitmap: bitmap))
         }
         updateRegisters()
     }
@@ -351,24 +484,25 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (tableView == mainTableView){
             let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
             let thisLine = self.opCodes[row]
+            let lineNumber = (baseSelector.selectedSegmentIndex == 0 ? "\(String(thisLine.line, radix: 16).padded(size: 4))" : "\(thisLine.line)")
             switch (thisLine.lineType){
             case .CODE:
-                cell.lineNumber.text = "++ \(thisLine.line)"
+                cell.lineNumber.text = "++ \(lineNumber)"
                 break
             case .RELATIVE:
-                cell.lineNumber.text = "+ \(thisLine.line)"
+                cell.lineNumber.text = "+ \(lineNumber)"
                 break
             case .DATA:
-                cell.lineNumber.text = "D \(thisLine.line)"
+                cell.lineNumber.text = "D \(lineNumber)"
                 break
             case .TEXT:
-                cell.lineNumber.text = "T \(thisLine.line)"
+                cell.lineNumber.text = "T \(lineNumber)"
                 break
             case .GRAPHICS:
-                cell.lineNumber.text = "G \(thisLine.line)"
+                cell.lineNumber.text = "G \(lineNumber)"
                 break
             default:
-                cell.lineNumber.text = "\(thisLine.line)"
+                cell.lineNumber.text = "\(lineNumber)"
                 break
                 
                 

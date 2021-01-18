@@ -211,9 +211,8 @@ extension Z80 {
             interuptMode = 1
         instructionComplete(states: 8)
         case 0x78: // TODO: IN A,(C)
-            if (c() == 0xfe){
-                aR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-            }
+            
+       performIn(port: c(), map: l(), destination: aR())
             instructionComplete(states: 12)
         case 0x79: // TODO OUT (C),A
         instructionComplete(states: 12)
