@@ -50,6 +50,8 @@ class SNAFormat: BaseFileFormat {
         sortHeaderData()
         ramBanks = []
         ramBanks.append(Array(snaData[27...]))
+        let stackStart = registers.registerSP &- 0x4000
+        registers.registerPC = registers.registerPair(l: ramBanks[0][Int(stackStart)], h: ramBanks[0][Int(stackStart)+1])//Int(stackStart.intValue)
         importSuccessful = true
     }
     
@@ -99,6 +101,7 @@ class SNAFormat: BaseFileFormat {
         registers.registerSP = registers.registerPair(l:snaData[23], h:snaData[24])
         registers.interuptMode = Int(snaData[25])
         registers.shouldReturn = true
-        }
+        
+    }
         
 }

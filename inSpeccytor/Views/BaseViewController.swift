@@ -41,8 +41,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var pCInDisAssembler = 0
 
     var entryPoints: [Int] = []
+    var alreadyAdded: [Int] = []
     var currentEntryPoint = 0
-    
+    var isCalc = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -251,6 +252,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             let snapShot = SNAFormat(fileName: sna)
         z80.writeRAM(dataModel: snapShot.ramBanks[0], startAddress: 16384)
         z80.initialiseRegisters(header: snapShot.registers)
+        header = snapShot.registers
         writeCodeBytes()
     }
     
@@ -258,6 +260,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         let snapShot = Z80Format(fileName: z80Snap)
     z80.writeRAM(dataModel: snapShot.ramBanks[0], startAddress: 16384)
     z80.initialiseRegisters(header: snapShot.registers)
+        header = snapShot.registers
         writeCodeBytes()
     }
     
@@ -309,6 +312,10 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             pCInDisAssembler = Int(header.registerPC)
         }
+        entryPoints.removeAll()
+        entryPoints.append(pCInDisAssembler)
+        currentEntryPoint = 0
+        
     }
 
     func updatePCUI(){
@@ -349,18 +356,23 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         var runLoop = true
         while runLoop{
             let lineAsInt = pCInDisAssembler
+            if pCInDisAssembler == 0x18c5 {
+                print ("Debug here!")
+            }
             var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
             pCInDisAssembler += 1
+            if (!isCalc){
             if opCode.isPreCode {
-                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(getCodeByte().hexValue)")
+                let thisCode = getCodeByte().hexValue
                 pCInDisAssembler += 1
+                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(thisCode)", extra: getCodeByte().hexValue)
             }
             if opCode.length == 2 {
                 let byte: UInt8 = UInt8(getCodeByte().intValue)
                 if opCode.code.contains("±"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(byte)")
+                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(byte) - \(UInt8(byte).hex().padded(size: 2))")
                 } else if opCode.code.contains("$$"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(byte)")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(byte) - \(UInt8(byte).hex().padded(size: 2))")
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
                     //opCode.code = "###\(opCode.code)"
                 } else if opCode.code.contains("##"){ // Two's compliment
@@ -369,10 +381,24 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if !subt{
                         comp = Int(byte)
                     }
-                    opCode.target = pCInDisAssembler + comp
-                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target)")
+                    opCode.target = pCInDisAssembler + comp + 1 //Add 1 to make PC correct before comp
+                    if opCode.target > 0xffff {
+                        opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target) - OVERFLOW!")
+                    } else {
+                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target) - \(UInt16(opCode.target).hex().padded(size: 4))")
+                    }
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp)")
+                } else if opCode.code.contains("§§"){ // Two's compliment
+                    let subt = byte.isSet(bit: 7)
+                    var comp: Int = -Int(byte.twosCompliment())
+                    if !subt{
+                        comp = Int(byte)
+                    }
+                    opCode.target = pCInDisAssembler + comp + 1 //Add 1 to make PC correct before comp
+                    opCode.code = opCode.code.replacingOccurrences(of: "§§", with: "\(comp)")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "§§", with: "\(comp)")
                 }
+
                 opCode.meaning = opCode.meaning.replacingOccurrences(of: "±", with: "\(byte)")
                 pCInDisAssembler += 1
             } else if opCode.length == 3 {
@@ -383,7 +409,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if (opCode.code.contains("$$")){
                     let word = (high * 256) + low
                     opCode.target = word
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word)")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word) - \(UInt16(word).hex().padded(size: 4))")
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(word)")
                 } else {
                     opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
@@ -391,31 +417,118 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 pCInDisAssembler += 1
             }
-            opCode.line = Int(lineAsInt)
+                opCode.line = Int(lineAsInt)
+            if (!alreadyAdded.contains(opCode.line)){
             opCodes.append(opCode)
-            //            print("\(lineAsInt): \(opCode.toString())")
-            //        if (opCode.isEndOfRoutine){
-            //            if (stopAfterEachOpCode){
-            //                runLoop = false
-            //                updatePCUI()
-            //            } else {
-            //                print(" ---------------------- ")
-            //                mainTableView.reloadData()
-            //            }
-            //        }
+                alreadyAdded.append(opCode.line)
+            }
+            
+            if (opCode.isJumpTarget()){
+                if opCode.targetType == .RST {
+                    switch opCode.value.uppercased() {
+                    case "C7":
+                        opCode.target = 0
+                    case "CF":
+                        opCode.target = 0x08
+                    case "D7":
+                        opCode.target = 0x10
+                    case "DF":
+                        opCode.target = 0x18
+                    case "E7":
+                        opCode.target = 0x20
+                    case "EF":
+                        opCode.target = 0x28
+                    case "F7":
+                        opCode.target = 0x30
+                    case "FF":
+                        opCode.target = 0x38
+                    default:
+                        opCode.target = 0
+                    }
+                }
+                
+                if (!entryPoints.contains(opCode.target) && !alreadyAdded.contains(opCode.target)){
+                    if opCode.target > 0xffff {
+                        print("Adding jump to \(String(opCode.target, radix: 16)) from \(String(opCode.line, radix: 16))")
+                    } else {
+                        print("Adding jump to \(UInt16(opCode.target).hex()) from \(UInt16(opCode.line).hex())")
+                    }
+                   
+                    entryPoints.append(opCode.target)
+                }
+            }
+            
+            
+            if opCode.value.count == 6 {
+                pCInDisAssembler += 1
+            }
+            
+                if opCode.value.uppercased() == "EF" {
+                    isCalc = true
+                }
+            
+      //                  print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
+                    if (opCode.isEndOfRoutine){
+                        if (stopAfterEachOpCode){
+                            runLoop = false
+                            updatePCUI()
+                            opCodes.sort{$0.line < $1.line}
+                            mainTableView.reloadData()
+                        } else {
+                         //   print(" ---------------------- ")
+//                            opCodes.sort{$0.line < $1.line}
+//                            mainTableView.reloadData()
+                        runLoop = sortNextOpCode()
+                        }
+                    }
 
             if (pCInDisAssembler >= model.count){
                 //             print("End Of File")
-                runLoop = false
-                //header.registerPC -= 1
-                updatePCUI()
-                mainTableView.reloadData()
+//                runLoop = false
+//                //header.registerPC -= 1
+//                updatePCUI()
+//                opCodes.sort{$0.line < $1.line}
+//                mainTableView.reloadData()
  //              markPositions()
+                runLoop = sortNextOpCode()
+            }
+            } else {
+                if opCode.value.uppercased() == "38"{
+                    opCode.code = "End Calc"
+                    isCalc = false
+                } else {
+                    opCode.code = "Calc"
+                }
+                opCode.line = Int(lineAsInt)
+                if (!alreadyAdded.contains(opCode.line)){
+                    opCode.meaning = "Calculator Function"
+                opCodes.append(opCode)
+                    alreadyAdded.append(opCode.line)
+                }
             }
         }
-
+        
+        opCodes.sort{$0.line < $1.line}
+        mainTableView.reloadData()
     }
     
+    func sortNextOpCode() -> Bool {
+        currentEntryPoint += 1
+        while currentEntryPoint < entryPoints.count {
+            let nextEP = entryPoints[currentEntryPoint]
+            print("Checking EP \(String(nextEP, radix: 16))")
+            if nextEP > 0xffff {
+                print("Bad EP \(String(nextEP, radix: 16))")
+                return false
+            } else if !alreadyAdded.contains(nextEP){
+                print("Jumping to EP \(String(nextEP, radix: 16))")
+            pCInDisAssembler = entryPoints[currentEntryPoint]
+            return true
+            }
+            currentEntryPoint += 1
+        }
+        return false
+    }
     
     func markPositions(){
         let tempCodes = opCodes
