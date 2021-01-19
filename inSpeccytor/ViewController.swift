@@ -96,6 +96,7 @@ class ViewController: BaseViewController {
     @IBAction func runFromPC(_ sender: Any) {
         stopAfterEachOpCode = false
         updatePC()
+        print("Disassembly from PC at \(String(pCInDisAssembler, radix: 16))")
         parseLine()
     }
     

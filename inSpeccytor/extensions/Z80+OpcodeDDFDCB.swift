@@ -81,7 +81,7 @@ extension Z80 {
 
         
         default:
-            print("Potential unknown code CB\(String(byte2, radix: 16))")
+            print("Potential unknown code CB\(String(byte2, radix: 16)) From \(PC.hex())")
             print("-")
         }
     }

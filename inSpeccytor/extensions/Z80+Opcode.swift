@@ -944,8 +944,8 @@ extension Z80 {
             call(location: 0x0038)
             instructionComplete(states: 11, length: 0) //returnOpCode(v: code, c: "RST &38", m: " ", l: 1)
         default:
-            //            print("Unknown code \(String(byte, radix: 16))")
-            //            print("-")
+                        print("Unknown code \(String(byte, radix: 16)) From \(PC.hex())")
+                        print("-")
             instructionComplete(states: 4, length: 0)
         }
         R.inc()

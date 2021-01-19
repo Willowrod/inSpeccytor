@@ -55,7 +55,8 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func bootEmulator(){
         loadROM()
-        loadSnapshot(sna: "dizzy_fw")
+       loadSnapshot(sna: "dizzy_fw")
+        // loadSnapshot(sna: "actionbiker")
         startProcessor()
     }
     
@@ -356,7 +357,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         var runLoop = true
         while runLoop{
             let lineAsInt = pCInDisAssembler
-            if pCInDisAssembler == 0x18c5 {
+            if pCInDisAssembler == 0xD858 {
                 print ("Debug here!")
             }
             var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
@@ -448,12 +449,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 if (!entryPoints.contains(opCode.target) && !alreadyAdded.contains(opCode.target)){
-                    if opCode.target > 0xffff {
                         print("Adding jump to \(String(opCode.target, radix: 16)) from \(String(opCode.line, radix: 16))")
-                    } else {
-                        print("Adding jump to \(UInt16(opCode.target).hex()) from \(UInt16(opCode.line).hex())")
-                    }
-                   
                     entryPoints.append(opCode.target)
                 }
             }
@@ -496,8 +492,11 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if opCode.value.uppercased() == "38"{
                     opCode.code = "End Calc"
                     isCalc = false
+                } else if opCode.value.uppercased() == "3B"{
+                    opCode.code = "Single Calc Function"
+                    isCalc = false
                 } else {
-                    opCode.code = "Calc"
+                    opCode.code = "Calc \(opCode.code)"
                 }
                 opCode.line = Int(lineAsInt)
                 if (!alreadyAdded.contains(opCode.line)){
@@ -516,17 +515,18 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         currentEntryPoint += 1
         while currentEntryPoint < entryPoints.count {
             let nextEP = entryPoints[currentEntryPoint]
-            print("Checking EP \(String(nextEP, radix: 16))")
             if nextEP > 0xffff {
                 print("Bad EP \(String(nextEP, radix: 16))")
                 return false
-            } else if !alreadyAdded.contains(nextEP){
-                print("Jumping to EP \(String(nextEP, radix: 16))")
+            } else if nextEP < 0x4000 {
+                
+                } else if !alreadyAdded.contains(nextEP){
             pCInDisAssembler = entryPoints[currentEntryPoint]
             return true
             }
             currentEntryPoint += 1
         }
+        print("Processing completed")
         return false
     }
     
@@ -560,7 +560,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateView(bitmap: Bitmap?) {
         updateFPS()
         if let bitmap = bitmap{
- //           screenRender.image = (UIImage(bitmap: bitmap))
+           screenRender.image = (UIImage(bitmap: bitmap))
         }
         updateRegisters()
     }
@@ -598,28 +598,28 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
             let thisLine = self.opCodes[row]
             let lineNumber = (baseSelector.selectedSegmentIndex == 0 ? "\(String(thisLine.line, radix: 16).padded(size: 4))" : "\(thisLine.line)")
-            switch (thisLine.lineType){
+            var lineNumberID = ""
+            if entryPoints.contains(thisLine.line){
+                lineNumberID = "➡️"
+            }
+            switch (thisLine.targetType){
             case .CODE:
-                cell.lineNumber.text = "++ \(lineNumber)"
-                break
+                lineNumberID = "\(lineNumberID)↘️"
             case .RELATIVE:
-                cell.lineNumber.text = "+ \(lineNumber)"
-                break
+                lineNumberID = "\(lineNumberID)↕️"
             case .DATA:
-                cell.lineNumber.text = "D \(lineNumber)"
-                break
+                lineNumberID = "\(lineNumberID)#️⃣"
             case .TEXT:
-                cell.lineNumber.text = "T \(lineNumber)"
-                break
+                lineNumberID = "\(lineNumberID)🔤"
             case .GRAPHICS:
-                cell.lineNumber.text = "G \(lineNumber)"
-                break
+                lineNumberID = "\(lineNumberID)🔣"
             default:
                 cell.lineNumber.text = "\(lineNumber)"
                 break
                 
                 
             }
+            cell.lineNumber.text = "\(lineNumberID) \(lineNumber)"
             cell.opCode.text = thisLine.code
             cell.meaning.text = "\(thisLine.meaning)"
             return cell

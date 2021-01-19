@@ -274,16 +274,32 @@ class Z80 {
     func performIn(port: UInt8, map: UInt8, destination: Register){
         if (port == 0xfe){
         switch map{
-        case 0x28...0x28 &+ 7:
-            destination.inCommand(byte: keyboard[Int(l() &- 0x28)])
+//        case 0x28...0x28 &+ 7:
+//            destination.inCommand(byte: keyboard[Int(l() &- 0x28)])
             
+        case 0xfe:
+            destination.inCommand(byte: keyboard[7])
+        case 0xfd:
+            destination.inCommand(byte: keyboard[6])
+        case 0xfb:
+            destination.inCommand(byte: keyboard[5])
+        case 0xf7:
+            destination.inCommand(byte: keyboard[4])
+        case 0xef:
+            destination.inCommand(byte: keyboard[3])
+        case 0xdf:
+            destination.inCommand(byte: keyboard[2])
+        case 0xbf:
+            destination.inCommand(byte: keyboard[1])
+        case 0x7f:
+            destination.inCommand(byte: keyboard[0])
         default:
-            print("checking Keyboard for \(map.hex())")
+            break
         }
         } else if port == 0x7f {
-            print("Checking for Kempston Joystick")
+  //          print("Checking for Kempston Joystick")
         } else if port == 0x1f {
-            print("Checking for Fuller Joystick")
+  //          print("Checking for Fuller Joystick")
         } else {
             print("Checking port \(port.hex())")
         }
@@ -306,7 +322,9 @@ class Z80 {
                 case 1:
                     PC = 0x0038
                 default:
-                    PC = (UInt16(I.byteValue) * 256) + UInt16(R.byteValue)
+                    let intAddress = (UInt16(I.byteValue) * 256) + UInt16(R.byteValue)
+                    PC = fetchRamWord(location: intAddress)
+                    
                 }
                 halt = false
                 shouldRunInterupt = false
@@ -327,7 +345,11 @@ class Z80 {
                 }
                 
                 shouldForceBreak = false
-    //            print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+                if PC == 0xfe27 {
+                    print("Breaking here")
+                }
+                
                 opCode(byte: byte)
                 beeper.updateSample(UInt32(currentTStates), beep: clicks)
         
@@ -402,7 +424,7 @@ class Z80 {
         if location >= 0x4000 && location <= 0xFFFF{
         ram[location] = value
         } else {
-            print("Attempting to write to invalid memory location \(String(location, radix: 16))")
+            print("Attempting to write to invalid memory location \(String(location, radix: 16)) From \(PC.hex())")
         }
     }
     

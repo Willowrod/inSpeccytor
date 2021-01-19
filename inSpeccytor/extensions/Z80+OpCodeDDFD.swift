@@ -274,7 +274,7 @@ extension Z80 {
         case 0xCB:
             opCodeDDFDCB(reg: reg)
         default:
-            print("Potential Unknown code FD\(String(byte, radix: 16)) \(byte1) \(byte2) \(word)")
+            print("Potential Unknown code ED\(String(byte, radix: 16)) From \(PC.hex())")
             print("-")
         }
         R.inc()

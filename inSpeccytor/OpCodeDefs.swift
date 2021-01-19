@@ -15,7 +15,7 @@ class OpCodeDefs {
         case "00":
             return OpCode(v: code, c: "NOP", m: "No Operation", l: 1)
         case "01":
-            return OpCode(v: code, c: "LD BC,$$", m: "Load register pair BC with the value $$", l: 3, t: .DATA)
+            return OpCode(v: code, c: "LD BC,$$", m: "Load register pair BC with the value $$", l: 3)
         case "02":
             return OpCode(v: code, c: "LD (BC),A", m: "Load the contents of the memory address stored in BC with the value of register A", l: 1)
             
@@ -23,14 +23,14 @@ class OpCodeDefs {
             return OpCode(v: code, c: "JR ##", m: "Jump to routine at memory offset 2s $$ (##)", l: 2, e: true, t: .RELATIVE)
             
         case "21":
-            return OpCode(v: code, c: "LD HL,$$", m: "Load the register pair HL with the value $$", l: 3, t: .DATA)
+            return OpCode(v: code, c: "LD HL,$$", m: "Load the register pair HL with the value $$", l: 3)
             
             
         case "28":
             return OpCode(v: code, c: "JR Z, ##", m: "If the Zero flag is set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
             
         case "3E":
-            return OpCode(v: code, c: "LD A,$$", m: "Load register A with the value $$", l: 2, t: .DATA)
+            return OpCode(v: code, c: "LD A,$$", m: "Load register A with the value $$", l: 2)
             
         case "47":
             return OpCode(v: code, c: "LD B,A", m: "Load register B with the value of register A", l: 1)
@@ -63,9 +63,9 @@ class OpCodeDefs {
             
             //DD Op codes
         case "DD21":
-            return OpCode(v: code, c: "LD IX,$$", m: "Load the memory location IX with the value $$", l: 3, t: .DATA)
+            return OpCode(v: code, c: "LD IX,$$", m: "Load the memory location IX with the value $$", l: 3)
         case "DD36":
-            return OpCode(v: code, c: "LD (IX+$1),$2", m: "Load the contents of the memory address stored in (IX + $1) with the value $2", l: 3, t: .DATA)
+            return OpCode(v: code, c: "LD (IX+$1),$2", m: "Load the contents of the memory address stored in (IX + $1) with the value $2", l: 3)
         case "03":
         return OpCode(v: code, c: "INC BC", m: " ", l: 1)
         case "04":
@@ -95,7 +95,7 @@ class OpCodeDefs {
         case "10":
         return OpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
         case "11":
-        return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3)
         case "12":
         return OpCode(v: code, c: "LD (DE),A", m: " ", l: 1)
         case "13":
@@ -125,7 +125,7 @@ class OpCodeDefs {
         case "20":
         return OpCode(v: code, c: "JR NZ, ##", m: "If the Zero flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
         case "22":
-        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3)
         case "23":
         return OpCode(v: code, c: "INC HL", m: " ", l: 1)
         case "24":
@@ -133,13 +133,13 @@ class OpCodeDefs {
         case "25":
         return OpCode(v: code, c: "DEC H", m: " ", l: 1)
         case "26":
-        return OpCode(v: code, c: "LD H,$$", m: " ", l: 2, t: .DATA)
+        return OpCode(v: code, c: "LD H,$$", m: " ", l: 2)
         case "27":
         return OpCode(v: code, c: "DAA", m: " ", l: 1)
         case "29":
         return OpCode(v: code, c: "ADD HL,HL", m: " ", l: 1)
         case "2A":
-        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3)
         case "2B":
         return OpCode(v: code, c: "DEC HL", m: " ", l: 1)
         case "2C":
@@ -153,9 +153,9 @@ class OpCodeDefs {
         case "30":
         return OpCode(v: code, c: "JR NC, ##", m: "If the Carry flag is not set in register F, jump to routine at memory offset 2s $$ (##)", l: 2, t: .RELATIVE)
         case "31":
-        return OpCode(v: code, c: "LD SP,$$", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD SP,$$", m: " ", l: 3)
         case "32":
-        return OpCode(v: code, c: "LD ($$),A", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),A", m: " ", l: 3)
         case "33":
         return OpCode(v: code, c: "INC SP", m: " ", l: 1)
         case "34":
@@ -163,7 +163,7 @@ class OpCodeDefs {
         case "35":
         return OpCode(v: code, c: "DEC (HL)", m: " ", l: 1)
         case "36":
-        return OpCode(v: code, c: "LD (HL),$$", m: " ", l: 2, t: .DATA)
+        return OpCode(v: code, c: "LD (HL),$$", m: " ", l: 2)
         case "37":
         return OpCode(v: code, c: "SCF", m: " ", l: 1)
         case "38":
@@ -171,7 +171,7 @@ class OpCodeDefs {
         case "39":
         return OpCode(v: code, c: "ADD HL,SP", m: " ", l: 1)
         case "3A":
-        return OpCode(v: code, c: "LD A,($$)", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD A,($$)", m: " ", l: 3)
         case "3B":
         return OpCode(v: code, c: "DEC SP", m: " ", l: 1)
         case "3C":
@@ -549,7 +549,7 @@ class OpCodeDefs {
         case "DD19":
         return OpCode(v: code, c: "ADD IX,DE", m: " ", l: 1)
         case "DD22":
-        return OpCode(v: code, c: "LD ($$),IX", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),IX", m: " ", l: 3)
         case "DD23":
         return OpCode(v: code, c: "INC IX", m: " ", l: 1)
         case "DD24":
@@ -561,7 +561,7 @@ class OpCodeDefs {
         case "DD29":
         return OpCode(v: code, c: "ADD IX,IX", m: " ", l: 1)
         case "DD2A":
-        return OpCode(v: code, c: "LD IX,($$)", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD IX,($$)", m: " ", l: 3)
         case "DD2B":
         return OpCode(v: code, c: "DEC IX", m: " ", l: 1)
         case "DD2C":
@@ -571,9 +571,9 @@ class OpCodeDefs {
         case "DD2E":
         return OpCode(v: code, c: "LD IXL,±", m: " ", l: 2)
         case "DD34":
-        return OpCode(v: code, c: "INC (IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "INC (IX+§§)", m: " ", l: 2)
         case "DD35":
-        return OpCode(v: code, c: "DEC (IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "DEC (IX+§§)", m: " ", l: 2)
         case "DD39":
         return OpCode(v: code, c: "ADD IX,SP", m: " ", l: 1)
         case "DD44":
@@ -581,25 +581,25 @@ class OpCodeDefs {
         case "DD45":
         return OpCode(v: code, c: "LD B,IXL", m: " ", l: 1)
         case "DD46":
-        return OpCode(v: code, c: "LD B,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD B,(IX+§§)", m: " ", l: 2)
         case "DD4C":
         return OpCode(v: code, c: "LD C,IXH", m: " ", l: 1)
         case "DD4D":
         return OpCode(v: code, c: "LD C,IXL", m: " ", l: 1)
         case "DD4E":
-        return OpCode(v: code, c: "LD C,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD C,(IX+§§)", m: " ", l: 2)
         case "DD54":
         return OpCode(v: code, c: "LD D,IXH", m: " ", l: 1)
         case "DD55":
         return OpCode(v: code, c: "LD D,IXL", m: " ", l: 1)
         case "DD56":
-        return OpCode(v: code, c: "LD D,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD D,(IX+§§)", m: " ", l: 2)
         case "DD5C":
         return OpCode(v: code, c: "LD E,IXH", m: " ", l: 1)
         case "DD5D":
         return OpCode(v: code, c: "LD E,IXL", m: " ", l: 1)
         case "DD5E":
-        return OpCode(v: code, c: "LD E,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD E,(IX+§§)", m: " ", l: 2)
         case "DD60":
         return OpCode(v: code, c: "LD IXH,B", m: " ", l: 1)
         case "DD61":
@@ -613,7 +613,7 @@ class OpCodeDefs {
         case "DD65":
         return OpCode(v: code, c: "LD IXH,IXL", m: " ", l: 1)
         case "DD66":
-        return OpCode(v: code, c: "LD H,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD H,(IX+§§)", m: " ", l: 2)
         case "DD67":
         return OpCode(v: code, c: "LD IXH,A", m: " ", l: 1)
         case "DD68":
@@ -629,77 +629,77 @@ class OpCodeDefs {
         case "DD6D":
         return OpCode(v: code, c: "LD IXL,IXL", m: " ", l: 1)
         case "DD6E":
-        return OpCode(v: code, c: "LD L,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD L,(IX+§§)", m: " ", l: 2)
         case "DD6F":
         return OpCode(v: code, c: "LD IXL,A", m: " ", l: 1)
         case "DD70":
-        return OpCode(v: code, c: "LD (IX+0),B", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),B", m: " ", l: 2)
         case "DD71":
-        return OpCode(v: code, c: "LD (IX+0),C", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),C", m: " ", l: 2)
         case "DD72":
-        return OpCode(v: code, c: "LD (IX+0),D", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),D", m: " ", l: 2)
         case "DD73":
-        return OpCode(v: code, c: "LD (IX+0),E", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),E", m: " ", l: 2)
         case "DD74":
-        return OpCode(v: code, c: "LD (IX+0),H", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),H", m: " ", l: 2)
         case "DD75":
-        return OpCode(v: code, c: "LD (IX+0),L", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),L", m: " ", l: 2)
         case "DD77":
-        return OpCode(v: code, c: "LD (IX+0),A", m: " ", l: 1)
+        return OpCode(v: code, c: "LD (IX+§§),A", m: " ", l: 2)
         case "DD7C":
         return OpCode(v: code, c: "LD A,IXH", m: " ", l: 1)
         case "DD7D":
         return OpCode(v: code, c: "LD A,IXL", m: " ", l: 1)
         case "DD7E":
-        return OpCode(v: code, c: "LD A,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "LD A,(IX+§§)", m: " ", l: 2)
         case "DD84":
         return OpCode(v: code, c: "ADD A,IXH", m: " ", l: 1)
         case "DD85":
         return OpCode(v: code, c: "ADD A,IXL", m: " ", l: 1)
         case "DD86":
-        return OpCode(v: code, c: "ADD A,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "ADD A,(IX+§§)", m: " ", l: 2)
         case "DD8C":
         return OpCode(v: code, c: "ADC A,IXH", m: " ", l: 1)
         case "DD8D":
         return OpCode(v: code, c: "ADC A,IXL", m: " ", l: 1)
         case "DD8E":
-        return OpCode(v: code, c: "ADC A,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "ADC A,(IX+§§)", m: " ", l: 2)
         case "DD94":
         return OpCode(v: code, c: "SUB A,IXH", m: " ", l: 1)
         case "DD95":
         return OpCode(v: code, c: "SUB A,IXL", m: " ", l: 1)
         case "DD96":
-        return OpCode(v: code, c: "SUB A,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "SUB A,(IX+§§)", m: " ", l: 2)
         case "DD9C":
         return OpCode(v: code, c: "SBC A,IXH", m: " ", l: 1)
         case "DD9D":
         return OpCode(v: code, c: "SBC A,IXL", m: " ", l: 1)
         case "DD9E":
-        return OpCode(v: code, c: "SBC A,(IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "SBC A,(IX+§§)", m: " ", l: 2)
         case "DDA4":
         return OpCode(v: code, c: "AND IXH", m: " ", l: 1)
         case "DDA5":
         return OpCode(v: code, c: "AND IXL", m: " ", l: 1)
         case "DDA6":
-        return OpCode(v: code, c: "AND (IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "AND (IX+§§)", m: " ", l: 2)
         case "DDAC":
         return OpCode(v: code, c: "XOR IXH", m: " ", l: 1)
         case "DDAD":
         return OpCode(v: code, c: "XOR IXL", m: " ", l: 1)
         case "DDAE":
-        return OpCode(v: code, c: "XOR (IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "XOR (IX+§§)", m: " ", l: 2)
         case "DDB4":
         return OpCode(v: code, c: "OR IXH", m: " ", l: 1)
         case "DDB5":
         return OpCode(v: code, c: "OR IXL", m: " ", l: 1)
         case "DDB6":
-        return OpCode(v: code, c: "OR (IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "OR (IX+§§)", m: " ", l: 2)
         case "DDBC":
         return OpCode(v: code, c: "CP IXH", m: " ", l: 1)
         case "DDBD":
         return OpCode(v: code, c: "CP IXL", m: " ", l: 1)
         case "DDBE":
-        return OpCode(v: code, c: "CP (IX+0)", m: " ", l: 1)
+        return OpCode(v: code, c: "CP (IX+§§)", m: " ", l: 2)
         case "DDCB":
             return opCode(code: "DDCB\(extra)", extra: "")
         case "DDE1":
@@ -1227,9 +1227,9 @@ class OpCodeDefs {
                 case "FD19":
                     return OpCode(v: code, c: "ADD IY,DE", m: " ", l: 1)
                     case "FD21":
-                        return OpCode(v: code, c: "LD IY,$$", m: "Load the memory location IY with the value $$", l: 3, t: .DATA)
+                        return OpCode(v: code, c: "LD IY,$$", m: "Load the memory location IY with the value $$", l: 3)
                 case "FD22":
-                return OpCode(v: code, c: "LD ($$),IY", m: " ", l: 3, t: .DATA)
+                return OpCode(v: code, c: "LD ($$),IY", m: " ", l: 3)
                 case "FD23":
                 return OpCode(v: code, c: "INC IY", m: " ", l: 1)
                 case "FD24":
@@ -1241,7 +1241,7 @@ class OpCodeDefs {
                 case "FD29":
                 return OpCode(v: code, c: "ADD IY,IY", m: " ", l: 1)
                 case "FD2A":
-                return OpCode(v: code, c: "LD IY,($$)", m: " ", l: 3, t: .DATA)
+                return OpCode(v: code, c: "LD IY,($$)", m: " ", l: 3)
                 case "FD2B":
                 return OpCode(v: code, c: "DEC IY", m: " ", l: 1)
                 case "FD2C":
@@ -1251,11 +1251,11 @@ class OpCodeDefs {
                 case "FD2E":
                 return OpCode(v: code, c: "LD IYL,±", m: " ", l: 2)
                 case "FD34":
-                return OpCode(v: code, c: "INC (IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "INC (IY+§§)", m: " ", l: 2)
                 case "FD35":
                 return OpCode(v: code, c: "DEC (IY+§§)", m: " ", l: 2)
         case "FD36":
-            return OpCode(v: code, c: "LD (IY+$1),$2", m: "Load the contents of the memory address stored in (IY + $1) with the value $2", l: 3, t: .DATA)
+            return OpCode(v: code, c: "LD (IY+$1),$2", m: "Load the contents of the memory address stored in (IY + $1) with the value $2", l: 3)
                 case "FD39":
                 return OpCode(v: code, c: "ADD IY,SP", m: " ", l: 1)
                 case "FD44":
@@ -1263,25 +1263,25 @@ class OpCodeDefs {
                 case "FD45":
                 return OpCode(v: code, c: "LD B,IYL", m: " ", l: 1)
                 case "FD46":
-                return OpCode(v: code, c: "LD B,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD B,(IY+§§)", m: " ", l: 2)
                 case "FD4C":
                 return OpCode(v: code, c: "LD C,IYH", m: " ", l: 1)
                 case "FD4D":
                 return OpCode(v: code, c: "LD C,IYL", m: " ", l: 1)
                 case "FD4E":
-                return OpCode(v: code, c: "LD C,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD C,(IY+§§)", m: " ", l: 2)
                 case "FD54":
                 return OpCode(v: code, c: "LD D,IYH", m: " ", l: 1)
                 case "FD55":
                 return OpCode(v: code, c: "LD D,IYL", m: " ", l: 1)
                 case "FD56":
-                return OpCode(v: code, c: "LD D,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD D,(IY+§§)", m: " ", l: 2)
                 case "FD5C":
                 return OpCode(v: code, c: "LD E,IYH", m: " ", l: 1)
                 case "FD5D":
                 return OpCode(v: code, c: "LD E,IYL", m: " ", l: 1)
                 case "FD5E":
-                return OpCode(v: code, c: "LD E,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD E,(IY+§§)", m: " ", l: 2)
                 case "FD60":
                 return OpCode(v: code, c: "LD IYH,B", m: " ", l: 1)
                 case "FD61":
@@ -1295,7 +1295,7 @@ class OpCodeDefs {
                 case "FD65":
                 return OpCode(v: code, c: "LD IYH,IYL", m: " ", l: 1)
                 case "FD66":
-                return OpCode(v: code, c: "LD H,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD H,(IY+§§)", m: " ", l: 2)
                 case "FD67":
                 return OpCode(v: code, c: "LD IYH,A", m: " ", l: 1)
                 case "FD68":
@@ -1311,77 +1311,77 @@ class OpCodeDefs {
                 case "FD6D":
                 return OpCode(v: code, c: "LD IYL,IYL", m: " ", l: 1)
                 case "FD6E":
-                return OpCode(v: code, c: "LD L,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD L,(IY+§§)", m: " ", l: 2)
                 case "FD6F":
                 return OpCode(v: code, c: "LD IYL,A", m: " ", l: 1)
                 case "FD70":
-                return OpCode(v: code, c: "LD (IY+0),B", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),B", m: " ", l: 2)
                 case "FD71":
-                return OpCode(v: code, c: "LD (IY+0),C", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),C", m: " ", l: 2)
                 case "FD72":
-                return OpCode(v: code, c: "LD (IY+0),D", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),D", m: " ", l: 2)
                 case "FD73":
-                return OpCode(v: code, c: "LD (IY+0),E", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),E", m: " ", l: 2)
                 case "FD74":
-                return OpCode(v: code, c: "LD (IY+0),H", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),H", m: " ", l: 2)
                 case "FD75":
-                return OpCode(v: code, c: "LD (IY+0),L", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),L", m: " ", l: 2)
                 case "FD77":
-                return OpCode(v: code, c: "LD (IY+0),A", m: " ", l: 1)
+                return OpCode(v: code, c: "LD (IY+§§),A", m: " ", l: 2)
                 case "FD7C":
                 return OpCode(v: code, c: "LD A,IYH", m: " ", l: 1)
                 case "FD7D":
                 return OpCode(v: code, c: "LD A,IYL", m: " ", l: 1)
                 case "FD7E":
-                return OpCode(v: code, c: "LD A,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "LD A,(IY+§§)", m: " ", l: 2)
                 case "FD84":
                 return OpCode(v: code, c: "ADD A,IYH", m: " ", l: 1)
                 case "FD85":
                 return OpCode(v: code, c: "ADD A,IYL", m: " ", l: 1)
                 case "FD86":
-                return OpCode(v: code, c: "ADD A,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "ADD A,(IY+§§)", m: " ", l: 2)
                 case "FD8C":
                 return OpCode(v: code, c: "ADC A,IYH", m: " ", l: 1)
                 case "FD8D":
                 return OpCode(v: code, c: "ADC A,IYL", m: " ", l: 1)
                 case "FD8E":
-                return OpCode(v: code, c: "ADC A,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "ADC A,(IY+§§)", m: " ", l: 2)
                 case "FD94":
                 return OpCode(v: code, c: "SUB A,IYH", m: " ", l: 1)
                 case "FD95":
                 return OpCode(v: code, c: "SUB A,IYL", m: " ", l: 1)
                 case "FD96":
-                return OpCode(v: code, c: "SUB A,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "SUB A,(IY+§§)", m: " ", l: 2)
                 case "FD9C":
                 return OpCode(v: code, c: "SBC A,IYH", m: " ", l: 1)
                 case "FD9D":
                 return OpCode(v: code, c: "SBC A,IYL", m: " ", l: 1)
                 case "FD9E":
-                return OpCode(v: code, c: "SBC A,(IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "SBC A,(IY+§§)", m: " ", l: 2)
                 case "FDA4":
                 return OpCode(v: code, c: "AND IYH", m: " ", l: 1)
                 case "FDA5":
                 return OpCode(v: code, c: "AND IYL", m: " ", l: 1)
                 case "FDA6":
-                return OpCode(v: code, c: "AND (IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "AND (IY+§§)", m: " ", l: 2)
                 case "FDAC":
                 return OpCode(v: code, c: "XOR IYH", m: " ", l: 1)
                 case "FDAD":
                 return OpCode(v: code, c: "XOR IYL", m: " ", l: 1)
                 case "FDAE":
-                return OpCode(v: code, c: "XOR (IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "XOR (IY+§§)", m: " ", l: 2)
                 case "FDB4":
                 return OpCode(v: code, c: "OR IYH", m: " ", l: 1)
                 case "FDB5":
                 return OpCode(v: code, c: "OR IYL", m: " ", l: 1)
                 case "FDB6":
-                return OpCode(v: code, c: "OR (IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "OR (IY+§§)", m: " ", l: 2)
                 case "FDBC":
                 return OpCode(v: code, c: "CP IYH", m: " ", l: 1)
                 case "FDBD":
                 return OpCode(v: code, c: "CP IYL", m: " ", l: 1)
                 case "FDBE":
-                return OpCode(v: code, c: "CP (IY+0)", m: " ", l: 1)
+                return OpCode(v: code, c: "CP (IY+§§)", m: " ", l: 2)
         case "FDCB":
             return opCode(code: "FDCB\(extra)", extra: "")
                 case "FDE1":
@@ -1436,7 +1436,7 @@ class OpCodeDefs {
         case "ED42":
         return OpCode(v: code, c: "SBC HL,BC", m: " ", l: 1)
         case "ED43":
-        return OpCode(v: code, c: "LD ($$),BC", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),BC", m: " ", l: 3)
         case "ED44":
         return OpCode(v: code, c: "NEG", m: " ", l: 1)
         case "ED45":
@@ -1452,7 +1452,7 @@ class OpCodeDefs {
         case "ED4A":
         return OpCode(v: code, c: "ADC HL,BC", m: " ", l: 1)
         case "ED4B":
-        return OpCode(v: code, c: "LD BC,($$)", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD BC,($$)", m: " ", l: 3)
         case "ED4C":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED4D":
@@ -1468,7 +1468,7 @@ class OpCodeDefs {
         case "ED52":
         return OpCode(v: code, c: "SBC HL,DE", m: " ", l: 1)
         case "ED53":
-        return OpCode(v: code, c: "LD ($$),DE", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),DE", m: " ", l: 3)
         case "ED54":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED55":
@@ -1484,7 +1484,7 @@ class OpCodeDefs {
         case "ED5A":
         return OpCode(v: code, c: "ADC HL,DE", m: " ", l: 1)
         case "ED5B":
-        return OpCode(v: code, c: "LD DE,($$)", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD DE,($$)", m: " ", l: 3)
         case "ED5C":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED5D":
@@ -1500,7 +1500,7 @@ class OpCodeDefs {
         case "ED62":
         return OpCode(v: code, c: "SBC HL,HL", m: " ", l: 1)
         case "ED63":
-        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),HL", m: " ", l: 3)
         case "ED64":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED65":
@@ -1516,7 +1516,7 @@ class OpCodeDefs {
         case "ED6A":
         return OpCode(v: code, c: "ADC HL,HL", m: " ", l: 1)
         case "ED6B":
-        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD HL,($$)", m: " ", l: 3)
         case "ED6C":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED6D":
@@ -1524,7 +1524,7 @@ class OpCodeDefs {
         case "ED6E":
         return OpCode(v: code, c: "[im0]", m: " ", l: 1)
         case "ED6F":
-        return OpCode(v: code, c: "BIT 5,(iy+0)->a", m: " ", l: 1)
+        return OpCode(v: code, c: "BIT 5,(iy+§§)->a", m: " ", l: 2)
         case "ED70":
         return OpCode(v: code, c: "IN F,(C)", m: " ", l: 1)
         case "ED71":
@@ -1532,7 +1532,7 @@ class OpCodeDefs {
         case "ED72":
         return OpCode(v: code, c: "SBC HL,SP", m: " ", l: 1)
         case "ED73":
-        return OpCode(v: code, c: "LD ($$),SP", m: " ", l: 3, t: .DATA)
+        return OpCode(v: code, c: "LD ($$),SP", m: " ", l: 3)
         case "ED74":
         return OpCode(v: code, c: "[neg]", m: " ", l: 1)
         case "ED75":

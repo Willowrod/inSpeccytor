@@ -211,8 +211,7 @@ extension Z80 {
             interuptMode = 1
         instructionComplete(states: 8)
         case 0x78: // TODO: IN A,(C)
-            
-       performIn(port: c(), map: l(), destination: aR())
+       performIn(port: c(), map: b(), destination: aR())
             instructionComplete(states: 12)
         case 0x79: // TODO OUT (C),A
         instructionComplete(states: 12)
@@ -382,7 +381,7 @@ extension Z80 {
 
 
         default:
-            print("Potential Unknown code ED\(String(byte, radix: 16))")
+            print("Potential Unknown code ED\(String(byte, radix: 16)) From \(PC.hex())")
             print("-")
         }
         R.inc()

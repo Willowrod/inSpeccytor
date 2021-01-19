@@ -123,7 +123,7 @@ extension Z80 {
                 instructionComplete(states: 15)
             }
         default:
-            print("Potential unknown code CB\(String(byte, radix: 16))")
+            print("Potential unknown code CB\(String(byte, radix: 16)) From \(PC.hex())")
             print("-")
         }
         R.inc()
