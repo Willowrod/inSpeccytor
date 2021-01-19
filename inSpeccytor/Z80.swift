@@ -38,6 +38,7 @@ class Z80 {
     var screenWriteComplete = true
     var ram: Array<UInt8> = []
     var keyboard: Array<UInt8> = []
+    var kempston: UInt8 = 0x00
     var screenBuffer = Bitmap(width: 256, height: 192, color: .white)
     let tStatesPerFrame = 69888
     var currentTStates = 0
@@ -297,9 +298,11 @@ class Z80 {
             break
         }
         } else if port == 0x7f {
-  //          print("Checking for Kempston Joystick")
+ //           print("Checking for Fuller Joystick")
+            //             destination.inCommand(byte: kempston)
         } else if port == 0x1f {
-  //          print("Checking for Fuller Joystick")
+          destination.inCommand(byte: kempston)
+ //          print("Checking for Kempston Joystick")
         } else {
             print("Checking port \(port.hex())")
         }
@@ -345,10 +348,10 @@ class Z80 {
                 }
                 
                 shouldForceBreak = false
-              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
-                if PC == 0xfe27 {
-                    print("Breaking here")
-                }
+//              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+//                if PC == 0xfe27 {
+//                    print("Breaking here")
+//                }
                 
                 opCode(byte: byte)
                 beeper.updateSample(UInt32(currentTStates), beep: clicks)

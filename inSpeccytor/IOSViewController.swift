@@ -43,6 +43,14 @@ class IOSViewController: BaseViewController{
         keyboardInteraction(key: sender.tag, pressed: false)
     }
     
+    @IBAction func joystickButtonUp(_ sender: UIButton) {
+        joystickInteraction(key: sender.tag, pressed: false)
+    }
+    
+    @IBAction func joystickButtonDown(_ sender: UIButton) {
+        joystickInteraction(key: sender.tag, pressed: true)
+    }
+    
     @IBAction func toggleKeyboard(_ sender: Any) {
         fileViewConstant.constant = 0.0
         if keyboardBottomConstant.constant > 0{
@@ -81,6 +89,7 @@ class IOSViewController: BaseViewController{
                     filez.append(item)
                 }
             }
+            filez.sort()
             fileTable.reloadData()
         } catch {
             // failed to read directory – bad permissions, perhaps?

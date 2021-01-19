@@ -226,6 +226,28 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func joystickInteraction(key: Int, pressed: Bool){
+        // Kempston 000FUDLR
+        switch key{
+        case 1: // Left
+            pressed ? z80.kempston.set(bit: 1) : z80.kempston.clear(bit: 1)
+        case 2: // Right
+            pressed ? z80.kempston.set(bit: 0) : z80.kempston.clear(bit: 0)
+        case 3: // Up
+            pressed ? z80.kempston.set(bit: 3) : z80.kempston.clear(bit: 3)
+        case 4: // Down
+            pressed ? z80.kempston.set(bit: 2) : z80.kempston.clear(bit: 2)
+        case 5: // LFire
+            pressed ? z80.kempston.set(bit: 4) : z80.kempston.clear(bit: 4)
+        case 6: // RFire
+            pressed ? z80.kempston.set(bit: 4) : z80.kempston.clear(bit: 4)
+        default:
+         break
+        }
+        
+        
+    }
+    
     func load(file: String){
        var fileStruct = file.split(separator: ".")
         

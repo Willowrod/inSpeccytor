@@ -305,7 +305,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojb-GL-5HY" userLabel="JoystickView">
                                 <rect key="frame" x="0.0" y="782" width="834" height="0.0"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJw-k9-AOT" userLabel="Left">
+                                    <button opaque="NO" tag="1" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJw-k9-AOT" userLabel="Left">
                                         <rect key="frame" x="40" y="6" width="50" height="47.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="ZZR-sE-7dA"/>
@@ -314,8 +314,12 @@
                                         <state key="normal" backgroundImage="arrow.left.square.fill" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joystickButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="9oO-ej-vKa"/>
+                                            <action selector="joystickButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y3m-dP-SBw"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Si-QN-sXR" userLabel="Right">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Si-QN-sXR" userLabel="Right">
                                         <rect key="frame" x="100" y="6" width="50" height="47.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="WzE-OQ-hWh"/>
@@ -324,8 +328,12 @@
                                         <state key="normal" backgroundImage="arrow.right.square.fill" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joystickButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="gFv-hS-ve9"/>
+                                            <action selector="joystickButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="If1-rj-64h"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgg-gB-HzQ" userLabel="Up">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgg-gB-HzQ" userLabel="Up">
                                         <rect key="frame" x="684" y="-54" width="50" height="47.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="MOW-9a-ax6"/>
@@ -334,8 +342,12 @@
                                         <state key="normal" backgroundImage="arrow.up.square.fill" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joystickButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="KVO-zD-pvS"/>
+                                            <action selector="joystickButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lPi-Cm-8Ic"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hp-xd-WXp" userLabel="Down">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hp-xd-WXp" userLabel="Down">
                                         <rect key="frame" x="684" y="6" width="50" height="47.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="TO0-Em-lBY"/>
@@ -344,8 +356,12 @@
                                         <state key="normal" backgroundImage="arrow.down.app.fill" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joystickButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="nCO-z4-sYM"/>
+                                            <action selector="joystickButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="doA-Jb-Zi3"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcS-US-48f" userLabel="Fire">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcS-US-48f" userLabel="Fire">
                                         <rect key="frame" x="744" y="-54.5" width="50" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Hfv-6X-5Hf"/>
@@ -354,8 +370,12 @@
                                         <state key="normal" backgroundImage="square.circle.fill" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joystickButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="pYN-4j-ghh"/>
+                                            <action selector="joystickButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qzZ-Ln-0rQ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-6Y-B3l" userLabel="Fire2">
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-6Y-B3l" userLabel="Fire2">
                                         <rect key="frame" x="40" y="-54.5" width="50" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="FtH-Wx-Fun"/>
@@ -364,6 +384,10 @@
                                         <state key="normal" backgroundImage="square.circle.fill" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joystickButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="tHV-RG-Apo"/>
+                                            <action selector="joystickButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GKT-gB-68m"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
