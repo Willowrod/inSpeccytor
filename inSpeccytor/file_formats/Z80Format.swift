@@ -9,6 +9,11 @@ import Foundation
 class Z80Format: BaseFileFormat {
     var snaData: [UInt8] = []
     var hasCompressedData = false
+    var z80Version = 1
+    var memory = 1 // 1 for 48K, 2 for 128K, 3 for unsupported
+    
+    
+    
     init(data: [UInt8]){
         super.init()
         snaData = data
@@ -37,7 +42,7 @@ class Z80Format: BaseFileFormat {
             let data = contents! as Data
             let dataString = data.hexString
             if let dataString = dataString{
-            importDataFromString(data: dataString)
+                importDataFromString(data: dataString)
             }
             process()
         } else {
@@ -47,15 +52,15 @@ class Z80Format: BaseFileFormat {
     
     func process(){
         sortHeaderData()
-        ramBanks = [[]]
+        ramBanks = [[],[],[],[],[],[],[],[],[],[],[],[]]
         addDataToRam()
         importSuccessful = true
     }
     
     func importDataFromString(data: String){
-            data.splitToBytes(separator: " ").forEach {byte in
-                snaData.append(UInt8(byte, radix: 16) ?? 0x00)
-            }
+        data.splitToBytes(separator: " ").forEach {byte in
+            snaData.append(UInt8(byte, radix: 16) ?? 0x00)
+        }
     }
     
     func sortHeaderData(){
@@ -64,44 +69,44 @@ class Z80Format: BaseFileFormat {
         
         /*
          
-             0       1       A register
-             1       1       F register
-             2       2       BC register pair (LSB, i.e. C, first)
-             4       2       HL register pair
-             6       2       Program counter
-             8       2       Stack pointer
-             10      1       Interrupt register
-             11      1       Refresh register (Bit 7 is not significant!)
-             12      1       Bit 0  : Bit 7 of the R-register
-                             Bit 1-3: Border colour
-                             Bit 4  : 1=Basic SamRom switched in
-                             Bit 5  : 1=Block of data is compressed
-                             Bit 6-7: No meaning
-             13      2       DE register pair
-             15      2       BC' register pair
-             17      2       DE' register pair
-             19      2       HL' register pair
-             21      1       A' register
-             22      1       F' register
-             23      2       IY register (Again LSB first)
-             25      2       IX register
-             27      1       Interrupt flipflop, 0=DI, otherwise EI
-             28      1       IFF2 (not particularly important...)
-             29      1       Bit 0-1: Interrupt mode (0, 1 or 2)
-                             Bit 2  : 1=Issue 2 emulation
-                             Bit 3  : 1=Double interrupt frequency
-                             Bit 4-5: 1=High video synchronisation
-                                      3=Low video synchronisation
-                                      0,2=Normal
-                             Bit 6-7: 0=Cursor/Protek/AGF joystick
-                                      1=Kempston joystick
-                                      2=Sinclair 2 Left joystick (or user
-                                        defined, for version 3 .z80 files)
-                                      3=Sinclair 2 Right joystick
+         0       1       A register
+         1       1       F register
+         2       2       BC register pair (LSB, i.e. C, first)
+         4       2       HL register pair
+         6       2       Program counter
+         8       2       Stack pointer
+         10      1       Interrupt register
+         11      1       Refresh register (Bit 7 is not significant!)
+         12      1       Bit 0  : Bit 7 of the R-register
+         Bit 1-3: Border colour
+         Bit 4  : 1=Basic SamRom switched in
+         Bit 5  : 1=Block of data is compressed
+         Bit 6-7: No meaning
+         13      2       DE register pair
+         15      2       BC' register pair
+         17      2       DE' register pair
+         19      2       HL' register pair
+         21      1       A' register
+         22      1       F' register
+         23      2       IY register (Again LSB first)
+         25      2       IX register
+         27      1       Interrupt flipflop, 0=DI, otherwise EI
+         28      1       IFF2 (not particularly important...)
+         29      1       Bit 0-1: Interrupt mode (0, 1 or 2)
+         Bit 2  : 1=Issue 2 emulation
+         Bit 3  : 1=Double interrupt frequency
+         Bit 4-5: 1=High video synchronisation
+         3=Low video synchronisation
+         0,2=Normal
+         Bit 6-7: 0=Cursor/Protek/AGF joystick
+         1=Kempston joystick
+         2=Sinclair 2 Left joystick (or user
+         defined, for version 3 .z80 files)
+         3=Sinclair 2 Right joystick
          
          */
         
-
+        
         registers.primary.registerA = snaData[0]
         registers.primary.registerF = snaData[1]
         registers.primary.registerC = snaData[2]
@@ -118,7 +123,7 @@ class Z80Format: BaseFileFormat {
         registers.borderColour = (flagByte & 14) >> 1
         registers.primary.registerE = snaData[13]
         registers.primary.registerD = snaData[14]
-
+        
         registers.swap.registerC = snaData[15]
         registers.swap.registerB = snaData[16]
         registers.swap.registerE = snaData[17]
@@ -141,49 +146,139 @@ class Z80Format: BaseFileFormat {
         
         if (registers.registerPC == 0x00){
             // Signifies V 2 or 3
+            /*
+             * 30      2       Length of additional header block (see below)
+              * 32      2       Program counter
+              * 34      1       Hardware mode (see below)
+              * 35      1       If in SamRam mode, bitwise state of 74ls259.
+                                For example, bit 6=1 after an OUT 31,13 (=2*6+1)
+                                If in 128 mode, contains last OUT to 7ffd
+              * 36      1       Contains 0FF if Interface I rom paged
+              * 37      1       Bit 0: 1 if R register emulation on
+                                Bit 1: 1 if LDIR emulation on
+              * 38      1       Last OUT to fffd (soundchip register number)
+              * 39      16      Contents of the sound chip registers
+                55      2       Low T state counter
+                57      1       Hi T state counter
+                58      1       Flag byte used by Spectator (QL spec. emulator)
+                                Ignored by Z80 when loading, zero when saving
+                59      1       0FF if MGT Rom paged
+                60      1       0FF if Multiface Rom paged. Should always be 0.
+                61      1       0FF if 0-8191 is RAM
+                62      1       0FF if 8192-16383 is RAM
+                63      10      5x keyboard mappings for user defined joystick
+                73      10      5x ascii word: keys corresponding to mappings above
+                83      1       MGT type: 0=Disciple+Epson,1=Discipls+HP,16=Plus D
+                84      1       Disciple inhibit button status: 0=out, 0ff=in
+                85      1       Disciple inhibit flag: 0=rom pageable, 0ff=not
+             */
             let additionalLength = registers.registerPair(l: snaData[30], h: snaData[31])
             registers.registerPC = registers.registerPair(l: snaData[32], h: snaData[33])
-            dataStart += Int(additionalLength &+ 1)
-            
-        }
-        
-        
-        
-        
-        
-        }
-        
-    func addDataToRam(){
-        
-        if hasCompressedData {
-            var currentByte = dataStart
-            while currentByte < snaData.count {
-                let thisByte = snaData[currentByte]
-                if currentByte + 3 < snaData.count {
-                let nextByte = snaData[currentByte + 1]
-                if thisByte != 0xED && nextByte != 0xED{
-                    ramBanks[0].append(thisByte)
-                    currentByte = currentByte &+ 1
-                } else {
-                    let countByte = snaData[currentByte + 2]
-                    let repeatedByte = snaData[currentByte + 3]
-                    for _ in 0..<Int(countByte) {
-                        ramBanks[0].append(repeatedByte)
+            dataStart += Int(additionalLength) + 2
+            let hardwareMode = snaData[34]
+            switch additionalLength {
+            case 23:
+                z80Version = 2
+                switch hardwareMode{
+                case 0,1:
+                    memory = 1
+                case 3,4:
+                    memory = 2
+                default:
+                    memory = 3
+                }
+                case 53,54:
+                   z80Version = 3
+                    switch hardwareMode{
+                    case 0,1,2:
+                        memory = 1
+                    case 4,5,6:
+                        memory = 2
+                    default:
+                        memory = 3
                     }
-                    currentByte = currentByte &+ 4
-                }
-                } else {
-                    ramBanks[0].append(thisByte)
-                    currentByte = currentByte &+ 1
-                }
+                    
+            default:
+                z80Version = 3
+            }
+        }
+        
+        
+        
+        
+        
+    }
+    
+    func addDataToRam(){
+        var currentByte = dataStart
+        if (z80Version == 1){
+            if hasCompressedData {
+                decompress(blockData: Array(snaData[dataStart...]), memoryBank: 0)
+            } else {
+                ramBanks[0].append(contentsOf: snaData[dataStart...])
+            }
+        } else {
+            // Version 2 & 3 follow
+            // Broken into blocks of data
+//            0       2       Length of data (without this 3-byte header)
+//            2       1       Page number of block
+//            3       [0]     Compressed data
+           while currentByte < snaData.count {
+                let blockLength = Int(registers.registerPair(l: snaData[currentByte], h: snaData[currentByte + 1]))
+            currentByte += 2
+            let memoryBank = Int(snaData[currentByte])
+            currentByte += 1
+            decompress(blockData: Array(snaData[currentByte..<currentByte+blockLength]), memoryBank: memoryBank)
+            currentByte += blockLength
             }
             
-        } else {
-            ramBanks[0].append(contentsOf: snaData[dataStart...])
+        }
+        
+        
+        
+    }
+    
+    func decompress(blockData: [UInt8], memoryBank: Int){
+        var currentByte = 0
+        while currentByte < blockData.count {
+            let thisByte = blockData[currentByte]
+            if currentByte + 3 < blockData.count {
+                let nextByte = blockData[currentByte + 1]
+                if thisByte == 0xED && nextByte == 0xED{
+                    let countByte = blockData[currentByte + 2]
+                    let repeatedByte = blockData[currentByte + 3]
+                    for _ in 0..<Int(countByte) {
+                        ramBanks[memoryBank].append(repeatedByte)
+                    }
+                    currentByte = currentByte &+ 4
+                } else {
+                    ramBanks[memoryBank].append(thisByte)
+                    currentByte = currentByte &+ 1
+                }
+            } else {
+                ramBanks[memoryBank].append(thisByte)
+                currentByte = currentByte &+ 1
+            }
         }
     }
     
-    
+    func retrieveRam() -> [UInt8] {
+        if z80Version == 1 {
+            return ramBanks[0]
+        }
+        if memory == 1{
+        var ram: [UInt8] = []
+            ram.append(contentsOf: ramBanks[8])
+            ram.append(contentsOf: ramBanks[4])
+            ram.append(contentsOf: ramBanks[5])
+            return ram
+        } else if memory == 2{
+            print ("128K not supported.... Yet")
+            return []
+        }
+        print ("unsupported hardware model")
+        return []
+    }
     
     
 }

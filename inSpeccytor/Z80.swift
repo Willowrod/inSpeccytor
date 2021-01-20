@@ -246,8 +246,10 @@ class Z80 {
         interupt = false
         var count = startAddress
         dataModel.forEach { byte in
+            if (count < ram.count){
             ram[count] = byte
             count += 1
+            }
         }
         pauseProcessor = false
     }
@@ -409,6 +411,27 @@ class Z80 {
     
     func ret(){
         PC = pop()
+    }
+    
+    func findRam(data:[UInt8]) -> String{
+        let len = data.count
+        var count = 0x4000
+        while count < ram.count - len{
+            let ramByte = fetchRam(location: count)
+            if (ramByte == data[0]){
+                var match = true
+                for a in 1..<len {
+                    if fetchRam(location: count + a) != data[a]{
+                        match = false
+                    }
+                }
+                if match {
+                    print ("\(String(count, radix: 16)), ")
+            }
+        }
+            count += 1
+        }
+        return "sweep completed"
     }
     
     func decRam(location: Int){

@@ -55,8 +55,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func bootEmulator(){
         loadROM()
-       loadSnapshot(sna: "dizzy_fw")
+     //  loadSnapshot(sna: "dizzy_fw")
         // loadSnapshot(sna: "actionbiker")
+        loadZ80(z80Snap: "middleoflakecheat")
         startProcessor()
     }
     
@@ -281,7 +282,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadZ80(z80Snap: String){
         let snapShot = Z80Format(fileName: z80Snap)
-    z80.writeRAM(dataModel: snapShot.ramBanks[0], startAddress: 16384)
+        z80.writeRAM(dataModel: snapShot.retrieveRam(), startAddress: 16384)
     z80.initialiseRegisters(header: snapShot.registers)
         header = snapShot.registers
         writeCodeBytes()
