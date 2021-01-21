@@ -71,6 +71,8 @@
 		CD62E48125ACDAB900B89CEA /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E48025ACDAB900B89CEA /* IOSViewController.swift */; };
 		CD62E48225ACDAB900B89CEA /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E48025ACDAB900B89CEA /* IOSViewController.swift */; };
 		CD62E48725ACE58900B89CEA /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD62E48625ACE58900B89CEA /* images.xcassets */; };
+		CD88D88B25B8DE4100AA8153 /* TapeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */; };
+		CD88D88C25B8DE4100AA8153 /* TapeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
 		CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */; };
@@ -356,6 +358,7 @@
 		CD62E47A25A84EF900B89CEA /* Action Biker.tzx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Action Biker.tzx"; sourceTree = "<group>"; };
 		CD62E48025ACDAB900B89CEA /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
 		CD62E48625ACE58900B89CEA /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeLoader.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
 		CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeDDFDCB.swift"; sourceTree = "<group>"; };
@@ -547,6 +550,7 @@
 				CD62E47425A79FCB00B89CEA /* TXZFormat.swift */,
 				CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */,
 				CDBC543125B4927C004FAA55 /* Z80Format.swift */,
+				CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */,
 			);
 			path = file_formats;
 			sourceTree = "<group>";
@@ -1176,6 +1180,7 @@
 				CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */,
 				CD62E46C25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
+				CD88D88B25B8DE4100AA8153 /* TapeLoader.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
 				CDCB61DD2588DC56008DD916 /* Int+Attributes.swift in Sources */,
@@ -1234,6 +1239,7 @@
 				CD62E3F125A2068C00B89CEA /* allTestsP_DDCB80toff.swift in Sources */,
 				CD03E70E259CF963005F0F83 /* UInt8+Bitwise.swift in Sources */,
 				CDD9021525AE05A100AB93FD /* FileFormat.swift in Sources */,
+				CD88D88C25B8DE4100AA8153 /* TapeLoader.swift in Sources */,
 				CD03E727259CF995005F0F83 /* RegisterModel.swift in Sources */,
 				CD03E723259CF995005F0F83 /* OpCode.swift in Sources */,
 				CD03E71B259CF989005F0F83 /* Bitmap.swift in Sources */,

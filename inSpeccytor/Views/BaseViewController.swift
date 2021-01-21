@@ -54,36 +54,37 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func bootEmulator(){
-        loadROM()
+     //   loadROM()
      //  loadSnapshot(sna: "dizzy_fw")
         // loadSnapshot(sna: "actionbiker")
-        loadZ80(z80Snap: "middleoflakecheat")
+      //  loadZ80(z80Snap: "middleoflakecheat")
+        importTZX(tzxFile: "Action Biker")
         startProcessor()
     }
     
-    func loadROM(){
-        if let filePath = Bundle.main.path(forResource: "48k", ofType: "rom"){
-            print("File found - \(filePath)")
-            let contents = NSData(contentsOfFile: filePath)
-            let data = contents! as Data
-            let dataString = data.hexString
-            expandROM(data: dataString)
-        } else {
-            fileName.text = "ROM failed to load"
-            hexView.text = "- - - - - - - -"
-            print("file not found")
-        }
-        writeCodeBytes()
-    }
-    
-    func expandROM(data: String?){
-        if let dataModel = data?.splitToBytesROM(separator: " "){
-          //  self.model = dataModel
-            z80.writeRAM(dataModel: dataModel)
-        } else {
-            fileName.text = "Failed to create ROM"
-        }
-    }
+//    func loadROM(){
+//        if let filePath = Bundle.main.path(forResource: "48k", ofType: "rom"){
+//            print("File found - \(filePath)")
+//            let contents = NSData(contentsOfFile: filePath)
+//            let data = contents! as Data
+//            let dataString = data.hexString
+//            expandROM(data: dataString)
+//        } else {
+//            fileName.text = "ROM failed to load"
+//            hexView.text = "- - - - - - - -"
+//            print("file not found")
+//        }
+//        writeCodeBytes()
+//    }
+//
+//    func expandROM(data: String?){
+//        if let dataModel = data?.splitToBytesROM(separator: " "){
+//          //  self.model = dataModel
+//            z80.writeRAM(dataModel: dataModel)
+//        } else {
+//            fileName.text = "Failed to create ROM"
+//        }
+//    }
     
     func startProcessor(){
         DispatchQueue.background(background: {

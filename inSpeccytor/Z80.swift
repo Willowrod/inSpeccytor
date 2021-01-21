@@ -74,7 +74,7 @@ class Z80 {
         
         beeper.ticksPerFrame = tStatesPerFrame
 
-        
+        loadROM()
         
     }
     
@@ -238,6 +238,26 @@ class Z80 {
         ret()
         } else {
             PC = header.registerPC
+        }
+    }
+    
+    func loadROM(){
+        if let filePath = Bundle.main.path(forResource: "48k", ofType: "rom"){
+            print("File found - \(filePath)")
+            let contents = NSData(contentsOfFile: filePath)
+            let data = contents! as Data
+            let dataString = data.hexString
+            expandROM(data: dataString)
+        } else {
+            print("file not found")
+        }
+    }
+    
+    func expandROM(data: String?){
+        if let dataModel = data?.splitToBytesROM(separator: " "){
+            writeRAM(dataModel: dataModel)
+        } else {
+            print("Failed to create ROM")
         }
     }
     

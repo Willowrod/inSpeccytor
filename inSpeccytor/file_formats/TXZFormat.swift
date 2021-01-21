@@ -6,7 +6,8 @@
 //
 
 import Foundation
-class TZXFormat: BaseFileFormat {
+class TZXFormat: BaseFileFormat, TapeDelegate {
+    
     var tzxData: [UInt8] = []
     var blocks: [BaseTZXBlock] = []
     var currentByte: Int = 0
@@ -23,7 +24,7 @@ class TZXFormat: BaseFileFormat {
         super.init()
         if let tzxBytes = data?.splitToBytes(separator: " "){
             tzxBytes.forEach{byte in
-                tzxData.append(UInt8(byte) ?? 0x00)
+                tzxData.append(UInt8(byte, radix: 16) ?? 0x00)
             }
         process()
         }
@@ -37,6 +38,10 @@ class TZXFormat: BaseFileFormat {
         readBlock(fromByte: currentByte)
         }
         print("TZX file imported")
+        currentBlock = 0
+        let myTapeImporter = TapeLoader.init()
+        myTapeImporter.tapeDelegate = self
+        myTapeImporter.initialiseTape()
     }
     
     func readBlock(fromByte: Int){
@@ -107,6 +112,22 @@ class TZXFormat: BaseFileFormat {
         return 0x00
     }
     
+    // Delegate Methods
+    
+    
+    func callNextBlock() -> BaseTZXBlock? {
+        while currentBlock < blocks.count {
+            if let block = blocks.first(where: {$0.order == currentBlock}){
+                if block.isCodeBlock {
+                    currentBlock += 1
+                    return block
+                }
+            } else {
+            currentBlock += 1
+            }
+        }
+        return nil
+    }
 }
 
 class BaseTZXBlock: Codable {
@@ -117,6 +138,8 @@ class BaseTZXBlock: Codable {
     var blockCounter = 0
     var rawData: [UInt8] = []
     var pause: UInt16 = 0
+    var isHeader = false
+    var isCodeBlock = true
     
     init(data: ArraySlice<UInt8>, order: Int){
         self.order = order
@@ -165,7 +188,6 @@ class TZXHeaderBlock: BaseTZXBlock {
 }
 
 class TZXTAPStyleBlock: BaseTZXBlock {
-    var header = false
     var type: UInt8 = 0x00
     var fileName = ""
     var dataBlockLength: UInt16 = 0x00
@@ -222,6 +244,7 @@ class TZXMessage {
     
     init(type: UInt8, block: ArraySlice<UInt8>){
         self.type = type
+        
 parseText(block: block)
     }
     
@@ -269,6 +292,10 @@ parseText(block: block)
 class TZXMessageStyleBlock: BaseTZXBlock{
     var text: [TZXMessage] = []
     
+    override func process() {
+        isCodeBlock = false
+    }
+    
     func displayMessages() {
         text.forEach{message in
             print("... \(message.description): \(message.text)")
@@ -278,6 +305,7 @@ class TZXMessageStyleBlock: BaseTZXBlock{
 
 class TZXTextDescriptionBlock: TZXMessageStyleBlock {
     override func process() {
+        super.process()
         blockType = 0x30
         blockCounter += 1
         let length = fetchByte(byte: blockCounter)
@@ -290,6 +318,7 @@ class TZXTextDescriptionBlock: TZXMessageStyleBlock {
 class TZXTextMessageBlock: TZXMessageStyleBlock {
     var displayTime: UInt8 = 0x00
     override func process() {
+        super.process()
         blockType = 0x31
         blockCounter += 1
         displayTime = fetchByte(byte: blockCounter)
@@ -305,6 +334,7 @@ class TZXTextArchiveBlock: TZXMessageStyleBlock {
     var totalTextLength: UInt16 = 0x00
     var numberOfStrings: UInt8 = 0x00
     override func process() {
+        super.process()
         blockType = 0x32
         blockCounter += 1
         totalTextLength = fetchWord(byte: blockCounter)
@@ -334,7 +364,7 @@ class TZXStandardSpeedBlock: TZXTAPStyleBlock {
         let tempByteCount = blockCounter
         
         if fetchByte(byte: blockCounter) == 0x00{
-            header = true
+            isHeader = true
             type = fetchByte(byte: blockCounter)
             for char in blockData[1...10]{
                 fileName += String(UnicodeScalar(UInt8(char)))
@@ -345,10 +375,10 @@ class TZXStandardSpeedBlock: TZXTAPStyleBlock {
             parameter2 = fetchWord(byte: blockCounter)
             print("Header imported - Type: \(headerType()) - Name: \(fileName) - Block Length: \(dataBlockLength) - \(parameter1Details()) - \(parameter2Details()) - Length: \(blockLength) - ")
         } else {
-            header = false
+            isHeader = false
             print ("Standard Speed block imported of length \(blockLength)")
         }
-        printBlockData(data: blockData)
+ //       printBlockData(data: blockData)
         blockCounter = tempByteCount
     }
 }
