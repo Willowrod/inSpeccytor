@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol TapeDelegate {
-    func callNextBlock() -> BaseTZXBlock?
-}
-
 class TapeLoader: Z80 {
 
     var tapeDelegate: TapeDelegate? = nil
@@ -35,9 +31,9 @@ class TapeLoader: Z80 {
                 ldRam(location: IX.value(), value: byte)
                 IX.inc()
             }
-            if basicBlock {
-                IX.ld(value: <#T##UInt16#>)
-            }
+//            if basicBlock {
+//                IX.ld(value: <#T##UInt16#>)
+//            }
             
             if (currentBlock.isHeader){
                 PC = 0x0873

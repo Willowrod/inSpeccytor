@@ -11,7 +11,7 @@ class Z80Format: BaseFileFormat {
     var hasCompressedData = false
     var z80Version = 1
     var memory = 1 // 1 for 48K, 2 for 128K, 3 for unsupported
-    
+    let MAX_BLOCK_LENGTH = 16384
     
     
     init(data: [UInt8]){
@@ -228,8 +228,13 @@ class Z80Format: BaseFileFormat {
             currentByte += 2
             let memoryBank = Int(snaData[currentByte])
             currentByte += 1
+            if blockLength == 0xffff {
+                ramBanks[memoryBank].append(contentsOf: snaData[currentByte..<currentByte+MAX_BLOCK_LENGTH])
+                currentByte += MAX_BLOCK_LENGTH
+            } else {
             decompress(blockData: Array(snaData[currentByte..<currentByte+blockLength]), memoryBank: memoryBank)
-            currentByte += blockLength
+                currentByte += blockLength
+            }
             }
             
         }

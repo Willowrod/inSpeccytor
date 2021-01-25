@@ -25,7 +25,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTF-oB-ve0">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTF-oB-ve0" userLabel="Screen Layout View">
                                 <rect key="frame" x="41.5" y="54" width="751" height="500.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUK-Z4-onH" userLabel="ScreenView" customClass="UIImageView">
@@ -936,6 +936,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="border" destination="zTF-oB-ve0" id="uDJ-ho-FJu"/>
                         <outlet property="fileName" destination="ePG-gj-JJh" id="URf-6H-Mks"/>
                         <outlet property="fileTable" destination="oA2-pm-AY4" id="eug-27-M58"/>
                         <outlet property="fileViewConstant" destination="nPN-Xz-aRO" id="mdX-sA-FaX"/>

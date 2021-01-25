@@ -17,6 +17,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var jumpBox: UITextField!
     @IBOutlet weak var baseSelector: UISegmentedControl!
     
+    @IBOutlet weak var border: UIView!
     
     
     let pCOffset = 16384 - 27
@@ -49,16 +50,17 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         z80.delegate = self
         screenRender.setUpImageView()
-
+//        updateBorder(colour: Color.red)
         bootEmulator()
     }
     
     func bootEmulator(){
      //   loadROM()
-     //  loadSnapshot(sna: "dizzy_fw")
-        // loadSnapshot(sna: "actionbiker")
-      //  loadZ80(z80Snap: "middleoflakecheat")
-        importTZX(tzxFile: "Action Biker")
+        //  loadSnapshot(sna: "dizzy_fw")
+        //   loadSnapshot(sna: "actionbiker")
+        // loadZ80(z80Snap: "middleoflakecheat")
+        //   importTZX(tzxFile: "Action Biker")
+         loadZ80(z80Snap: "spectest")
         startProcessor()
     }
     
@@ -575,7 +577,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Z80 Delegate
     
-    
+    func updateBorder(colour: Color){
+        border.backgroundColor = colour.toUIColor()
+    }
     
     func updateRegisters() {
         

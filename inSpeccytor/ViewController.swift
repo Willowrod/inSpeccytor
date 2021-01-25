@@ -19,6 +19,8 @@ class ViewController: BaseViewController {
     @IBOutlet weak var h: UILabel!
     @IBOutlet weak var l: UILabel!
 
+    @IBOutlet weak var address: UITextField!
+    @IBOutlet weak var newByte: UITextField!
     
     
     override func viewDidLoad() {
@@ -106,6 +108,21 @@ class ViewController: BaseViewController {
         parseLine()
     }
     
+    @IBAction func poke(_ sender: Any) {
+        if address.text == "" || newByte.text == "" {
+            z80.ldRam(location: UInt16(0x5821), value: UInt8(0x0b))
+            z80.ldRam(location: UInt16(0x5822), value: UInt8(0x4b))
+            z80.ldRam(location: UInt16(0x5823), value: UInt8(0xcb))
+        } else {
+        if baseSelector.selectedSegmentIndex == 0 {
+            z80.ldRam(location: UInt16(address.text ?? "0000", radix: 16) ?? 0xffff, value: UInt8(newByte.text ?? "00", radix: 16) ?? 0x00)
+        } else {
+            z80.ldRam(location: UInt16(address.text ?? "0") ?? 0xffff, value: UInt8(newByte.text ?? "00") ?? 0x00)
+        }
+//        address.text = "0000"
+//        newByte.text = "00"
+        }
+    }
     
 //
 //

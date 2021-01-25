@@ -100,6 +100,7 @@ class SNAFormat: BaseFileFormat {
         registers.primary.registerA = snaData[22]
         registers.registerSP = registers.registerPair(l:snaData[23], h:snaData[24])
         registers.interuptMode = Int(snaData[25])
+        registers.borderColour = snaData[26]
         registers.shouldReturn = true
         
     }

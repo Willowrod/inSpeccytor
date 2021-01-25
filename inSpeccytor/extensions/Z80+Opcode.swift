@@ -718,14 +718,7 @@ extension Z80 {
                 instructionComplete(states: 10, length: 3)
             } //returnOpCode(v: code, c: "JP NC,$$", m: " ", l: 3, t: .CODE)
         case 0xD3: // TODO OUT (±),A
-            if byte1 == 0xfe {
-//                if borderColourIndex != (byte & 0x07) {
-//                    borderColourIndex = byte & 0x07
-//                    borderColour = colourTable[borderColourIndex]
-//                }
-
-                clicks = a()
-            }
+            performOut(port: byte1, map: byte2, source: aR())
             instructionComplete(states: 11, length: 2) //returnOpCode(v: code, c: "OUT (±),A", m: " ", l: 2)
         case 0xD4:
             if (!Z80.F.byteValue.isSet(bit: Flag.CARRY)){
@@ -761,32 +754,8 @@ extension Z80 {
                 instructionComplete(states: 10, length: 3)
             } //returnOpCode(v: code, c: "JP C,$$", m: " ", l: 3, t: .CODE)
         case 0xDB: // TODO: IN
-            
        performIn(port: byte1, map: a(), destination: aR())
-//            if (byte1 == 0xfe){
-//                switch a() {
-//                case 0xfe:
-//                    aR().inCommand(byte: keyboard[7])
-//                case 0xfd:
-//                    aR().inCommand(byte: keyboard[6])
-//                case 0xfb:
-//                    aR().inCommand(byte: keyboard[5])
-//                case 0xf7:
-//                    aR().inCommand(byte: keyboard[4])
-//                case 0xef:
-//                    aR().inCommand(byte: keyboard[3])
-//                case 0xdf:
-//                    aR().inCommand(byte: keyboard[2])
-//                case 0xbf:
-//                    aR().inCommand(byte: keyboard[1])
-//                case 0x7f:
-//                    aR().inCommand(byte: keyboard[0])
-//                default:
-//                    print("Bad keyboard - \(a().hex())")
-//                }
-//            }
-
-            instructionComplete(states: 11, length: 2) //returnOpCode(v: code, c: "IN A,(±)", m: "Load register A with an input defined by the current value of A from port $$ (Generally keyboard input) ", l: 2, t: .VALUE)
+            instructionComplete(states: 11, length: 2)
         case 0xDC:
             if (Z80.F.byteValue.isSet(bit: Flag.CARRY)){
                 call(location: word, length: 3)

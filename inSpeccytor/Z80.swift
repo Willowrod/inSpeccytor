@@ -12,7 +12,13 @@ protocol Z80Delegate {
     func updateView(bitmap: Bitmap?)
     func updateDebug(line: UInt16)
     func updateRegisters()
+    func updateBorder(colour: Color)
 }
+
+protocol TapeDelegate {
+    func callNextBlock() -> BaseTZXBlock?
+}
+
 
 class Z80 {
     var A: Accumilator = Accumilator()
@@ -57,6 +63,7 @@ class Z80 {
     let beeper = AudioStreamer()
     var pauseProcessor = false
     var clicks: UInt8 = 0
+    var spareRegister: Register = Register() // Primarily used to pass values that should be in a register - the undocumented OUT (C), 0 is a good example
     
     init() {
         ram = Array(repeating: 0, count: 65536)
@@ -239,6 +246,11 @@ class Z80 {
         } else {
             PC = header.registerPC
         }
+        
+        //delegate?.updateBorder(colour: header.borderColour.border())
+        spareRegister.ld(value: header.borderColour)
+        performOut(port: 0xfe, map: 0x00, source: spareRegister)
+        
     }
     
     func loadROM(){
@@ -327,6 +339,15 @@ class Z80 {
  //          print("Checking for Kempston Joystick")
         } else {
             print("Checking port \(port.hex())")
+        }
+    }
+    
+    func performOut(port: UInt8, map: UInt8, source: Register) {
+        if (port == 0xfe){ // Change the border colour
+            delegate?.updateBorder(colour: source.byteValue.border())
+        }
+        if (port == 0xfd){ // 128k paging
+      //      delegate?.updateBorder(colour: source.byteValue.border())
         }
     }
     

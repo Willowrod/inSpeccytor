@@ -35,6 +35,10 @@ struct Bitmap {
     mutating func setAttributes(bytes: ArraySlice<UInt8>, flashing: Bool){
         var indicator = 0
         bytes.forEach { byte in
+            if byte.isSet(bit: 6){
+                // Should be bright....
+                print("Bright byte found.")
+            }
             let isFlashing = byte.isSet(bit: 7) && flashing
             let paperValue: Color = byte.paper()
             let inkValue: Color = byte.ink()

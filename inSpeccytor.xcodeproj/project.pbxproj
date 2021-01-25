@@ -272,6 +272,10 @@
 		CDBC555C25B4BFD7004FAA55 /* brian.sna in Resources */ = {isa = PBXBuildFile; fileRef = CDBC54A425B4BFD7004FAA55 /* brian.sna */; };
 		CDBC556A25B8349D004FAA55 /* middleoflakecheat.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBC556925B8349D004FAA55 /* middleoflakecheat.z80 */; };
 		CDBC556B25B8349D004FAA55 /* middleoflakecheat.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBC556925B8349D004FAA55 /* middleoflakecheat.z80 */; };
+		CDBCBB3925BAFE3800FDB350 /* testtape.tap in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBB3825BAFE3800FDB350 /* testtape.tap */; };
+		CDBCBB3A25BAFE3800FDB350 /* testtape.tap in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBB3825BAFE3800FDB350 /* testtape.tap */; };
+		CDBCBB4225BAFE4C00FDB350 /* spectest.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBB4125BAFE4C00FDB350 /* spectest.z80 */; };
+		CDBCBB4325BAFE4C00FDB350 /* spectest.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBB4125BAFE4C00FDB350 /* spectest.z80 */; };
 		CDCB61C925881786008DD916 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61C825881786008DD916 /* Color.swift */; };
 		CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61CD258817C8008DD916 /* Bitmap.swift */; };
 		CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */; };
@@ -462,6 +466,8 @@
 		CDBC54A325B4BFD7004FAA55 /* dizzy.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = dizzy.z80; sourceTree = "<group>"; };
 		CDBC54A425B4BFD7004FAA55 /* brian.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = brian.sna; sourceTree = "<group>"; };
 		CDBC556925B8349D004FAA55 /* middleoflakecheat.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = middleoflakecheat.z80; sourceTree = "<group>"; };
+		CDBCBB3825BAFE3800FDB350 /* testtape.tap */ = {isa = PBXFileReference; lastKnownFileType = file; path = testtape.tap; sourceTree = "<group>"; };
+		CDBCBB4125BAFE4C00FDB350 /* spectest.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spectest.z80; sourceTree = "<group>"; };
 		CDCB61C825881786008DD916 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CDCB61CD258817C8008DD916 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Bitmap.swift"; sourceTree = "<group>"; };
@@ -766,6 +772,8 @@
 			children = (
 				CDE3ECC7258F523C00C8E8AF /* roms */,
 				CDCB61E12588F030008DD916 /* aticatac.sna */,
+				CDBCBB4125BAFE4C00FDB350 /* spectest.z80 */,
+				CDBCBB3825BAFE3800FDB350 /* testtape.tap */,
 				CDBC543B25B4A08E004FAA55 /* CYBERRUN.sna */,
 				CDBC543A25B4A08D004FAA55 /* CYBERUN2.z80 */,
 				CD62E47A25A84EF900B89CEA /* Action Biker.tzx */,
@@ -998,6 +1006,7 @@
 				CDBC54D925B4BFD7004FAA55 /* marsport.sna in Resources */,
 				CDBC54BD25B4BFD7004FAA55 /* seabasedelta.sna in Resources */,
 				CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */,
+				CDBCBB3925BAFE3800FDB350 /* testtape.tap in Resources */,
 				CDBC54DD25B4BFD7004FAA55 /* matchday2.sna in Resources */,
 				CDBC550D25B4BFD7004FAA55 /* worminparadise.sna in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
@@ -1014,6 +1023,7 @@
 				CDBC552F25B4BFD7004FAA55 /* specialoperations.sna in Resources */,
 				CDBC554F25B4BFD7004FAA55 /* mooncresta.sna in Resources */,
 				CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */,
+				CDBCBB4225BAFE4C00FDB350 /* spectest.z80 in Resources */,
 				CDBC551D25B4BFD7004FAA55 /* dandy.sna in Resources */,
 				CDBC555325B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */,
 				CDBC54BF25B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */,
@@ -1098,11 +1108,13 @@
 				CDBC553025B4BFD7004FAA55 /* specialoperations.sna in Resources */,
 				CDBC555425B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */,
 				CDBC550C25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */,
+				CDBCBB3A25BAFE3800FDB350 /* testtape.tap in Resources */,
 				CDBC54FA25B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */,
 				CDBC54D425B4BFD7004FAA55 /* dynamitedan2.sna in Resources */,
 				CDBC551A25B4BFD7004FAA55 /* everyonesawally.sna in Resources */,
 				CDBC54CA25B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */,
 				CDBC54A625B4BFD7004FAA55 /* superspy.sna in Resources */,
+				CDBCBB4325BAFE4C00FDB350 /* spectest.z80 in Resources */,
 				CDBC556B25B8349D004FAA55 /* middleoflakecheat.z80 in Resources */,
 				CDBC553C25B4BFD7004FAA55 /* megabucks.sna in Resources */,
 				CD62E47C25A84EF900B89CEA /* Action Biker.tzx in Resources */,
