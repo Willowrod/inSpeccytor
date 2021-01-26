@@ -938,7 +938,6 @@
                     <connections>
                         <outlet property="border" destination="zTF-oB-ve0" id="uDJ-ho-FJu"/>
                         <outlet property="fileName" destination="ePG-gj-JJh" id="URf-6H-Mks"/>
-                        <outlet property="fileTable" destination="oA2-pm-AY4" id="eug-27-M58"/>
                         <outlet property="fileViewConstant" destination="nPN-Xz-aRO" id="mdX-sA-FaX"/>
                         <outlet property="hexView" destination="4AJ-XY-ERX" id="Kn0-pF-GPT"/>
                         <outlet property="joystickHeight" destination="YRD-eD-dCT" id="eYe-e6-9RI"/>
@@ -949,6 +948,7 @@
                         <outlet property="keyboardView" destination="PkA-qW-gci" id="mSG-NO-o2S"/>
                         <outlet property="mediaButton" destination="Qet-yV-3HG" id="YbR-ok-apu"/>
                         <outlet property="screenRender" destination="zUK-Z4-onH" id="rU7-Um-od2"/>
+                        <outlet property="snapShotTableView" destination="oA2-pm-AY4" id="LRE-Kh-x9b"/>
                         <outlet property="snapshotButton" destination="mef-Z7-7PJ" id="xhi-zK-rar"/>
                     </connections>
                 </viewController>

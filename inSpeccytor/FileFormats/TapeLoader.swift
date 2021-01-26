@@ -56,7 +56,7 @@ class TapeLoader: Z80 {
                    // Load the next tape block
                 loadTape()
             } else {
-                let byte = ram[Int(PC)]
+                let byte = fetchRam(location: PC)
                 opCode(byte: byte)
             }
             }

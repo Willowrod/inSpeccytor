@@ -27,12 +27,10 @@ class IOSViewController: BaseViewController{
     
     @IBOutlet weak var keyboardBottomConstant: NSLayoutConstraint!
     var kbAspectConstant: NSLayoutConstraint? = nil
-    var filez: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.fileTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     @IBAction func keyPressed(_ sender: UIButton) {
@@ -76,24 +74,7 @@ class IOSViewController: BaseViewController{
     }
     
     @IBAction func offerSnapshots(_ sender: Any) {
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        filez.removeAll()
-        do {
-            let items = try fm.contentsOfDirectory(atPath: path)
-
-            for item in items {
-                print("Found: \(item)")
-                if item.contains(".sna") || item.contains(".z80"){
-                    print("Adding: \(item)")
-                    filez.append(item)
-                }
-            }
-            filez.sort()
-            fileTable.reloadData()
-        } catch {
-            // failed to read directory – bad permissions, perhaps?
-        }
+    createFileList()
     keyboardBottomConstant.constant = -keyboardView.frame.height
     joystickHeight.constant = 0.0
         fileViewConstant.constant = 300
@@ -102,32 +83,36 @@ class IOSViewController: BaseViewController{
     @IBAction func offerMedia(_ sender: Any) {
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView == self.fileTable){
-            return self.filez.count
-        }
-        return super.tableView(tableView, numberOfRowsInSection: section)
-    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        if (tableView == fileTable){
-            let cell:UITableViewCell = (tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell?)!
-            cell.textLabel?.text = filez[row]
-            return cell
-        }
-        return super.tableView(tableView, cellForRowAt: indexPath)
+    override func hideSnapShotTable(){
+        snapShotTableView.isHidden = true
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView == fileTable){
-            let row = indexPath.row
-            let thisFile = self.filez[row]
-            load(file: thisFile)
-        } else {
-            super.tableView(tableView, didSelectRowAt: indexPath)
-        }
-    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if (tableView == self.fileTable){
+//            return self.filez.count
+//        }
+//        return super.tableView(tableView, numberOfRowsInSection: section)
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let row = indexPath.row
+//        if (tableView == fileTable){
+//            let cell:UITableViewCell = (tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell?)!
+//            cell.textLabel?.text = filez[row]
+//            return cell
+//        }
+//        return super.tableView(tableView, cellForRowAt: indexPath)
+//    }
+//
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if (tableView == fileTable){
+//            let row = indexPath.row
+//            let thisFile = self.filez[row]
+//            computer?.load(file: thisFile)
+//        } else {
+//            super.tableView(tableView, didSelectRowAt: indexPath)
+//        }
+//    }
 
     
     

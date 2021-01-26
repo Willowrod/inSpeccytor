@@ -39,7 +39,9 @@ extension Z80 {
                 register.rlc()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].rlc()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.rlc()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 1: //RRC
@@ -47,7 +49,9 @@ extension Z80 {
                 register.rrc()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].rrc()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.rrc()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 2: //RL
@@ -55,7 +59,9 @@ extension Z80 {
                 register.rl()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].rl()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.rl()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 3: //RR
@@ -63,7 +69,9 @@ extension Z80 {
                 register.rr()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].rr()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.rr()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 4: //SLA
@@ -71,7 +79,9 @@ extension Z80 {
                 register.sla()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].sla()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.sla()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 5: //SRA
@@ -79,7 +89,9 @@ extension Z80 {
                 register.sra()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].sra()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.sra()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 6: //SLL // Undocumented
@@ -87,7 +99,9 @@ extension Z80 {
                 register.sll()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].sll()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.sll()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 7: //SRL
@@ -95,7 +109,9 @@ extension Z80 {
                 register.srl()
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].srl()
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.srl()
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 8...15: //BIT 0
@@ -103,7 +119,8 @@ extension Z80 {
                 register.testBit(bit: opCodeOffset - 8)
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].testBit(bit: opCodeOffset - 8, memPtr: MEMPTR)
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.testBit(bit: opCodeOffset - 8, memPtr: MEMPTR)
                 instructionComplete(states: 12)
             }
         case 16...23: //BIT 0
@@ -111,7 +128,9 @@ extension Z80 {
                 register.byteValue.clear(bit: opCodeOffset - 16)
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].clear(bit: opCodeOffset - 16)
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.clear(bit: opCodeOffset - 16)
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         case 24...31: //BIT 0
@@ -119,7 +138,9 @@ extension Z80 {
                 register.byteValue.set(bit: opCodeOffset - 24)
                 instructionComplete(states: 8)
             } else {
-                ram[Int(hl().value())].set(bit: opCodeOffset - 24)
+                var changeRam = fetchRam(registerPair: hl())
+                changeRam.set(bit: opCodeOffset - 24)
+                ldRam(registerPair: hl(), value: changeRam)
                 instructionComplete(states: 15)
             }
         default:

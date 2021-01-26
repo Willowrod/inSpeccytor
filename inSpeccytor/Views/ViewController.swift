@@ -32,18 +32,18 @@ class ViewController: BaseViewController {
     }
     
     @IBAction func debugStep(_ sender: Any) {
-        z80.shouldStep = true
-        z80.shouldBreak = false
+        computer?.shouldStep = true
+        computer?.shouldBreak = false
     }
     
     @IBAction func debugPause(_ sender: Any) {
-        z80.shouldForceBreak = true
+        computer?.shouldForceBreak = true
     }
     
     @IBAction func debugPlay(_ sender: Any) {
-        z80.shouldStep = false
-        z80.shouldBreak = false
-        z80.shouldForceBreak = false
+        computer?.shouldStep = false
+        computer?.shouldBreak = false
+        computer?.shouldForceBreak = false
     }
     
     @IBAction func debugJump(_ sender: Any) {
@@ -64,15 +64,33 @@ class ViewController: BaseViewController {
         mainTableView.reloadData()
     }
     
+    @IBAction func loadSnapShot(_ sender: Any) {
+        createFileList()
+        snapShotTableView.isHidden = false
+    }
+    
+    override func hideSnapShotTable(){
+        snapShotTableView.isHidden = true
+    }
+    
+    
     override func updateRegisters(){
-        a.text = useHexValues ? z80.A.hexValue() : z80.A.stringValue()
-        f.text = useHexValues ? Z80.F.hexValue() : Z80.F.stringValue()
-        b.text = useHexValues ? z80.bR().hexValue() : "\(z80.b())"
-        c.text = useHexValues ? z80.cR().hexValue() : z80.cR().stringValue()
-        d.text = useHexValues ? z80.dR().hexValue() : z80.dR().stringValue()
-        e.text = useHexValues ? z80.eR().hexValue() : z80.eR().stringValue()
-        h.text = useHexValues ? z80.hR().hexValue() : z80.hR().stringValue()
-        l.text = useHexValues ? z80.lR().hexValue() : z80.lR().stringValue()
+        switch computerModel {
+        case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
+            if let speccy = computer as? ZXSpectrum {
+                a.text = useHexValues ? speccy.A.hexValue() : speccy.A.stringValue()
+                f.text = useHexValues ? Z80.F.hexValue() : Z80.F.stringValue()
+                b.text = useHexValues ? speccy.bR().hexValue() : "\(speccy.b())"
+                c.text = useHexValues ? speccy.cR().hexValue() : speccy.cR().stringValue()
+                d.text = useHexValues ? speccy.dR().hexValue() : speccy.dR().stringValue()
+                e.text = useHexValues ? speccy.eR().hexValue() : speccy.eR().stringValue()
+                h.text = useHexValues ? speccy.hR().hexValue() : speccy.hR().stringValue()
+                l.text = useHexValues ? speccy.lR().hexValue() : speccy.lR().stringValue()
+            }
+        default:
+            print("Model \(computerModel.rawValue) is not currently supported")
+        }
+
     }
     
 
@@ -110,14 +128,14 @@ class ViewController: BaseViewController {
     
     @IBAction func poke(_ sender: Any) {
         if address.text == "" || newByte.text == "" {
-            z80.ldRam(location: UInt16(0x5821), value: UInt8(0x0b))
-            z80.ldRam(location: UInt16(0x5822), value: UInt8(0x4b))
-            z80.ldRam(location: UInt16(0x5823), value: UInt8(0xcb))
+            computer?.ldRam(location: UInt16(0x5821), value: UInt8(0x0b))
+            computer?.ldRam(location: UInt16(0x5822), value: UInt8(0x4b))
+            computer?.ldRam(location: UInt16(0x5823), value: UInt8(0xcb))
         } else {
         if baseSelector.selectedSegmentIndex == 0 {
-            z80.ldRam(location: UInt16(address.text ?? "0000", radix: 16) ?? 0xffff, value: UInt8(newByte.text ?? "00", radix: 16) ?? 0x00)
+            computer?.ldRam(location: UInt16(address.text ?? "0000", radix: 16) ?? 0xffff, value: UInt8(newByte.text ?? "00", radix: 16) ?? 0x00)
         } else {
-            z80.ldRam(location: UInt16(address.text ?? "0") ?? 0xffff, value: UInt8(newByte.text ?? "00") ?? 0x00)
+            computer?.ldRam(location: UInt16(address.text ?? "0") ?? 0xffff, value: UInt8(newByte.text ?? "00") ?? 0x00)
         }
 //        address.text = "0000"
 //        newByte.text = "00"

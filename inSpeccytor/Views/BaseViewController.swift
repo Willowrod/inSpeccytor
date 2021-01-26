@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Z80Delegate {
+class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate {
     @IBOutlet weak var screenRender: UIImageView!
     @IBOutlet weak var fileName: UILabel!
     @IBOutlet weak var hexView: UITextView!
@@ -18,19 +18,19 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var baseSelector: UISegmentedControl!
     
     @IBOutlet weak var border: UIView!
+    @IBOutlet weak var snapShotTableView: UITableView!
     
     
     let pCOffset = 16384 - 27
     let lineCellIdentifier = "lineCell"
     let mainCellIdentifier = "codeCell"
-    var model: Array<CodeByteModel> = []
-    var opCodes: Array<OpCode> = []
-    var header: RegisterModel = RegisterModel()
+    var model: [CodeByteModel] = []
+    var opCodes: [OpCode] = []
     var stopAfterEachOpCode = false
     var shouldDisplayScreen = false
     let borderX = 0 //32
     let borderY = 0 //24
-    let z80 = Z80()
+    var computer: CPU? = nil
     let opcodeLookup = OpCodeDefs()
     var frames = 1
     var seconds = 1
@@ -45,272 +45,67 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var alreadyAdded: [Int] = []
     var currentEntryPoint = 0
     var isCalc = false
+    var snapShots: [String] = []
+    
+    var computerModel: ComputerModel = .ZXSpectrum_128K
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        z80.delegate = self
         screenRender.setUpImageView()
 //        updateBorder(colour: Color.red)
+        self.snapShotTableView.register(UITableViewCell.self, forCellReuseIdentifier: "snapshotcell")
         bootEmulator()
     }
     
     func bootEmulator(){
-     //   loadROM()
-        //  loadSnapshot(sna: "dizzy_fw")
-        //   loadSnapshot(sna: "actionbiker")
-        // loadZ80(z80Snap: "middleoflakecheat")
-        //   importTZX(tzxFile: "Action Biker")
-         loadZ80(z80Snap: "spectest")
+        switch computerModel {
+        case .ZXSpectrum_48K:
+            computer = ZXSpectrum48K()
+        case .ZXSpectrum_128K:
+            computer = ZXSpectrum128K()
+        default:
+            print("Model \(computerModel.rawValue) is not currently supported")
+        }
+        computer?.delegate = self
         startProcessor()
     }
     
-//    func loadROM(){
-//        if let filePath = Bundle.main.path(forResource: "48k", ofType: "rom"){
-//            print("File found - \(filePath)")
-//            let contents = NSData(contentsOfFile: filePath)
-//            let data = contents! as Data
-//            let dataString = data.hexString
-//            expandROM(data: dataString)
-//        } else {
-//            fileName.text = "ROM failed to load"
-//            hexView.text = "- - - - - - - -"
-//            print("file not found")
-//        }
-//        writeCodeBytes()
-//    }
-//
-//    func expandROM(data: String?){
-//        if let dataModel = data?.splitToBytesROM(separator: " "){
-//          //  self.model = dataModel
-//            z80.writeRAM(dataModel: dataModel)
-//        } else {
-//            fileName.text = "Failed to create ROM"
-//        }
-//    }
-    
     func startProcessor(){
         DispatchQueue.background(background: {
-            self.z80.process()
+            self.computer?.process()
         }, completion:{
             // when background job finished, do something in main thread
         })
     }
     
     func keyboardInteraction(key: Int, pressed: Bool){
-        var bank = -1
-        var bit = -1
-        switch key{
-        case 4: // a
-            bank = 6
-            bit = 0
-        case 5: // b
-            bank = 0
-            bit = 4
-        case 6: // c
-            bank = 7
-            bit = 3
-        case 7: // d
-            bank = 6
-            bit = 2
-        case 8: // e
-            bank = 5
-            bit = 2
-        case 9: // f
-            bank = 6
-            bit = 3
-        case 10: // g
-            bank = 6
-            bit = 4
-        case 11: // h
-            bank = 1
-            bit = 4
-        case 12: // i
-            bank = 2
-            bit = 2
-        case 13: // j
-            bank = 1
-            bit = 3
-        case 14: // k
-            bank = 1
-            bit = 2
-        case 15: // l
-            bank = 1
-            bit = 1
-        case 16: // m
-            bank = 0
-            bit = 2
-        case 17: // n
-            bank = 0
-            bit = 3
-        case 18: // o
-            bank = 2
-            bit = 1
-        case 19: // p
-            bank = 2
-            bit = 0
-        case 20: // q
-            bank = 5
-            bit = 0
-        case 21: // r
-            bank = 5
-            bit = 3
-        case 22: // s
-            bank = 6
-            bit = 1
-        case 23: // t
-            bank = 5
-            bit = 4
-        case 24: // u
-            bank = 2
-            bit = 3
-        case 25: // v
-            bank = 7
-            bit = 4
-        case 26: // w
-            bank = 5
-            bit = 1
-        case 27: // x
-            bank = 7
-            bit = 2
-        case 28: // y
-            bank = 2
-            bit = 4
-        case 29: // z
-            bank = 7
-            bit = 1
-        case 30: // 1
-            bank = 4
-            bit = 0
-        case 31: // 2
-            bank = 4
-            bit = 1
-        case 32: // 3
-            bank = 4
-            bit = 2
-        case 33: // 4
-            bank = 4
-            bit = 3
-        case 34: // 5
-            bank = 4
-            bit = 4
-        case 35: // 6
-            bank = 3
-            bit = 4
-        case 36: // 7
-            bank = 3
-            bit = 3
-        case 37: // 8
-            bank = 3
-            bit = 2
-        case 38: // 9
-            bank = 3
-            bit = 1
-        case 39: // 0
-            bank = 3
-            bit = 0
-        case 40: // enter
-            bank = 1
-            bit = 0
-        case 44: // space
-            bank = 0
-            bit = 0
-        case 225: // LShift (CS)
-            bank = 7
-            bit = 0
-        case 224: // LCnt (SS)
-            bank = 0
-            bit = 1
-            
-        default:
-            bank = -1
-            bit = -1
-        }
-        if bank >= 0 && bit >= 0 {
-            pressed ? z80.keyboard[bank].clear(bit: bit) : z80.keyboard[bank].set(bit: bit)
-        }
+        
+            switch computerModel {
+            case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
+                if let speccy = computer as? ZXSpectrum {
+                    speccy.keyboardInteraction(key: key, pressed: pressed)
+                }
+            default:
+                print("Model \(computerModel.rawValue) is not currently supported")
+            }
     }
     
     func joystickInteraction(key: Int, pressed: Bool){
-        // Kempston 000FUDLR
-        switch key{
-        case 1: // Left
-            pressed ? z80.kempston.set(bit: 1) : z80.kempston.clear(bit: 1)
-        case 2: // Right
-            pressed ? z80.kempston.set(bit: 0) : z80.kempston.clear(bit: 0)
-        case 3: // Up
-            pressed ? z80.kempston.set(bit: 3) : z80.kempston.clear(bit: 3)
-        case 4: // Down
-            pressed ? z80.kempston.set(bit: 2) : z80.kempston.clear(bit: 2)
-        case 5: // LFire
-            pressed ? z80.kempston.set(bit: 4) : z80.kempston.clear(bit: 4)
-        case 6: // RFire
-            pressed ? z80.kempston.set(bit: 4) : z80.kempston.clear(bit: 4)
+        switch computerModel {
+        case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
+            if let speccy = computer as? ZXSpectrum {
+                speccy.joystickInteraction(key: key, pressed: pressed)
+            }
         default:
-         break
+            print("Model \(computerModel.rawValue) is not currently supported")
         }
         
         
     }
     
-    func load(file: String){
-       var fileStruct = file.split(separator: ".")
-        
-        if fileStruct.count > 1{
-            let fileType = fileStruct.last
-            fileStruct.removeLast()
-            let name = fileStruct.joined(separator: ".")
-            self.fileName.text = name
-            switch fileType {
-            case "sna":
-                loadSnapshot(sna: name)
-            case "z80":
-                loadZ80(z80Snap: name)
-            case "tzx":
-                importTZX(tzxFile: name)
-            default:
-                print("Unknown file type = \(file)")
-            }
-        } else {
-            print("Unknown or bad file = \(file)")
-        }
-    }
+  
     
-    func loadSnapshot(sna: String){
-            let snapShot = SNAFormat(fileName: sna)
-        z80.writeRAM(dataModel: snapShot.ramBanks[0], startAddress: 16384)
-        z80.initialiseRegisters(header: snapShot.registers)
-        header = snapShot.registers
-        writeCodeBytes()
-    }
-    
-    func loadZ80(z80Snap: String){
-        let snapShot = Z80Format(fileName: z80Snap)
-        z80.writeRAM(dataModel: snapShot.retrieveRam(), startAddress: 16384)
-    z80.initialiseRegisters(header: snapShot.registers)
-        header = snapShot.registers
-        writeCodeBytes()
-    }
-    
-    func importTZX(tzxFile: String){
-        if let filePath = Bundle.main.path(forResource: tzxFile, ofType: "tzx"){
-            print("File found - \(filePath)")
-            if let index = filePath.lastIndex(of: "/"){
-                let name = filePath.substring(from: index)
-                fileName.text = name
-            } else {
-                fileName.text = "Unknown Snapshot"
-                hexView.text = "- - - - - - - -"
-            }
-            let contents = NSData(contentsOfFile: filePath)
-            let data = contents! as Data
-            let dataString = data.hexString
-            let tzx = TZXFormat.init(data: dataString)
-        } else {
-            fileName.text = "Snapshot failed to load"
-            hexView.text = "- - - - - - - -"
-            print("file not found")
-        }
-    }
+  
     
     func updateFPS(){
         let timestamp = Date.init().timeIntervalSince1970
@@ -322,22 +117,21 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         frames += 1
     }
     
-    func writeCodeBytes(){
-        model.removeAll()
-        var id = 0
-        z80.ram.forEach{byte in
-            model.append(byte.createCodeByte(lineNumber: id))
-            id += 1
-        }
-    }
-    
     // Disassembler
     
     func updatePC(){
         if let pc = programCounter.text, pc.count == 5, let pcUint = Int(pc) {
             pCInDisAssembler = pcUint
         } else {
-            pCInDisAssembler = Int(header.registerPC)
+            
+            switch computerModel {
+            case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
+                if let speccy = computer as? ZXSpectrum {
+                    pCInDisAssembler = Int(speccy.header.registerPC)
+                }
+            default:
+                print("Model \(computerModel.rawValue) is not currently supported")
+            }
         }
         entryPoints.removeAll()
         entryPoints.append(pCInDisAssembler)
@@ -575,7 +369,15 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Delegates
     
-    // Z80 Delegate
+    // CPU Delegate
+    
+    func updateCodeByteModel(model: [CodeByteModel]){
+        self.model = model
+    }
+    
+    func updateTitle(title: String){
+        fileName.text = title
+    }
     
     func updateBorder(colour: Color){
         border.backgroundColor = colour.toUIColor()
@@ -604,7 +406,30 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
     }
     
+    func hideSnapShotTable(){
+        
+    }
     
+    func createFileList(){
+        let fm = FileManager.default
+        let path = Bundle.main.resourcePath!
+        snapShots.removeAll()
+        do {
+            let items = try fm.contentsOfDirectory(atPath: path)
+
+            for item in items {
+                print("Found: \(item)")
+                if item.contains(".sna") || item.contains(".z80"){
+                    print("Adding: \(item)")
+                    snapShots.append(item)
+                }
+            }
+            snapShots.sort()
+            snapShotTableView.reloadData()
+        } catch {
+            // failed to read directory – bad permissions, perhaps?
+        }
+    }
     
     // Tables
     
@@ -612,16 +437,24 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (tableView == self.snapShotTableView){
+            return self.snapShots.count
+        }
         if (tableView == mainTableView){
             return self.opCodes.count
         }
         return self.model.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
+        if (tableView == self.snapShotTableView){
+            let cell:UITableViewCell = (tableView.dequeueReusableCell(withIdentifier: "snapshotcell") as UITableViewCell?)!
+            cell.textLabel?.text = snapShots[row]
+            return cell
+        }
         if (tableView == mainTableView){
             let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
             let thisLine = self.opCodes[row]
@@ -662,7 +495,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.hexValue.text = thisLine.hexValue
             cell.intValue.text = "\(thisLine.intValue)"
             let breakPoint = UInt16(thisLine.lineNumber)
-            if (z80.breakPoints.contains(breakPoint)){
+            if let breakPoints = computer?.breakPoints, breakPoints.contains(breakPoint){
                 cell.backgroundColor = UIColor.yellow
             } else {
                 cell.backgroundColor = UIColor.white
@@ -672,7 +505,12 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView == mainTableView){
+        if (tableView == snapShotTableView){
+            let row = indexPath.row
+            let thisFile = self.snapShots[row]
+            computer?.load(file: thisFile)
+            hideSnapShotTable()
+        } else if (tableView == mainTableView){
             let row = indexPath.row
             let thisLine = self.opCodes[row]
             if (thisLine.target > 0){
@@ -687,15 +525,17 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             let row = indexPath.row
             let thisLine = self.model[row]
             let breakPoint = UInt16(thisLine.lineNumber)
-            if (z80.breakPoints.contains(breakPoint)){
-                while z80.breakPoints.contains(breakPoint){
-                    if let index = z80.breakPoints.firstIndex(of: breakPoint) {
-                        z80.breakPoints.remove(at: index)
+            if let breakPoints = computer?.breakPoints{
+            if breakPoints.contains(breakPoint){
+                while breakPoints.contains(breakPoint){
+                    if let index = breakPoints.firstIndex(of: breakPoint) {
+                        computer!.breakPoints.remove(at: index)
                     }
                 }
                 
             } else {
-                z80.breakPoints.append(breakPoint)
+                computer!.breakPoints.append(breakPoint)
+            }
             }
             tableView.reloadData()
         }

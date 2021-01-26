@@ -11,8 +11,8 @@ extension Z80 {
     
     func opCodeDDFD(reg: RegisterPair, byte: UInt8){
         PC = PC &+ 1
-        let byte1: UInt8 = ram[Int(PC &+ 1)]
-        let byte2: UInt8 = ram[Int(PC &+ 2)]
+        let byte1: UInt8 = fetchRam(location: PC &+ 1)
+        let byte2: UInt8 = fetchRam(location: PC &+ 2)
         let word: UInt16 = (UInt16(byte2) * 256) + UInt16(byte1)
         let targetByte = byte1.isSet(bit: 7) ? reg.value() &- UInt16(byte1.twosCompliment()) : reg.value() &+ UInt16(byte1)
         switch byte {

@@ -9,8 +9,8 @@ import Foundation
 extension Z80 {
     
     func opCode(byte: UInt8){
-        let byte1: UInt8 = ram[Int(PC &+ 1)]
-        let byte2: UInt8 = ram[Int(PC &+ 2)]
+        let byte1: UInt8 = fetchRam(location: PC &+ 1)
+        let byte2: UInt8 = fetchRam(location: PC &+ 2)
         let word: UInt16 = (UInt16(byte2) * 256) + UInt16(byte1)
         switch byte {
         
@@ -265,7 +265,7 @@ extension Z80 {
             bR().ld(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD B,L", m: " ", l: 1)
         case 0x46:
-            bR().ld(value: ram[Int(hl().value())])
+            bR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "LD B,(HL)", m: " ", l: 1)
         case 0x47: //LD B,A
             bR().ld(value: a())
@@ -288,7 +288,7 @@ extension Z80 {
             cR().ld(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD C,L", m: " ", l: 1)
         case 0x4E:
-            cR().ld(value: ram[Int(hl().value())])
+            cR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "LD C,(HL)", m: " ", l: 1)
         case 0x4F:
             cR().ld(value: a())
@@ -311,7 +311,7 @@ extension Z80 {
             dR().ld(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD D,L", m: " ", l: 1)
         case 0x56:
-            dR().ld(value: ram[Int(hl().value())])
+            dR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "LD D,(HL)", m: " ", l: 1)
         case 0x57:
             dR().ld(value: a())
@@ -334,7 +334,7 @@ extension Z80 {
             eR().ld(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD E,L", m: " ", l: 1)
         case 0x5E:
-            eR().ld(value: ram[Int(hl().value())])
+            eR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "LD E,(HL)", m: " ", l: 1)
         case 0x5F:
             eR().ld(value: a())
@@ -357,7 +357,7 @@ extension Z80 {
             hR().ld(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD H,L", m: " ", l: 1)
         case 0x66:
-            hR().ld(value: ram[Int(hl().value())])
+            hR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "LD H,(HL)", m: " ", l: 1)
         case 0x67:
             hR().ld(value: a())
@@ -380,7 +380,7 @@ extension Z80 {
         case 0x6D:
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD L,L", m: " ", l: 1)
         case 0x6E:
-            lR().ld(value: ram[Int(hl().value())])
+            lR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "LD L,(HL)", m: " ", l: 1)
         case 0x6F:
             lR().ld(value: a())
@@ -428,7 +428,7 @@ extension Z80 {
             aR().ld(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD A,L", m: " ", l: 1)
         case 0x7E:
-            aR().ld(value: ram[Int(hl().value())])
+            aR().ld(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD A,(HL)", m: " ", l: 1)
         case 0x7F:
             instructionComplete(states: 4) //returnOpCode(v: code, c: "LD A,A", m: " ", l: 1)
@@ -475,7 +475,7 @@ extension Z80 {
             aR().aDC(diff: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "ADC A,L", m: " ", l: 1)
         case 0x8E:
-            aR().aDC(diff: ram[Int(hl().value())])
+            aR().aDC(diff: fetchRam(registerPair: hl()))
             instructionComplete(states: 4) //returnOpCode(v: code, c: "ADC A,(HL)", m: " ", l: 1)
         case 0x8F:
             aR().aDC(diff: a())
@@ -619,7 +619,7 @@ extension Z80 {
             aR().compare(value: l())
             instructionComplete(states: 4) //returnOpCode(v: code, c: "CP L", m: " ", l: 1)
         case 0xBE:
-            aR().compare(value: ram[Int(hl().value())])
+            aR().compare(value: fetchRam(registerPair: hl()))
             instructionComplete(states: 7) //returnOpCode(v: code, c: "CP (HL)", m: " ", l: 1)
         case 0xBF:
             aR().compare(value: a())

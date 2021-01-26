@@ -10,15 +10,13 @@ extension Z80 {
     
     func opCodeED(byte: UInt8){
         PC = PC &+ 1
-        let byte1: UInt8 = ram[Int(PC &+ 1)]
-        let byte2: UInt8 = ram[Int(PC &+ 2)]
+        let byte1: UInt8 = fetchRam(location: PC &+ 1)
+        let byte2: UInt8 = fetchRam(location: PC &+ 2)
         let word: UInt16 = (UInt16(byte2) * 256) + UInt16(byte1)
         switch byte {
 
         case 0x40: //TODO: IN B,(C)
-            if (c() == 0xfe){
-            bR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-        }
+            performIn(port: c(), map: b(), destination: bR())
         instructionComplete(states: 12)
         case 0x41: // TODO:OUT (C),B
             performOut(port: c(), map: b(), source: bR())
@@ -42,9 +40,7 @@ extension Z80 {
             I.ld(value: a())
             instructionComplete(states: 9)
         case 0x48: // TODO: IN C, (C)
-            if (c() == 0xfe){
-            cR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-        }
+            performIn(port: c(), map: b(), destination: cR())
         instructionComplete(states: 12)
         case 0x49: // TODO: OUT (C), C
             performOut(port: c(), map: b(), source: cR())
@@ -68,9 +64,7 @@ extension Z80 {
             R.ld(value: a())
         instructionComplete(states: 4)
         case 0x50: // TODO: IN D, (C)
-            if (c() == 0xfe){
-            dR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-        }
+            performIn(port: c(), map: b(), destination: dR())
         instructionComplete(states: 12)
         case 0x51: // TODO: OUT (C), D
             performOut(port: c(), map: b(), source: dR())
@@ -94,9 +88,7 @@ extension Z80 {
             aR().ld(value: I.value())
         instructionComplete(states: 9)
         case 0x58: // TODO: IN E, (C)
-            if (c() == 0xfe){
-            eR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-        }
+            performIn(port: c(), map: b(), destination: eR())
         instructionComplete(states: 12)
         case 0x59: // TODO: OUT (C), E
             performOut(port: c(), map: b(), source: eR())
@@ -120,9 +112,7 @@ extension Z80 {
             aR().ld(value: R.value())
         instructionComplete(states: 9)
         case 0x60: // TODO: IN H, (C)
-            if (c() == 0xfe){
-            hR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-        }
+            performIn(port: c(), map: b(), destination: hR())
         instructionComplete(states: 12)
         case 0x61: // TODO: OUT (C), H
             performOut(port: c(), map: b(), source: hR())
@@ -154,9 +144,7 @@ extension Z80 {
             ldRam(location: hl().value(), value: nHL)
         instructionComplete(states: 18)
         case 0x68: // TODO: IN L, (C)
-            if (c() == 0xfe){
-            lR().inCommand(byte: keyboard[Int(l() &- 0x28)])
-        }
+            performIn(port: c(), map: b(), destination: lR())
         instructionComplete(states: 12)
         case 0x69: // TODO: OUT (C), L
             performOut(port: c(), map: b(), source: lR())

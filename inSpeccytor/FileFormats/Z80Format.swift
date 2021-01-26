@@ -228,6 +228,7 @@ class Z80Format: BaseFileFormat {
             currentByte += 2
             let memoryBank = Int(snaData[currentByte])
             currentByte += 1
+            print("Writing bank \(memoryBank) data")
             if blockLength == 0xffff {
                 ramBanks[memoryBank].append(contentsOf: snaData[currentByte..<currentByte+MAX_BLOCK_LENGTH])
                 currentByte += MAX_BLOCK_LENGTH
@@ -267,19 +268,28 @@ class Z80Format: BaseFileFormat {
         }
     }
     
-    func retrieveRam() -> [UInt8] {
+    func retrieveRam() -> [[UInt8]] {
         if z80Version == 1 {
-            return ramBanks[0]
+            var ret: [[UInt8]] = []
+            ret.append(ramBanks[0])
+            return ret
         }
         if memory == 1{
         var ram: [UInt8] = []
             ram.append(contentsOf: ramBanks[8])
             ram.append(contentsOf: ramBanks[4])
             ram.append(contentsOf: ramBanks[5])
-            return ram
+            var ret: [[UInt8]] = []
+            ret.append(ram)
+            return ret
         } else if memory == 2{
-            print ("128K not supported.... Yet")
-            return []
+           // print ("128K not supported.... Yet")
+           // return ramBanks
+            var ret: [[UInt8]] = []
+            for a in 3...10 {
+                ret.append(ramBanks[a])
+            }
+            return ret
         }
         print ("unsupported hardware model")
         return []

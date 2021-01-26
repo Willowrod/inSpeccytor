@@ -75,6 +75,13 @@
                                             <action selector="poke:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="L1S-6Y-V26"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TmH-Wb-4o7" userLabel="LOAD">
+                                        <rect key="frame" x="682" y="15" width="40" height="31"/>
+                                        <state key="normal" title="LOAD"/>
+                                        <connections>
+                                            <action selector="loadSnapShot:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="4gP-cs-kVR"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8N-WK-fYM">
                                         <rect key="frame" x="226" y="15" width="32" height="31"/>
                                         <state key="normal" title="RUN"/>
@@ -156,6 +163,7 @@
                                 <constraints>
                                     <constraint firstItem="s8N-WK-fYM" firstAttribute="leading" secondItem="9iI-EG-WuF" secondAttribute="trailing" constant="8" symbolic="YES" id="1kZ-93-3Gi"/>
                                     <constraint firstItem="Ejq-fi-MB3" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="4fS-7k-wBc"/>
+                                    <constraint firstItem="TmH-Wb-4o7" firstAttribute="leading" secondItem="Zoz-qP-HxU" secondAttribute="trailing" constant="40" id="BK5-7B-2xH"/>
                                     <constraint firstItem="PUT-al-9S5" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="Ey6-pW-azv"/>
                                     <constraint firstItem="9iI-EG-WuF" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="FyK-n0-Q73"/>
                                     <constraint firstItem="PUT-al-9S5" firstAttribute="leading" secondItem="yUm-5v-rNP" secondAttribute="trailing" constant="8" symbolic="YES" id="Gch-yz-HL4"/>
@@ -163,6 +171,7 @@
                                     <constraint firstItem="Zoz-qP-HxU" firstAttribute="leading" secondItem="N4D-7g-LoI" secondAttribute="trailing" constant="20" id="Npq-ug-UZT"/>
                                     <constraint firstItem="yUm-5v-rNP" firstAttribute="leading" secondItem="Ejq-fi-MB3" secondAttribute="trailing" constant="8" symbolic="YES" id="ODi-MN-nk4"/>
                                     <constraint firstItem="B5G-cY-9XQ" firstAttribute="leading" secondItem="s8N-WK-fYM" secondAttribute="trailing" constant="8" symbolic="YES" id="SsS-GM-Haj"/>
+                                    <constraint firstItem="TmH-Wb-4o7" firstAttribute="centerY" secondItem="Zoz-qP-HxU" secondAttribute="centerY" id="USV-dX-7J3"/>
                                     <constraint firstItem="N4D-7g-LoI" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="YkG-EG-6i0"/>
                                     <constraint firstItem="QJw-Sx-8H2" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="bwC-W2-BVP"/>
                                     <constraint firstItem="B5G-cY-9XQ" firstAttribute="centerY" secondItem="dL2-o2-2PD" secondAttribute="centerY" id="cIv-HU-FVC"/>
@@ -242,7 +251,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qb9-Bi-DoW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rup-40-aK1">
+                                <rect key="frame" x="0.0" y="360" width="600" height="240"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZKi-3P-AX1" id="C32-ks-Sew"/>
+                                    <outlet property="delegate" destination="ZKi-3P-AX1" id="aUT-Jc-P7N"/>
+                                </connections>
+                            </tableView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qb9-Bi-DoW">
                                 <rect key="frame" x="600" y="360" width="200" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -559,9 +576,11 @@
                         <viewLayoutGuide key="safeArea" id="I7e-Ts-Ws5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Rup-40-aK1" firstAttribute="centerY" secondItem="IOi-wc-uvd" secondAttribute="centerY" id="194-AL-Iv4"/>
                             <constraint firstItem="qb9-Bi-DoW" firstAttribute="bottom" secondItem="IOi-wc-uvd" secondAttribute="bottom" id="2at-bp-CsD"/>
                             <constraint firstItem="kJt-Sx-lsc" firstAttribute="top" secondItem="I7e-Ts-Ws5" secondAttribute="top" id="9uI-eI-ZtF"/>
                             <constraint firstItem="kJt-Sx-lsc" firstAttribute="centerX" secondItem="I7e-Ts-Ws5" secondAttribute="centerX" id="FV2-yJ-rba"/>
+                            <constraint firstItem="Rup-40-aK1" firstAttribute="centerX" secondItem="IOi-wc-uvd" secondAttribute="centerX" id="JUD-z7-fx9"/>
                             <constraint firstItem="dL2-o2-2PD" firstAttribute="centerX" secondItem="I7e-Ts-Ws5" secondAttribute="centerX" id="LQl-YH-wU8"/>
                             <constraint firstItem="E4l-2G-IA9" firstAttribute="top" secondItem="I7e-Ts-Ws5" secondAttribute="top" id="PEH-Zk-iZh"/>
                             <constraint firstItem="kJt-Sx-lsc" firstAttribute="trailing" secondItem="E1e-fO-X5T" secondAttribute="leading" id="Q7i-uq-drg"/>
@@ -571,11 +590,13 @@
                             <constraint firstItem="E4l-2G-IA9" firstAttribute="leading" secondItem="I7e-Ts-Ws5" secondAttribute="leading" id="acf-RZ-ZN5"/>
                             <constraint firstItem="kJt-Sx-lsc" firstAttribute="height" secondItem="I7e-Ts-Ws5" secondAttribute="height" multiplier="0.5" id="cIc-HM-30G"/>
                             <constraint firstItem="dL2-o2-2PD" firstAttribute="top" secondItem="kJt-Sx-lsc" secondAttribute="bottom" id="e6U-8f-tfX"/>
+                            <constraint firstItem="Rup-40-aK1" firstAttribute="width" secondItem="IOi-wc-uvd" secondAttribute="width" id="fH6-74-aFz"/>
                             <constraint firstItem="IOi-wc-uvd" firstAttribute="leading" secondItem="I7e-Ts-Ws5" secondAttribute="leading" id="h97-E7-z4S"/>
                             <constraint firstItem="IOi-wc-uvd" firstAttribute="width" secondItem="I7e-Ts-Ws5" secondAttribute="width" multiplier="0.75" id="hET-ox-Va0"/>
                             <constraint firstItem="E1e-fO-X5T" firstAttribute="top" secondItem="I7e-Ts-Ws5" secondAttribute="top" id="hal-wZ-DeZ"/>
                             <constraint firstItem="dL2-o2-2PD" firstAttribute="width" secondItem="I7e-Ts-Ws5" secondAttribute="width" id="j7D-FH-aTW"/>
                             <constraint firstItem="qb9-Bi-DoW" firstAttribute="leading" secondItem="IOi-wc-uvd" secondAttribute="trailing" id="lzR-5H-zbt"/>
+                            <constraint firstItem="Rup-40-aK1" firstAttribute="height" secondItem="IOi-wc-uvd" secondAttribute="height" id="qOE-kH-PAp"/>
                             <constraint firstItem="I7e-Ts-Ws5" firstAttribute="bottom" secondItem="IOi-wc-uvd" secondAttribute="bottom" id="tP0-6N-kL7"/>
                             <constraint firstItem="I7e-Ts-Ws5" firstAttribute="trailing" secondItem="qb9-Bi-DoW" secondAttribute="trailing" id="wTV-i1-mxW"/>
                             <constraint firstItem="dL2-o2-2PD" firstAttribute="bottom" secondItem="IOi-wc-uvd" secondAttribute="top" id="y1S-1L-gqo"/>
@@ -600,6 +621,7 @@
                         <outlet property="newByte" destination="N4D-7g-LoI" id="wuM-e6-8Yx"/>
                         <outlet property="programCounter" destination="9iI-EG-WuF" id="zxa-us-JMP"/>
                         <outlet property="screenRender" destination="i2h-Vq-TlF" id="N34-Gm-81P"/>
+                        <outlet property="snapShotTableView" destination="Rup-40-aK1" id="Klk-Lh-QVk"/>
                         <outlet property="tableView" destination="qb9-Bi-DoW" id="CjR-PW-cJ6"/>
                     </connections>
                 </viewController>
@@ -614,10 +636,10 @@
         <image name="pause" catalog="system" width="88" height="128"/>
         <image name="play" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
