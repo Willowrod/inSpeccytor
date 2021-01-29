@@ -113,4 +113,12 @@ class CPU {
         return fetchRamWord(location: registerPair.value())
     }
     
+    func writeCodeBytes(){
+        
+    }
+    
+    func usingRom() -> ComputerModel {
+        return .ZXSpectrum_48K
+    }
+    
 }

@@ -363,6 +363,8 @@ class ZXSpectrum : Z80 {
             }
     initialiseRegisters(header: snapShot.registers)
         header = snapShot.registers
+            spareRegister.ld(value: pagingByte)
+            performOut(port: 0xfd, map: 0x74, source: spareRegister)
         writeCodeBytes()
         }
     }
@@ -388,7 +390,7 @@ class ZXSpectrum : Z80 {
         }
     }
     
-    func writeCodeBytes(){
+    override func writeCodeBytes(){
         var model: Array<CodeByteModel> = []
         var id = 0x4000
         memory[1].forEach{byte in

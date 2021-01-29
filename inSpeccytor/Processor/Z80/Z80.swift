@@ -31,6 +31,7 @@ class Z80: CPU {
     var R: Register = Refresh()
     var SP: UInt16 = 0
     var MEMPTR: UInt16 = 0
+    var pagingByte: UInt8 = 0
     var interuptMode = 1
     var screenWriteComplete = true
    // var ram: Array<UInt8> = []
@@ -225,7 +226,7 @@ class Z80: CPU {
         } else {
             PC = header.registerPC
         }
-        
+        pagingByte = header.ramBankSetting
         delegate?.updateBorder(colour: header.borderColour.border())
         //spareRegister.ld(value: header.borderColour)
         //performOut(port: 0xfe, map: 0x00, source: spareRegister)

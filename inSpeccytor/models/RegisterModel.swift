@@ -31,6 +31,8 @@ struct RegisterModel: Codable {
     
     var shouldReturn: Bool = false
     
+    var ramBankSetting: UInt8 = 0
+    
     func registerPair(l: UInt8, h: UInt8) -> UInt16{
         return (UInt16(h) * 256) + UInt16(l)
     }

@@ -14,6 +14,7 @@ class ZXSpectrum128K: ZXSpectrum {
     var swapBank: [UInt8] = []
     var currentSwapBank = 0
     var bankSwitchEnabled = true
+    var currentRom: ComputerModel = .ZXSpectrum_128K
     
     override func allocateMemory() {
         for _ in 0...7{
@@ -46,9 +47,11 @@ class ZXSpectrum128K: ZXSpectrum {
         case 0:
             memory[0].removeAll()
             memory[0].append(contentsOf: rom128k)
+            currentRom = .ZXSpectrum_128K
         case 1:
             memory[0].removeAll()
             memory[0].append(contentsOf: rom48k)
+            currentRom = .ZXSpectrum_48K
         default:
             print("Invalid ROM selected")
         }
@@ -97,7 +100,6 @@ class ZXSpectrum128K: ZXSpectrum {
             memory[3].append(contentsOf: dataModel[0])
         }
         bankSwitchEnabled = true
-        swapRom(rom: 0)
         pauseProcessor = false
        }
     
@@ -262,6 +264,18 @@ class ZXSpectrum128K: ZXSpectrum {
 //        return 0x00
     }
     
-   
+    override func writeCodeBytes(){
+        var model: Array<CodeByteModel> = []
+        var id = 0x00
+        memory[0].forEach{byte in
+            model.append(byte.createCodeByte(lineNumber: id))
+            id += 1
+        }
+        delegate?.updateCodeByteModel(model: model)
+    }
+    
+    override func usingRom() -> ComputerModel {
+        return currentRom
+    }
     
 }

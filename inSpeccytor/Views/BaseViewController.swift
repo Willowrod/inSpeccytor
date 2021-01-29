@@ -54,6 +54,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         screenRender.setUpImageView()
 //        updateBorder(colour: Color.red)
         self.snapShotTableView.register(UITableViewCell.self, forCellReuseIdentifier: "snapshotcell")
+        self.snapShotTableView.isHidden = true
         bootEmulator()
     }
     
@@ -67,6 +68,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("Model \(computerModel.rawValue) is not currently supported")
         }
         computer?.delegate = self
+        computer?.writeCodeBytes()
         startProcessor()
     }
     
@@ -279,7 +281,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 pCInDisAssembler += 1
             }
             
-                if opCode.value.uppercased() == "EF" {
+                if opCode.value.uppercased() == "EF" && computer?.usingRom() == .ZXSpectrum_48K {
                     isCalc = true
                 }
             
@@ -338,9 +340,11 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             if nextEP > 0xffff {
                 print("Bad EP \(String(nextEP, radix: 16))")
                 return false
-            } else if nextEP < 0x4000 {
-                
-                } else if !alreadyAdded.contains(nextEP){
+            } else
+//            if nextEP < 0x4000 {
+//
+//                } else
+            if !alreadyAdded.contains(nextEP){
             pCInDisAssembler = entryPoints[currentEntryPoint]
             return true
             }
@@ -373,6 +377,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func updateCodeByteModel(model: [CodeByteModel]){
         self.model = model
+        tableView.reloadData()
     }
     
     func updateTitle(title: String){

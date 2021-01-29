@@ -4,13 +4,16 @@
 //
 //  Created by Mike Hall on 17/01/2021.
 //
+enum ZXZ80HardwareMode {
+    case ZX48, ZX128, ZX128P2, ZX128P2A, ZX128P3, SAMRAM, UNSUPPORTED, UNKNOWN
+}
 
 import Foundation
 class Z80Format: BaseFileFormat {
     var snaData: [UInt8] = []
     var hasCompressedData = false
     var z80Version = 1
-    var memory = 1 // 1 for 48K, 2 for 128K, 3 for unsupported
+    var memory: ZXZ80HardwareMode = .UNKNOWN
     let MAX_BLOCK_LENGTH = 16384
     
     
@@ -181,32 +184,42 @@ class Z80Format: BaseFileFormat {
                 z80Version = 2
                 switch hardwareMode{
                 case 0,1:
-                    memory = 1
+                    memory = .ZX48
                 case 3,4:
-                    memory = 2
+                    memory = .ZX128
                 default:
-                    memory = 3
+                    memory = .UNSUPPORTED
                 }
-                case 53,54:
+                case 54,55:
                    z80Version = 3
                     switch hardwareMode{
                     case 0,1,2:
-                        memory = 1
+                        memory = .ZX48
                     case 4,5,6:
-                        memory = 2
+                        memory = .ZX128
                     default:
-                        memory = 3
+                        memory = .UNSUPPORTED
                     }
                     
             default:
                 z80Version = 3
             }
+            
+            registers.ramBankSetting = snaData[35]
         }
-        
-        
-        
-        
-        
+    }
+    
+    func extendedHardwareProfiles(hardwareMode: UInt8) -> ZXZ80HardwareMode{
+        switch hardwareMode {
+        case 7, 8:
+            return .ZX128P3
+        case 12:
+            return .ZX128P2
+        case 13:
+            return .ZX128P2A
+        default:
+            return .UNSUPPORTED
+        }
     }
     
     func addDataToRam(){
@@ -274,7 +287,8 @@ class Z80Format: BaseFileFormat {
             ret.append(ramBanks[0])
             return ret
         }
-        if memory == 1{
+        switch memory {
+        case .ZX48:
         var ram: [UInt8] = []
             ram.append(contentsOf: ramBanks[8])
             ram.append(contentsOf: ramBanks[4])
@@ -282,18 +296,15 @@ class Z80Format: BaseFileFormat {
             var ret: [[UInt8]] = []
             ret.append(ram)
             return ret
-        } else if memory == 2{
-           // print ("128K not supported.... Yet")
-           // return ramBanks
+        case .ZX128, .ZX128P2, .ZX128P3, .ZX128P2A:
             var ret: [[UInt8]] = []
             for a in 3...10 {
                 ret.append(ramBanks[a])
             }
             return ret
-        }
+        default:
         print ("unsupported hardware model")
         return []
     }
-    
-    
+    }
 }
