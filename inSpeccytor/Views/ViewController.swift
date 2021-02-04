@@ -18,10 +18,16 @@ class ViewController: BaseViewController {
     @IBOutlet weak var e: UILabel!
     @IBOutlet weak var h: UILabel!
     @IBOutlet weak var l: UILabel!
-
+    @IBOutlet weak var fpsLabel: UILabel!
+    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var newByte: UITextField!
     
+    @IBOutlet weak var debuggerView: UIView!
+    @IBOutlet weak var registersView: UIView!
+    @IBOutlet weak var screenHeightConstraint: NSLayoutConstraint!
+    
+    var currentSeconds = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,12 @@ class ViewController: BaseViewController {
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
+        setFunctionScreen()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        primaryFunction.selectedSegmentIndex = 1
+        setFunctionScreen()
     }
     
     @IBAction func debugStep(_ sender: Any) {
@@ -49,7 +61,7 @@ class ViewController: BaseViewController {
     @IBAction func debugJump(_ sender: Any) {
         if jumpBox.hasText {
             var jumpTo: Int = 0
-            if baseSelector.selectedSegmentIndex == 0 {
+            if isHex() {
                 jumpTo = Int(jumpBox.text ?? "5B00", radix: 16) ?? 23296
             } else {
               jumpTo = Int(jumpBox.text ?? "23296") ?? 23296
@@ -75,6 +87,7 @@ class ViewController: BaseViewController {
     
     
     override func updateRegisters(){
+        if !isEmulator(){
         switch computerModel {
         case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
             if let speccy = computer as? ZXSpectrum {
@@ -86,11 +99,42 @@ class ViewController: BaseViewController {
                 e.text = useHexValues ? speccy.eR().hexValue() : speccy.eR().stringValue()
                 h.text = useHexValues ? speccy.hR().hexValue() : speccy.hR().stringValue()
                 l.text = useHexValues ? speccy.lR().hexValue() : speccy.lR().stringValue()
+                
+                if isDisassembly() {
+                    if speccy.jumpPoints.count > sizeOfLastJumpMap {
+                        let jumpPoints = speccy.jumpPoints
+                        jumpPoints.forEach {point in
+                            let line = Int(point)
+                            if !entryPoints.contains(line){
+                                entryPoints.append(line)
+                            }
+                        }
+                        sizeOfLastJumpMap = jumpPoints.count
+                    }
+                    
+//                    if (seconds != currentSeconds){
+//                        currentSeconds = seconds
+//                        if speccy.ramUpdated {
+//                            memoryModel = speccy.memoryDump(withRom: true)
+//                            ramViewTable.reloadData()
+//                            speccy.ramUpdated = false
+//                        }
+//                    }
+                    
+                   }
+
             }
         default:
             print("Model \(computerModel.rawValue) is not currently supported")
         }
+        
 
+        
+        }
+        fpsLabel.text = "FPS: \(frames / seconds) in \(seconds) seconds"
+        
+   
+        
     }
     
 
@@ -114,16 +158,21 @@ class ViewController: BaseViewController {
     }
     
     @IBAction func runFromPC(_ sender: Any) {
-        stopAfterEachOpCode = false
-        updatePC()
-        print("Disassembly from PC at \(String(pCInDisAssembler, radix: 16))")
-        parseLine()
+        
+        switch primaryFunction.selectedSegmentIndex {
+        case 1:
+            d_run()
+        case 2:
+            c_run()
+        default:
+            break
+        }
     }
     
     @IBAction func stepFromPC(_ sender: Any) {
-        stopAfterEachOpCode = true
-        updatePC()
-        parseLine()
+//        stopAfterEachOpCode = true
+//        updatePC()
+//        parseLine()
     }
     
     @IBAction func poke(_ sender: Any) {
@@ -132,7 +181,7 @@ class ViewController: BaseViewController {
             computer?.ldRam(location: UInt16(0x5822), value: UInt8(0x4b))
             computer?.ldRam(location: UInt16(0x5823), value: UInt8(0xcb))
         } else {
-        if baseSelector.selectedSegmentIndex == 0 {
+        if isHex() {
             computer?.ldRam(location: UInt16(address.text ?? "0000", radix: 16) ?? 0xffff, value: UInt8(newByte.text ?? "00", radix: 16) ?? 0x00)
         } else {
             computer?.ldRam(location: UInt16(address.text ?? "0") ?? 0xffff, value: UInt8(newByte.text ?? "00") ?? 0x00)
@@ -142,10 +191,39 @@ class ViewController: BaseViewController {
         }
     }
     
-//
-//
-
+    override func updateCodeByteModel(model: [CodeByteModel]){
+        self.model = model
+        tableView.reloadData()
+    }
     
+    override func setFunctionScreen(){
+        switch primaryFunction.selectedSegmentIndex {
+        case 0:
+            screenHeightConstraint.constant = self.view.frame.height * 0.9
+            mainTableView.isHidden = true
+            tableView.isHidden = true
+            debuggerView.isHidden = true
+            hexView.isHidden = true
+            registersView.isHidden = true
+        case 2:
+            screenHeightConstraint.constant = self.view.frame.height * 0.25
+            mainTableView.isHidden = false
+            tableView.isHidden = false
+            debuggerView.isHidden = false
+            hexView.isHidden = false
+            registersView.isHidden = true
+            mainTableView.reloadData()
+        default:
+            screenHeightConstraint.constant = self.view.frame.height * 0.5
+            mainTableView.isHidden = false
+            tableView.isHidden = false
+            debuggerView.isHidden = false
+            hexView.isHidden = false
+            registersView.isHidden = false
+            mainTableView.reloadData()
+        }
+        
+    }
 
     
 }

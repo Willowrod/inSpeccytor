@@ -104,6 +104,7 @@ class ZXSpectrum48K: ZXSpectrum {
         let ramLocation = location - 0x4000
         if ramLocation < memory[1].count{
             memory[1][ramLocation] = value
+            ramUpdated = true
         } else {
             print("Attempting to write to invalid memory location \(String(location, radix: 16)) From \(PC.hex())")
         }

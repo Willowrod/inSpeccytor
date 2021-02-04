@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,11 +41,25 @@
 		CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD03E7C225A12B2E005F0F83 /* allTestsTo7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03E7C125A12B2D005F0F83 /* allTestsTo7f.swift */; };
+		CD0D44E325EFBEC100AD6272 /* Z80Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */; };
+		CD0D44E425EFBEC100AD6272 /* Z80Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */; };
+		CD0D44EC25EFC6B300AD6272 /* CodeRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */; };
+		CD0D44ED25EFC6B300AD6272 /* CodeRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */; };
+		CD0D44F225EFC7D600AD6272 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44F125EFC7D600AD6272 /* DataType.swift */; };
+		CD0D44F325EFC7D600AD6272 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44F125EFC7D600AD6272 /* DataType.swift */; };
+		CD0D450425F0F87500AD6272 /* RamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D450325F0F87500AD6272 /* RamCollectionViewCell.swift */; };
 		CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD13E08325C0399700FB0E21 /* cyberrun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08225C0399700FB0E21 /* cyberrun.sna */; };
 		CD13E08425C0399700FB0E21 /* cyberrun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08225C0399700FB0E21 /* cyberrun.sna */; };
 		CD13E08C25C0647600FB0E21 /* knighttyme128.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */; };
 		CD13E08D25C0647600FB0E21 /* knighttyme128.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */; };
+		CD23901C25ED5692006BFA69 /* SaveLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23901B25ED5692006BFA69 /* SaveLoad.swift */; };
+		CD2A9A2425CC4F1B0052A0F8 /* Z80Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */; };
+		CD2A9A2525CC4F1B0052A0F8 /* Z80Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */; };
+		CD2A9A2D25CC51130052A0F8 /* AssemblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A9A2C25CC51130052A0F8 /* AssemblerTests.swift */; };
+		CD4ED8ED25ED874500EBF8A7 /* Decode+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4ED8EC25ED874500EBF8A7 /* Decode+Dictionary.swift */; };
+		CD4ED8F325EE33B900EBF8A7 /* FilesProvider in Frameworks */ = {isa = PBXBuildFile; productRef = CD4ED8F225EE33B900EBF8A7 /* FilesProvider */; };
+		CD576EB525E8E7F5008A4D72 /* CodeListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD576EB425E8E7F5008A4D72 /* CodeListing.swift */; };
 		CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */; };
 		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD62E3C225A1A32200B89CEA /* allTests80toca.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3C125A1A32200B89CEA /* allTests80toca.swift */; };
@@ -79,6 +93,24 @@
 		CD88D88C25B8DE4100AA8153 /* TapeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
+		CD94820525D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */; };
+		CD94820625D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */; };
+		CD94820B25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */; };
+		CD94820C25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */; };
+		CD94821125D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */; };
+		CD94821225D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */; };
+		CD94821725D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */; };
+		CD94821825D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */; };
+		CD94821D25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */; };
+		CD94821E25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */; };
+		CD94822325D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */; };
+		CD94822425D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */; };
+		CD94822925D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */; };
+		CD94822A25D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */; };
+		CD94822F25D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */; };
+		CD94823025D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */; };
+		CD94823825D2952C001A8718 /* Z80Assembler+Ports.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94823725D2952C001A8718 /* Z80Assembler+Ports.swift */; };
+		CD94823925D2952C001A8718 /* Z80Assembler+Ports.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94823725D2952C001A8718 /* Z80Assembler+Ports.swift */; };
 		CD94C42925C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94C42825C01B1A00C93F21 /* ZXSpectrum128K.swift */; };
 		CD94C42A25C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94C42825C01B1A00C93F21 /* ZXSpectrum128K.swift */; };
 		CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */; };
@@ -288,6 +320,10 @@
 		CDBCBB7325BEC3B800FDB350 /* ComputerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBB7125BEC3B800FDB350 /* ComputerModel.swift */; };
 		CDBCBCAA25BF18BF00FDB350 /* ZXSpectrum48K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBCA925BF18BF00FDB350 /* ZXSpectrum48K.swift */; };
 		CDBCBCAB25BF18BF00FDB350 /* ZXSpectrum48K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBCA925BF18BF00FDB350 /* ZXSpectrum48K.swift */; };
+		CDBF6B7C25D588F9003E189E /* DisassemblyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF6B7B25D588F9003E189E /* DisassemblyExtensions.swift */; };
+		CDBF6B7D25D588F9003E189E /* DisassemblyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF6B7B25D588F9003E189E /* DisassemblyExtensions.swift */; };
+		CDBF6B8225D58A1A003E189E /* CodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF6B8125D58A1A003E189E /* CodeExtensions.swift */; };
+		CDBF6B8325D58A1A003E189E /* CodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF6B8125D58A1A003E189E /* CodeExtensions.swift */; };
 		CDCB61C925881786008DD916 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61C825881786008DD916 /* Color.swift */; };
 		CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61CD258817C8008DD916 /* Bitmap.swift */; };
 		CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */; };
@@ -300,6 +336,293 @@
 		CDD9021525AE05A100AB93FD /* FileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021325AE05A000AB93FD /* FileFormat.swift */; };
 		CDD9021B25AE08E500AB93FD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021A25AE08E500AB93FD /* BaseViewController.swift */; };
 		CDD9021C25AE08E500AB93FD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9021A25AE08E500AB93FD /* BaseViewController.swift */; };
+		CDE32BC125C5F3F9006CF512 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = CDE32BC025C5F3F9006CF512 /* Zip */; };
+		CDE32BC625C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BC525C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip */; };
+		CDE32BC725C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BC525C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip */; };
+		CDE32C5D25C6FA8D006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD225C6FA81006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip */; };
+		CDE32C5E25C6FA8D006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD225C6FA81006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip */; };
+		CDE32C5F25C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD325C6FA81006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip */; };
+		CDE32C6025C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD325C6FA81006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip */; };
+		CDE32C6125C6FA8D006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD425C6FA81006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip */; };
+		CDE32C6225C6FA8E006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD425C6FA81006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip */; };
+		CDE32C6325C6FA8E006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD525C6FA81006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip */; };
+		CDE32C6425C6FA8E006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD525C6FA81006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip */; };
+		CDE32C6525C6FA8E006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD625C6FA82006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip */; };
+		CDE32C6625C6FA8E006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD625C6FA82006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip */; };
+		CDE32C6725C6FA8E006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD725C6FA82006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip */; };
+		CDE32C6825C6FA8E006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD725C6FA82006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip */; };
+		CDE32C6925C6FA8E006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD825C6FA82006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip */; };
+		CDE32C6A25C6FA8E006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD825C6FA82006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip */; };
+		CDE32C6B25C6FA8E006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD925C6FA82006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip */; };
+		CDE32C6C25C6FA8E006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BD925C6FA82006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip */; };
+		CDE32C6D25C6FA8E006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDA25C6FA82006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip */; };
+		CDE32C6E25C6FA8E006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDA25C6FA82006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip */; };
+		CDE32C6F25C6FA8E006CF512 /* Athena (1987)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDB25C6FA82006CF512 /* Athena (1987)(Imagine)(128K).zip */; };
+		CDE32C7025C6FA8E006CF512 /* Athena (1987)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDB25C6FA82006CF512 /* Athena (1987)(Imagine)(128K).zip */; };
+		CDE32C7125C6FA8E006CF512 /* Platoon (1988)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDC25C6FA82006CF512 /* Platoon (1988)(Ocean)(128K).zip */; };
+		CDE32C7225C6FA8E006CF512 /* Platoon (1988)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDC25C6FA82006CF512 /* Platoon (1988)(Ocean)(128K).zip */; };
+		CDE32C7325C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDD25C6FA82006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip */; };
+		CDE32C7425C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDD25C6FA82006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip */; };
+		CDE32C7525C6FA8E006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDE25C6FA82006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip */; };
+		CDE32C7625C6FA8E006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDE25C6FA82006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip */; };
+		CDE32C7725C6FA8E006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDF25C6FA82006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip */; };
+		CDE32C7825C6FA8E006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BDF25C6FA82006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip */; };
+		CDE32C7925C6FA8E006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE025C6FA82006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip */; };
+		CDE32C7A25C6FA8E006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE025C6FA82006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip */; };
+		CDE32C7B25C6FA8E006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE125C6FA82006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip */; };
+		CDE32C7C25C6FA8E006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE125C6FA82006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip */; };
+		CDE32C7D25C6FA8E006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE225C6FA83006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip */; };
+		CDE32C7E25C6FA8E006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE225C6FA83006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip */; };
+		CDE32C7F25C6FA8E006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE325C6FA83006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip */; };
+		CDE32C8025C6FA8E006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE325C6FA83006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip */; };
+		CDE32C8125C6FA8E006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE425C6FA83006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip */; };
+		CDE32C8225C6FA8E006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE425C6FA83006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip */; };
+		CDE32C8325C6FA8E006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE525C6FA83006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip */; };
+		CDE32C8425C6FA8E006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE525C6FA83006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip */; };
+		CDE32C8525C6FA8E006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE625C6FA83006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip */; };
+		CDE32C8625C6FA8E006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE625C6FA83006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip */; };
+		CDE32C8725C6FA8E006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE725C6FA83006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip */; };
+		CDE32C8825C6FA8E006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE725C6FA83006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip */; };
+		CDE32C8925C6FA8E006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE825C6FA83006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip */; };
+		CDE32C8A25C6FA8E006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE825C6FA83006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip */; };
+		CDE32C8B25C6FA8E006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE925C6FA83006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip */; };
+		CDE32C8C25C6FA8E006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BE925C6FA83006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip */; };
+		CDE32C8D25C6FA8E006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEA25C6FA83006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip */; };
+		CDE32C8E25C6FA8E006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEA25C6FA83006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip */; };
+		CDE32C8F25C6FA8E006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEB25C6FA83006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip */; };
+		CDE32C9025C6FA8E006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEB25C6FA83006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip */; };
+		CDE32C9125C6FA8E006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEC25C6FA83006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip */; };
+		CDE32C9225C6FA8E006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEC25C6FA83006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip */; };
+		CDE32C9325C6FA8E006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BED25C6FA84006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip */; };
+		CDE32C9425C6FA8E006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BED25C6FA84006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip */; };
+		CDE32C9525C6FA8E006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEE25C6FA84006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip */; };
+		CDE32C9625C6FA8E006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEE25C6FA84006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip */; };
+		CDE32C9725C6FA8E006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEF25C6FA84006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip */; };
+		CDE32C9825C6FA8E006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BEF25C6FA84006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip */; };
+		CDE32C9925C6FA8E006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF025C6FA84006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip */; };
+		CDE32C9A25C6FA8E006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF025C6FA84006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip */; };
+		CDE32C9B25C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF125C6FA84006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip */; };
+		CDE32C9C25C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF125C6FA84006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip */; };
+		CDE32C9D25C6FA8E006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF225C6FA84006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip */; };
+		CDE32C9E25C6FA8E006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF225C6FA84006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip */; };
+		CDE32C9F25C6FA8E006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF325C6FA84006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip */; };
+		CDE32CA025C6FA8E006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF325C6FA84006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip */; };
+		CDE32CA125C6FA8E006CF512 /* Sword Slayer (1988)(Players)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF425C6FA84006CF512 /* Sword Slayer (1988)(Players)(128K).zip */; };
+		CDE32CA225C6FA8E006CF512 /* Sword Slayer (1988)(Players)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF425C6FA84006CF512 /* Sword Slayer (1988)(Players)(128K).zip */; };
+		CDE32CA325C6FA8E006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF525C6FA84006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip */; };
+		CDE32CA425C6FA8E006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF525C6FA84006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip */; };
+		CDE32CA525C6FA8E006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF625C6FA85006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip */; };
+		CDE32CA625C6FA8E006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF625C6FA85006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip */; };
+		CDE32CA725C6FA8E006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF725C6FA85006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip */; };
+		CDE32CA825C6FA8E006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF725C6FA85006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip */; };
+		CDE32CA925C6FA8E006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF825C6FA85006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip */; };
+		CDE32CAA25C6FA8E006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF825C6FA85006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip */; };
+		CDE32CAB25C6FA8E006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF925C6FA85006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip */; };
+		CDE32CAC25C6FA8E006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BF925C6FA85006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip */; };
+		CDE32CAD25C6FA8E006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFA25C6FA85006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip */; };
+		CDE32CAE25C6FA8E006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFA25C6FA85006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip */; };
+		CDE32CAF25C6FA8E006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFB25C6FA85006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip */; };
+		CDE32CB025C6FA8E006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFB25C6FA85006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip */; };
+		CDE32CB125C6FA8E006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFC25C6FA85006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip */; };
+		CDE32CB225C6FA8E006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFC25C6FA85006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip */; };
+		CDE32CB325C6FA8E006CF512 /* International Match Day (1985)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFD25C6FA85006CF512 /* International Match Day (1985)(Ocean)(128K).zip */; };
+		CDE32CB425C6FA8E006CF512 /* International Match Day (1985)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFD25C6FA85006CF512 /* International Match Day (1985)(Ocean)(128K).zip */; };
+		CDE32CB525C6FA8E006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFE25C6FA85006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip */; };
+		CDE32CB625C6FA8E006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFE25C6FA85006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip */; };
+		CDE32CB725C6FA8E006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFF25C6FA85006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip */; };
+		CDE32CB825C6FA8E006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32BFF25C6FA85006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip */; };
+		CDE32CB925C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0025C6FA85006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip */; };
+		CDE32CBA25C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0025C6FA85006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip */; };
+		CDE32CBB25C6FA8E006CF512 /* Magic Circle, The (19xx)(-)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0125C6FA85006CF512 /* Magic Circle, The (19xx)(-)(128K).zip */; };
+		CDE32CBC25C6FA8E006CF512 /* Magic Circle, The (19xx)(-)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0125C6FA85006CF512 /* Magic Circle, The (19xx)(-)(128K).zip */; };
+		CDE32CBD25C6FA8E006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0225C6FA85006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip */; };
+		CDE32CBE25C6FA8E006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0225C6FA85006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip */; };
+		CDE32CBF25C6FA8E006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0325C6FA86006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip */; };
+		CDE32CC025C6FA8E006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0325C6FA86006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip */; };
+		CDE32CC125C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0425C6FA86006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip */; };
+		CDE32CC225C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0425C6FA86006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip */; };
+		CDE32CC325C6FA8E006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0525C6FA86006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip */; };
+		CDE32CC425C6FA8E006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0525C6FA86006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip */; };
+		CDE32CC525C6FA8E006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0625C6FA86006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip */; };
+		CDE32CC625C6FA8E006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0625C6FA86006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip */; };
+		CDE32CC725C6FA8E006CF512 /* Short Circuit (1987)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0725C6FA86006CF512 /* Short Circuit (1987)(Ocean)(128K).zip */; };
+		CDE32CC825C6FA8E006CF512 /* Short Circuit (1987)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0725C6FA86006CF512 /* Short Circuit (1987)(Ocean)(128K).zip */; };
+		CDE32CC925C6FA8E006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0825C6FA86006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip */; };
+		CDE32CCA25C6FA8E006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0825C6FA86006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip */; };
+		CDE32CCB25C6FA8E006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0925C6FA86006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip */; };
+		CDE32CCC25C6FA8E006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0925C6FA86006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip */; };
+		CDE32CCD25C6FA8E006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0A25C6FA86006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip */; };
+		CDE32CCE25C6FA8E006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0A25C6FA86006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip */; };
+		CDE32CCF25C6FA8E006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0B25C6FA86006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip */; };
+		CDE32CD025C6FA8E006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0B25C6FA86006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip */; };
+		CDE32CD125C6FA8E006CF512 /* Rasputin (1986)(Firebird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0C25C6FA86006CF512 /* Rasputin (1986)(Firebird)(128K).zip */; };
+		CDE32CD225C6FA8E006CF512 /* Rasputin (1986)(Firebird)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0C25C6FA86006CF512 /* Rasputin (1986)(Firebird)(128K).zip */; };
+		CDE32CD325C6FA8E006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0D25C6FA86006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip */; };
+		CDE32CD425C6FA8E006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0D25C6FA86006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip */; };
+		CDE32CD525C6FA8E006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0E25C6FA87006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip */; };
+		CDE32CD625C6FA8E006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0E25C6FA87006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip */; };
+		CDE32CD725C6FA8E006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0F25C6FA87006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip */; };
+		CDE32CD825C6FA8E006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C0F25C6FA87006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip */; };
+		CDE32CD925C6FA8E006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1025C6FA87006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip */; };
+		CDE32CDA25C6FA8E006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1025C6FA87006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip */; };
+		CDE32CDB25C6FA8E006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1125C6FA87006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip */; };
+		CDE32CDC25C6FA8E006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1125C6FA87006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip */; };
+		CDE32CDD25C6FA8E006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1225C6FA87006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip */; };
+		CDE32CDE25C6FA8E006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1225C6FA87006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip */; };
+		CDE32CDF25C6FA8E006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1325C6FA87006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip */; };
+		CDE32CE025C6FA8E006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1325C6FA87006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip */; };
+		CDE32CE125C6FA8E006CF512 /* Strider (1989)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1425C6FA87006CF512 /* Strider (1989)(U.S. Gold)(128K).zip */; };
+		CDE32CE225C6FA8E006CF512 /* Strider (1989)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1425C6FA87006CF512 /* Strider (1989)(U.S. Gold)(128K).zip */; };
+		CDE32CE325C6FA8E006CF512 /* Typhoon (1988)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1525C6FA87006CF512 /* Typhoon (1988)(Imagine)(128K).zip */; };
+		CDE32CE425C6FA8E006CF512 /* Typhoon (1988)(Imagine)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1525C6FA87006CF512 /* Typhoon (1988)(Imagine)(128K).zip */; };
+		CDE32CE525C6FA8E006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1625C6FA87006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip */; };
+		CDE32CE625C6FA8E006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1625C6FA87006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip */; };
+		CDE32CE725C6FA8E006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1725C6FA87006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip */; };
+		CDE32CE825C6FA8E006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1725C6FA87006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip */; };
+		CDE32CE925C6FA8E006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1825C6FA87006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip */; };
+		CDE32CEA25C6FA8E006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1825C6FA87006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip */; };
+		CDE32CEB25C6FA8E006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1925C6FA88006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip */; };
+		CDE32CEC25C6FA8E006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1925C6FA88006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip */; };
+		CDE32CED25C6FA8E006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1A25C6FA88006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip */; };
+		CDE32CEE25C6FA8E006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1A25C6FA88006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip */; };
+		CDE32CEF25C6FA8E006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1B25C6FA88006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip */; };
+		CDE32CF025C6FA8E006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1B25C6FA88006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip */; };
+		CDE32CF125C6FA8E006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1C25C6FA88006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip */; };
+		CDE32CF225C6FA8E006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1C25C6FA88006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip */; };
+		CDE32CF325C6FA8E006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1D25C6FA88006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip */; };
+		CDE32CF425C6FA8E006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1D25C6FA88006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip */; };
+		CDE32CF525C6FA8E006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1E25C6FA88006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip */; };
+		CDE32CF625C6FA8E006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1E25C6FA88006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip */; };
+		CDE32CF725C6FA8E006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1F25C6FA88006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip */; };
+		CDE32CF825C6FA8E006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C1F25C6FA88006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip */; };
+		CDE32CF925C6FA8E006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2025C6FA88006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip */; };
+		CDE32CFA25C6FA8E006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2025C6FA88006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip */; };
+		CDE32CFB25C6FA8E006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2125C6FA88006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip */; };
+		CDE32CFC25C6FA8E006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2125C6FA88006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip */; };
+		CDE32CFD25C6FA8E006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2225C6FA88006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip */; };
+		CDE32CFE25C6FA8E006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2225C6FA88006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip */; };
+		CDE32CFF25C6FA8E006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2325C6FA88006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip */; };
+		CDE32D0025C6FA8E006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2325C6FA88006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip */; };
+		CDE32D0125C6FA8E006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2425C6FA88006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip */; };
+		CDE32D0225C6FA8E006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2425C6FA88006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip */; };
+		CDE32D0325C6FA8E006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2525C6FA89006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip */; };
+		CDE32D0425C6FA8E006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2525C6FA89006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip */; };
+		CDE32D0525C6FA8E006CF512 /* Cabal (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2625C6FA89006CF512 /* Cabal (1989)(Ocean)(128K).zip */; };
+		CDE32D0625C6FA8E006CF512 /* Cabal (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2625C6FA89006CF512 /* Cabal (1989)(Ocean)(128K).zip */; };
+		CDE32D0725C6FA8E006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2725C6FA89006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip */; };
+		CDE32D0825C6FA8E006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2725C6FA89006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip */; };
+		CDE32D0925C6FA8E006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2825C6FA89006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip */; };
+		CDE32D0A25C6FA8E006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2825C6FA89006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip */; };
+		CDE32D0B25C6FA8E006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2925C6FA89006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip */; };
+		CDE32D0C25C6FA8E006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2925C6FA89006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip */; };
+		CDE32D0D25C6FA8E006CF512 /* Combat School (1987)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2A25C6FA89006CF512 /* Combat School (1987)(Ocean)(128K).zip */; };
+		CDE32D0E25C6FA8E006CF512 /* Combat School (1987)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2A25C6FA89006CF512 /* Combat School (1987)(Ocean)(128K).zip */; };
+		CDE32D0F25C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2B25C6FA89006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip */; };
+		CDE32D1025C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2B25C6FA89006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip */; };
+		CDE32D1125C6FA8E006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2C25C6FA89006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip */; };
+		CDE32D1225C6FA8E006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2C25C6FA89006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip */; };
+		CDE32D1325C6FA8E006CF512 /* Rod-Land (1991)(Storm)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2D25C6FA89006CF512 /* Rod-Land (1991)(Storm)(128K).zip */; };
+		CDE32D1425C6FA8E006CF512 /* Rod-Land (1991)(Storm)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2D25C6FA89006CF512 /* Rod-Land (1991)(Storm)(128K).zip */; };
+		CDE32D1525C6FA8E006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2E25C6FA89006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip */; };
+		CDE32D1625C6FA8E006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2E25C6FA89006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip */; };
+		CDE32D1725C6FA8E006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2F25C6FA89006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip */; };
+		CDE32D1825C6FA8E006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C2F25C6FA89006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip */; };
+		CDE32D1925C6FA8E006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3025C6FA8A006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip */; };
+		CDE32D1A25C6FA8E006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3025C6FA8A006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip */; };
+		CDE32D1B25C6FA8E006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3125C6FA8A006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip */; };
+		CDE32D1C25C6FA8E006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3125C6FA8A006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip */; };
+		CDE32D1D25C6FA8E006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3225C6FA8A006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip */; };
+		CDE32D1E25C6FA8E006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3225C6FA8A006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip */; };
+		CDE32D1F25C6FA8E006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3325C6FA8A006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip */; };
+		CDE32D2025C6FA8E006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3325C6FA8A006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip */; };
+		CDE32D2125C6FA8E006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3425C6FA8A006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip */; };
+		CDE32D2225C6FA8E006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3425C6FA8A006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip */; };
+		CDE32D2325C6FA8E006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3525C6FA8A006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip */; };
+		CDE32D2425C6FA8E006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3525C6FA8A006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip */; };
+		CDE32D2525C6FA8E006CF512 /* Gunship (1987)(MicroProse)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3625C6FA8A006CF512 /* Gunship (1987)(MicroProse)(128K).zip */; };
+		CDE32D2625C6FA8E006CF512 /* Gunship (1987)(MicroProse)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3625C6FA8A006CF512 /* Gunship (1987)(MicroProse)(128K).zip */; };
+		CDE32D2725C6FA8E006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3725C6FA8A006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip */; };
+		CDE32D2825C6FA8E006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3725C6FA8A006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip */; };
+		CDE32D2925C6FA8E006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3825C6FA8A006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip */; };
+		CDE32D2A25C6FA8E006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3825C6FA8A006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip */; };
+		CDE32D2B25C6FA8E006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3925C6FA8A006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip */; };
+		CDE32D2C25C6FA8E006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3925C6FA8A006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip */; };
+		CDE32D2D25C6FA8E006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3A25C6FA8A006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip */; };
+		CDE32D2E25C6FA8E006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3A25C6FA8A006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip */; };
+		CDE32D2F25C6FA8E006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3B25C6FA8A006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip */; };
+		CDE32D3025C6FA8E006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3B25C6FA8A006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip */; };
+		CDE32D3125C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3C25C6FA8B006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip */; };
+		CDE32D3225C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3C25C6FA8B006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip */; };
+		CDE32D3325C6FA8E006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3D25C6FA8B006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip */; };
+		CDE32D3425C6FA8E006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3D25C6FA8B006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip */; };
+		CDE32D3525C6FA8E006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3E25C6FA8B006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip */; };
+		CDE32D3625C6FA8E006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3E25C6FA8B006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip */; };
+		CDE32D3725C6FA8E006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3F25C6FA8B006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip */; };
+		CDE32D3825C6FA8E006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C3F25C6FA8B006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip */; };
+		CDE32D3925C6FA8E006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4025C6FA8B006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip */; };
+		CDE32D3A25C6FA8E006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4025C6FA8B006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip */; };
+		CDE32D3B25C6FA8E006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4125C6FA8B006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip */; };
+		CDE32D3C25C6FA8E006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4125C6FA8B006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip */; };
+		CDE32D3D25C6FA8E006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4225C6FA8B006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip */; };
+		CDE32D3E25C6FA8E006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4225C6FA8B006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip */; };
+		CDE32D3F25C6FA8E006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4325C6FA8B006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip */; };
+		CDE32D4025C6FA8E006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4325C6FA8B006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip */; };
+		CDE32D4125C6FA8E006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4425C6FA8B006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip */; };
+		CDE32D4225C6FA8E006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4425C6FA8B006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip */; };
+		CDE32D4325C6FA8E006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4525C6FA8B006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip */; };
+		CDE32D4425C6FA8E006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4525C6FA8B006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip */; };
+		CDE32D4525C6FA8E006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4625C6FA8C006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip */; };
+		CDE32D4625C6FA8E006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4625C6FA8C006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip */; };
+		CDE32D4725C6FA8E006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4725C6FA8C006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip */; };
+		CDE32D4825C6FA8E006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4725C6FA8C006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip */; };
+		CDE32D4925C6FA8E006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4825C6FA8C006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip */; };
+		CDE32D4A25C6FA8E006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4825C6FA8C006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip */; };
+		CDE32D4B25C6FA8E006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4925C6FA8C006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip */; };
+		CDE32D4C25C6FA8E006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4925C6FA8C006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip */; };
+		CDE32D4D25C6FA8E006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4A25C6FA8C006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip */; };
+		CDE32D4E25C6FA8E006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4A25C6FA8C006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip */; };
+		CDE32D4F25C6FA8E006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4B25C6FA8C006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip */; };
+		CDE32D5025C6FA8E006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4B25C6FA8C006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip */; };
+		CDE32D5125C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4C25C6FA8C006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip */; };
+		CDE32D5225C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4C25C6FA8C006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip */; };
+		CDE32D5325C6FA8E006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4D25C6FA8C006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip */; };
+		CDE32D5425C6FA8E006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4D25C6FA8C006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip */; };
+		CDE32D5525C6FA8E006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4E25C6FA8C006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip */; };
+		CDE32D5625C6FA8E006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4E25C6FA8C006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip */; };
+		CDE32D5725C6FA8E006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4F25C6FA8C006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip */; };
+		CDE32D5825C6FA8E006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C4F25C6FA8C006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip */; };
+		CDE32D5925C6FA8E006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5025C6FA8C006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip */; };
+		CDE32D5A25C6FA8E006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5025C6FA8C006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip */; };
+		CDE32D5B25C6FA8E006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5125C6FA8C006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip */; };
+		CDE32D5C25C6FA8E006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5125C6FA8C006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip */; };
+		CDE32D5D25C6FA8E006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5225C6FA8D006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip */; };
+		CDE32D5E25C6FA8E006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5225C6FA8D006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip */; };
+		CDE32D5F25C6FA8E006CF512 /* Raven, The (1988)(8th Day)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5325C6FA8D006CF512 /* Raven, The (1988)(8th Day)(128K).zip */; };
+		CDE32D6025C6FA8E006CF512 /* Raven, The (1988)(8th Day)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5325C6FA8D006CF512 /* Raven, The (1988)(8th Day)(128K).zip */; };
+		CDE32D6125C6FA8E006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5425C6FA8D006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip */; };
+		CDE32D6225C6FA8E006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5425C6FA8D006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip */; };
+		CDE32D6325C6FA8E006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5525C6FA8D006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip */; };
+		CDE32D6425C6FA8E006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5525C6FA8D006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip */; };
+		CDE32D6525C6FA8E006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5625C6FA8D006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip */; };
+		CDE32D6625C6FA8E006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5625C6FA8D006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip */; };
+		CDE32D6725C6FA8E006CF512 /* Gryzor (1987)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5725C6FA8D006CF512 /* Gryzor (1987)(Ocean)(128K).zip */; };
+		CDE32D6825C6FA8E006CF512 /* Gryzor (1987)(Ocean)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5725C6FA8D006CF512 /* Gryzor (1987)(Ocean)(128K).zip */; };
+		CDE32D6925C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5825C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip */; };
+		CDE32D6A25C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5825C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip */; };
+		CDE32D6B25C6FA8E006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5925C6FA8D006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip */; };
+		CDE32D6C25C6FA8E006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5925C6FA8D006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip */; };
+		CDE32D6D25C6FA8E006CF512 /* Bloodwych (1990)(Image Works)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5A25C6FA8D006CF512 /* Bloodwych (1990)(Image Works)(128K).zip */; };
+		CDE32D6E25C6FA8E006CF512 /* Bloodwych (1990)(Image Works)(128K).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5A25C6FA8D006CF512 /* Bloodwych (1990)(Image Works)(128K).zip */; };
+		CDE32D6F25C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5B25C6FA8D006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip */; };
+		CDE32D7025C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5B25C6FA8D006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip */; };
+		CDE32D7125C6FA8E006CF512 /* Side Arms (1988)(Go!).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5C25C6FA8D006CF512 /* Side Arms (1988)(Go!).zip */; };
+		CDE32D7225C6FA8E006CF512 /* Side Arms (1988)(Go!).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32C5C25C6FA8D006CF512 /* Side Arms (1988)(Go!).zip */; };
+		CDE32D7A25C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32D7925C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip */; };
+		CDE32D7B25C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32D7925C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip */; };
+		CDE32D8325C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32D8225C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip */; };
+		CDE32D8425C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32D8225C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip */; };
+		CDE32D8C25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32D8B25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip */; };
+		CDE32D8D25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip in Resources */ = {isa = PBXBuildFile; fileRef = CDE32D8B25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip */; };
 		CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECAF258CE7D900C8E8AF /* Z80.swift */; };
 		CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECB5258CE84D00C8E8AF /* Register.swift */; };
 		CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */; };
@@ -314,6 +637,8 @@
 		CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */; };
 		CDED0C0A25949FF400862DE0 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C0925949FF400862DE0 /* Flag.swift */; };
 		CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED0C112598967700862DE0 /* UInt16+Bitwise.swift */; };
+		CDF0BAC725F142610053E696 /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0BAC625F142610053E696 /* RoutineTableViewCell.swift */; };
+		CDF0BAC825F142610053E696 /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0BAC625F142610053E696 /* RoutineTableViewCell.swift */; };
 		CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */; };
 		CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */; };
 		CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8A1D62531CC2700F0D216 /* ViewController.swift */; };
@@ -351,9 +676,18 @@
 		CD03E6D7259BC8DE005F0F83 /* testand.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testand.sna; sourceTree = "<group>"; };
 		CD03E6DF259BD501005F0F83 /* testz80.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testz80.sna; sourceTree = "<group>"; };
 		CD03E7C125A12B2D005F0F83 /* allTestsTo7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsTo7f.swift; sourceTree = "<group>"; };
+		CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80Disassembler.swift; sourceTree = "<group>"; };
+		CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeRoutine.swift; sourceTree = "<group>"; };
+		CD0D44F125EFC7D600AD6272 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
+		CD0D450325F0F87500AD6272 /* RamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagRegister.swift; sourceTree = "<group>"; };
 		CD13E08225C0399700FB0E21 /* cyberrun.sna */ = {isa = PBXFileReference; lastKnownFileType = file; name = cyberrun.sna; path = roms/cyberrun.sna; sourceTree = SOURCE_ROOT; };
 		CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = knighttyme128.z80; sourceTree = "<group>"; };
+		CD23901B25ED5692006BFA69 /* SaveLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoad.swift; sourceTree = "<group>"; };
+		CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80Assembler.swift; sourceTree = "<group>"; };
+		CD2A9A2C25CC51130052A0F8 /* AssemblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerTests.swift; sourceTree = "<group>"; };
+		CD4ED8EC25ED874500EBF8A7 /* Decode+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decode+Dictionary.swift"; sourceTree = "<group>"; };
+		CD576EB425E8E7F5008A4D72 /* CodeListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeListing.swift; sourceTree = "<group>"; };
 		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		CD62E3C125A1A32200B89CEA /* allTests80toca.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTests80toca.swift; sourceTree = "<group>"; };
@@ -379,6 +713,15 @@
 		CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeLoader.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
+		CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Load.swift"; sourceTree = "<group>"; };
+		CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Adds.swift"; sourceTree = "<group>"; };
+		CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembly+Subtractions.swift"; sourceTree = "<group>"; };
+		CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Logic.swift"; sourceTree = "<group>"; };
+		CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Bitwise.swift"; sourceTree = "<group>"; };
+		CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Jump.swift"; sourceTree = "<group>"; };
+		CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Registry.swift"; sourceTree = "<group>"; };
+		CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+BitShift.swift"; sourceTree = "<group>"; };
+		CD94823725D2952C001A8718 /* Z80Assembler+Ports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Ports.swift"; sourceTree = "<group>"; };
 		CD94C42825C01B1A00C93F21 /* ZXSpectrum128K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXSpectrum128K.swift; sourceTree = "<group>"; };
 		CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeDDFDCB.swift"; sourceTree = "<group>"; };
 		CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpCodeDDFD.swift"; sourceTree = "<group>"; };
@@ -486,6 +829,8 @@
 		CDBCBB6825BEB92100FDB350 /* ZXSpectrum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXSpectrum.swift; sourceTree = "<group>"; };
 		CDBCBB7125BEC3B800FDB350 /* ComputerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerModel.swift; sourceTree = "<group>"; };
 		CDBCBCA925BF18BF00FDB350 /* ZXSpectrum48K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXSpectrum48K.swift; sourceTree = "<group>"; };
+		CDBF6B7B25D588F9003E189E /* DisassemblyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisassemblyExtensions.swift; sourceTree = "<group>"; };
+		CDBF6B8125D58A1A003E189E /* CodeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeExtensions.swift; sourceTree = "<group>"; };
 		CDCB61C825881786008DD916 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CDCB61CD258817C8008DD916 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		CDCB61D225881842008DD916 /* UIImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Bitmap.swift"; sourceTree = "<group>"; };
@@ -495,6 +840,149 @@
 		CDD9020D25ADFD5500AB93FD /* SNAFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAFormat.swift; sourceTree = "<group>"; };
 		CDD9021325AE05A000AB93FD /* FileFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFormat.swift; sourceTree = "<group>"; };
 		CDD9021A25AE08E500AB93FD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		CDE32BC525C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Cannibal Island (1986)(LiveWire).zip"; sourceTree = "<group>"; };
+		CDE32BD225C6FA81006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Price of Magik, The (1986)(Level 9 Computing)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BD325C6FA81006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip"; sourceTree = "<group>"; };
+		CDE32BD425C6FA81006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip"; sourceTree = "<group>"; };
+		CDE32BD525C6FA81006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Darkman (1991)(Ocean)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32BD625C6FA82006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BD725C6FA82006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip"; sourceTree = "<group>"; };
+		CDE32BD825C6FA82006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip"; sourceTree = "<group>"; };
+		CDE32BD925C6FA82006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gods of War, The (1987)(Zenobi)(128K)[re-release].zip"; sourceTree = "<group>"; };
+		CDE32BDA25C6FA82006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip"; sourceTree = "<group>"; };
+		CDE32BDB25C6FA82006CF512 /* Athena (1987)(Imagine)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Athena (1987)(Imagine)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BDC25C6FA82006CF512 /* Platoon (1988)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Platoon (1988)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BDD25C6FA82006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip"; sourceTree = "<group>"; };
+		CDE32BDE25C6FA82006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BDF25C6FA82006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32BE025C6FA82006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "MASK (1987)(Gremlin Graphics)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BE125C6FA82006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip"; sourceTree = "<group>"; };
+		CDE32BE225C6FA83006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip"; sourceTree = "<group>"; };
+		CDE32BE325C6FA83006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip"; sourceTree = "<group>"; };
+		CDE32BE425C6FA83006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Carrier Command (1989)(Rainbird)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BE525C6FA83006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip"; sourceTree = "<group>"; };
+		CDE32BE625C6FA83006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "They Call Me Trooper (1987)(CRL Group)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BE725C6FA83006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BE825C6FA83006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip"; sourceTree = "<group>"; };
+		CDE32BE925C6FA83006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Leopold the Minstrel (1994)(Zenobi)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BEA25C6FA83006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BEB25C6FA83006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip"; sourceTree = "<group>"; };
+		CDE32BEC25C6FA83006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip"; sourceTree = "<group>"; };
+		CDE32BED25C6FA84006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Spitting Image - The Computer Game (1988)(Domark)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BEE25C6FA84006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32BEF25C6FA84006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BF025C6FA84006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Game Over (1987)(Imagine)(128K)[re-release].zip"; sourceTree = "<group>"; };
+		CDE32BF125C6FA84006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip"; sourceTree = "<group>"; };
+		CDE32BF225C6FA84006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Enduro Racer (1987)(Activision)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32BF325C6FA84006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Dandy (1986)(Electric Dreams)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BF425C6FA84006CF512 /* Sword Slayer (1988)(Players)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Sword Slayer (1988)(Players)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BF525C6FA84006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Yie Ar Kung-Fu (1985)(Imagine)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BF625C6FA85006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Jester Quest (1988)(Zenobi)(128K)[re-release].zip"; sourceTree = "<group>"; };
+		CDE32BF725C6FA85006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Echelon (1988)(U.S. Gold)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BF825C6FA85006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Pawn, The v2.3 (1987)(Rainbird)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BF925C6FA85006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip"; sourceTree = "<group>"; };
+		CDE32BFA25C6FA85006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32BFB25C6FA85006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32BFC25C6FA85006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip"; sourceTree = "<group>"; };
+		CDE32BFD25C6FA85006CF512 /* International Match Day (1985)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "International Match Day (1985)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32BFE25C6FA85006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip"; sourceTree = "<group>"; };
+		CDE32BFF25C6FA85006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0025C6FA85006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip"; sourceTree = "<group>"; };
+		CDE32C0125C6FA85006CF512 /* Magic Circle, The (19xx)(-)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Magic Circle, The (19xx)(-)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0225C6FA85006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Khangrin Plans, The (1992)(Zenobi)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0325C6FA86006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip"; sourceTree = "<group>"; };
+		CDE32C0425C6FA86006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip"; sourceTree = "<group>"; };
+		CDE32C0525C6FA86006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Run the Gauntlet (1989)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0625C6FA86006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Shadow Warriors (1990)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0725C6FA86006CF512 /* Short Circuit (1987)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Short Circuit (1987)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0825C6FA86006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Addams Family, The (1992)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0925C6FA86006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip"; sourceTree = "<group>"; };
+		CDE32C0A25C6FA86006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32C0B25C6FA86006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Skateboard Kidz (1988)(Silverbird)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0C25C6FA86006CF512 /* Rasputin (1986)(Firebird)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Rasputin (1986)(Firebird)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C0D25C6FA86006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip"; sourceTree = "<group>"; };
+		CDE32C0E25C6FA87006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "RoboCop 2 (1990)(Ocean)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32C0F25C6FA87006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip"; sourceTree = "<group>"; };
+		CDE32C1025C6FA87006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Daley Thompson's Supertest (1985)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1125C6FA87006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Lost Twilight, The (1992)(Zenobi)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1225C6FA87006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Renegade III - The Final Chapter (1989)(Imagine)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1325C6FA87006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1425C6FA87006CF512 /* Strider (1989)(U.S. Gold)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Strider (1989)(U.S. Gold)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1525C6FA87006CF512 /* Typhoon (1988)(Imagine)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Typhoon (1988)(Imagine)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1625C6FA87006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Murder Mystery Weekend (1997)(Zenobi)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1725C6FA87006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip"; sourceTree = "<group>"; };
+		CDE32C1825C6FA87006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Forest Stop, The (1989)(Sterling Endeavours)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1925C6FA88006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip"; sourceTree = "<group>"; };
+		CDE32C1A25C6FA88006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1B25C6FA88006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Batman - The Movie (1989)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1C25C6FA88006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip"; sourceTree = "<group>"; };
+		CDE32C1D25C6FA88006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Night Shift (1991)(U.S. Gold)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1E25C6FA88006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Chevy Chase (1991)(Hi-Tec)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C1F25C6FA88006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Operation Wolf (1988)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2025C6FA88006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip"; sourceTree = "<group>"; };
+		CDE32C2125C6FA88006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2225C6FA88006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Starglider (1986)(Rainbird)(128K)[a2].zip"; sourceTree = "<group>"; };
+		CDE32C2325C6FA88006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Slightly Magic (1991)(Code Masters)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2425C6FA88006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Road Blasters (1988)(U.S. Gold)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2525C6FA89006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip"; sourceTree = "<group>"; };
+		CDE32C2625C6FA89006CF512 /* Cabal (1989)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Cabal (1989)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2725C6FA89006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Hudson Hawk (1991)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2825C6FA89006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Jetsons, The (1992)(Hi-Tec)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2925C6FA89006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Chase H.Q. (1989)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2A25C6FA89006CF512 /* Combat School (1987)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Combat School (1987)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2B25C6FA89006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Continental Circus (1989)(Virgin Mastertronic)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2C25C6FA89006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip"; sourceTree = "<group>"; };
+		CDE32C2D25C6FA89006CF512 /* Rod-Land (1991)(Storm)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Rod-Land (1991)(Storm)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2E25C6FA89006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Final Chorus, The (1995)(Zenobi)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C2F25C6FA89006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Bardic Rite, The (1994)(Zenobi)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3025C6FA8A006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Pub Trivia Simulator (1990)(Code Masters)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3125C6FA8A006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Glider Rider (1986)(Quicksilva)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3225C6FA8A006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3325C6FA8A006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip"; sourceTree = "<group>"; };
+		CDE32C3425C6FA8A006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Question of Scruples, A (1987)(Leisure Genius)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3525C6FA8A006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Exterminator (1991)(Audiogenic)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3625C6FA8A006CF512 /* Gunship (1987)(MicroProse)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gunship (1987)(MicroProse)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3725C6FA8A006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip"; sourceTree = "<group>"; };
+		CDE32C3825C6FA8A006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Winter Games (1986)(U.S. Gold)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3925C6FA8A006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Thundercats (1987)(Elite Systems)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32C3A25C6FA8A006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32C3B25C6FA8A006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Defender of the Crown (1989)(Cat, The)(HU)(en).zip"; sourceTree = "<group>"; };
+		CDE32C3C25C6FA8B006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Magicland Dizzy (1990)(Code Masters)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3D25C6FA8B006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip"; sourceTree = "<group>"; };
+		CDE32C3E25C6FA8B006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C3F25C6FA8B006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C4025C6FA8B006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C4125C6FA8B006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip"; sourceTree = "<group>"; };
+		CDE32C4225C6FA8B006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip"; sourceTree = "<group>"; };
+		CDE32C4325C6FA8B006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip"; sourceTree = "<group>"; };
+		CDE32C4425C6FA8B006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "International Kickboxing (1993)(Your Sinclair)(128K)[b].zip"; sourceTree = "<group>"; };
+		CDE32C4525C6FA8B006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Rocky Horror Show, The (1985)(CRL Group)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C4625C6FA8C006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Towdie (1994)(Ultrasoft)(128K)(SK).zip"; sourceTree = "<group>"; };
+		CDE32C4725C6FA8C006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip"; sourceTree = "<group>"; };
+		CDE32C4825C6FA8C006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Ninja Hamster (1987)(CRL Group)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32C4925C6FA8C006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip"; sourceTree = "<group>"; };
+		CDE32C4A25C6FA8C006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip"; sourceTree = "<group>"; };
+		CDE32C4B25C6FA8C006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Tai-Pan (1987)(Ocean)(128K)[a2].zip"; sourceTree = "<group>"; };
+		CDE32C4C25C6FA8C006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip"; sourceTree = "<group>"; };
+		CDE32C4D25C6FA8C006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip"; sourceTree = "<group>"; };
+		CDE32C4E25C6FA8C006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C4F25C6FA8C006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Skull & Crossbones (1991)(Domark)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5025C6FA8C006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "World Championship Soccer (1991)(Elite Systems)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5125C6FA8C006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip"; sourceTree = "<group>"; };
+		CDE32C5225C6FA8D006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Arc of Yesod, The (1985)(Thor Computer)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5325C6FA8D006CF512 /* Raven, The (1988)(8th Day)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Raven, The (1988)(8th Day)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5425C6FA8D006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Hedda Strikes Again (2003)(Adventure Probe)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5525C6FA8D006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Operation Thunderbolt (1989)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5625C6FA8D006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5725C6FA8D006CF512 /* Gryzor (1987)(Ocean)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Gryzor (1987)(Ocean)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5825C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip"; sourceTree = "<group>"; };
+		CDE32C5925C6FA8D006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip"; sourceTree = "<group>"; };
+		CDE32C5A25C6FA8D006CF512 /* Bloodwych (1990)(Image Works)(128K).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Bloodwych (1990)(Image Works)(128K).zip"; sourceTree = "<group>"; };
+		CDE32C5B25C6FA8D006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip"; sourceTree = "<group>"; };
+		CDE32C5C25C6FA8D006CF512 /* Side Arms (1988)(Go!).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Side Arms (1988)(Go!).zip"; sourceTree = "<group>"; };
+		CDE32D7925C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip"; sourceTree = "<group>"; };
+		CDE32D8225C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Chequered Flag (1983)(Sinclair Research).zip"; sourceTree = "<group>"; };
+		CDE32D8B25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Snowball (1983)(Level 9 Computing)[a].zip"; sourceTree = "<group>"; };
 		CDE3ECAF258CE7D900C8E8AF /* Z80.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80.swift; sourceTree = "<group>"; };
 		CDE3ECB5258CE84D00C8E8AF /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		CDE3ECBD258CF3F100C8E8AF /* RegisterPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPair.swift; sourceTree = "<group>"; };
@@ -509,6 +997,7 @@
 		CDED0C0425949EB000862DE0 /* UInt8+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Bitwise.swift"; sourceTree = "<group>"; };
 		CDED0C0925949FF400862DE0 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		CDED0C112598967700862DE0 /* UInt16+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt16+Bitwise.swift"; sourceTree = "<group>"; };
+		CDF0BAC625F142610053E696 /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
 		CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inSpeccytor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF8A1D22531CC2700F0D216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDF8A1D42531CC2700F0D216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -537,6 +1026,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE32BC125C5F3F9006CF512 /* Zip in Frameworks */,
+				CD4ED8F325EE33B900EBF8A7 /* FilesProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +1048,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD0D44DF25EFBE4200AD6272 /* DisAssembler */ = {
+			isa = PBXGroup;
+			children = (
+				CD0D44E125EFBE7E00AD6272 /* Z80 */,
+			);
+			path = DisAssembler;
+			sourceTree = "<group>";
+		};
+		CD0D44E025EFBE4D00AD6272 /* Z80 */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */,
+				CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */,
+				CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */,
+				CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */,
+				CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */,
+				CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */,
+				CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */,
+				CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */,
+				CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */,
+				CD94823725D2952C001A8718 /* Z80Assembler+Ports.swift */,
+			);
+			path = Z80;
+			sourceTree = "<group>";
+		};
+		CD0D44E125EFBE7E00AD6272 /* Z80 */ = {
+			isa = PBXGroup;
+			children = (
+				CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */,
+			);
+			path = Z80;
+			sourceTree = "<group>";
+		};
+		CD2A9A2225CC4EE50052A0F8 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				CD0D44E025EFBE4D00AD6272 /* Z80 */,
+			);
+			path = Assembler;
+			sourceTree = "<group>";
+		};
 		CD59ECF5254EC54C00B56C1A /* constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +1096,7 @@
 				CDED0C0925949FF400862DE0 /* Flag.swift */,
 				CDD9021325AE05A000AB93FD /* FileFormat.swift */,
 				CDBCBB7125BEC3B800FDB350 /* ComputerModel.swift */,
+				CD0D44F125EFC7D600AD6272 /* DataType.swift */,
 			);
 			path = constants;
 			sourceTree = "<group>";
@@ -647,8 +1180,161 @@
 				CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */,
 				CD62E48025ACDAB900B89CEA /* IOSViewController.swift */,
 				CDD9021A25AE08E500AB93FD /* BaseViewController.swift */,
+				CDBF6B7B25D588F9003E189E /* DisassemblyExtensions.swift */,
+				CDBF6B8125D58A1A003E189E /* CodeExtensions.swift */,
+				CD0D450325F0F87500AD6272 /* RamCollectionViewCell.swift */,
+				CDF0BAC625F142610053E696 /* RoutineTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CDE32BD125C6F8B4006CF512 /* zips */ = {
+			isa = PBXGroup;
+			children = (
+				CDE32D7925C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip */,
+				CDE32D8B25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip */,
+				CDE32C0825C6FA86006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip */,
+				CDE32D8225C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip */,
+				CDE32BE225C6FA83006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip */,
+				CDE32C5225C6FA8D006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip */,
+				CDE32BDB25C6FA82006CF512 /* Athena (1987)(Imagine)(128K).zip */,
+				CDE32BD825C6FA82006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip */,
+				CDE32BD625C6FA82006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip */,
+				CDE32C2F25C6FA89006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip */,
+				CDE32C1B25C6FA88006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip */,
+				CDE32C5A25C6FA8D006CF512 /* Bloodwych (1990)(Image Works)(128K).zip */,
+				CDE32C2625C6FA89006CF512 /* Cabal (1989)(Ocean)(128K).zip */,
+				CDE32BE425C6FA83006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip */,
+				CDE32C2925C6FA89006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip */,
+				CDE32BDE25C6FA82006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip */,
+				CDE32C1E25C6FA88006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip */,
+				CDE32C3225C6FA8A006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip */,
+				CDE32C2A25C6FA89006CF512 /* Combat School (1987)(Ocean)(128K).zip */,
+				CDE32C2B25C6FA89006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip */,
+				CDE32C5B25C6FA8D006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip */,
+				CDE32C4725C6FA8C006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip */,
+				CDE32C4025C6FA8B006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip */,
+				CDE32BE525C6FA83006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip */,
+				CDE32C1025C6FA87006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip */,
+				CDE32BF325C6FA84006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip */,
+				CDE32BD525C6FA81006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip */,
+				CDE32C3B25C6FA8A006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip */,
+				CDE32C2025C6FA88006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip */,
+				CDE32C1725C6FA87006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip */,
+				CDE32BF725C6FA85006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip */,
+				CDE32BFE25C6FA85006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip */,
+				CDE32BF225C6FA84006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip */,
+				CDE32C3525C6FA8A006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip */,
+				CDE32C4325C6FA8B006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip */,
+				CDE32BD725C6FA82006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip */,
+				CDE32C3A25C6FA8A006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip */,
+				CDE32C2E25C6FA89006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip */,
+				CDE32BE725C6FA83006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip */,
+				CDE32C3325C6FA8A006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip */,
+				CDE32C1825C6FA87006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip */,
+				CDE32C0925C6FA86006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip */,
+				CDE32BF025C6FA84006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip */,
+				CDE32C5625C6FA8D006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip */,
+				CDE32C1A25C6FA88006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip */,
+				CDE32C3125C6FA8A006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip */,
+				CDE32C4C25C6FA8C006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip */,
+				CDE32C0025C6FA85006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip */,
+				CDE32BDD25C6FA82006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip */,
+				CDE32BD925C6FA82006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip */,
+				CDE32C5725C6FA8D006CF512 /* Gryzor (1987)(Ocean)(128K).zip */,
+				CDE32C3625C6FA8A006CF512 /* Gunship (1987)(MicroProse)(128K).zip */,
+				CDE32C1C25C6FA88006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip */,
+				CDE32C2525C6FA89006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip */,
+				CDE32C5425C6FA8D006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip */,
+				CDE32BEA25C6FA83006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip */,
+				CDE32C0A25C6FA86006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip */,
+				CDE32C4125C6FA8B006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip */,
+				CDE32C2725C6FA89006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip */,
+				CDE32C4225C6FA8B006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip */,
+				CDE32BD325C6FA81006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip */,
+				CDE32C0425C6FA86006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip */,
+				CDE32C5825C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip */,
+				CDE32C4425C6FA8B006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip */,
+				CDE32BFD25C6FA85006CF512 /* International Match Day (1985)(Ocean)(128K).zip */,
+				CDE32BFF25C6FA85006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip */,
+				CDE32BF625C6FA85006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip */,
+				CDE32C2825C6FA89006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip */,
+				CDE32C0225C6FA85006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip */,
+				CDE32C3E25C6FA8B006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip */,
+				CDE32BEE25C6FA84006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip */,
+				CDE32C0325C6FA86006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip */,
+				CDE32BFA25C6FA85006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip */,
+				CDE32BE325C6FA83006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip */,
+				CDE32BE925C6FA83006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip */,
+				CDE32C5925C6FA8D006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip */,
+				CDE32C1125C6FA87006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip */,
+				CDE32C3F25C6FA8B006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip */,
+				CDE32C0125C6FA85006CF512 /* Magic Circle, The (19xx)(-)(128K).zip */,
+				CDE32C3C25C6FA8B006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip */,
+				CDE32BF125C6FA84006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip */,
+				CDE32BE025C6FA82006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip */,
+				CDE32C0F25C6FA87006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip */,
+				CDE32C1625C6FA87006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip */,
+				CDE32BE125C6FA82006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip */,
+				CDE32C1D25C6FA88006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip */,
+				CDE32C4825C6FA8C006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip */,
+				CDE32C1325C6FA87006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip */,
+				CDE32C5525C6FA8D006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip */,
+				CDE32C1F25C6FA88006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip */,
+				CDE32BF825C6FA85006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip */,
+				CDE32C4A25C6FA8C006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip */,
+				CDE32BDC25C6FA82006CF512 /* Platoon (1988)(Ocean)(128K).zip */,
+				CDE32BD225C6FA81006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip */,
+				CDE32C3025C6FA8A006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip */,
+				CDE32C3425C6FA8A006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip */,
+				CDE32C4E25C6FA8C006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip */,
+				CDE32C0C25C6FA86006CF512 /* Rasputin (1986)(Firebird)(128K).zip */,
+				CDE32C5325C6FA8D006CF512 /* Raven, The (1988)(8th Day)(128K).zip */,
+				CDE32C1225C6FA87006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip */,
+				CDE32C2425C6FA88006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip */,
+				CDE32C5125C6FA8C006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip */,
+				CDE32C0E25C6FA87006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip */,
+				CDE32C2C25C6FA89006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip */,
+				CDE32C4525C6FA8B006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip */,
+				CDE32C2D25C6FA89006CF512 /* Rod-Land (1991)(Storm)(128K).zip */,
+				CDE32BFC25C6FA85006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip */,
+				CDE32C0525C6FA86006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip */,
+				CDE32C0625C6FA86006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip */,
+				CDE32C0D25C6FA86006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip */,
+				CDE32C0725C6FA86006CF512 /* Short Circuit (1987)(Ocean)(128K).zip */,
+				CDE32C5C25C6FA8D006CF512 /* Side Arms (1988)(Go!).zip */,
+				CDE32C0B25C6FA86006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip */,
+				CDE32C4F25C6FA8C006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip */,
+				CDE32C2325C6FA88006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip */,
+				CDE32BDF25C6FA82006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip */,
+				CDE32BE825C6FA83006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip */,
+				CDE32BF925C6FA85006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip */,
+				CDE32BFB25C6FA85006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip */,
+				CDE32BED25C6FA84006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip */,
+				CDE32C2225C6FA88006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip */,
+				CDE32C4925C6FA8C006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip */,
+				CDE32BD425C6FA81006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip */,
+				CDE32BEC25C6FA83006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip */,
+				CDE32C1425C6FA87006CF512 /* Strider (1989)(U.S. Gold)(128K).zip */,
+				CDE32BF425C6FA84006CF512 /* Sword Slayer (1988)(Players)(128K).zip */,
+				CDE32C4B25C6FA8C006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip */,
+				CDE32C2125C6FA88006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip */,
+				CDE32BE625C6FA83006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip */,
+				CDE32BEF25C6FA84006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip */,
+				CDE32C3925C6FA8A006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip */,
+				CDE32BDA25C6FA82006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip */,
+				CDE32C4625C6FA8C006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip */,
+				CDE32BEB25C6FA83006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip */,
+				CDE32C3725C6FA8A006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip */,
+				CDE32C1525C6FA87006CF512 /* Typhoon (1988)(Imagine)(128K).zip */,
+				CDE32C3D25C6FA8B006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip */,
+				CDE32C1925C6FA88006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip */,
+				CDE32C4D25C6FA8C006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip */,
+				CDE32C3825C6FA8A006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip */,
+				CDE32C5025C6FA8C006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip */,
+				CDE32BF525C6FA84006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip */,
+			);
+			path = zips;
 			sourceTree = "<group>";
 		};
 		CDE3ECB4258CE83700C8E8AF /* Registers */ = {
@@ -677,6 +1363,7 @@
 		CDF8A1C62531CC2700F0D216 = {
 			isa = PBXGroup;
 			children = (
+				CDE32BD125C6F8B4006CF512 /* zips */,
 				CDF8A20C2531CC9F00F0D216 /* library */,
 				CDE3ECC7258F523C00C8E8AF /* roms */,
 				CDF8A1D12531CC2700F0D216 /* inSpeccytor */,
@@ -699,6 +1386,8 @@
 		CDF8A1D12531CC2700F0D216 /* inSpeccytor */ = {
 			isa = PBXGroup;
 			children = (
+				CD0D44DF25EFBE4200AD6272 /* DisAssembler */,
+				CD2A9A2225CC4EE50052A0F8 /* Assembler */,
 				CDBCBB6525BEB8EA00FDB350 /* Computer */,
 				CDBCBB5D25BEB85C00FDB350 /* Processor */,
 				CDBCBB5325BEB6C700FDB350 /* Core */,
@@ -720,6 +1409,7 @@
 				CDCB61C825881786008DD916 /* Color.swift */,
 				CDCB61CD258817C8008DD916 /* Bitmap.swift */,
 				CD62E48625ACE58900B89CEA /* images.xcassets */,
+				CD23901B25ED5692006BFA69 /* SaveLoad.swift */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -741,6 +1431,7 @@
 				CD62E3FD25A2526200B89CEA /* allTestsP_FDCB00to7f.swift */,
 				CD62E40525A253EF00B89CEA /* allTestsP_FDCB80toff.swift */,
 				CD62E40A25A2557C00B89CEA /* allTestsP_FD_ALL.swift */,
+				CD2A9A2C25CC51130052A0F8 /* AssemblerTests.swift */,
 			);
 			path = inSpeccytorTests;
 			sourceTree = "<group>";
@@ -757,6 +1448,7 @@
 		CDF8A20C2531CC9F00F0D216 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				CDE32BC525C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip */,
 				CDBC546225B4BFD2004FAA55 /* adayinthelife.sna */,
 				CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */,
 				CDBC545A25B4BFD1004FAA55 /* blizzardpass.sna */,
@@ -875,6 +1567,7 @@
 				CDCB61DC2588DC56008DD916 /* UInt8+Attributes.swift */,
 				CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */,
 				CDBC542C25B34FA0004FAA55 /* Constraint+Multiplier.swift */,
+				CD4ED8EC25ED874500EBF8A7 /* Decode+Dictionary.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -885,6 +1578,8 @@
 				CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */,
 				CDF8C47825335F8C0014A587 /* RegisterModel.swift */,
 				CDBB3F3E253B371800A1FFC0 /* OpCode.swift */,
+				CD576EB425E8E7F5008A4D72 /* CodeListing.swift */,
+				CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -905,6 +1600,10 @@
 			dependencies = (
 			);
 			name = inSpeccytor;
+			packageProductDependencies = (
+				CDE32BC025C5F3F9006CF512 /* Zip */,
+				CD4ED8F225EE33B900EBF8A7 /* FilesProvider */,
+			);
 			productName = inSpeccytor;
 			productReference = CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */;
 			productType = "com.apple.product-type.application";
@@ -976,6 +1675,10 @@
 				Base,
 			);
 			mainGroup = CDF8A1C62531CC2700F0D216;
+			packageReferences = (
+				CDE32BBF25C5F3F9006CF512 /* XCRemoteSwiftPackageReference "Zip" */,
+				CD4ED8F125EE33B900EBF8A7 /* XCRemoteSwiftPackageReference "FileProvider" */,
+			);
 			productRefGroup = CDF8A1D02531CC2700F0D216 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -992,99 +1695,221 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE32CE925C6FA8E006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip in Resources */,
 				CDBC54C325B4BFD7004FAA55 /* necrisdome.sna in Resources */,
+				CDE32CD925C6FA8E006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip in Resources */,
+				CDE32D3125C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip in Resources */,
 				CD62E48725ACE58900B89CEA /* images.xcassets in Resources */,
+				CDE32C8325C6FA8E006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip in Resources */,
+				CDE32CCD25C6FA8E006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip in Resources */,
+				CDE32CC325C6FA8E006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip in Resources */,
 				CDF8A1E22531CC2A00F0D216 /* LaunchScreen.storyboard in Resources */,
 				CDBC552525B4BFD7004FAA55 /* kwah.sna in Resources */,
+				CDE32C6525C6FA8E006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip in Resources */,
+				CDE32CED25C6FA8E006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip in Resources */,
+				CDE32CD325C6FA8E006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip in Resources */,
+				CDE32D8325C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip in Resources */,
+				CDE32D6D25C6FA8E006CF512 /* Bloodwych (1990)(Image Works)(128K).zip in Resources */,
+				CDE32CB925C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip in Resources */,
 				CDBC555B25B4BFD7004FAA55 /* brian.sna in Resources */,
 				CDF8A1DF2531CC2A00F0D216 /* Assets.xcassets in Resources */,
+				CDE32C9B25C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip in Resources */,
+				CDE32D1B25C6FA8E006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip in Resources */,
 				CDE3ECCE258F525500C8E8AF /* 48k.rom in Resources */,
 				CDBC551725B4BFD7004FAA55 /* tirnanog.sna in Resources */,
 				CDBC54DB25B4BFD7004FAA55 /* ericandthefloaters.sna in Resources */,
+				CDE32C6325C6FA8E006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip in Resources */,
 				CDBC54FB25B4BFD7004FAA55 /* mugsysrevenge.sna in Resources */,
+				CDE32C6F25C6FA8E006CF512 /* Athena (1987)(Imagine)(128K).zip in Resources */,
+				CDE32D2F25C6FA8E006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip in Resources */,
+				CDE32C7725C6FA8E006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip in Resources */,
+				CDE32CD725C6FA8E006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip in Resources */,
+				CDE32CC125C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip in Resources */,
 				CDBC543E25B4A08E004FAA55 /* CYBERRUN.sna in Resources */,
+				CDE32D3925C6FA8E006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip in Resources */,
+				CDE32D1D25C6FA8E006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip in Resources */,
+				CDE32CF125C6FA8E006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip in Resources */,
+				CDE32D2D25C6FA8E006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip in Resources */,
 				CDBC54E125B4BFD7004FAA55 /* universalhero.sna in Resources */,
+				CDE32D2925C6FA8E006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip in Resources */,
+				CDE32D4925C6FA8E006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip in Resources */,
+				CDE32D6B25C6FA8E006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip in Resources */,
 				CDBC550525B4BFD7004FAA55 /* ianbothamstestmatch.sna in Resources */,
 				CDBC550925B4BFD7004FAA55 /* shipoftheline.sna in Resources */,
+				CDE32D1325C6FA8E006CF512 /* Rod-Land (1991)(Storm)(128K).zip in Resources */,
 				CD13E08C25C0647600FB0E21 /* knighttyme128.z80 in Resources */,
 				CDE3ECCC258F525500C8E8AF /* 128k+3.rom in Resources */,
 				CDBC553B25B4BFD7004FAA55 /* megabucks.sna in Resources */,
+				CDE32CBB25C6FA8E006CF512 /* Magic Circle, The (19xx)(-)(128K).zip in Resources */,
 				CDBC552D25B4BFD7004FAA55 /* curseofsherwood.sna in Resources */,
 				CDBC54DF25B4BFD7004FAA55 /* supersprint.sna in Resources */,
+				CDE32D6125C6FA8E006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip in Resources */,
 				CDBC54C125B4BFD7004FAA55 /* subsunk.sna in Resources */,
 				CD62E46525A79DD200B89CEA /* ticket_to_ride.tzx in Resources */,
+				CDE32D4725C6FA8E006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip in Resources */,
 				CDBC551525B4BFD7004FAA55 /* stbernard.sna in Resources */,
 				CDBC553725B4BFD7004FAA55 /* hampstead.sna in Resources */,
+				CDE32D4B25C6FA8E006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip in Resources */,
 				CDBC54AD25B4BFD7004FAA55 /* redmoon.sna in Resources */,
 				CDBC555125B4BFD7004FAA55 /* sherlock.sna in Resources */,
 				CDBC54EB25B4BFD7004FAA55 /* invincibleisland.sna in Resources */,
 				CDBC551325B4BFD7004FAA55 /* bugsy.sna in Resources */,
+				CDE32D0525C6FA8E006CF512 /* Cabal (1989)(Ocean)(128K).zip in Resources */,
+				CDE32C8D25C6FA8E006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip in Resources */,
+				CDE32C8725C6FA8E006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip in Resources */,
 				CDBC552325B4BFD7004FAA55 /* transylvaniantower.sna in Resources */,
+				CDE32D5125C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */,
+				CDE32D3525C6FA8E006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip in Resources */,
 				CDBC54B925B4BFD7004FAA55 /* tripods.sna in Resources */,
 				CDBC551B25B4BFD7004FAA55 /* xcel.sna in Resources */,
 				CDBC552125B4BFD7004FAA55 /* chubby.sna in Resources */,
+				CDE32D6F25C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip in Resources */,
 				CDBC54C725B4BFD7004FAA55 /* blizzardpass.sna in Resources */,
 				CDBC553F25B4BFD7004FAA55 /* trevorbrooking.sna in Resources */,
 				CDBC554525B4BFD7004FAA55 /* deflektor.sna in Resources */,
+				CDE32C8F25C6FA8E006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip in Resources */,
+				CDE32C5F25C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */,
+				CDE32C7B25C6FA8E006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip in Resources */,
 				CDBC555525B4BFD7004FAA55 /* urbanupstart.sna in Resources */,
+				CDE32C8125C6FA8E006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip in Resources */,
 				CDBC54A725B4BFD7004FAA55 /* zzzz.sna in Resources */,
 				CDBC54F925B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */,
 				CDBC54C925B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */,
+				CDE32D6725C6FA8E006CF512 /* Gryzor (1987)(Ocean)(128K).zip in Resources */,
 				CDBC553125B4BFD7004FAA55 /* grumpygumphrey.sna in Resources */,
 				CDBC553925B4BFD7004FAA55 /* dynamitedan.sna in Resources */,
+				CDE32D3725C6FA8E006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip in Resources */,
+				CDE32CA525C6FA8E006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip in Resources */,
+				CDE32C9525C6FA8E006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip in Resources */,
+				CDE32CCB25C6FA8E006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip in Resources */,
+				CDE32D0F25C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip in Resources */,
 				CDBC54C525B4BFD7004FAA55 /* lordoftherings.sna in Resources */,
 				CDBC550325B4BFD7004FAA55 /* galaxians.sna in Resources */,
+				CDE32C7D25C6FA8E006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip in Resources */,
+				CDE32D6525C6FA8E006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip in Resources */,
 				CDBC54AB25B4BFD7004FAA55 /* hunchback2.sna in Resources */,
+				CDE32C7125C6FA8E006CF512 /* Platoon (1988)(Ocean)(128K).zip in Resources */,
+				CDE32D1525C6FA8E006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip in Resources */,
 				CDBC543C25B4A08E004FAA55 /* CYBERUN2.z80 in Resources */,
+				CDE32D5D25C6FA8E006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip in Resources */,
+				CDE32CF925C6FA8E006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip in Resources */,
+				CDE32CD525C6FA8E006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip in Resources */,
+				CDE32CF725C6FA8E006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip in Resources */,
 				CDBC555925B4BFD7004FAA55 /* dizzy.z80 in Resources */,
+				CDE32C9125C6FA8E006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip in Resources */,
 				CDBC552B25B4BFD7004FAA55 /* survival_adventure.sna in Resources */,
+				CDE32C6725C6FA8E006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip in Resources */,
 				CDBC54CB25B4BFD7004FAA55 /* crimebusters_notthatone.sna in Resources */,
 				CDBC54FD25B4BFD7004FAA55 /* rocknwrestle.sna in Resources */,
 				CDBC54F525B4BFD7004FAA55 /* crimebustersinc.sna in Resources */,
+				CDE32C6125C6FA8D006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip in Resources */,
 				CDBC54B725B4BFD7004FAA55 /* youngones.sna in Resources */,
 				CDBC550125B4BFD7004FAA55 /* redhawk_side1.sna in Resources */,
+				CDE32D5F25C6FA8E006CF512 /* Raven, The (1988)(8th Day)(128K).zip in Resources */,
+				CDE32BC625C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip in Resources */,
+				CDE32CBF25C6FA8E006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip in Resources */,
+				CDE32CFB25C6FA8E006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip in Resources */,
+				CDE32D5725C6FA8E006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip in Resources */,
 				CDBC553325B4BFD7004FAA55 /* brian.szx in Resources */,
 				CD03E6D8259BC8DE005F0F83 /* testand.sna in Resources */,
+				CDE32CFF25C6FA8E006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip in Resources */,
+				CDE32CEF25C6FA8E006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip in Resources */,
+				CDE32CCF25C6FA8E006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip in Resources */,
+				CDE32D4125C6FA8E006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip in Resources */,
 				CDBC54D525B4BFD7004FAA55 /* completebastard.sna in Resources */,
 				CDBC550F25B4BFD7004FAA55 /* wriggler.sna in Resources */,
 				CDBC554125B4BFD7004FAA55 /* dizzy_fw.sna in Resources */,
+				CDE32D0125C6FA8E006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip in Resources */,
 				CDBC54D125B4BFD7004FAA55 /* robinofsherlock.sna in Resources */,
 				CDBC54A925B4BFD7004FAA55 /* emotion.sna in Resources */,
+				CDE32C7925C6FA8E006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip in Resources */,
+				CDE32CA725C6FA8E006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip in Resources */,
+				CDE32D2525C6FA8E006CF512 /* Gunship (1987)(MicroProse)(128K).zip in Resources */,
 				CDBC554925B4BFD7004FAA55 /* dizzy_TI.sna in Resources */,
 				CDBC54F725B4BFD7004FAA55 /* mugsy.sna in Resources */,
+				CDE32C6D25C6FA8E006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip in Resources */,
 				CD03E6E0259BD501005F0F83 /* testz80.sna in Resources */,
+				CDE32C9D25C6FA8E006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip in Resources */,
+				CDE32CD125C6FA8E006CF512 /* Rasputin (1986)(Firebird)(128K).zip in Resources */,
 				CDBC54E325B4BFD7004FAA55 /* wildbunch.sna in Resources */,
 				CDBC54E725B4BFD7004FAA55 /* montyontherun.sna in Resources */,
+				CDE32C6B25C6FA8E006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip in Resources */,
+				CDE32CB525C6FA8E006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip in Resources */,
+				CDE32D2125C6FA8E006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip in Resources */,
 				CDBC554D25B4BFD7004FAA55 /* questfortheholygrail.sna in Resources */,
+				CDE32C7525C6FA8E006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip in Resources */,
+				CDE32CDF25C6FA8E006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip in Resources */,
+				CDE32CFD25C6FA8E006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip in Resources */,
+				CDE32C9925C6FA8E006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip in Resources */,
+				CDE32D3325C6FA8E006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip in Resources */,
+				CDE32D1925C6FA8E006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip in Resources */,
 				CDBC54E525B4BFD7004FAA55 /* cavesofdoom.sna in Resources */,
+				CDE32D5325C6FA8E006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip in Resources */,
+				CDE32D0D25C6FA8E006CF512 /* Combat School (1987)(Ocean)(128K).zip in Resources */,
+				CDE32D5525C6FA8E006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip in Resources */,
+				CDE32C5D25C6FA8D006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip in Resources */,
 				CDBC551125B4BFD7004FAA55 /* dizzy_potyf.sna in Resources */,
 				CDBC54B325B4BFD7004FAA55 /* henryshoard.sna in Resources */,
+				CDE32C8925C6FA8E006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip in Resources */,
 				CDBC54F325B4BFD7004FAA55 /* lordoftherings_2.sna in Resources */,
+				CDE32CB325C6FA8E006CF512 /* International Match Day (1985)(Ocean)(128K).zip in Resources */,
+				CDE32C7F25C6FA8E006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip in Resources */,
+				CDE32D3B25C6FA8E006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip in Resources */,
+				CDE32CBD25C6FA8E006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip in Resources */,
 				CDBC54E925B4BFD7004FAA55 /* stevedavissnooker.sna in Resources */,
 				CDBC553D25B4BFD7004FAA55 /* repton.sna in Resources */,
 				CDBC54EF25B4BFD7004FAA55 /* hunchback.sna in Resources */,
 				CDBC551F25B4BFD7004FAA55 /* dizzy_Magicland.sna in Resources */,
 				CDF8A20E2531CCB700F0D216 /* actionbiker.sna in Resources */,
 				CDBC554725B4BFD7004FAA55 /* dontpanic.sna in Resources */,
+				CDE32CB125C6FA8E006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip in Resources */,
+				CDE32C7325C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */,
+				CDE32C6925C6FA8E006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip in Resources */,
 				CDBC54B125B4BFD7004FAA55 /* dundarach.sna in Resources */,
+				CDE32D4525C6FA8E006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip in Resources */,
+				CDE32C8525C6FA8E006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip in Resources */,
+				CDE32CDD25C6FA8E006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip in Resources */,
 				CDBC554325B4BFD7004FAA55 /* inferno.sna in Resources */,
 				CDBC550725B4BFD7004FAA55 /* shakenbutnotstired.sna in Resources */,
+				CDE32D4D25C6FA8E006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip in Resources */,
+				CDE32CA325C6FA8E006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip in Resources */,
 				CDBC54AF25B4BFD7004FAA55 /* fivedoctors.sna in Resources */,
 				CDBC54A525B4BFD7004FAA55 /* superspy.sna in Resources */,
+				CDE32D0325C6FA8E006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip in Resources */,
+				CDE32D7A25C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip in Resources */,
+				CDE32D0925C6FA8E006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip in Resources */,
+				CDE32CE125C6FA8E006CF512 /* Strider (1989)(U.S. Gold)(128K).zip in Resources */,
+				CDE32CF525C6FA8E006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip in Resources */,
+				CDE32D2325C6FA8E006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip in Resources */,
+				CDE32D3D25C6FA8E006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip in Resources */,
+				CDE32D6325C6FA8E006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip in Resources */,
+				CDE32D1F25C6FA8E006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip in Resources */,
+				CDE32CB725C6FA8E006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip in Resources */,
+				CDE32D0B25C6FA8E006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip in Resources */,
 				CDBC54CF25B4BFD7004FAA55 /* boredoftherings.sna in Resources */,
 				CDBC552725B4BFD7004FAA55 /* contactsamcruise.sna in Resources */,
+				CDE32D5B25C6FA8E006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip in Resources */,
 				CDBC54BB25B4BFD7004FAA55 /* footballmanager2.sna in Resources */,
+				CDE32D8C25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip in Resources */,
 				CDBC54F125B4BFD7004FAA55 /* minder.sna in Resources */,
 				CDBC54D925B4BFD7004FAA55 /* marsport.sna in Resources */,
+				CDE32CDB25C6FA8E006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip in Resources */,
 				CDBC54BD25B4BFD7004FAA55 /* seabasedelta.sna in Resources */,
+				CDE32C8B25C6FA8E006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip in Resources */,
 				CDE3ECCD258F525500C8E8AF /* 128k+2.rom in Resources */,
+				CDE32CC525C6FA8E006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip in Resources */,
 				CDBCBB3925BAFE3800FDB350 /* testtape.tap in Resources */,
 				CD13E08325C0399700FB0E21 /* cyberrun.sna in Resources */,
 				CDBC54DD25B4BFD7004FAA55 /* matchday2.sna in Resources */,
 				CDBC550D25B4BFD7004FAA55 /* worminparadise.sna in Resources */,
 				CDF8A1DA2531CC2700F0D216 /* Main.storyboard in Resources */,
+				CDE32CC725C6FA8E006CF512 /* Short Circuit (1987)(Ocean)(128K).zip in Resources */,
+				CDE32CAD25C6FA8E006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip in Resources */,
+				CDE32D2725C6FA8E006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip in Resources */,
 				CDBC556A25B8349D004FAA55 /* middleoflakecheat.z80 in Resources */,
 				CDBC555725B4BFD7004FAA55 /* knightorc_1.sna in Resources */,
+				CDE32C9325C6FA8E006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip in Resources */,
+				CDE32CC925C6FA8E006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip in Resources */,
 				CDBC553525B4BFD7004FAA55 /* booty.sna in Resources */,
 				CD62E47B25A84EF900B89CEA /* Action Biker.tzx in Resources */,
 				CDBC551925B4BFD7004FAA55 /* everyonesawally.sna in Resources */,
@@ -1092,19 +1917,40 @@
 				CDCB61E22588F030008DD916 /* aticatac.sna in Resources */,
 				CDBC54ED25B4BFD7004FAA55 /* matchoftheday.sna in Resources */,
 				CDBC54B525B4BFD7004FAA55 /* penetrator.sna in Resources */,
+				CDE32CE525C6FA8E006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip in Resources */,
+				CDE32D4325C6FA8E006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip in Resources */,
+				CDE32D6925C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */,
+				CDE32CE325C6FA8E006CF512 /* Typhoon (1988)(Imagine)(128K).zip in Resources */,
+				CDE32D7125C6FA8E006CF512 /* Side Arms (1988)(Go!).zip in Resources */,
 				CDBC54D325B4BFD7004FAA55 /* dynamitedan2.sna in Resources */,
 				CDBC552F25B4BFD7004FAA55 /* specialoperations.sna in Resources */,
+				CDE32D0725C6FA8E006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip in Resources */,
 				CDBC554F25B4BFD7004FAA55 /* mooncresta.sna in Resources */,
+				CDE32C9725C6FA8E006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip in Resources */,
+				CDE32D4F25C6FA8E006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip in Resources */,
+				CDE32CAF25C6FA8E006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip in Resources */,
 				CDE3ECCF258F525500C8E8AF /* 128k.rom in Resources */,
+				CDE32CE725C6FA8E006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip in Resources */,
+				CDE32CAB25C6FA8E006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip in Resources */,
 				CDBCBB4225BAFE4C00FDB350 /* spectest.z80 in Resources */,
+				CDE32CA925C6FA8E006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip in Resources */,
 				CDBC551D25B4BFD7004FAA55 /* dandy.sna in Resources */,
 				CDBC555325B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */,
 				CDBC54BF25B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */,
 				CDBC554B25B4BFD7004FAA55 /* lordsoftime.sna in Resources */,
 				CDBC54D725B4BFD7004FAA55 /* adayinthelife.sna in Resources */,
+				CDE32D2B25C6FA8E006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip in Resources */,
+				CDE32D1725C6FA8E006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip in Resources */,
+				CDE32CA125C6FA8E006CF512 /* Sword Slayer (1988)(Players)(128K).zip in Resources */,
+				CDE32CEB25C6FA8E006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip in Resources */,
+				CDE32C9F25C6FA8E006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip in Resources */,
+				CDE32D5925C6FA8E006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip in Resources */,
+				CDE32D3F25C6FA8E006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip in Resources */,
 				CDBC54FF25B4BFD7004FAA55 /* dizzy_ck.sna in Resources */,
 				CDBC550B25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */,
+				CDE32D1125C6FA8E006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip in Resources */,
 				CDBC552925B4BFD7004FAA55 /* Dizzy.sna in Resources */,
+				CDE32CF325C6FA8E006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,104 +1959,247 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDBC552225B4BFD7004FAA55 /* chubby.sna in Resources */,
+				CDE32C7025C6FA8E006CF512 /* Athena (1987)(Imagine)(128K).zip in Resources */,
+				CDE32CB825C6FA8E006CF512 /* Jahangir Khan's World Championship Squash (1991)(Krisalis)(128K).zip in Resources */,
 				CDBC551625B4BFD7004FAA55 /* stbernard.sna in Resources */,
 				CDBC54C225B4BFD7004FAA55 /* subsunk.sna in Resources */,
+				CDE32C7E25C6FA8E006CF512 /* Ammytris (1995)(Navigator)(128K)(BY)(en)[aka Amiga Tetris].zip in Resources */,
 				CD13E08425C0399700FB0E21 /* cyberrun.sna in Resources */,
 				CDBC552025B4BFD7004FAA55 /* dizzy_Magicland.sna in Resources */,
 				CDBC54BA25B4BFD7004FAA55 /* tripods.sna in Resources */,
+				CDE32C7625C6FA8E006CF512 /* Chase H.Q. II - Special Criminal Investigations (1990)(Ocean)(128K).zip in Resources */,
+				CDE32CF425C6FA8E006CF512 /* Night Shift (1991)(U.S. Gold)(128K).zip in Resources */,
 				CDBC555C25B4BFD7004FAA55 /* brian.sna in Resources */,
 				CDBC54DA25B4BFD7004FAA55 /* marsport.sna in Resources */,
+				CDE32BC725C5F41A006CF512 /* Cannibal Island (1986)(LiveWire).zip in Resources */,
+				CDE32D4A25C6FA8E006CF512 /* Ninja Hamster (1987)(CRL Group)(128K)[a].zip in Resources */,
 				CDBC54D025B4BFD7004FAA55 /* boredoftherings.sna in Resources */,
 				CDBC554825B4BFD7004FAA55 /* dontpanic.sna in Resources */,
+				CDE32CD025C6FA8E006CF512 /* Skateboard Kidz (1988)(Silverbird)(128K).zip in Resources */,
+				CDE32D2C25C6FA8E006CF512 /* Thundercats (1987)(Elite Systems)(128K)[a].zip in Resources */,
+				CDE32CF025C6FA8E006CF512 /* Batman - The Movie (1989)(Ocean)(128K).zip in Resources */,
+				CDE32D2825C6FA8E006CF512 /* Treasure Island Dizzy (1988)(Code Masters)(128K)[a2].zip in Resources */,
+				CDE32D7225C6FA8E006CF512 /* Side Arms (1988)(Go!).zip in Resources */,
+				CDE32D1425C6FA8E006CF512 /* Rod-Land (1991)(Storm)(128K).zip in Resources */,
+				CDE32CBE25C6FA8E006CF512 /* Khangrin Plans, The (1992)(Zenobi)(128K).zip in Resources */,
+				CDE32CCE25C6FA8E006CF512 /* Hero Quest (1991)(Gremlin Graphics)(128K)[a].zip in Resources */,
+				CDE32CAE25C6FA8E006CF512 /* Knight Orc - Loosed Orc (1987)(Rainbird)(128K)[a].zip in Resources */,
+				CDE32C6025C6FA8D006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */,
 				CDBC543D25B4A08E004FAA55 /* CYBERUN2.z80 in Resources */,
+				CDE32CB625C6FA8E006CF512 /* Eidolon, The (1986)(Activision)(128K)[aka Eidalon].zip in Resources */,
 				CDBC553E25B4BFD7004FAA55 /* repton.sna in Resources */,
+				CDE32CA225C6FA8E006CF512 /* Sword Slayer (1988)(Players)(128K).zip in Resources */,
 				CDBC54FC25B4BFD7004FAA55 /* mugsysrevenge.sna in Resources */,
 				CDBC54BE25B4BFD7004FAA55 /* seabasedelta.sna in Resources */,
 				CDBC551E25B4BFD7004FAA55 /* dandy.sna in Resources */,
+				CDE32C6825C6FA8E006CF512 /* Famous Five 1, The (1990)(Enigma Variations)(128K)[aka Famous Five, The - Five on a Treasure Island].zip in Resources */,
 				CD62E46625A79DD200B89CEA /* ticket_to_ride.tzx in Resources */,
 				CDBC54B425B4BFD7004FAA55 /* henryshoard.sna in Resources */,
 				CDBC550425B4BFD7004FAA55 /* galaxians.sna in Resources */,
+				CDE32C8025C6FA8E006CF512 /* Knight Tyme (1986)(Mastertronic Added Dimension)(128K)[Magic Knight 3].zip in Resources */,
 				CDBC552825B4BFD7004FAA55 /* contactsamcruise.sna in Resources */,
 				CDBC54BC25B4BFD7004FAA55 /* footballmanager2.sna in Resources */,
 				CDBC550825B4BFD7004FAA55 /* shakenbutnotstired.sna in Resources */,
 				CDBC54C625B4BFD7004FAA55 /* lordoftherings.sna in Resources */,
+				CDE32D1225C6FA8E006CF512 /* Rock Star Ate My Hamster! (1989)(Code Masters Gold)(128K)[t][aka Rock Star Goes Bizarre].zip in Resources */,
 				CDBC552E25B4BFD7004FAA55 /* curseofsherwood.sna in Resources */,
+				CDE32D6825C6FA8E006CF512 /* Gryzor (1987)(Ocean)(128K).zip in Resources */,
+				CDE32CC225C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 2 of 3).zip in Resources */,
 				CDBC54A825B4BFD7004FAA55 /* zzzz.sna in Resources */,
+				CDE32CC825C6FA8E006CF512 /* Short Circuit (1987)(Ocean)(128K).zip in Resources */,
+				CDE32CCC25C6FA8E006CF512 /* Four Symbols, The (1992)(FSF Adventures)(128K)(Part 1 of 2).zip in Resources */,
+				CDE32D3625C6FA8E006CF512 /* Knight Life - The Quest for the Holey Socks (1995)(Boyd, Stephen)(128K).zip in Resources */,
+				CDE32C6A25C6FA8E006CF512 /* Auf Wiedersehen Monty (1987)(Gremlin Graphics)(128K)[h].zip in Resources */,
 				CDBC54C825B4BFD7004FAA55 /* blizzardpass.sna in Resources */,
 				CDBC54C025B4BFD7004FAA55 /* footballmanager2_wh.sna in Resources */,
+				CDE32D8D25C6FEA5006CF512 /* Snowball (1983)(Level 9 Computing)[a].zip in Resources */,
 				CDBC551825B4BFD7004FAA55 /* tirnanog.sna in Resources */,
 				CDBC555A25B4BFD7004FAA55 /* dizzy.z80 in Resources */,
+				CDE32CC425C6FA8E006CF512 /* Run the Gauntlet (1989)(Ocean)(128K).zip in Resources */,
 				CDBC551025B4BFD7004FAA55 /* wriggler.sna in Resources */,
+				CDE32C7425C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */,
+				CDE32D0425C6FA8E006CF512 /* Head Over Heels (1987)(Ocean)(128K)[aka Foot and Mouth].zip in Resources */,
 				CDBC54B225B4BFD7004FAA55 /* dundarach.sna in Resources */,
+				CDE32C6C25C6FA8E006CF512 /* Gods of War, The (1987)(Zenobi)(128K)[re-release].zip in Resources */,
+				CDE32D5A25C6FA8E006CF512 /* World Championship Soccer (1991)(Elite Systems)(128K).zip in Resources */,
 				CDBC550625B4BFD7004FAA55 /* ianbothamstestmatch.sna in Resources */,
+				CDE32D7B25C6FE6E006CF512 /* Basil the Great Mouse Detective (1987)(Gremlin Graphics)[a2].zip in Resources */,
+				CDE32D3A25C6FA8E006CF512 /* Cyberball - Football in the 21st Century (1990)(Domark)(128K).zip in Resources */,
+				CDE32CDC25C6FA8E006CF512 /* Lost Twilight, The (1992)(Zenobi)(128K).zip in Resources */,
+				CDE32D4C25C6FA8E006CF512 /* Starship Quest (1989)(FSF Adventures)(128K)(Part 1 of 3)[registered].zip in Resources */,
 				CDBC54E225B4BFD7004FAA55 /* universalhero.sna in Resources */,
+				CDE32CD425C6FA8E006CF512 /* Shadows of Mordor, The (1987)(Melbourne House)(128K)[aka Lord of the Rings - Game Two].zip in Resources */,
 				CD13E08D25C0647600FB0E21 /* knighttyme128.z80 in Resources */,
+				CDE32D2E25C6FA8E006CF512 /* Fantasy World Dizzy (1989)(Code Masters)(128K)[a].zip in Resources */,
+				CDE32D3025C6FA8E006CF512 /* Defender of the Crown (1989)(Cat, The)(HU)(en).zip in Resources */,
 				CDBC54D825B4BFD7004FAA55 /* adayinthelife.sna in Resources */,
 				CDBC54D625B4BFD7004FAA55 /* completebastard.sna in Resources */,
 				CDBC553225B4BFD7004FAA55 /* grumpygumphrey.sna in Resources */,
 				CDBC550025B4BFD7004FAA55 /* dizzy_ck.sna in Resources */,
 				CDBC553425B4BFD7004FAA55 /* brian.szx in Resources */,
 				CDBC554625B4BFD7004FAA55 /* deflektor.sna in Resources */,
+				CDE32D5E25C6FA8E006CF512 /* Arc of Yesod, The (1985)(Thor Computer)(128K).zip in Resources */,
+				CDE32D0025C6FA8E006CF512 /* Slightly Magic (1991)(Code Masters)(128K).zip in Resources */,
+				CDE32C8225C6FA8E006CF512 /* Carrier Command (1989)(Rainbird)(128K).zip in Resources */,
+				CDE32D0825C6FA8E006CF512 /* Hudson Hawk (1991)(Ocean)(128K).zip in Resources */,
+				CDE32C6425C6FA8E006CF512 /* Darkman (1991)(Ocean)(128K)[a].zip in Resources */,
 				CDBC54EC25B4BFD7004FAA55 /* invincibleisland.sna in Resources */,
+				CDE32C8E25C6FA8E006CF512 /* Hero Quest - Return of the Witch Lord (1991)(Gremlin Graphics)(128K).zip in Resources */,
 				CDBC54F225B4BFD7004FAA55 /* minder.sna in Resources */,
+				CDE32CE825C6FA8E006CF512 /* Dr. Jekyll and Mr. Hyde - Dichotomies (1988)(Essential Myth, The)(128K)[a][aka Jekyll and Hyde].zip in Resources */,
 				CDBC554425B4BFD7004FAA55 /* inferno.sna in Resources */,
+				CDE32D6625C6FA8E006CF512 /* Gary Lineker's Superskills (1988)(Gremlin Graphics)(128K).zip in Resources */,
+				CDE32C7825C6FA8E006CF512 /* Space Crusade (1992)(Gremlin Graphics)(128K)[a].zip in Resources */,
+				CDE32D3C25C6FA8E006CF512 /* Horrorscope (1991)(Zenobi)(128K)[aka Aura-Scope][re-release].zip in Resources */,
+				CDE32D6E25C6FA8E006CF512 /* Bloodwych (1990)(Image Works)(128K).zip in Resources */,
+				CDE32CCA25C6FA8E006CF512 /* Addams Family, The (1992)(Ocean)(128K).zip in Resources */,
+				CDE32CA025C6FA8E006CF512 /* Dandy (1986)(Electric Dreams)(128K).zip in Resources */,
+				CDE32CE425C6FA8E006CF512 /* Typhoon (1988)(Imagine)(128K).zip in Resources */,
+				CDE32C7C25C6FA8E006CF512 /* NeverEnding Story, The (1985)(Ocean)(128K)[a2].zip in Resources */,
+				CDE32CB225C6FA8E006CF512 /* Roy of the Rovers (1988)(Gremlin Graphics)(128K)(GB)(M4).zip in Resources */,
+				CDE32C8825C6FA8E006CF512 /* Flash Gordon (1987)(Mastertronic Added Dimension)(128K).zip in Resources */,
+				CDE32C9C25C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K)[t][tr ru].zip in Resources */,
+				CDE32C6E25C6FA8E006CF512 /* Tom & Jerry 2 (1989)(Magic Bytes)(128K)(DE)(en)[cr Starfire Hackers Group].zip in Resources */,
 				CDBC553625B4BFD7004FAA55 /* booty.sna in Resources */,
+				CDE32CA825C6FA8E006CF512 /* Echelon (1988)(U.S. Gold)(128K).zip in Resources */,
 				CDBC54B025B4BFD7004FAA55 /* fivedoctors.sna in Resources */,
 				CDBC54EA25B4BFD7004FAA55 /* stevedavissnooker.sna in Resources */,
+				CDE32C8625C6FA8E006CF512 /* They Call Me Trooper (1987)(CRL Group)(128K).zip in Resources */,
 				CDBC54E825B4BFD7004FAA55 /* montyontherun.sna in Resources */,
+				CDE32C9425C6FA8E006CF512 /* Spitting Image - The Computer Game (1988)(Domark)(128K).zip in Resources */,
 				CDBC552A25B4BFD7004FAA55 /* Dizzy.sna in Resources */,
 				CDBC54FE25B4BFD7004FAA55 /* rocknwrestle.sna in Resources */,
+				CDE32D1C25C6FA8E006CF512 /* Glider Rider (1986)(Quicksilva)(128K).zip in Resources */,
 				CDBC550A25B4BFD7004FAA55 /* shipoftheline.sna in Resources */,
+				CDE32D2425C6FA8E006CF512 /* Exterminator (1991)(Audiogenic)(128K).zip in Resources */,
 				CDBC54C425B4BFD7004FAA55 /* necrisdome.sna in Resources */,
+				CDE32D4E25C6FA8E006CF512 /* Pendant of Logryn, The (1989)(Zenobi)(128K)[re-release].zip in Resources */,
+				CDE32CD625C6FA8E006CF512 /* RoboCop 2 (1990)(Ocean)(128K)[a].zip in Resources */,
 				CDBC552C25B4BFD7004FAA55 /* survival_adventure.sna in Resources */,
+				CDE32D2025C6FA8E006CF512 /* Football Manager (1982)(Addictive Games)(128K)[h The Great Glen, 2012-07].zip in Resources */,
 				CDBC54CC25B4BFD7004FAA55 /* crimebusters_notthatone.sna in Resources */,
+				CDE32CB025C6FA8E006CF512 /* Spellbound Dizzy (1991)(Code Masters)(128K)[a].zip in Resources */,
+				CDE32D1625C6FA8E006CF512 /* Final Chorus, The (1995)(Zenobi)(128K).zip in Resources */,
+				CDE32D7025C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K)[a].zip in Resources */,
 				CDBC555025B4BFD7004FAA55 /* mooncresta.sna in Resources */,
+				CDE32C5E25C6FA8D006CF512 /* Price of Magik, The (1986)(Level 9 Computing)(128K).zip in Resources */,
+				CDE32D5425C6FA8E006CF512 /* Wild West Seymour (1992)(Code Masters)(128K)[aka Seymour's Wild West Adventure].zip in Resources */,
 				CDBC54B825B4BFD7004FAA55 /* youngones.sna in Resources */,
+				CDE32D4025C6FA8E006CF512 /* Fairlight II (1986)(Edge, The)(128K)[aka Fairlight 2 - A Trail of Darkness].zip in Resources */,
+				CDE32D1A25C6FA8E006CF512 /* Pub Trivia Simulator (1990)(Code Masters)(128K).zip in Resources */,
 				CDBC551C25B4BFD7004FAA55 /* xcel.sna in Resources */,
+				CDE32C9A25C6FA8E006CF512 /* Game Over (1987)(Imagine)(128K)[re-release].zip in Resources */,
 				CDBC554225B4BFD7004FAA55 /* dizzy_fw.sna in Resources */,
 				CDBC550E25B4BFD7004FAA55 /* worminparadise.sna in Resources */,
+				CDE32C9825C6FA8E006CF512 /* Three Weeks in Paradise (1986)(Mikro-Gen)(128K).zip in Resources */,
+				CDE32D0625C6FA8E006CF512 /* Cabal (1989)(Ocean)(128K).zip in Resources */,
+				CDE32D1025C6FA8E006CF512 /* Continental Circus (1989)(Virgin Mastertronic)(128K).zip in Resources */,
+				CDE32CC625C6FA8E006CF512 /* Shadow Warriors (1990)(Ocean)(128K).zip in Resources */,
+				CDE32D5825C6FA8E006CF512 /* Skull & Crossbones (1991)(Domark)(128K).zip in Resources */,
 				CDBC553A25B4BFD7004FAA55 /* dynamitedan.sna in Resources */,
+				CDE32D1E25C6FA8E006CF512 /* Chip Factory - Featuring 'Technician Ted', The (1984)(Hewson Consultants)(128K).zip in Resources */,
+				CDE32D6225C6FA8E006CF512 /* Hedda Strikes Again (2003)(Adventure Probe)(128K).zip in Resources */,
+				CDE32CC025C6FA8E006CF512 /* Knight Orc - Hordes of the Mountain King (1987)(Rainbird)(128K)[a2].zip in Resources */,
 				CDBC54E625B4BFD7004FAA55 /* cavesofdoom.sna in Resources */,
+				CDE32CB425C6FA8E006CF512 /* International Match Day (1985)(Ocean)(128K).zip in Resources */,
 				CDBC54F625B4BFD7004FAA55 /* crimebustersinc.sna in Resources */,
+				CDE32C8425C6FA8E006CF512 /* Daley Thompson's Olympic Challenge (1988)(Ocean)(128K)[aka Daley Thompson '88].zip in Resources */,
 				CDBC554A25B4BFD7004FAA55 /* dizzy_TI.sna in Resources */,
 				CDBC54F025B4BFD7004FAA55 /* hunchback.sna in Resources */,
+				CDE32CA625C6FA8E006CF512 /* Jester Quest (1988)(Zenobi)(128K)[re-release].zip in Resources */,
 				CDBC54D225B4BFD7004FAA55 /* robinofsherlock.sna in Resources */,
 				CDBC543F25B4A08E004FAA55 /* CYBERRUN.sna in Resources */,
+				CDE32D3E25C6FA8E006CF512 /* IK+ (1987)(System 3)(128K)[a][aka International Karate+].zip in Resources */,
 				CDBC554E25B4BFD7004FAA55 /* questfortheholygrail.sna in Resources */,
+				CDE32D5225C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 1 of 3).zip in Resources */,
+				CDE32D6C25C6FA8E006CF512 /* Lost Children, The (1997)(Adventure Probe)(128K)[re-release].zip in Resources */,
+				CDE32CEC25C6FA8E006CF512 /* Where Time Stood Still (1988)(Ocean)(128K)[aka Land That Time Forgot, The][aka Tibet].zip in Resources */,
 				CDBC551225B4BFD7004FAA55 /* dizzy_potyf.sna in Resources */,
+				CDE32CD825C6FA8E006CF512 /* Muncher, The (1988)(Gremlin Graphics)(128K)[aka T-Wrecks].zip in Resources */,
 				CDBC550225B4BFD7004FAA55 /* redhawk_side1.sna in Resources */,
+				CDE32CEA25C6FA8E006CF512 /* Forest Stop, The (1989)(Sterling Endeavours)(128K).zip in Resources */,
 				CDBC553025B4BFD7004FAA55 /* specialoperations.sna in Resources */,
+				CDE32D4825C6FA8E006CF512 /* Crystal Kingdom Dizzy (1992)(Code Masters)(128K)[tr ru].zip in Resources */,
+				CDE32D3425C6FA8E006CF512 /* Wacky Races (1992)(Hi-Tec)(128K)[cr Matasoft][t +6 Matasoft].zip in Resources */,
+				CDE32C8A25C6FA8E006CF512 /* Spectre of Castle Coris, The v2 (1990)(FSF Adventures)(128K)(Part 2 of 2).zip in Resources */,
 				CDBC555425B4BFD7004FAA55 /* rockstaratemyhamster.sna in Resources */,
+				CDE32C8C25C6FA8E006CF512 /* Leopold the Minstrel (1994)(Zenobi)(128K).zip in Resources */,
 				CDBC550C25B4BFD7004FAA55 /* threeweeksinparadise.sna in Resources */,
+				CDE32D1825C6FA8E006CF512 /* Bardic Rite, The (1994)(Zenobi)(128K).zip in Resources */,
+				CDE32C9025C6FA8E006CF512 /* Toyota Celica GT Rally (1991)(Gremlin Graphics)(128K)[aka Celica GT4 Rally].zip in Resources */,
+				CDE32D8425C6FE94006CF512 /* Chequered Flag (1983)(Sinclair Research).zip in Resources */,
+				CDE32D6425C6FA8E006CF512 /* Operation Thunderbolt (1989)(Ocean)(128K).zip in Resources */,
+				CDE32C9225C6FA8E006CF512 /* Stormbringer (1987)(Mastertronic Added Dimension)(128K)[a][Magic Knight 4].zip in Resources */,
 				CDBCBB3A25BAFE3800FDB350 /* testtape.tap in Resources */,
 				CDBC54FA25B4BFD7004FAA55 /* incredibleshrinkingfireman.sna in Resources */,
+				CDE32D4625C6FA8E006CF512 /* Towdie (1994)(Ultrasoft)(128K)(SK).zip in Resources */,
+				CDE32D0E25C6FA8E006CF512 /* Combat School (1987)(Ocean)(128K).zip in Resources */,
 				CDBC54D425B4BFD7004FAA55 /* dynamitedan2.sna in Resources */,
+				CDE32C6225C6FA8E006CF512 /* Stifflip & Co. (1987)(Palace)(128K)(Part 1 of 2).zip in Resources */,
+				CDE32D0C25C6FA8E006CF512 /* Chase H.Q. (1989)(Ocean)(128K).zip in Resources */,
 				CDBC551A25B4BFD7004FAA55 /* everyonesawally.sna in Resources */,
+				CDE32D0A25C6FA8E006CF512 /* Jetsons, The (1992)(Hi-Tec)(128K).zip in Resources */,
+				CDE32CF825C6FA8E006CF512 /* Operation Wolf (1988)(Ocean)(128K).zip in Resources */,
+				CDE32CAA25C6FA8E006CF512 /* Pawn, The v2.3 (1987)(Rainbird)(128K).zip in Resources */,
 				CDBC54CA25B4BFD7004FAA55 /* twinkingdomvalley.sna in Resources */,
 				CDBC54A625B4BFD7004FAA55 /* superspy.sna in Resources */,
+				CDE32CEE25C6FA8E006CF512 /* Ghouls 'n' Ghosts (1989)(U.S. Gold)(128K).zip in Resources */,
+				CDE32D3225C6FA8E006CF512 /* Magicland Dizzy (1990)(Code Masters)(128K).zip in Resources */,
+				CDE32CAC25C6FA8E006CF512 /* Spellbound (1985)(Mastertronic Added Dimension)(128K)[Magic Knight 2].zip in Resources */,
+				CDE32C7225C6FA8E006CF512 /* Platoon (1988)(Ocean)(128K).zip in Resources */,
 				CDBCBB4325BAFE4C00FDB350 /* spectest.z80 in Resources */,
 				CDBC556B25B8349D004FAA55 /* middleoflakecheat.z80 in Resources */,
+				CDE32CD225C6FA8E006CF512 /* Rasputin (1986)(Firebird)(128K).zip in Resources */,
 				CDBC553C25B4BFD7004FAA55 /* megabucks.sna in Resources */,
 				CD62E47C25A84EF900B89CEA /* Action Biker.tzx in Resources */,
+				CDE32C6625C6FA8E006CF512 /* Barbarian II - The Dungeon of Drax (1988)(Palace)(128K).zip in Resources */,
+				CDE32CE625C6FA8E006CF512 /* Murder Mystery Weekend (1997)(Zenobi)(128K).zip in Resources */,
+				CDE32CFA25C6FA8E006CF512 /* Double Dragon III - The Rosetta Stone (1991)(Storm)(128K)[aka Double Dragon 3 - The Rosetta Stone].zip in Resources */,
 				CDBC54AE25B4BFD7004FAA55 /* redmoon.sna in Resources */,
+				CDE32CFC25C6FA8E006CF512 /* Tau Ceti - The Special Edition (1987)(CRL Group)(128K).zip in Resources */,
 				CDBC54E425B4BFD7004FAA55 /* wildbunch.sna in Resources */,
 				CDBC552425B4BFD7004FAA55 /* transylvaniantower.sna in Resources */,
 				CDBC54AA25B4BFD7004FAA55 /* emotion.sna in Resources */,
+				CDE32D2625C6FA8E006CF512 /* Gunship (1987)(MicroProse)(128K).zip in Resources */,
 				CDBC54DC25B4BFD7004FAA55 /* ericandthefloaters.sna in Resources */,
+				CDE32D2225C6FA8E006CF512 /* Question of Scruples, A (1987)(Leisure Genius)(128K).zip in Resources */,
 				CDBC54EE25B4BFD7004FAA55 /* matchoftheday.sna in Resources */,
+				CDE32CBC25C6FA8E006CF512 /* Magic Circle, The (19xx)(-)(128K).zip in Resources */,
+				CDE32C9E25C6FA8E006CF512 /* Enduro Racer (1987)(Activision)(128K)[a].zip in Resources */,
 				CDBC54B625B4BFD7004FAA55 /* penetrator.sna in Resources */,
+				CDE32D2A25C6FA8E006CF512 /* Winter Games (1986)(U.S. Gold)(128K).zip in Resources */,
 				CDBC552625B4BFD7004FAA55 /* kwah.sna in Resources */,
+				CDE32C9625C6FA8E006CF512 /* Knight Orc - A Kind of Magic (1987)(Rainbird)(128K)[a].zip in Resources */,
 				CDBC555825B4BFD7004FAA55 /* knightorc_1.sna in Resources */,
 				CDBC554C25B4BFD7004FAA55 /* lordsoftime.sna in Resources */,
+				CDE32CE225C6FA8E006CF512 /* Strider (1989)(U.S. Gold)(128K).zip in Resources */,
+				CDE32CA425C6FA8E006CF512 /* Yie Ar Kung-Fu (1985)(Imagine)(128K).zip in Resources */,
+				CDE32CFE25C6FA8E006CF512 /* Starglider (1986)(Rainbird)(128K)[a2].zip in Resources */,
 				CDBC54AC25B4BFD7004FAA55 /* hunchback2.sna in Resources */,
+				CDE32D5025C6FA8E006CF512 /* Tai-Pan (1987)(Ocean)(128K)[a2].zip in Resources */,
+				CDE32D3825C6FA8E006CF512 /* Lotus Esprit Turbo Challenge (1990)(Gremlin Graphics)(128K).zip in Resources */,
 				CDBC553825B4BFD7004FAA55 /* hampstead.sna in Resources */,
 				CDBC54F825B4BFD7004FAA55 /* mugsy.sna in Resources */,
 				CDBC554025B4BFD7004FAA55 /* trevorbrooking.sna in Resources */,
+				CDE32D6A25C6FA8E006CF512 /* Ingrid's Back (1988)(Level 9 Computing)(128K)(Part 3 of 3).zip in Resources */,
+				CDE32CBA25C6FA8E006CF512 /* Gnome Ranger (1987)(Level 9 Computing)(128K)(Part 2 of 3)[a].zip in Resources */,
+				CDE32C7A25C6FA8E006CF512 /* MASK (1987)(Gremlin Graphics)(128K).zip in Resources */,
+				CDE32CF625C6FA8E006CF512 /* Chevy Chase (1991)(Hi-Tec)(128K).zip in Resources */,
+				CDE32D0225C6FA8E006CF512 /* Road Blasters (1988)(U.S. Gold)(128K).zip in Resources */,
+				CDE32CDE25C6FA8E006CF512 /* Renegade III - The Final Chapter (1989)(Imagine)(128K).zip in Resources */,
 				CDBC54E025B4BFD7004FAA55 /* supersprint.sna in Resources */,
+				CDE32D5625C6FA8E006CF512 /* Rainbow Islands - The Story of Bubble Bobble 2 (1990)(Ocean)(128K).zip in Resources */,
 				CDBC54DE25B4BFD7004FAA55 /* matchday2.sna in Resources */,
 				CDBC555225B4BFD7004FAA55 /* sherlock.sna in Resources */,
+				CDE32CF225C6FA8E006CF512 /* Hamon IV - Return to Home From Deathmanland (demo) (1997)(Ascendancy)(128K)(BY)(en).zip in Resources */,
+				CDE32D4225C6FA8E006CF512 /* International Kickboxing (1993)(Your Sinclair)(128K)[b].zip in Resources */,
+				CDE32D6025C6FA8E006CF512 /* Raven, The (1988)(8th Day)(128K).zip in Resources */,
 				CDBC54F425B4BFD7004FAA55 /* lordoftherings_2.sna in Resources */,
+				CDE32CDA25C6FA8E006CF512 /* Daley Thompson's Supertest (1985)(Ocean)(128K).zip in Resources */,
 				CDBC551425B4BFD7004FAA55 /* bugsy.sna in Resources */,
+				CDE32CE025C6FA8E006CF512 /* Nodes of Yesod (1985)(Odin Computer Graphics)(128K).zip in Resources */,
+				CDE32D5C25C6FA8E006CF512 /* Robin of Sherwood - The Touchstones of Rhiannon (1985)(Adventure International)(128K)[a][aka Robin of the Wood].zip in Resources */,
+				CDE32D4425C6FA8E006CF512 /* Rocky Horror Show, The (1985)(CRL Group)(128K).zip in Resources */,
 				CDBC555625B4BFD7004FAA55 /* urbanupstart.sna in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1232,18 +2221,27 @@
 				CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */,
 				CDED0C0025949B3C00862DE0 /* Z80+Opcode.swift in Sources */,
 				CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */,
+				CD4ED8ED25ED874500EBF8A7 /* Decode+Dictionary.swift in Sources */,
+				CD94821725D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDD9021B25AE08E500AB93FD /* BaseViewController.swift in Sources */,
 				CDED0C0525949EB000862DE0 /* UInt8+Bitwise.swift in Sources */,
+				CD94823825D2952C001A8718 /* Z80Assembler+Ports.swift in Sources */,
 				CDBC543225B4927C004FAA55 /* Z80Format.swift in Sources */,
 				CD62E48125ACDAB900B89CEA /* IOSViewController.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
+				CD94820B25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */,
 				CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */,
+				CDBF6B8225D58A1A003E189E /* CodeExtensions.swift in Sources */,
+				CD0D44E325EFBEC100AD6272 /* Z80Disassembler.swift in Sources */,
 				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
+				CDBF6B7C25D588F9003E189E /* DisassemblyExtensions.swift in Sources */,
+				CD576EB525E8E7F5008A4D72 /* CodeListing.swift in Sources */,
 				CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
 				CDBCBB7225BEC3B800FDB350 /* ComputerModel.swift in Sources */,
+				CD2A9A2425CC4F1B0052A0F8 /* Z80Assembler.swift in Sources */,
 				CDF8A2662531DA7900F0D216 /* Data+String.swift in Sources */,
 				CDBC542D25B34FA0004FAA55 /* Constraint+Multiplier.swift in Sources */,
 				CDED0BFB25949B2D00862DE0 /* Z80+OpcodeCB.swift in Sources */,
@@ -1251,32 +2249,43 @@
 				CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */,
 				CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
+				CD0D44F225EFC7D600AD6272 /* DataType.swift in Sources */,
+				CD94820525D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */,
+				CD23901C25ED5692006BFA69 /* SaveLoad.swift in Sources */,
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
 				CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */,
 				CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
+				CD94821D25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */,
 				CD62E45F25A6F35E00B89CEA /* Refresh.swift in Sources */,
 				CDD9020E25ADFD5500AB93FD /* SNAFormat.swift in Sources */,
 				CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
 				CDBCBB6925BEB92100FDB350 /* ZXSpectrum.swift in Sources */,
+				CD94821125D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */,
 				CDCB61C925881786008DD916 /* Color.swift in Sources */,
 				CD62E47525A79FCB00B89CEA /* TXZFormat.swift in Sources */,
 				CDD9021425AE05A100AB93FD /* FileFormat.swift in Sources */,
 				CD959D712599F6680043FB91 /* Z80+OpCodeDDFD.swift in Sources */,
 				CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */,
 				CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */,
+				CD94822F25D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */,
 				CD62E46C25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
 				CDBCBB5525BEB6DC00FDB350 /* CPU.swift in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CD88D88B25B8DE4100AA8153 /* TapeLoader.swift in Sources */,
 				CD94C42925C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
+				CD94822925D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */,
+				CD94822325D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */,
+				CD0D44EC25EFC6B300AD6272 /* CodeRoutine.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
 				CDCB61DD2588DC56008DD916 /* UInt8+Attributes.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
 				CDED0C0A25949FF400862DE0 /* Flag.swift in Sources */,
+				CDF0BAC725F142610053E696 /* RoutineTableViewCell.swift in Sources */,
+				CD0D450425F0F87500AD6272 /* RamCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1295,14 +2304,18 @@
 				CD03E711259CF963005F0F83 /* Z80+OpcodeED.swift in Sources */,
 				CD03E708259CF963005F0F83 /* UInt8+Attributes.swift in Sources */,
 				CD03E710259CF963005F0F83 /* DispatchQueue+backgrounding.swift in Sources */,
+				CD94822425D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */,
 				CD03E71D259CF989005F0F83 /* ViewController.swift in Sources */,
 				CD62E3D325A1C06700B89CEA /* allTestsP_CB00to7f.swift in Sources */,
 				CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */,
 				CDD9021C25AE08E500AB93FD /* BaseViewController.swift in Sources */,
+				CD0D44F325EFC7D600AD6272 /* DataType.swift in Sources */,
 				CD03E724259CF995005F0F83 /* RegisterPair.swift in Sources */,
 				CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */,
+				CD94823925D2952C001A8718 /* Z80Assembler+Ports.swift in Sources */,
 				CD03E70F259CF963005F0F83 /* UInt16+Bitwise.swift in Sources */,
 				CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */,
+				CD94821E25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */,
 				CD03E71A259CF989005F0F83 /* OpCodeDefs.swift in Sources */,
 				CD03E717259CF989005F0F83 /* SceneDelegate.swift in Sources */,
 				CD62E3C225A1A32200B89CEA /* allTests80toca.swift in Sources */,
@@ -1313,6 +2326,7 @@
 				CD03E706259CF963005F0F83 /* Data+String.swift in Sources */,
 				CDD9020F25ADFD5500AB93FD /* SNAFormat.swift in Sources */,
 				CD62E3EC25A1FB3500B89CEA /* allTestsP_DDCB00to7f.swift in Sources */,
+				CD2A9A2525CC4F1B0052A0F8 /* Z80Assembler.swift in Sources */,
 				CD03E725259CF995005F0F83 /* Flag.swift in Sources */,
 				CD62E47625A79FCB00B89CEA /* TXZFormat.swift in Sources */,
 				CD03E70C259CF963005F0F83 /* UIImage+Bitmap.swift in Sources */,
@@ -1321,13 +2335,17 @@
 				CD03E719259CF989005F0F83 /* Color.swift in Sources */,
 				CD03E716259CF989005F0F83 /* MainTableViewCell.swift in Sources */,
 				CD62E46D25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
+				CD0D44E425EFBEC100AD6272 /* Z80Disassembler.swift in Sources */,
 				CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */,
+				CD94821225D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */,
+				CD2A9A2D25CC51130052A0F8 /* AssemblerTests.swift in Sources */,
 				CD03E726259CF995005F0F83 /* CodeByteModel.swift in Sources */,
 				CD03E721259CF995005F0F83 /* Accumilator.swift in Sources */,
 				CD03E718259CF989005F0F83 /* AppDelegate.swift in Sources */,
 				CDBCBB7325BEC3B800FDB350 /* ComputerModel.swift in Sources */,
 				CD03E709259CF963005F0F83 /* Int+Bitwise.swift in Sources */,
 				CDBCBB6A25BEB92100FDB350 /* ZXSpectrum.swift in Sources */,
+				CDBF6B8325D58A1A003E189E /* CodeExtensions.swift in Sources */,
 				CD03E712259CF963005F0F83 /* StringExtensions.swift in Sources */,
 				CD62E3D825A1D99A00B89CEA /* allTestsP_CB80toff.swift in Sources */,
 				CD62E3F925A2169E00B89CEA /* allTestP_ED_ALL.swift in Sources */,
@@ -1337,12 +2355,20 @@
 				CD88D88C25B8DE4100AA8153 /* TapeLoader.swift in Sources */,
 				CDBCBB5625BEB6DC00FDB350 /* CPU.swift in Sources */,
 				CD03E727259CF995005F0F83 /* RegisterModel.swift in Sources */,
+				CDF0BAC825F142610053E696 /* RoutineTableViewCell.swift in Sources */,
+				CD94821825D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */,
 				CD03E723259CF995005F0F83 /* OpCode.swift in Sources */,
 				CD03E71B259CF989005F0F83 /* Bitmap.swift in Sources */,
 				CD62E3DD25A1EEC800B89CEA /* allTestsP_DD00to7f.swift in Sources */,
 				CD62E48225ACDAB900B89CEA /* IOSViewController.swift in Sources */,
+				CD94820625D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */,
 				CD03E707259CF963005F0F83 /* Z80+OpcodeDDFDCB.swift in Sources */,
+				CD94820C25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */,
+				CD94822A25D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */,
 				CD62E3E725A1F49200B89CEA /* allTestsP_DD80toff.swift in Sources */,
+				CD0D44ED25EFC6B300AD6272 /* CodeRoutine.swift in Sources */,
+				CD94823025D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */,
+				CDBF6B7D25D588F9003E189E /* DisassemblyExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1678,6 +2704,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CD4ED8F125EE33B900EBF8A7 /* XCRemoteSwiftPackageReference "FileProvider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amosavian/FileProvider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.26.0;
+			};
+		};
+		CDE32BBF25C5F3F9006CF512 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CD4ED8F225EE33B900EBF8A7 /* FilesProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD4ED8F125EE33B900EBF8A7 /* XCRemoteSwiftPackageReference "FileProvider" */;
+			productName = FilesProvider;
+		};
+		CDE32BC025C5F3F9006CF512 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDE32BBF25C5F3F9006CF512 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CDF8A1DB2531CC2700F0D216 /* inSpeccytor.xcdatamodeld */ = {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Zip
 class ZXSpectrum : Z80 {
     
     let beeper = AudioStreamer()
@@ -17,6 +18,7 @@ class ZXSpectrum : Z80 {
         keyboard = Array(repeating: 0xff, count: 8)
         beeper.ticksPerFrame = tStatesPerFrame
         loadROM()
+  //      unzipFile(file: "Cannibal Island (1986)(LiveWire)")
     }
     
     func loadROM(){
@@ -25,6 +27,22 @@ class ZXSpectrum : Z80 {
     
     func expandROM(data: String?){
 
+    }
+    
+    func unzipFile(file: String){
+        let fm = FileManager.default
+        do {
+            
+            let filePath = Bundle.main.url(forResource: file.replacingOccurrences(of: ".zip", with: ""), withExtension: "zip")!
+            let unzipDirectory = try Zip.quickUnzipFile(filePath)
+            let items = try fm.contentsOfDirectory(atPath: unzipDirectory.path)
+            if (items.count > 0){
+                load(file: items[0], path: unzipDirectory.path)
+            }
+        }
+        catch {
+          print("Something went wrong")
+        }
     }
     
     override func blitScreen(){
@@ -73,18 +91,25 @@ class ZXSpectrum : Z80 {
                 DispatchQueue.main.sync {
             delegate?.updateBorder(colour: source.byteValue.border())
                 }
+            clicks = source.byteValue & 24
         }
         if (port == 0xfd){ // 128k paging
       //      delegate?.updateBorder(colour: source.byteValue.border())
         }
     }
     
+    override func pause(){
+       pauseProcessor = true
+    }
+    
+    override func resume() {
+        pauseProcessor = false
+    }
+    
     override func process() {
         currentTStates = 0
         while true {
-            if pauseProcessor {
-                break
-            }
+            if !pauseProcessor {
                         if (!frameEnds) {
             if (shouldRunInterupt){
                 interupt = false
@@ -118,14 +143,15 @@ class ZXSpectrum : Z80 {
                     }
                 }
                 
-                shouldForceBreak = false
-           //   print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) \(byte) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
-//                if PC >= 0x00f0 {
-//                    print("Breaking here")
-//                }
+                shouldForceBreak = false//
+//                if PC >= 0x6000 {
+//              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) \(byte) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+//
+////                    print("Breaking here")
+//               }
                 
                 opCode(byte: byte)
-                beeper.updateSample(UInt32(currentTStates), beep: clicks)
+ //               beeper.updateSample(UInt32(currentTStates), beep: clicks)
         
             }
             if currentTStates >= tStatesPerFrame {
@@ -141,6 +167,11 @@ class ZXSpectrum : Z80 {
                                 frameEnds = false
                             }
                         }
+                
+            } else {
+                
+                    print("Paused")
+            }
         }
     }
     
@@ -321,7 +352,7 @@ class ZXSpectrum : Z80 {
         
     }
     
-    override func load(file: String){
+    override func load(file: String, path: String? = nil){
        var fileStruct = file.split(separator: ".")
         
         if fileStruct.count > 1{
@@ -333,7 +364,9 @@ class ZXSpectrum : Z80 {
             case "sna":
                 loadSnapshot(sna: name)
             case "z80":
-                loadZ80(z80Snap: name)
+                loadZ80(z80Snap: name, path: path)
+            case "zip":
+                unzipFile(file: file)
             case "tzx":
                 importTZX(tzxFile: name)
             default:
@@ -352,8 +385,8 @@ class ZXSpectrum : Z80 {
         writeCodeBytes()
     }
     
-    func loadZ80(z80Snap: String){
-        let snapShot = Z80Format(fileName: z80Snap)
+    func loadZ80(z80Snap: String, path: String? = nil){
+        let snapShot = Z80Format(fileName: z80Snap, path: path)
         let banks = snapShot.retrieveRam()
         if (banks.count > 0){
             if banks.count == 1{
@@ -392,12 +425,25 @@ class ZXSpectrum : Z80 {
     
     override func writeCodeBytes(){
         var model: Array<CodeByteModel> = []
-        var id = 0x4000
+        var id = 0x00
+        memory[0].forEach{byte in
+            model.append(byte.createCodeByte(lineNumber: id))
+            id += 1
+        }
         memory[1].forEach{byte in
             model.append(byte.createCodeByte(lineNumber: id))
             id += 1
         }
         delegate?.updateCodeByteModel(model: model)
+    }
+    
+    override func memoryDump(withRom: Bool = true) -> [UInt8]{
+        var model: [UInt8] = []
+        if withRom {
+            model.append(contentsOf: memory[0])
+        }
+            model.append(contentsOf: memory[1])
+        return model
     }
     
 }

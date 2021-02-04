@@ -9,7 +9,35 @@ import Foundation
 
 class OpCodeDefs {
     
-    func opCode(code: String, extra: String = "") -> OpCode {
+    func opCode(array: [UInt8]) -> OpCode? {
+        if array.count > 0 && array.count < 5 {
+            var funcCode = String(array[0].hex())
+            var countFrom = 1
+            switch funcCode {
+            case "DD", "FD", "ED", "CB":
+                if (array.count > 1) {
+                    funcCode = "\(funcCode) \(String(array[1].hex()))"
+                    countFrom = 2
+                }
+            default:
+                break
+            }
+            var x = ""
+            var y = ""
+            array[countFrom...].forEach{extraCode in
+                if x == "" {
+                    x = String(extraCode.hex())
+                } else {
+                    y = String(extraCode.hex())
+                }
+            }
+            return opCode(code: funcCode, extra: x, secondExtra: y)
+        }
+        
+        return nil
+    }
+    
+    func opCode(code: String, extra: String = "", secondExtra: String = "") -> OpCode {
         
         switch(code.uppercased()){
         case "00":
@@ -65,7 +93,7 @@ class OpCodeDefs {
         case "DD21":
             return OpCode(v: code, c: "LD IX,$$", m: "Load the memory location IX with the value $$", l: 3)
         case "DD36":
-            return OpCode(v: code, c: "LD (IX+$1),$2", m: "Load the contents of the memory address stored in (IX + $1) with the value $2", l: 3)
+            return OpCode(v: code, c: "LD (IX+¢1),¢2", m: "Load the contents of the memory address stored in (IX + ¢1) with the value ¢2", l: 3)
         case "03":
         return OpCode(v: code, c: "INC BC", m: " ", l: 1)
         case "04":
@@ -93,7 +121,7 @@ class OpCodeDefs {
         case "0F":
         return OpCode(v: code, c: "RRC A", m: " ", l: 1)
         case "10":
-        return OpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
+        return OpCode(v: code, c: "DJNZ ##", m: " ", l: 2, t: .RELATIVE)
         case "11":
         return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3)
         case "12":
@@ -503,7 +531,7 @@ class OpCodeDefs {
         case "E8":
         return OpCode(v: code, c: "RET PE", m: " ", l: 1)
         case "E9":
-        return OpCode(v: code, c: "JP (HL)", m: " ", l: 1)
+        return OpCode(v: code, c: "JP (HL)", m: " ", l: 1, e: true, t: .CODE)
         case "EA":
         return OpCode(v: code, c: "JP PE,$$", m: " ", l: 3, t: .CODE)
         case "EB":
@@ -701,7 +729,7 @@ class OpCodeDefs {
         case "DDBE":
         return OpCode(v: code, c: "CP (IX+§§)", m: " ", l: 2)
         case "DDCB":
-            return opCode(code: "DDCB\(extra)", extra: "")
+            return opCode(code: "DDCB\(secondExtra)", secondExtra: "")
         case "DDE1":
         return OpCode(v: code, c: "POP IX", m: " ", l: 1)
         case "DDE3":
@@ -709,7 +737,7 @@ class OpCodeDefs {
         case "DDE5":
         return OpCode(v: code, c: "PUSH IX", m: " ", l: 1)
         case "DDE9":
-        return OpCode(v: code, c: "JP (IX)", m: " ", l: 1)
+        return OpCode(v: code, c: "JP (IX)", m: " ", l: 1, e: true, t: .CODE)
         case "CB00":
         return OpCode(v: code, c: "RLC B", m: " ", l: 1)
         case "CB01":
@@ -807,21 +835,21 @@ class OpCodeDefs {
         case "CB2F":
         return OpCode(v: code, c: "SRA A", m: " ", l: 1)
         case "CB30":
-        return OpCode(v: code, c: "SLS B", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL B", m: " ", l: 1)
         case "CB31":
-        return OpCode(v: code, c: "SLS C", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL C", m: " ", l: 1)
         case "CB32":
-        return OpCode(v: code, c: "SLS D", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL D", m: " ", l: 1)
         case "CB33":
-        return OpCode(v: code, c: "SLS E", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL E", m: " ", l: 1)
         case "CB34":
-        return OpCode(v: code, c: "SLS H", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL H", m: " ", l: 1)
         case "CB35":
-        return OpCode(v: code, c: "SLS L", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL L", m: " ", l: 1)
         case "CB36":
-        return OpCode(v: code, c: "SLS (HL)", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL (HL)", m: " ", l: 1)
         case "CB37":
-        return OpCode(v: code, c: "SLS A", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL A", m: " ", l: 1)
         case "CB38":
         return OpCode(v: code, c: "SRL B", m: " ", l: 1)
         case "CB39":
@@ -1255,7 +1283,7 @@ class OpCodeDefs {
                 case "FD35":
                 return OpCode(v: code, c: "DEC (IY+§§)", m: " ", l: 2)
         case "FD36":
-            return OpCode(v: code, c: "LD (IY+$1),$2", m: "Load the contents of the memory address stored in (IY + $1) with the value $2", l: 3)
+            return OpCode(v: code, c: "LD (IY+¢1),¢2", m: "Load the contents of the memory address stored in (IY + ¢1) with the value ¢2", l: 3)
                 case "FD39":
                 return OpCode(v: code, c: "ADD IY,SP", m: " ", l: 1)
                 case "FD44":
@@ -1383,7 +1411,7 @@ class OpCodeDefs {
                 case "FDBE":
                 return OpCode(v: code, c: "CP (IY+§§)", m: " ", l: 2)
         case "FDCB":
-            return opCode(code: "FDCB\(extra)", extra: "")
+            return opCode(code: "FDCB\(secondExtra)", secondExtra: "")
                 case "FDE1":
                 return OpCode(v: code, c: "POP IY", m: " ", l: 1)
                 case "FDE3":
@@ -1391,7 +1419,7 @@ class OpCodeDefs {
                 case "FDE5":
                 return OpCode(v: code, c: "PUSH IY", m: " ", l: 1)
                 case "FDE9":
-                return OpCode(v: code, c: "JP (IY)", m: " ", l: 1)
+                return OpCode(v: code, c: "JP (IY)", m: " ", l: 1, e: true, t: .CODE)
             
             
             
@@ -1558,35 +1586,35 @@ class OpCodeDefs {
         case "ED7F":
         return OpCode(v: code, c: "[ldr,r?]", m: " ", l: 1)
         case "EDA0":
-        return OpCode(v: code, c: "LD I", m: " ", l: 1)
+        return OpCode(v: code, c: "LDI", m: " ", l: 1)
         case "EDA1":
-        return OpCode(v: code, c: "CP I", m: " ", l: 1)
+        return OpCode(v: code, c: "CPI", m: " ", l: 1)
         case "EDA2":
-        return OpCode(v: code, c: "IN I", m: " ", l: 1)
+        return OpCode(v: code, c: "INI", m: " ", l: 1)
         case "EDA3":
         return OpCode(v: code, c: "OTI", m: " ", l: 1)
         case "EDA8":
-        return OpCode(v: code, c: "LD D", m: " ", l: 1)
+        return OpCode(v: code, c: "LDD", m: " ", l: 1)
         case "EDA9":
-        return OpCode(v: code, c: "CP D", m: " ", l: 1)
+        return OpCode(v: code, c: "CPD", m: " ", l: 1)
         case "EDAA":
-        return OpCode(v: code, c: "IN D", m: " ", l: 1)
+        return OpCode(v: code, c: "IND", m: " ", l: 1)
         case "EDAB":
         return OpCode(v: code, c: "OTD", m: " ", l: 1)
         case "EDB0":
-        return OpCode(v: code, c: "LD IR", m: " ", l: 1)
+        return OpCode(v: code, c: "LDIR", m: " ", l: 1)
         case "EDB1":
-        return OpCode(v: code, c: "CP IR", m: " ", l: 1)
+        return OpCode(v: code, c: "CPIR", m: " ", l: 1)
         case "EDB2":
-        return OpCode(v: code, c: "IN IR", m: " ", l: 1)
+        return OpCode(v: code, c: "INIR", m: " ", l: 1)
         case "EDB3":
         return OpCode(v: code, c: "OTIR", m: " ", l: 1)
         case "EDB8":
-        return OpCode(v: code, c: "LD DR", m: " ", l: 1)
+        return OpCode(v: code, c: "LDDR", m: " ", l: 1)
         case "EDB9":
-        return OpCode(v: code, c: "CP DR", m: " ", l: 1)
+        return OpCode(v: code, c: "CPDR", m: " ", l: 1)
         case "EDBA":
-        return OpCode(v: code, c: "IN DR", m: " ", l: 1)
+        return OpCode(v: code, c: "INDR", m: " ", l: 1)
         case "EDBB":
         return OpCode(v: code, c: "OTDR", m: " ", l: 1)
         case "EDF8":

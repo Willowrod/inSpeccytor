@@ -16,8 +16,12 @@ protocol CPUDelegate {
     func updateCodeByteModel(model: [CodeByteModel])
 }
 
+
 class CPU {
+    var jumpPoints: [UInt16] = []
     var memory: [[UInt8]] = []
+    
+    var ramUpdated = false
     
     // Registers
     var A: Accumilator = Accumilator()
@@ -51,7 +55,7 @@ class CPU {
         
     }
     
-    func load(file: String){
+    func load(file: String, path: String? = nil){
         
     }
     
@@ -69,7 +73,7 @@ class CPU {
     }
     
     func ldRam(location: Int, value: UInt16){
-        ldRam(location: location, value: value.lowBit())
+        ldRam(location: location, value: value.lowByte())
         ldRam(location: location &+ 1, value: value.highByte())
     }
     
@@ -117,8 +121,19 @@ class CPU {
         
     }
     
+    func memoryDump(withRom: Bool = true) -> [UInt8] {
+        return []
+    }
+    
     func usingRom() -> ComputerModel {
         return .ZXSpectrum_48K
     }
     
+    func pause(){
+        
+    }
+    
+    func resume() {
+        
+    }
 }
