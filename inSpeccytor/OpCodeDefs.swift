@@ -93,7 +93,7 @@ class OpCodeDefs {
         case "0F":
         return OpCode(v: code, c: "RRC A", m: " ", l: 1)
         case "10":
-        return OpCode(v: code, c: "DJNZ##", m: " ", l: 2, t: .RELATIVE)
+        return OpCode(v: code, c: "DJNZ ##", m: " ", l: 2, t: .RELATIVE)
         case "11":
         return OpCode(v: code, c: "LD DE,$$", m: " ", l: 3)
         case "12":

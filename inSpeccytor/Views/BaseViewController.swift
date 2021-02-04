@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate {
+class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate, CodeLineDelegate {
     @IBOutlet weak var screenRender: UIImageView!
     @IBOutlet weak var fileName: UILabel!
     @IBOutlet weak var hexView: UITextView!
@@ -46,6 +46,8 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var currentEntryPoint = 0
     var isCalc = false
     var snapShots: [String] = []
+    
+    var assembler = Z80Assembler()
     
     var computerModel: ComputerModel = .ZXSpectrum_128K//  .ZXSpectrum_48K  //
 
@@ -193,9 +195,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             if opCode.length == 2 {
                 let byte: UInt8 = UInt8(getCodeByte().intValue)
                 if opCode.code.contains("±"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(byte) - \(UInt8(byte).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(UInt8(byte).hex().padded(size: 2))")
                 } else if opCode.code.contains("$$"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(byte) - \(UInt8(byte).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(UInt8(byte).hex().padded(size: 2))")
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
                     //opCode.code = "###\(opCode.code)"
                 } else if opCode.code.contains("##"){ // Two's compliment
@@ -208,7 +210,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if opCode.target > 0xffff {
                         opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target) - OVERFLOW!")
                     } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target) - \(UInt16(opCode.target).hex().padded(size: 4))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(UInt16(opCode.target).hex().padded(size: 4))")
                     }
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp)")
                 } else if opCode.code.contains("§§"){ // Two's compliment
@@ -232,11 +234,11 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if (opCode.code.contains("$$")){
                     let word = (high * 256) + low
                     opCode.target = word
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(word) - \(UInt16(word).hex().padded(size: 4))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(word)")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(UInt16(word).hex().padded(size: 4))")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(UInt16(word).hex().padded(size: 4))")
                 } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "\(low)").replacingOccurrences(of: "$2", with: "\(high)")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
                 }
                 pCInDisAssembler += 1
             }
@@ -373,6 +375,26 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Delegates
     
+    // Code Line Delegate
+    
+    func updateComment(id: Int, comment: String) {
+        if id < opCodes.count{
+        opCodes[id].meaning = comment
+        }
+    }
+    
+    func updateOpCode(id: Int, comment: String) {
+        if id < opCodes.count{
+      //  opCodes[id].meaning = comment
+        }
+    }
+    
+    func updateByteValue(id: Int, comment: String) {
+        if id < opCodes.count{
+      //  opCodes[id].meaning = comment
+        }
+    }
+    
     // CPU Delegate
     
     func updateCodeByteModel(model: [CodeByteModel]){
@@ -461,8 +483,10 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (tableView == mainTableView){
             let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
             let thisLine = self.opCodes[row]
+            cell.setDelegate(iD: row, del: self)
             let lineNumber = (baseSelector.selectedSegmentIndex == 0 ? "\(String(thisLine.line, radix: 16).padded(size: 4))" : "\(thisLine.line)")
             var lineNumberID = ""
+            cell.byteContent.text = assembler.assemble(opCode: thisLine.code)
             if entryPoints.contains(thisLine.line){
                 lineNumberID = "➡️"
             }
@@ -485,7 +509,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             cell.lineNumber.text = "\(lineNumberID) \(lineNumber)"
             cell.opCode.text = thisLine.code
-            cell.meaning.text = "\(thisLine.meaning)"
+            cell.comment.text = "\(thisLine.meaning)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
