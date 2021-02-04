@@ -51,7 +51,7 @@ class CPU {
         
     }
     
-    func load(file: String){
+    func load(file: String, path: String? = nil){
         
     }
     

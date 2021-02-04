@@ -37,9 +37,23 @@ class Z80Format: BaseFileFormat {
     
     
     
-    init(fileName: String){
+    init(fileName: String, path: String? = nil){
         super.init()
-        if let filePath = Bundle.main.path(forResource: fileName, ofType: "z80"){
+        if let path = path {
+            let filePath = "\(path)/\(fileName).z80"
+            let contents = NSData(contentsOfFile: filePath)
+            let data = contents! as Data
+            let dataString = data.hexString
+            if let dataString = dataString{
+                importDataFromString(data: dataString)
+            }
+            do {
+                try FileManager.default.removeItem(at: URL(fileURLWithPath: path))
+            } catch let error as NSError {
+                print("Error: \(error.domain)")
+            }
+            process()
+        } else if let filePath = Bundle.main.path(forResource: fileName, ofType: "z80"){
             print("File found - \(filePath)")
             let contents = NSData(contentsOfFile: filePath)
             let data = contents! as Data

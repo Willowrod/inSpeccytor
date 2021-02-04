@@ -77,7 +77,8 @@ class IOSViewController: BaseViewController{
     createFileList()
     keyboardBottomConstant.constant = -keyboardView.frame.height
     joystickHeight.constant = 0.0
-        fileViewConstant.constant = 300
+    fileViewConstant.constant = 300
+        snapShotTableView.isHidden = false
     }
     
     @IBAction func offerMedia(_ sender: Any) {

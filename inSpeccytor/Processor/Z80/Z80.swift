@@ -44,7 +44,7 @@ class Z80: CPU {
     var flashOn = false
     var stackSize = 0
     var pauseProcessor = false
-    var clicks: UInt8 = 0 // Primarily used to pass values that should be in a register - the undocumented OUT (C), 0 is a good example
+    var clicks: UInt8 = 0
     var header: RegisterModel = RegisterModel()
     
     override init() {

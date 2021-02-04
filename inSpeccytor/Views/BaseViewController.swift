@@ -47,8 +47,8 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var isCalc = false
     var snapShots: [String] = []
     
-    var computerModel: ComputerModel = .ZXSpectrum_128K
-    
+    var computerModel: ComputerModel = .ZXSpectrum_128K//  .ZXSpectrum_48K  //
+
     override func viewDidLoad() {
         super.viewDidLoad()
         screenRender.setUpImageView()
@@ -114,7 +114,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         if timestamp > lastSecond + 1 {
             lastSecond = timestamp
             seconds += 1
-            hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
+            //hexView.text = "FPS: \(frames / seconds) in \(seconds) seconds"
         }
         frames += 1
     }
@@ -179,9 +179,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         var runLoop = true
         while runLoop{
             let lineAsInt = pCInDisAssembler
-            if pCInDisAssembler == 0xD858 {
-                print ("Debug here!")
-            }
+//            if pCInDisAssembler == 0xD858 {
+//                print ("Debug here!")
+//            }
             var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
             pCInDisAssembler += 1
             if (!isCalc){
@@ -285,7 +285,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                     isCalc = true
                 }
             
-      //                  print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
+                        print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
                     if (opCode.isEndOfRoutine){
                         if (stopAfterEachOpCode){
                             runLoop = false
@@ -376,8 +376,6 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     // CPU Delegate
     
     func updateCodeByteModel(model: [CodeByteModel]){
-        self.model = model
-        tableView.reloadData()
     }
     
     func updateTitle(title: String){
@@ -424,7 +422,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             for item in items {
                 print("Found: \(item)")
-                if item.contains(".sna") || item.contains(".z80"){
+                if item.contains(".sna") || item.contains(".z80") || item.contains(".zip"){
                     print("Adding: \(item)")
                     snapShots.append(item)
                 }

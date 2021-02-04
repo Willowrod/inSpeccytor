@@ -100,6 +100,7 @@ class ZXSpectrum128K: ZXSpectrum {
             memory[3].append(contentsOf: dataModel[0])
         }
         bankSwitchEnabled = true
+        writeCodeBytes()
         pauseProcessor = false
        }
     
@@ -162,19 +163,6 @@ class ZXSpectrum128K: ZXSpectrum {
         }
 
     }
-    
-//    override func writeRAM(dataModel: Array<UInt8>, startAddress: Int = 0){
-//        pauseProcessor = true
-//        interupt = false
-//        var count = 0
-//        dataModel.forEach { byte in
-//            if (count < memory[1].count){
-//                memory[1][count] = byte
-//            count += 1
-//            }
-//        }
-//        pauseProcessor = false
-//    }
     
     func writeROM(dataModel: Array<UInt8>){
         pauseProcessor = true
@@ -267,9 +255,11 @@ class ZXSpectrum128K: ZXSpectrum {
     override func writeCodeBytes(){
         var model: Array<CodeByteModel> = []
         var id = 0x00
-        memory[0].forEach{byte in
-            model.append(byte.createCodeByte(lineNumber: id))
-            id += 1
+        memory.forEach{ bank in
+            bank.forEach{byte in
+                model.append(byte.createCodeByte(lineNumber: id))
+                id += 1
+            }
         }
         delegate?.updateCodeByteModel(model: model)
     }

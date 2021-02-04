@@ -18,9 +18,16 @@ class ViewController: BaseViewController {
     @IBOutlet weak var e: UILabel!
     @IBOutlet weak var h: UILabel!
     @IBOutlet weak var l: UILabel!
-
+    @IBOutlet weak var fpsLabel: UILabel!
+    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var newByte: UITextField!
+    
+    @IBOutlet weak var primaryFunction: UISegmentedControl!
+    @IBOutlet weak var debuggerView: UIView!
+    @IBOutlet weak var registersView: UIView!
+    
+    @IBOutlet weak var screenHeightConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -29,6 +36,7 @@ class ViewController: BaseViewController {
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
+        setFunctionScreen()
     }
     
     @IBAction func debugStep(_ sender: Any) {
@@ -90,7 +98,8 @@ class ViewController: BaseViewController {
         default:
             print("Model \(computerModel.rawValue) is not currently supported")
         }
-
+        
+        fpsLabel.text = "FPS: \(frames / seconds) in \(seconds) seconds"
     }
     
 
@@ -114,6 +123,7 @@ class ViewController: BaseViewController {
     }
     
     @IBAction func runFromPC(_ sender: Any) {
+        computer?.writeCodeBytes()
         stopAfterEachOpCode = false
         updatePC()
         print("Disassembly from PC at \(String(pCInDisAssembler, radix: 16))")
@@ -142,11 +152,34 @@ class ViewController: BaseViewController {
         }
     }
     
-//
-//
-
+    override func updateCodeByteModel(model: [CodeByteModel]){
+        self.model = model
+        tableView.reloadData()
+    }
     
-
+    func setFunctionScreen(){
+        switch primaryFunction.selectedSegmentIndex {
+        case 0:
+            screenHeightConstraint.constant = self.view.frame.height * 0.9
+            mainTableView.isHidden = true
+            tableView.isHidden = true
+            debuggerView.isHidden = true
+            hexView.isHidden = true
+            registersView.isHidden = true
+        default:
+            screenHeightConstraint.constant = self.view.frame.height * 0.5
+            mainTableView.isHidden = false
+            tableView.isHidden = false
+            debuggerView.isHidden = false
+            hexView.isHidden = false
+            registersView.isHidden = false
+        }
+    }
+    
+    @IBAction func changeFunction(_ sender: Any) {
+        setFunctionScreen()
+    }
+    
     
 }
 

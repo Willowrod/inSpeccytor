@@ -503,7 +503,7 @@ class OpCodeDefs {
         case "E8":
         return OpCode(v: code, c: "RET PE", m: " ", l: 1)
         case "E9":
-        return OpCode(v: code, c: "JP (HL)", m: " ", l: 1)
+        return OpCode(v: code, c: "JP (HL)", m: " ", l: 1, e: true, t: .CODE)
         case "EA":
         return OpCode(v: code, c: "JP PE,$$", m: " ", l: 3, t: .CODE)
         case "EB":
@@ -709,7 +709,7 @@ class OpCodeDefs {
         case "DDE5":
         return OpCode(v: code, c: "PUSH IX", m: " ", l: 1)
         case "DDE9":
-        return OpCode(v: code, c: "JP (IX)", m: " ", l: 1)
+        return OpCode(v: code, c: "JP (IX)", m: " ", l: 1, e: true, t: .CODE)
         case "CB00":
         return OpCode(v: code, c: "RLC B", m: " ", l: 1)
         case "CB01":
@@ -1391,7 +1391,7 @@ class OpCodeDefs {
                 case "FDE5":
                 return OpCode(v: code, c: "PUSH IY", m: " ", l: 1)
                 case "FDE9":
-                return OpCode(v: code, c: "JP (IY)", m: " ", l: 1)
+                return OpCode(v: code, c: "JP (IY)", m: " ", l: 1, e: true, t: .CODE)
             
             
             
