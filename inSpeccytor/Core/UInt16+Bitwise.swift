@@ -12,7 +12,7 @@ extension UInt16 {
         return UInt8(self / 256)
     }
     
-    func lowBit() -> UInt8 {
+    func lowByte() -> UInt8 {
        return UInt8(self - ((self / 256) * 256))
     }
     

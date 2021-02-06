@@ -69,7 +69,7 @@ class CPU {
     }
     
     func ldRam(location: Int, value: UInt16){
-        ldRam(location: location, value: value.lowBit())
+        ldRam(location: location, value: value.lowByte())
         ldRam(location: location &+ 1, value: value.highByte())
     }
     

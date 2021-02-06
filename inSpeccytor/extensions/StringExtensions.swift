@@ -89,4 +89,63 @@ extension String {
         }
         return rtrn
     }
+    
+    func isValidHex() -> Bool{
+        let regex = try! NSRegularExpression(pattern: "^[0-9A-F]+$")
+        let range = NSRange(self.startIndex..., in: self)
+        let matchRange = regex.rangeOfFirstMatch(in: self, options: .reportProgress, range: range)
+        return matchRange.location != NSNotFound
+    }
+    
+    func isValidUInt16() -> Bool{
+        if let integer = Int(self), integer <= 0xFFFF {
+            return true
+        }
+        return false
+    }
+    
+    func validUInt16() -> UInt16? {
+        if self.contains("0X"){
+            if let integer = Int(self.replacingOccurrences(of: "0X", with: ""), radix: 16), integer <= 0xFFFF {
+                return UInt16(integer)
+            }
+        }
+            if let integer = Int(self), integer <= 0xFFFF {
+                return UInt16(integer)
+            }
+        return nil
+    }
+    
+    func validUInt8() -> UInt8? {
+        if self.contains("0X"){
+            if let integer = Int(self.replacingOccurrences(of: "0X", with: ""), radix: 16), integer <= 0xFF {
+                return UInt8(integer)
+            }
+        }
+            if let integer = Int(self), integer <= 0xFF {
+                return UInt8(integer)
+            }
+        return nil
+    }
+    
+    func regOffset() -> UInt8? {
+        switch self {
+        case "A":
+            return 7
+        case "B":
+            return 0
+        case "C":
+            return 1
+        case "D":
+            return 2
+        case "E":
+            return 3
+        case "H":
+            return 4
+        case "L":
+            return 5
+        default:
+            return nil
+        }
+    }
 }

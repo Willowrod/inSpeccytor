@@ -195,9 +195,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             if opCode.length == 2 {
                 let byte: UInt8 = UInt8(getCodeByte().intValue)
                 if opCode.code.contains("±"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "\(UInt8(byte).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "0x\(UInt8(byte).hex().padded(size: 2))")
                 } else if opCode.code.contains("$$"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(UInt8(byte).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "0x\(UInt8(byte).hex().padded(size: 2))")
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
                     //opCode.code = "###\(opCode.code)"
                 } else if opCode.code.contains("##"){ // Two's compliment
@@ -210,7 +210,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if opCode.target > 0xffff {
                         opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target) - OVERFLOW!")
                     } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(UInt16(opCode.target).hex().padded(size: 4))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "0x\(UInt16(opCode.target).hex().padded(size: 4))")
                     }
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp)")
                 } else if opCode.code.contains("§§"){ // Two's compliment
@@ -234,11 +234,11 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if (opCode.code.contains("$$")){
                     let word = (high * 256) + low
                     opCode.target = word
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "\(UInt16(word).hex().padded(size: 4))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(UInt16(word).hex().padded(size: 4))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "0x\(UInt16(word).hex().padded(size: 4))")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "0x\(UInt16(word).hex().padded(size: 4))")
                 } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "0x\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "0x\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
                 }
                 pCInDisAssembler += 1
             }

@@ -28,6 +28,21 @@ class AssemblerTests: XCTestCase {
         XCTAssert(assembler.assemble(opCode: "NOP") == "00")
     }
 
+    func testHex(){
+        XCTAssert("AABB".isValidHex())
+        XCTAssert("01".isValidHex())
+        XCTAssert("01AF".isValidHex())
+        XCTAssert("0123456789ABCDEF".isValidHex())
+        XCTAssert("0123456789ABCDEf".isValidHex() == false)
+        XCTAssert("0123456789ABCDEG".isValidHex() == false)
+        
+    }
+    
+    func testLoads(){
+        XCTAssert(assembler.assemble(opCode: "LD BC,0x692b") == "01 2B 69")
+    }
+    
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
