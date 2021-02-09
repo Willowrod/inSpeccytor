@@ -195,9 +195,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             if opCode.length == 2 {
                 let byte: UInt8 = UInt8(getCodeByte().intValue)
                 if opCode.code.contains("±"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "0x\(UInt8(byte).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "$\(UInt8(byte).hex().padded(size: 2))")
                 } else if opCode.code.contains("$$"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "0x\(UInt8(byte).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "$\(UInt8(byte).hex().padded(size: 2))")
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
                     //opCode.code = "###\(opCode.code)"
                 } else if opCode.code.contains("##"){ // Two's compliment
@@ -208,11 +208,12 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                     opCode.target = pCInDisAssembler + comp + 1 //Add 1 to make PC correct before comp
                     if opCode.target > 0xffff {
-                        opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(opCode.target) - OVERFLOW!")
+                        opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(byte.hex()) - OVERFLOW!")
+                        opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp) (\(String(opCode.target, radix: 16)) - OVERFLOW!")
                     } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "0x\(UInt16(opCode.target).hex().padded(size: 4))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "$\(byte.hex())")
+                        opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp) (\(UInt16(opCode.target).hex()))")
                     }
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp)")
                 } else if opCode.code.contains("§§"){ // Two's compliment
                     let subt = byte.isSet(bit: 7)
                     var comp: Int = -Int(byte.twosCompliment())
@@ -220,7 +221,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                         comp = Int(byte)
                     }
                     opCode.target = pCInDisAssembler + comp + 1 //Add 1 to make PC correct before comp
-                    opCode.code = opCode.code.replacingOccurrences(of: "§§", with: "\(comp)")
+                    opCode.code = opCode.code.replacingOccurrences(of: "§§", with: "$\(byte.hex())")
                     opCode.meaning = opCode.meaning.replacingOccurrences(of: "§§", with: "\(comp)")
                 }
 
@@ -234,11 +235,11 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if (opCode.code.contains("$$")){
                     let word = (high * 256) + low
                     opCode.target = word
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "0x\(UInt16(word).hex().padded(size: 4))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "0x\(UInt16(word).hex().padded(size: 4))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "$\(UInt16(word).hex().padded(size: 4))")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "$\(UInt16(word).hex().padded(size: 4))")
                 } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "0x\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "0x\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "\(UInt8(high).hex().padded(size: 2))")
+                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "$\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "$\(UInt8(high).hex().padded(size: 2))")
+                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "$\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "$\(UInt8(high).hex().padded(size: 2))")
                 }
                 pCInDisAssembler += 1
             }
@@ -273,7 +274,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 if (!entryPoints.contains(opCode.target) && !alreadyAdded.contains(opCode.target)){
-                        print("Adding jump to \(String(opCode.target, radix: 16)) from \(String(opCode.line, radix: 16))")
+   //                     print("Adding jump to \(String(opCode.target, radix: 16)) from \(String(opCode.line, radix: 16))")
                     entryPoints.append(opCode.target)
                 }
             }
@@ -286,8 +287,8 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if opCode.value.uppercased() == "EF" && computer?.usingRom() == .ZXSpectrum_48K {
                     isCalc = true
                 }
-            
-                        print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
+                assembler.assemble(opCode: opCode.code)
+ //                       print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
                     if (opCode.isEndOfRoutine){
                         if (stopAfterEachOpCode){
                             runLoop = false

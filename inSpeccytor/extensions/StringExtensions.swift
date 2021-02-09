@@ -105,8 +105,8 @@ extension String {
     }
     
     func validUInt16() -> UInt16? {
-        if self.contains("0X"){
-            if let integer = Int(self.replacingOccurrences(of: "0X", with: ""), radix: 16), integer <= 0xFFFF {
+        if self.contains("0X") || self.contains("$"){
+            if let integer = Int(self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "0X", with: "").replacingOccurrences(of: "$", with: ""), radix: 16), integer <= 0xFFFF, integer >= 0x00 {
                 return UInt16(integer)
             }
         }
@@ -117,14 +117,24 @@ extension String {
     }
     
     func validUInt8() -> UInt8? {
-        if self.contains("0X"){
-            if let integer = Int(self.replacingOccurrences(of: "0X", with: ""), radix: 16), integer <= 0xFF {
+        if self.contains("0X") || self.contains("$"){
+            if let integer = Int(self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "0X", with: "").replacingOccurrences(of: "$", with: ""), radix: 16), integer <= 0xFF {
                 return UInt8(integer)
             }
         }
-            if let integer = Int(self), integer <= 0xFF {
+            if let integer = Int(self), integer <= 0xFF, integer >= 0x00 {
                 return UInt8(integer)
             }
+        return nil
+    }
+    
+    func displacement() -> String? {
+         let displacementSplit = self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").split(separator: "+")
+        if displacementSplit.count == 2 {
+            if let displacement = String(displacementSplit[1]).validUInt8() {
+                return displacement.hex()
+            }
+        }
         return nil
     }
     

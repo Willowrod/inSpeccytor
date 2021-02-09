@@ -82,6 +82,22 @@
 		CD88D88C25B8DE4100AA8153 /* TapeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */; };
 		CD8F4D69258F9E860004CD3F /* Main_Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */; };
 		CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */; };
+		CD94820525D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */; };
+		CD94820625D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */; };
+		CD94820B25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */; };
+		CD94820C25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */; };
+		CD94821125D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */; };
+		CD94821225D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */; };
+		CD94821725D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */; };
+		CD94821825D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */; };
+		CD94821D25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */; };
+		CD94821E25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */; };
+		CD94822325D258DC001A8718 /* Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Assembler+Jump.swift */; };
+		CD94822425D258DC001A8718 /* Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Assembler+Jump.swift */; };
+		CD94822925D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */; };
+		CD94822A25D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */; };
+		CD94822F25D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */; };
+		CD94823025D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */; };
 		CD94C42925C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94C42825C01B1A00C93F21 /* ZXSpectrum128K.swift */; };
 		CD94C42A25C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94C42825C01B1A00C93F21 /* ZXSpectrum128K.swift */; };
 		CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */; };
@@ -671,6 +687,14 @@
 		CD88D88A25B8DE4100AA8153 /* TapeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeLoader.swift; sourceTree = "<group>"; };
 		CD8F4D68258F9E860004CD3F /* Main_Mac.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_Mac.storyboard; sourceTree = "<group>"; };
 		CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+backgrounding.swift"; sourceTree = "<group>"; };
+		CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Load.swift"; sourceTree = "<group>"; };
+		CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Adds.swift"; sourceTree = "<group>"; };
+		CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembly+Subtractions.swift"; sourceTree = "<group>"; };
+		CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Logic.swift"; sourceTree = "<group>"; };
+		CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Bitwise.swift"; sourceTree = "<group>"; };
+		CD94822225D258DC001A8718 /* Assembler+Jump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assembler+Jump.swift"; sourceTree = "<group>"; };
+		CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Registry.swift"; sourceTree = "<group>"; };
+		CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+BitShift.swift"; sourceTree = "<group>"; };
 		CD94C42825C01B1A00C93F21 /* ZXSpectrum128K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXSpectrum128K.swift; sourceTree = "<group>"; };
 		CD959D6B2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpcodeDDFDCB.swift"; sourceTree = "<group>"; };
 		CD959D702599F6680043FB91 /* Z80+OpCodeDDFD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80+OpCodeDDFD.swift"; sourceTree = "<group>"; };
@@ -997,6 +1021,14 @@
 			isa = PBXGroup;
 			children = (
 				CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */,
+				CD94820425D18CB8001A8718 /* Z80Assembler+Load.swift */,
+				CD94820A25D192ED001A8718 /* Z80Assembler+Adds.swift */,
+				CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */,
+				CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */,
+				CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */,
+				CD94822225D258DC001A8718 /* Assembler+Jump.swift */,
+				CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */,
+				CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */,
 			);
 			path = Assembler;
 			sourceTree = "<group>";
@@ -2121,6 +2153,7 @@
 				CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */,
 				CDED0C0025949B3C00862DE0 /* Z80+Opcode.swift in Sources */,
 				CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */,
+				CD94821725D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
 				CDD9021B25AE08E500AB93FD /* BaseViewController.swift in Sources */,
@@ -2128,6 +2161,7 @@
 				CDBC543225B4927C004FAA55 /* Z80Format.swift in Sources */,
 				CD62E48125ACDAB900B89CEA /* IOSViewController.swift in Sources */,
 				CDF8A1D72531CC2700F0D216 /* ViewController.swift in Sources */,
+				CD94820B25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */,
 				CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */,
 				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
 				CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */,
@@ -2141,28 +2175,34 @@
 				CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */,
 				CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
+				CD94820525D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */,
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
 				CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */,
 				CD8F4D6E258FD48B0004CD3F /* DispatchQueue+backgrounding.swift in Sources */,
 				CDF8A27C2531ED3500F0D216 /* LineTableViewCell.swift in Sources */,
+				CD94821D25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */,
 				CD62E45F25A6F35E00B89CEA /* Refresh.swift in Sources */,
 				CDD9020E25ADFD5500AB93FD /* SNAFormat.swift in Sources */,
 				CDE3ECC3258CFC8B00C8E8AF /* Accumilator.swift in Sources */,
 				CDF8A1DD2531CC2700F0D216 /* inSpeccytor.xcdatamodeld in Sources */,
 				CDBCBB6925BEB92100FDB350 /* ZXSpectrum.swift in Sources */,
+				CD94821125D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */,
 				CDCB61C925881786008DD916 /* Color.swift in Sources */,
 				CD62E47525A79FCB00B89CEA /* TXZFormat.swift in Sources */,
 				CDD9021425AE05A100AB93FD /* FileFormat.swift in Sources */,
 				CD959D712599F6680043FB91 /* Z80+OpCodeDDFD.swift in Sources */,
 				CDE3ECB6258CE84E00C8E8AF /* Register.swift in Sources */,
 				CDE3ECBE258CF3F100C8E8AF /* RegisterPair.swift in Sources */,
+				CD94822F25D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */,
 				CD62E46C25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
 				CDBCBB5525BEB6DC00FDB350 /* CPU.swift in Sources */,
 				CDBB3F3F253B371800A1FFC0 /* OpCode.swift in Sources */,
 				CD88D88B25B8DE4100AA8153 /* TapeLoader.swift in Sources */,
 				CD94C42925C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
+				CD94822925D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */,
+				CD94822325D258DC001A8718 /* Assembler+Jump.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
 				CDCB61DD2588DC56008DD916 /* UInt8+Attributes.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
@@ -2185,6 +2225,7 @@
 				CD03E711259CF963005F0F83 /* Z80+OpcodeED.swift in Sources */,
 				CD03E708259CF963005F0F83 /* UInt8+Attributes.swift in Sources */,
 				CD03E710259CF963005F0F83 /* DispatchQueue+backgrounding.swift in Sources */,
+				CD94822425D258DC001A8718 /* Assembler+Jump.swift in Sources */,
 				CD03E71D259CF989005F0F83 /* ViewController.swift in Sources */,
 				CD62E3D325A1C06700B89CEA /* allTestsP_CB00to7f.swift in Sources */,
 				CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */,
@@ -2193,6 +2234,7 @@
 				CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */,
 				CD03E70F259CF963005F0F83 /* UInt16+Bitwise.swift in Sources */,
 				CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */,
+				CD94821E25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */,
 				CD03E71A259CF989005F0F83 /* OpCodeDefs.swift in Sources */,
 				CD03E717259CF989005F0F83 /* SceneDelegate.swift in Sources */,
 				CD62E3C225A1A32200B89CEA /* allTests80toca.swift in Sources */,
@@ -2213,6 +2255,7 @@
 				CD03E716259CF989005F0F83 /* MainTableViewCell.swift in Sources */,
 				CD62E46D25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
 				CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */,
+				CD94821225D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */,
 				CD2A9A2D25CC51130052A0F8 /* AssemblerTests.swift in Sources */,
 				CD03E726259CF995005F0F83 /* CodeByteModel.swift in Sources */,
 				CD03E721259CF995005F0F83 /* Accumilator.swift in Sources */,
@@ -2229,12 +2272,17 @@
 				CD88D88C25B8DE4100AA8153 /* TapeLoader.swift in Sources */,
 				CDBCBB5625BEB6DC00FDB350 /* CPU.swift in Sources */,
 				CD03E727259CF995005F0F83 /* RegisterModel.swift in Sources */,
+				CD94821825D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */,
 				CD03E723259CF995005F0F83 /* OpCode.swift in Sources */,
 				CD03E71B259CF989005F0F83 /* Bitmap.swift in Sources */,
 				CD62E3DD25A1EEC800B89CEA /* allTestsP_DD00to7f.swift in Sources */,
 				CD62E48225ACDAB900B89CEA /* IOSViewController.swift in Sources */,
+				CD94820625D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */,
 				CD03E707259CF963005F0F83 /* Z80+OpcodeDDFDCB.swift in Sources */,
+				CD94820C25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */,
+				CD94822A25D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */,
 				CD62E3E725A1F49200B89CEA /* allTestsP_DD80toff.swift in Sources */,
+				CD94823025D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

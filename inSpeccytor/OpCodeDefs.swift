@@ -1558,35 +1558,35 @@ class OpCodeDefs {
         case "ED7F":
         return OpCode(v: code, c: "[ldr,r?]", m: " ", l: 1)
         case "EDA0":
-        return OpCode(v: code, c: "LD I", m: " ", l: 1)
+        return OpCode(v: code, c: "LDI", m: " ", l: 1)
         case "EDA1":
-        return OpCode(v: code, c: "CP I", m: " ", l: 1)
+        return OpCode(v: code, c: "CPI", m: " ", l: 1)
         case "EDA2":
-        return OpCode(v: code, c: "IN I", m: " ", l: 1)
+        return OpCode(v: code, c: "INI", m: " ", l: 1)
         case "EDA3":
         return OpCode(v: code, c: "OTI", m: " ", l: 1)
         case "EDA8":
-        return OpCode(v: code, c: "LD D", m: " ", l: 1)
+        return OpCode(v: code, c: "LDD", m: " ", l: 1)
         case "EDA9":
-        return OpCode(v: code, c: "CP D", m: " ", l: 1)
+        return OpCode(v: code, c: "CPD", m: " ", l: 1)
         case "EDAA":
-        return OpCode(v: code, c: "IN D", m: " ", l: 1)
+        return OpCode(v: code, c: "IND", m: " ", l: 1)
         case "EDAB":
         return OpCode(v: code, c: "OTD", m: " ", l: 1)
         case "EDB0":
-        return OpCode(v: code, c: "LD IR", m: " ", l: 1)
+        return OpCode(v: code, c: "LDIR", m: " ", l: 1)
         case "EDB1":
-        return OpCode(v: code, c: "CP IR", m: " ", l: 1)
+        return OpCode(v: code, c: "CPIR", m: " ", l: 1)
         case "EDB2":
-        return OpCode(v: code, c: "IN IR", m: " ", l: 1)
+        return OpCode(v: code, c: "INIR", m: " ", l: 1)
         case "EDB3":
         return OpCode(v: code, c: "OTIR", m: " ", l: 1)
         case "EDB8":
-        return OpCode(v: code, c: "LD DR", m: " ", l: 1)
+        return OpCode(v: code, c: "LDDR", m: " ", l: 1)
         case "EDB9":
-        return OpCode(v: code, c: "CP DR", m: " ", l: 1)
+        return OpCode(v: code, c: "CPDR", m: " ", l: 1)
         case "EDBA":
-        return OpCode(v: code, c: "IN DR", m: " ", l: 1)
+        return OpCode(v: code, c: "INDR", m: " ", l: 1)
         case "EDBB":
         return OpCode(v: code, c: "OTDR", m: " ", l: 1)
         case "EDF8":
