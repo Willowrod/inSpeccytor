@@ -23,7 +23,6 @@ class ViewController: BaseViewController {
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var newByte: UITextField!
     
-    @IBOutlet weak var primaryFunction: UISegmentedControl!
     @IBOutlet weak var debuggerView: UIView!
     @IBOutlet weak var registersView: UIView!
     
@@ -36,6 +35,11 @@ class ViewController: BaseViewController {
         mainTableView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
+        setFunctionScreen()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        primaryFunction.selectedSegmentIndex = 1
         setFunctionScreen()
     }
     
@@ -123,11 +127,15 @@ class ViewController: BaseViewController {
     }
     
     @IBAction func runFromPC(_ sender: Any) {
-        computer?.writeCodeBytes()
-        stopAfterEachOpCode = false
-        updatePC()
-        print("Disassembly from PC at \(String(pCInDisAssembler, radix: 16))")
-        parseLine()
+        
+        switch primaryFunction.selectedSegmentIndex {
+        case 1:
+            d_run()
+        case 2:
+            c_run()
+        default:
+            break
+        }
     }
     
     @IBAction func stepFromPC(_ sender: Any) {
@@ -173,7 +181,9 @@ class ViewController: BaseViewController {
             debuggerView.isHidden = false
             hexView.isHidden = false
             registersView.isHidden = false
+            mainTableView.reloadData()
         }
+        
     }
     
     @IBAction func changeFunction(_ sender: Any) {

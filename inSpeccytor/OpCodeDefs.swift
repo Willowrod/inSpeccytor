@@ -9,7 +9,35 @@ import Foundation
 
 class OpCodeDefs {
     
-    func opCode(code: String, extra: String = "") -> OpCode {
+    func opCode(array: [UInt8]) -> OpCode? {
+        if array.count > 0 && array.count < 5 {
+            var funcCode = String(array[0].hex())
+            var countFrom = 1
+            switch funcCode {
+            case "DD", "FD", "ED", "CB":
+                if (array.count > 1) {
+                    funcCode = "\(funcCode) \(String(array[1].hex()))"
+                    countFrom = 2
+                }
+            default:
+                break
+            }
+            var x = ""
+            var y = ""
+            array[countFrom...].forEach{extraCode in
+                if x == "" {
+                    x = String(extraCode.hex())
+                } else {
+                    y = String(extraCode.hex())
+                }
+            }
+            return opCode(code: funcCode, extra: x, secondExtra: y)
+        }
+        
+        return nil
+    }
+    
+    func opCode(code: String, extra: String = "", secondExtra: String = "") -> OpCode {
         
         switch(code.uppercased()){
         case "00":
@@ -701,7 +729,7 @@ class OpCodeDefs {
         case "DDBE":
         return OpCode(v: code, c: "CP (IX+§§)", m: " ", l: 2)
         case "DDCB":
-            return opCode(code: "DDCB\(extra)", extra: "")
+            return opCode(code: "DDCB\(secondExtra)", secondExtra: "")
         case "DDE1":
         return OpCode(v: code, c: "POP IX", m: " ", l: 1)
         case "DDE3":
@@ -807,21 +835,21 @@ class OpCodeDefs {
         case "CB2F":
         return OpCode(v: code, c: "SRA A", m: " ", l: 1)
         case "CB30":
-        return OpCode(v: code, c: "SLS B", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL B", m: " ", l: 1)
         case "CB31":
-        return OpCode(v: code, c: "SLS C", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL C", m: " ", l: 1)
         case "CB32":
-        return OpCode(v: code, c: "SLS D", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL D", m: " ", l: 1)
         case "CB33":
-        return OpCode(v: code, c: "SLS E", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL E", m: " ", l: 1)
         case "CB34":
-        return OpCode(v: code, c: "SLS H", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL H", m: " ", l: 1)
         case "CB35":
-        return OpCode(v: code, c: "SLS L", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL L", m: " ", l: 1)
         case "CB36":
-        return OpCode(v: code, c: "SLS (HL)", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL (HL)", m: " ", l: 1)
         case "CB37":
-        return OpCode(v: code, c: "SLS A", m: " ", l: 1)
+        return OpCode(v: code, c: "SLL A", m: " ", l: 1)
         case "CB38":
         return OpCode(v: code, c: "SRL B", m: " ", l: 1)
         case "CB39":
@@ -1383,7 +1411,7 @@ class OpCodeDefs {
                 case "FDBE":
                 return OpCode(v: code, c: "CP (IY+§§)", m: " ", l: 2)
         case "FDCB":
-            return opCode(code: "FDCB\(extra)", extra: "")
+            return opCode(code: "FDCB\(secondExtra)", secondExtra: "")
                 case "FDE1":
                 return OpCode(v: code, c: "POP IY", m: " ", l: 1)
                 case "FDE3":

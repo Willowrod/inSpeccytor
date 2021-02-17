@@ -121,4 +121,11 @@ class CPU {
         return .ZXSpectrum_48K
     }
     
+    func pause(){
+        
+    }
+    
+    func resume() {
+        
+    }
 }

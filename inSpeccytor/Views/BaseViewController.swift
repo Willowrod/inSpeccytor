@@ -8,6 +8,8 @@
 import UIKit
 
 class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate, CodeLineDelegate {
+
+    
     @IBOutlet weak var screenRender: UIImageView!
     @IBOutlet weak var fileName: UILabel!
     @IBOutlet weak var hexView: UITextView!
@@ -20,6 +22,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var border: UIView!
     @IBOutlet weak var snapShotTableView: UITableView!
     
+    @IBOutlet weak var primaryFunction: UISegmentedControl!
     
     let pCOffset = 16384 - 27
     let lineCellIdentifier = "lineCell"
@@ -49,6 +52,10 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var assembler = Z80Assembler()
     
+    var currentLineType: TypeOfTarget = .CODE
+    var currentLinePosition = 0
+    var lastSelectedLine = 0
+    
     var computerModel: ComputerModel = .ZXSpectrum_128K//  .ZXSpectrum_48K  //
 
     override func viewDidLoad() {
@@ -58,6 +65,11 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.snapShotTableView.register(UITableViewCell.self, forCellReuseIdentifier: "snapshotcell")
         self.snapShotTableView.isHidden = true
         bootEmulator()
+    }
+    
+    func refreshTables() {
+        mainTableView.reloadData()
+        tableView.reloadData()
     }
     
     func bootEmulator(){
@@ -190,7 +202,14 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             if opCode.isPreCode {
                 let thisCode = getCodeByte().hexValue
                 pCInDisAssembler += 1
-                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(thisCode)", extra: getCodeByte().hexValue)
+                let extra = getCodeByte().hexValue
+                pCInDisAssembler += 1
+                var secondextra = ""
+                if pCInDisAssembler < model.count {
+                    secondextra = getCodeByte().hexValue
+                }
+                pCInDisAssembler -= 1
+                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(thisCode)", extra: getCodeByte().hexValue, secondExtra: secondextra)
             }
             if opCode.length == 2 {
                 let byte: UInt8 = UInt8(getCodeByte().intValue)
@@ -287,9 +306,10 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if opCode.value.uppercased() == "EF" && computer?.usingRom() == .ZXSpectrum_48K {
                     isCalc = true
                 }
+
+             //   print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
                 assembler.assemble(opCode: opCode.code)
- //                       print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
-                    if (opCode.isEndOfRoutine){
+                if (opCode.isEndOfRoutine){
                         if (stopAfterEachOpCode){
                             runLoop = false
                             updatePCUI()
@@ -372,7 +392,70 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         mainTableView.reloadData()
     }
+    
+    func addNewLineOfCode(){
+        var newLine = OpCode.init(v: "", c: "", m: "", l: 0)
+        newLine.lineType = currentLineType
+        newLine.isNewLine = true
+        if (currentLinePosition < opCodes.count){
+        opCodes.insert(newLine, at: currentLinePosition)
+        } else {
+            opCodes.append(newLine)
+        }
+        refreshTables()
+    }
+    
+    func checkIfNewLineRequired(){
+        if let newLine = opCodes.firstIndex(where: {$0.isNewLine}) {
+            opCodes.remove(at: newLine)
+        }
+            currentLinePosition += 1
+            addNewLineOfCode()
+       
+        
+    }
+    
+    
+    @IBAction func insertLine(_ sender: Any) {
+        if primaryFunction.selectedSegmentIndex == 2 {
+        currentLinePosition = lastSelectedLine
+        checkIfNewLineRequired()
+        }
+    }
+    
 
+    @IBAction func saveCode(_ sender: Any) {
+        switch primaryFunction.selectedSegmentIndex {
+        case 1:
+            d_saveCode()
+        case 2:
+            c_saveCode()
+        default:
+            break
+        }
+    }
+    
+    
+    @IBAction func loadCode(_ sender: Any) {
+    }
+    
+    @IBAction func clearCode(_ sender: Any) {
+        model.removeAll()
+        opCodes.removeAll()
+        currentLinePosition = 0
+            switch primaryFunction.selectedSegmentIndex {
+            case 2:
+addNewLineOfCode()
+            default:
+                break
+            }
+        refreshTables()
+    }
+    
+    func negateNewLine(id: Int){
+        opCodes[id].isNewLine = false
+        checkIfNewLineRequired()
+    }
     
     // Delegates
     
@@ -381,19 +464,33 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateComment(id: Int, comment: String) {
         if id < opCodes.count{
         opCodes[id].meaning = comment
+            negateNewLine(id: id)
         }
     }
     
     func updateOpCode(id: Int, comment: String) {
         if id < opCodes.count{
-      //  opCodes[id].meaning = comment
+            opCodes[id].addCode(opCode: comment)
+            negateNewLine(id: id)
         }
     }
     
     func updateByteValue(id: Int, comment: String) {
         if id < opCodes.count{
-      //  opCodes[id].meaning = comment
+            opCodes[id].opCodeString = comment
+            negateNewLine(id: id)
         }
+    }
+    func updateLineType(id: Int, comment: TypeOfTarget) {
+        if id < opCodes.count{
+        opCodes[id].lineType = comment
+        }
+        currentLineType = comment
+        refreshTables()
+    }
+    
+    func updateJumpLabel(id: Int, comment: String) {
+      //
     }
     
     // CPU Delegate
@@ -482,36 +579,14 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell
         }
         if (tableView == mainTableView){
-            let cell = tableView.dequeueReusableCell(withIdentifier: mainCellIdentifier, for: indexPath) as! MainTableViewCell
-            let thisLine = self.opCodes[row]
-            cell.setDelegate(iD: row, del: self)
-            let lineNumber = (baseSelector.selectedSegmentIndex == 0 ? "\(String(thisLine.line, radix: 16).padded(size: 4))" : "\(thisLine.line)")
-            var lineNumberID = ""
-            cell.byteContent.text = assembler.assemble(opCode: thisLine.code)
-            if entryPoints.contains(thisLine.line){
-                lineNumberID = "➡️"
-            }
-            switch (thisLine.targetType){
-            case .CODE:
-                lineNumberID = "\(lineNumberID)↘️"
-            case .RELATIVE:
-                lineNumberID = "\(lineNumberID)↕️"
-            case .DATA:
-                lineNumberID = "\(lineNumberID)#️⃣"
-            case .TEXT:
-                lineNumberID = "\(lineNumberID)🔤"
-            case .GRAPHICS:
-                lineNumberID = "\(lineNumberID)🔣"
+            switch primaryFunction.selectedSegmentIndex {
+            case 1:
+                return d_mainTableViewCell(indexPath: indexPath)
+            case 2:
+                return c_mainTableViewCell(indexPath: indexPath)
             default:
-                cell.lineNumber.text = "\(lineNumber)"
-                break
-                
-                
+                return UITableViewCell.init()
             }
-            cell.lineNumber.text = "\(lineNumberID) \(lineNumber)"
-            cell.opCode.text = thisLine.code
-            cell.comment.text = "\(thisLine.meaning)"
-            return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
             let thisLine = self.model[row]
@@ -540,6 +615,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             hideSnapShotTable()
         } else if (tableView == mainTableView){
             let row = indexPath.row
+            lastSelectedLine = row
             let thisLine = self.opCodes[row]
             if (thisLine.target > 0){
                 if let target = self.opCodes.firstIndex(where: {$0.line == thisLine.target}) {

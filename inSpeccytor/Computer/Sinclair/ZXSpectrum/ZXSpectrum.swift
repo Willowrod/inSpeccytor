@@ -98,12 +98,18 @@ class ZXSpectrum : Z80 {
         }
     }
     
+    override func pause(){
+       pauseProcessor = true
+    }
+    
+    override func resume() {
+        pauseProcessor = false
+    }
+    
     override func process() {
         currentTStates = 0
         while true {
-            if pauseProcessor {
-                break
-            }
+            if !pauseProcessor {
                         if (!frameEnds) {
             if (shouldRunInterupt){
                 interupt = false
@@ -137,14 +143,15 @@ class ZXSpectrum : Z80 {
                     }
                 }
                 
-                shouldForceBreak = false
-           //   print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) \(byte) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
-//                if PC >= 0x00f0 {
+                shouldForceBreak = false//
+                if PC >= 0x6000 {
+              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) \(byte) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+
 //                    print("Breaking here")
-//                }
+               }
                 
                 opCode(byte: byte)
-                beeper.updateSample(UInt32(currentTStates), beep: clicks)
+ //               beeper.updateSample(UInt32(currentTStates), beep: clicks)
         
             }
             if currentTStates >= tStatesPerFrame {
@@ -160,6 +167,11 @@ class ZXSpectrum : Z80 {
                                 frameEnds = false
                             }
                         }
+                
+            } else {
+                
+                    print("Paused")
+            }
         }
     }
     
