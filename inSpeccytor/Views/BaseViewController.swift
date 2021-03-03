@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import FilesProvider
 
-class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate, CodeLineDelegate {
+class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate, CodeLineDelegate, SaveLoadDelegate, DisassemblyDelegate {
 
     
+    func fileSaved() {
+        
+    }
     @IBOutlet weak var screenRender: UIImageView!
     @IBOutlet weak var fileName: UILabel!
     @IBOutlet weak var hexView: UITextView!
@@ -56,11 +60,24 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var currentLinePosition = 0
     var lastSelectedLine = 0
     
-    var computerModel: ComputerModel = .ZXSpectrum_128K//  .ZXSpectrum_48K  //
+    var computerModel: ComputerModel = .ZXSpectrum_48K  //.ZXSpectrum_128K//
+    
+    
+    var codeStart: UInt16 = 0x6000
+    
+    var current_d_filename = ""
+    var current_c_filename = ""
+    
+    var withRom = true
+    
+    var sizeOfLastJumpMap = 0
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         screenRender.setUpImageView()
+        SaveLoad.instance.setDelegate(delegate: self)
 //        updateBorder(colour: Color.red)
         self.snapShotTableView.register(UITableViewCell.self, forCellReuseIdentifier: "snapshotcell")
         self.snapShotTableView.isHidden = true
@@ -92,6 +109,12 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         }, completion:{
             // when background job finished, do something in main thread
         })
+    }
+    
+    func alertUser(alertBody: String){
+        let alert = UIAlertController(title: "Inspeccytor", message: alertBody, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func keyboardInteraction(key: Int, pressed: Bool){
@@ -136,10 +159,18 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Disassembler
     
     func updatePC(){
-        if let pc = programCounter.text, pc.count == 5, let pcUint = Int(pc) {
+        if let pc = programCounter.text, !isHex() , let pcUint = Int(pc) {
             pCInDisAssembler = pcUint
-        } else {
-            
+        resetDisassembly()
+            return
+        }
+        
+        if let pc = programCounter.text, isHex() , let pcUint = Int(pc, radix: 16) {
+            pCInDisAssembler = pcUint
+            resetDisassembly()
+                return
+        }
+          
             switch computerModel {
             case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
                 if let speccy = computer as? ZXSpectrum {
@@ -148,255 +179,84 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
             default:
                 print("Model \(computerModel.rawValue) is not currently supported")
             }
+resetDisassembly()
+
+        updatePCFromSnapshot()
+        
+    }
+    
+    func updatePCFromSnapshot(){
+        switch computerModel {
+        case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
+            if let speccy = computer as? ZXSpectrum {
+                pCInDisAssembler = Int(speccy.header.registerPC)
+            }
+        default:
+            print("Model \(computerModel.rawValue) is not currently supported")
         }
+resetDisassembly()
+        updatePCUI(pc: pCInDisAssembler)
+    }
+    
+    func resetDisassembly(){
         entryPoints.removeAll()
         entryPoints.append(pCInDisAssembler)
         currentEntryPoint = 0
-        
     }
 
     func updatePCUI(){
-        programCounter.text = "\(pCInDisAssembler)"
+        programCounter.text = isHex() ? String(pCInDisAssembler, radix: 16) : "\(pCInDisAssembler)"
         if (pCInDisAssembler < model.count){
             let targetRowIndexPath = IndexPath(row: pCInDisAssembler, section: 0)
             tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
         }
     }
 
+    
+    func updatePCUI(pc: UInt16){
+        updatePCUI(pc: Int(pc))
+    }
+    
+    func isHex() -> Bool {
+        return baseSelector.selectedSegmentIndex == 0
+    }
+    
+    func isDisassembly() -> Bool{
+        return primaryFunction.selectedSegmentIndex == 1
+    }
+    
+    func isEmulator() -> Bool{
+        return primaryFunction.selectedSegmentIndex == 0
+    }
+    
+    func isIDE() -> Bool{
+        return primaryFunction.selectedSegmentIndex == 2
+    }
+    
     func updatePCUI(pc: Int){
-        programCounter.text = "\(pc)"
-        let modelPosition = pc - pCOffset
+        
+        programCounter.text = isHex() ? String(pc, radix: 16) : "\(pc)"
+        if let modelPosition = opCodes.firstIndex(where: {$0.line == pc}){
+       // let modelPosition = pc - pCOffset
         if (modelPosition < model.count){
             let targetRowIndexPath = IndexPath(row: modelPosition, section: 0)
                tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
         }
-    }
-
-    func getCodeByte() -> CodeByteModel {
-        let modelPosition = Int(pCInDisAssembler)
-        if (modelPosition < model.count){
-            return model[modelPosition]
-        } else {
-            return model.first ?? CodeByteModel(withHex: "00", line: modelPosition)
         }
     }
-
-    func getCodeByteValue(position: Int) -> Int {
-        let modelPosition = position // - pCOffset
-        if (modelPosition < model.count){
-            return model[modelPosition].intValue
-        }
-        return 0
-    }
-
-    func parseLine(){
-        var runLoop = true
-        while runLoop{
-            let lineAsInt = pCInDisAssembler
-//            if pCInDisAssembler == 0xD858 {
-//                print ("Debug here!")
-//            }
-            var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
-            pCInDisAssembler += 1
-            if (!isCalc){
-            if opCode.isPreCode {
-                let thisCode = getCodeByte().hexValue
-                pCInDisAssembler += 1
-                let extra = getCodeByte().hexValue
-                pCInDisAssembler += 1
-                var secondextra = ""
-                if pCInDisAssembler < model.count {
-                    secondextra = getCodeByte().hexValue
-                }
-                pCInDisAssembler -= 1
-                opCode = opcodeLookup.opCode(code: "\(opCode.value)\(thisCode)", extra: getCodeByte().hexValue, secondExtra: secondextra)
-            }
-            if opCode.length == 2 {
-                let byte: UInt8 = UInt8(getCodeByte().intValue)
-                if opCode.code.contains("±"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "±", with: "$\(UInt8(byte).hex().padded(size: 2))")
-                } else if opCode.code.contains("$$"){
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "$\(UInt8(byte).hex().padded(size: 2))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "\(byte)")
-                    //opCode.code = "###\(opCode.code)"
-                } else if opCode.code.contains("##"){ // Two's compliment
-                    let subt = byte.isSet(bit: 7)
-                    var comp: Int = -Int(byte.twosCompliment())
-                    if !subt{
-                        comp = Int(byte)
-                    }
-                    opCode.target = pCInDisAssembler + comp + 1 //Add 1 to make PC correct before comp
-                    if opCode.target > 0xffff {
-                        opCode.code = opCode.code.replacingOccurrences(of: "##", with: "\(byte.hex()) - OVERFLOW!")
-                        opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp) (\(String(opCode.target, radix: 16)) - OVERFLOW!")
-                    } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "##", with: "$\(byte.hex())")
-                        opCode.meaning = opCode.meaning.replacingOccurrences(of: "##", with: "\(comp) (\(UInt16(opCode.target).hex()))")
-                    }
-                } else if opCode.code.contains("§§"){ // Two's compliment
-                    let subt = byte.isSet(bit: 7)
-                    var comp: Int = -Int(byte.twosCompliment())
-                    if !subt{
-                        comp = Int(byte)
-                    }
-                    opCode.target = pCInDisAssembler + comp + 1 //Add 1 to make PC correct before comp
-                    opCode.code = opCode.code.replacingOccurrences(of: "§§", with: "$\(byte.hex())")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "§§", with: "\(comp)")
-                }
-
-                opCode.meaning = opCode.meaning.replacingOccurrences(of: "±", with: "\(byte)")
-                pCInDisAssembler += 1
-            } else if opCode.length == 3 {
-                let low = getCodeByte().intValue
-                pCInDisAssembler += 1
-                let high = getCodeByte().intValue
-
-                if (opCode.code.contains("$$")){
-                    let word = (high * 256) + low
-                    opCode.target = word
-                    opCode.code = opCode.code.replacingOccurrences(of: "$$", with: "$\(UInt16(word).hex().padded(size: 4))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$$", with: "$\(UInt16(word).hex().padded(size: 4))")
-                } else {
-                    opCode.code = opCode.code.replacingOccurrences(of: "$1", with: "$\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "$\(UInt8(high).hex().padded(size: 2))")
-                    opCode.meaning = opCode.meaning.replacingOccurrences(of: "$1", with: "$\(UInt8(low).hex().padded(size: 2))").replacingOccurrences(of: "$2", with: "$\(UInt8(high).hex().padded(size: 2))")
-                }
-                pCInDisAssembler += 1
-            }
-                opCode.line = Int(lineAsInt)
-            if (!alreadyAdded.contains(opCode.line)){
-            opCodes.append(opCode)
-                alreadyAdded.append(opCode.line)
-            }
-            
-            if (opCode.isJumpTarget()){
-                if opCode.targetType == .RST {
-                    switch opCode.value.uppercased() {
-                    case "C7":
-                        opCode.target = 0
-                    case "CF":
-                        opCode.target = 0x08
-                    case "D7":
-                        opCode.target = 0x10
-                    case "DF":
-                        opCode.target = 0x18
-                    case "E7":
-                        opCode.target = 0x20
-                    case "EF":
-                        opCode.target = 0x28
-                    case "F7":
-                        opCode.target = 0x30
-                    case "FF":
-                        opCode.target = 0x38
-                    default:
-                        opCode.target = 0
-                    }
-                }
-                
-                if (!entryPoints.contains(opCode.target) && !alreadyAdded.contains(opCode.target)){
-   //                     print("Adding jump to \(String(opCode.target, radix: 16)) from \(String(opCode.line, radix: 16))")
-                    entryPoints.append(opCode.target)
-                }
-            }
-            
-            
-            if opCode.value.count == 6 {
-                pCInDisAssembler += 1
-            }
-            
-                if opCode.value.uppercased() == "EF" && computer?.usingRom() == .ZXSpectrum_48K {
-                    isCalc = true
-                }
-
-             //   print("\(UInt16(lineAsInt).hex()): \(opCode.toString())")
-                assembler.assemble(opCode: opCode.code)
-                if (opCode.isEndOfRoutine){
-                        if (stopAfterEachOpCode){
-                            runLoop = false
-                            updatePCUI()
-                            opCodes.sort{$0.line < $1.line}
-                            mainTableView.reloadData()
-                        } else {
-                         //   print(" ---------------------- ")
-//                            opCodes.sort{$0.line < $1.line}
-//                            mainTableView.reloadData()
-                        runLoop = sortNextOpCode()
-                        }
-                    }
-
-            if (pCInDisAssembler >= model.count){
-                //             print("End Of File")
-//                runLoop = false
-//                //header.registerPC -= 1
-//                updatePCUI()
-//                opCodes.sort{$0.line < $1.line}
-//                mainTableView.reloadData()
- //              markPositions()
-                runLoop = sortNextOpCode()
-            }
-            } else {
-                if opCode.value.uppercased() == "38"{
-                    opCode.code = "End Calc"
-                    isCalc = false
-                } else if opCode.value.uppercased() == "3B"{
-                    opCode.code = "Single Calc Function"
-                    isCalc = false
-                } else {
-                    opCode.code = "Calc \(opCode.code)"
-                }
-                opCode.line = Int(lineAsInt)
-                if (!alreadyAdded.contains(opCode.line)){
-                    opCode.meaning = "Calculator Function"
-                opCodes.append(opCode)
-                    alreadyAdded.append(opCode.line)
-                }
-            }
-        }
-        
+    
+    func disassemblyComplete(disassembly: [OpCode]) {
+        opCodes = disassembly
         opCodes.sort{$0.line < $1.line}
-        mainTableView.reloadData()
-    }
-    
-    func sortNextOpCode() -> Bool {
-        currentEntryPoint += 1
-        while currentEntryPoint < entryPoints.count {
-            let nextEP = entryPoints[currentEntryPoint]
-            if nextEP > 0xffff {
-                print("Bad EP \(String(nextEP, radix: 16))")
-                return false
-            } else
-//            if nextEP < 0x4000 {
-//
-//                } else
-            if !alreadyAdded.contains(nextEP){
-            pCInDisAssembler = entryPoints[currentEntryPoint]
-            return true
-            }
-            currentEntryPoint += 1
-        }
-        print("Processing completed")
-        return false
-    }
-    
-    func markPositions(){
-        let tempCodes = opCodes
-        tempCodes.forEach({ opCode in
-            if (opCode.target > 0){
-                if let target = self.opCodes.firstIndex(where: {$0.line == opCode.target}) {
-                    // print("Target: \(target.line) is jump position")
-                    //                    let jumpPos = opCodes[target]
-                    //                    print("Target: \(jumpPos.line) is jump position")
-                    //opCodes[target].isJumpPosition = true
-                    opCodes[target].lineType = opCode.targetType
-                }
-            }
-        })
-        mainTableView.reloadData()
+        refreshTables()
+        alertUser(alertBody: "Disassembly complete - found \(disassembly.count) lines of code")
     }
     
     func addNewLineOfCode(){
         var newLine = OpCode.init(v: "", c: "", m: "", l: 0)
         newLine.lineType = currentLineType
         newLine.isNewLine = true
+        newLine.shouldAutoFocus = true
         if (currentLinePosition < opCodes.count){
         opCodes.insert(newLine, at: currentLinePosition)
         } else {
@@ -429,7 +289,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 1:
             d_saveCode()
         case 2:
-            c_saveCode()
+            c_saveCode(fileName: "savedCode")
         default:
             break
         }
@@ -437,6 +297,14 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func loadCode(_ sender: Any) {
+        switch primaryFunction.selectedSegmentIndex {
+        case 1:
+            d_loadCode()
+        case 2:
+            c_loadCode(fileName: "savedCode")
+        default:
+            break
+        }
     }
     
     @IBAction func clearCode(_ sender: Any) {
@@ -464,12 +332,11 @@ addNewLineOfCode()
     func updateComment(id: Int, comment: String) {
         if id < opCodes.count{
         opCodes[id].meaning = comment
-            negateNewLine(id: id)
         }
     }
     
     func updateOpCode(id: Int, comment: String) {
-        if id < opCodes.count{
+        if id < opCodes.count && !comment.isEmpty{
             opCodes[id].addCode(opCode: comment)
             negateNewLine(id: id)
         }
@@ -490,7 +357,9 @@ addNewLineOfCode()
     }
     
     func updateJumpLabel(id: Int, comment: String) {
-      //
+        if id < opCodes.count{
+            opCodes[id].label = comment
+        }
     }
     
     // CPU Delegate
@@ -590,7 +459,7 @@ addNewLineOfCode()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
             let thisLine = self.model[row]
-            if baseSelector.selectedSegmentIndex == 0 {
+            if isHex() {
             cell.lineNumber.text = "\(String(thisLine.lineNumber, radix: 16))"
             } else {
                 cell.lineNumber.text = "\(thisLine.lineNumber)"
@@ -612,6 +481,7 @@ addNewLineOfCode()
             let row = indexPath.row
             let thisFile = self.snapShots[row]
             computer?.load(file: thisFile)
+            updatePCFromSnapshot()
             hideSnapShotTable()
         } else if (tableView == mainTableView){
             let row = indexPath.row
@@ -644,6 +514,43 @@ addNewLineOfCode()
             tableView.reloadData()
         }
     }
+    
+    // File Provider Delegates
+    
+    func fileLoaded(listing: CodeListing) {
+        switch primaryFunction.selectedSegmentIndex {
+        case 1:
+            d_codeLoaded(listing: listing)
+        case 2:
+            c_codeLoaded(listing: listing)
+        default:
+            break
+        }
+    }
+
+    
+    func fileproviderFailed(_ fileProvider: FileProviderOperations, operation: FileOperationType, error: Error) {
+        print("File load failed: \(error.localizedDescription)")
+        //        switch primaryFunction.selectedSegmentIndex {
+        //        case 1:
+        //            d_codeLoaded()
+        //        case 2:
+        //            c_codeLoaded()
+        //        default:
+        //            break
+        //        }
+    }
+        
+    func fileproviderProgress(_ fileProvider: FileProviderOperations, operation: FileOperationType, progress: Float) {
+//        switch operation {
+//        case .copy(source: let source, destination: let dest):
+//            print("Copy\(source) to \(dest): \(progress * 100) completed.")
+//        default:
+//            break
+//        }
+    }
+    
+    
 
 }
 extension UIImageView {

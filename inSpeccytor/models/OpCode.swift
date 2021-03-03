@@ -24,6 +24,7 @@ struct OpCode: Codable {
     var opCodeArray: [UInt8] = []
     var targetLabel: String = ""
     var label: String = ""
+    var shouldAutoFocus = false
     
     init(v: String, c: String, m: String, l: Int, e: Bool = false, t: TypeOfTarget = .NOTARGET) {
         value = v
@@ -58,7 +59,7 @@ struct OpCode: Codable {
     
     mutating func addCode(opCode: String){
         code = opCode
-        writeOpCode(oC: Z80Assembler().assemble(opCode: opCode))
+        writeOpCode(oC: Z80Assembler().assemble(opCodeModel: self))
     }
     
 //    mutating func annoteOpCode(){

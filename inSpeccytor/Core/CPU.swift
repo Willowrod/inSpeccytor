@@ -16,7 +16,9 @@ protocol CPUDelegate {
     func updateCodeByteModel(model: [CodeByteModel])
 }
 
+
 class CPU {
+    var jumpPoints: [UInt16] = []
     var memory: [[UInt8]] = []
     
     // Registers
@@ -115,6 +117,10 @@ class CPU {
     
     func writeCodeBytes(){
         
+    }
+    
+    func memoryDump(withRom: Bool = true) -> [UInt8] {
+        return []
     }
     
     func usingRom() -> ComputerModel {

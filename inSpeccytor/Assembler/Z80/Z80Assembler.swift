@@ -9,8 +9,11 @@ import Foundation
 
 class Z80Assembler {
     
-    func assemble(opCode: String) -> String {
-        let original = opCode.uppercased()
+    var labelDictionary: Dictionary<String, Int> = Dictionary()
+    
+    func assemble(opCodeModel: OpCode) -> String {
+        
+        let original = opCodeModel.code.uppercased()
         let splitOpCode = original.split(separator: " ")
         let firstPart = splitOpCode[0]
         var secondPart = ""
@@ -57,7 +60,7 @@ class Z80Assembler {
         case "JP":
             return jp(secondPart: secondPart, opCode: original)
         case "JR":
-            return jr(secondPart: secondPart, opCode: original)
+            return jr(secondPart: secondPart, opCode: original, line: opCodeModel.line)
         case "RET":
             return ret(secondPart: secondPart, opCode: original)
         case "RETI":
@@ -67,7 +70,7 @@ class Z80Assembler {
         case "RST":
             return rst(secondPart: secondPart, opCode: original)
         case "DJNZ":
-            return djnz(secondPart: secondPart, opCode: original)
+            return djnz(secondPart: secondPart, opCode: original, line: opCodeModel.line)
         case "EX":
             return ex(secondPart: secondPart, opCode: original)
         case "POP":
@@ -160,11 +163,12 @@ class Z80Assembler {
             return "ED 56"
         case "IM2":
             return "ED 5E"
+        case "CALC":
+            return secondPart.replacingOccurrences(of: "$", with: "")
             
             
         default:
-            print ("Opcode \(firstPart) unknown")
-            return "XX"
+            return considerTheWhole(theWhole: original)
         }
     }
     
@@ -185,5 +189,13 @@ class Z80Assembler {
         return "??"
     }
     
+    func considerTheWhole(theWhole: String) -> String{
+        switch theWhole {
+        case "END CALC":
+            return "38"
+        default:
+            return "XX"
+        }
+    }
     
 }

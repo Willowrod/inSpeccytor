@@ -93,7 +93,7 @@ class OpCodeDefs {
         case "DD21":
             return OpCode(v: code, c: "LD IX,$$", m: "Load the memory location IX with the value $$", l: 3)
         case "DD36":
-            return OpCode(v: code, c: "LD (IX+$1),$2", m: "Load the contents of the memory address stored in (IX + $1) with the value $2", l: 3)
+            return OpCode(v: code, c: "LD (IX+¢1),¢2", m: "Load the contents of the memory address stored in (IX + ¢1) with the value ¢2", l: 3)
         case "03":
         return OpCode(v: code, c: "INC BC", m: " ", l: 1)
         case "04":
@@ -1283,7 +1283,7 @@ class OpCodeDefs {
                 case "FD35":
                 return OpCode(v: code, c: "DEC (IY+§§)", m: " ", l: 2)
         case "FD36":
-            return OpCode(v: code, c: "LD (IY+$1),$2", m: "Load the contents of the memory address stored in (IY + $1) with the value $2", l: 3)
+            return OpCode(v: code, c: "LD (IY+¢1),¢2", m: "Load the contents of the memory address stored in (IY + ¢1) with the value ¢2", l: 3)
                 case "FD39":
                 return OpCode(v: code, c: "ADD IY,SP", m: " ", l: 1)
                 case "FD44":

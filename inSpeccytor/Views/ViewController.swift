@@ -61,7 +61,7 @@ class ViewController: BaseViewController {
     @IBAction func debugJump(_ sender: Any) {
         if jumpBox.hasText {
             var jumpTo: Int = 0
-            if baseSelector.selectedSegmentIndex == 0 {
+            if isHex() {
                 jumpTo = Int(jumpBox.text ?? "5B00", radix: 16) ?? 23296
             } else {
               jumpTo = Int(jumpBox.text ?? "23296") ?? 23296
@@ -98,12 +98,30 @@ class ViewController: BaseViewController {
                 e.text = useHexValues ? speccy.eR().hexValue() : speccy.eR().stringValue()
                 h.text = useHexValues ? speccy.hR().hexValue() : speccy.hR().stringValue()
                 l.text = useHexValues ? speccy.lR().hexValue() : speccy.lR().stringValue()
+                
+                if isDisassembly() {
+                    if speccy.jumpPoints.count > sizeOfLastJumpMap {
+                        let jumpPoints = speccy.jumpPoints
+                        jumpPoints.forEach {point in
+                            let line = Int(point)
+                            if !entryPoints.contains(line){
+                                entryPoints.append(line)
+                            }
+                        }
+                        sizeOfLastJumpMap = jumpPoints.count
+                    }
+                   }
+
             }
         default:
             print("Model \(computerModel.rawValue) is not currently supported")
         }
         
         fpsLabel.text = "FPS: \(frames / seconds) in \(seconds) seconds"
+        
+   
+        
+        
     }
     
 
@@ -139,9 +157,9 @@ class ViewController: BaseViewController {
     }
     
     @IBAction func stepFromPC(_ sender: Any) {
-        stopAfterEachOpCode = true
-        updatePC()
-        parseLine()
+//        stopAfterEachOpCode = true
+//        updatePC()
+//        parseLine()
     }
     
     @IBAction func poke(_ sender: Any) {
@@ -150,7 +168,7 @@ class ViewController: BaseViewController {
             computer?.ldRam(location: UInt16(0x5822), value: UInt8(0x4b))
             computer?.ldRam(location: UInt16(0x5823), value: UInt8(0xcb))
         } else {
-        if baseSelector.selectedSegmentIndex == 0 {
+        if isHex() {
             computer?.ldRam(location: UInt16(address.text ?? "0000", radix: 16) ?? 0xffff, value: UInt8(newByte.text ?? "00", radix: 16) ?? 0x00)
         } else {
             computer?.ldRam(location: UInt16(address.text ?? "0") ?? 0xffff, value: UInt8(newByte.text ?? "00") ?? 0x00)
@@ -174,6 +192,14 @@ class ViewController: BaseViewController {
             debuggerView.isHidden = true
             hexView.isHidden = true
             registersView.isHidden = true
+        case 2:
+            screenHeightConstraint.constant = self.view.frame.height * 0.25
+            mainTableView.isHidden = false
+            tableView.isHidden = false
+            debuggerView.isHidden = false
+            hexView.isHidden = false
+            registersView.isHidden = true
+            mainTableView.reloadData()
         default:
             screenHeightConstraint.constant = self.view.frame.height * 0.5
             mainTableView.isHidden = false

@@ -204,7 +204,6 @@
                                         <state key="normal" title="CLEAR"/>
                                         <connections>
                                             <action selector="clearCode:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="PGV-qq-Yn7"/>
-                                            <action selector="loadCode:" destination="ZKi-3P-AX1" eventType="touchUpInside" id="hqG-Oi-lxT"/>
                                         </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ejq-fi-MB3">

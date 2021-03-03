@@ -41,14 +41,24 @@
 		CD03E729259CF995005F0F83 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD03E7C225A12B2E005F0F83 /* allTestsTo7f.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03E7C125A12B2D005F0F83 /* allTestsTo7f.swift */; };
+		CD0D44E325EFBEC100AD6272 /* Z80Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */; };
+		CD0D44E425EFBEC100AD6272 /* Z80Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */; };
+		CD0D44EC25EFC6B300AD6272 /* CodeRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */; };
+		CD0D44ED25EFC6B300AD6272 /* CodeRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */; };
+		CD0D44F225EFC7D600AD6272 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44F125EFC7D600AD6272 /* DataType.swift */; };
+		CD0D44F325EFC7D600AD6272 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D44F125EFC7D600AD6272 /* DataType.swift */; };
 		CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */; };
 		CD13E08325C0399700FB0E21 /* cyberrun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08225C0399700FB0E21 /* cyberrun.sna */; };
 		CD13E08425C0399700FB0E21 /* cyberrun.sna in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08225C0399700FB0E21 /* cyberrun.sna */; };
 		CD13E08C25C0647600FB0E21 /* knighttyme128.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */; };
 		CD13E08D25C0647600FB0E21 /* knighttyme128.z80 in Resources */ = {isa = PBXBuildFile; fileRef = CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */; };
+		CD23901C25ED5692006BFA69 /* SaveLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23901B25ED5692006BFA69 /* SaveLoad.swift */; };
 		CD2A9A2425CC4F1B0052A0F8 /* Z80Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */; };
 		CD2A9A2525CC4F1B0052A0F8 /* Z80Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */; };
 		CD2A9A2D25CC51130052A0F8 /* AssemblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A9A2C25CC51130052A0F8 /* AssemblerTests.swift */; };
+		CD4ED8ED25ED874500EBF8A7 /* Decode+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4ED8EC25ED874500EBF8A7 /* Decode+Dictionary.swift */; };
+		CD4ED8F325EE33B900EBF8A7 /* FilesProvider in Frameworks */ = {isa = PBXBuildFile; productRef = CD4ED8F225EE33B900EBF8A7 /* FilesProvider */; };
+		CD576EB525E8E7F5008A4D72 /* CodeListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD576EB425E8E7F5008A4D72 /* CodeListing.swift */; };
 		CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */; };
 		CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59ED07254EC83B00B56C1A /* TargetType.swift */; };
 		CD62E3C225A1A32200B89CEA /* allTests80toca.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD62E3C125A1A32200B89CEA /* allTests80toca.swift */; };
@@ -92,8 +102,8 @@
 		CD94821825D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */; };
 		CD94821D25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */; };
 		CD94821E25D252F3001A8718 /* Z80Assembler+Bitwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */; };
-		CD94822325D258DC001A8718 /* Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Assembler+Jump.swift */; };
-		CD94822425D258DC001A8718 /* Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Assembler+Jump.swift */; };
+		CD94822325D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */; };
+		CD94822425D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */; };
 		CD94822925D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */; };
 		CD94822A25D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */; };
 		CD94822F25D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */; };
@@ -663,11 +673,17 @@
 		CD03E6D7259BC8DE005F0F83 /* testand.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testand.sna; sourceTree = "<group>"; };
 		CD03E6DF259BD501005F0F83 /* testz80.sna */ = {isa = PBXFileReference; lastKnownFileType = file; path = testz80.sna; sourceTree = "<group>"; };
 		CD03E7C125A12B2D005F0F83 /* allTestsTo7f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTestsTo7f.swift; sourceTree = "<group>"; };
+		CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80Disassembler.swift; sourceTree = "<group>"; };
+		CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeRoutine.swift; sourceTree = "<group>"; };
+		CD0D44F125EFC7D600AD6272 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		CD0DB0F8259B5E340001A4F5 /* FlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagRegister.swift; sourceTree = "<group>"; };
 		CD13E08225C0399700FB0E21 /* cyberrun.sna */ = {isa = PBXFileReference; lastKnownFileType = file; name = cyberrun.sna; path = roms/cyberrun.sna; sourceTree = SOURCE_ROOT; };
 		CD13E08B25C0647600FB0E21 /* knighttyme128.z80 */ = {isa = PBXFileReference; lastKnownFileType = file; path = knighttyme128.z80; sourceTree = "<group>"; };
+		CD23901B25ED5692006BFA69 /* SaveLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoad.swift; sourceTree = "<group>"; };
 		CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Z80Assembler.swift; sourceTree = "<group>"; };
 		CD2A9A2C25CC51130052A0F8 /* AssemblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerTests.swift; sourceTree = "<group>"; };
+		CD4ED8EC25ED874500EBF8A7 /* Decode+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decode+Dictionary.swift"; sourceTree = "<group>"; };
+		CD576EB425E8E7F5008A4D72 /* CodeListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeListing.swift; sourceTree = "<group>"; };
 		CD59ECF0254EBE0400B56C1A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CD59ED07254EC83B00B56C1A /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		CD62E3C125A1A32200B89CEA /* allTests80toca.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allTests80toca.swift; sourceTree = "<group>"; };
@@ -698,7 +714,7 @@
 		CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembly+Subtractions.swift"; sourceTree = "<group>"; };
 		CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Logic.swift"; sourceTree = "<group>"; };
 		CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Bitwise.swift"; sourceTree = "<group>"; };
-		CD94822225D258DC001A8718 /* Assembler+Jump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assembler+Jump.swift"; sourceTree = "<group>"; };
+		CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Jump.swift"; sourceTree = "<group>"; };
 		CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Registry.swift"; sourceTree = "<group>"; };
 		CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+BitShift.swift"; sourceTree = "<group>"; };
 		CD94823725D2952C001A8718 /* Z80Assembler+Ports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Z80Assembler+Ports.swift"; sourceTree = "<group>"; };
@@ -1006,6 +1022,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE32BC125C5F3F9006CF512 /* Zip in Frameworks */,
+				CD4ED8F325EE33B900EBF8A7 /* FilesProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,7 +1043,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CD2A9A2225CC4EE50052A0F8 /* Assembler */ = {
+		CD0D44DF25EFBE4200AD6272 /* DisAssembler */ = {
+			isa = PBXGroup;
+			children = (
+				CD0D44E125EFBE7E00AD6272 /* Z80 */,
+			);
+			path = DisAssembler;
+			sourceTree = "<group>";
+		};
+		CD0D44E025EFBE4D00AD6272 /* Z80 */ = {
 			isa = PBXGroup;
 			children = (
 				CD2A9A2325CC4F1B0052A0F8 /* Z80Assembler.swift */,
@@ -1035,10 +1060,26 @@
 				CD94821025D19779001A8718 /* Z80Assembly+Subtractions.swift */,
 				CD94821625D2511A001A8718 /* Z80Assembler+Logic.swift */,
 				CD94821C25D252F3001A8718 /* Z80Assembler+Bitwise.swift */,
-				CD94822225D258DC001A8718 /* Assembler+Jump.swift */,
+				CD94822225D258DC001A8718 /* Z80Assembler+Jump.swift */,
 				CD94822825D263B2001A8718 /* Z80Assembler+Registry.swift */,
 				CD94822E25D2663D001A8718 /* Z80Assembler+BitShift.swift */,
 				CD94823725D2952C001A8718 /* Z80Assembler+Ports.swift */,
+			);
+			path = Z80;
+			sourceTree = "<group>";
+		};
+		CD0D44E125EFBE7E00AD6272 /* Z80 */ = {
+			isa = PBXGroup;
+			children = (
+				CD0D44E225EFBEC100AD6272 /* Z80Disassembler.swift */,
+			);
+			path = Z80;
+			sourceTree = "<group>";
+		};
+		CD2A9A2225CC4EE50052A0F8 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				CD0D44E025EFBE4D00AD6272 /* Z80 */,
 			);
 			path = Assembler;
 			sourceTree = "<group>";
@@ -1050,6 +1091,7 @@
 				CDED0C0925949FF400862DE0 /* Flag.swift */,
 				CDD9021325AE05A000AB93FD /* FileFormat.swift */,
 				CDBCBB7125BEC3B800FDB350 /* ComputerModel.swift */,
+				CD0D44F125EFC7D600AD6272 /* DataType.swift */,
 			);
 			path = constants;
 			sourceTree = "<group>";
@@ -1337,6 +1379,7 @@
 		CDF8A1D12531CC2700F0D216 /* inSpeccytor */ = {
 			isa = PBXGroup;
 			children = (
+				CD0D44DF25EFBE4200AD6272 /* DisAssembler */,
 				CD2A9A2225CC4EE50052A0F8 /* Assembler */,
 				CDBCBB6525BEB8EA00FDB350 /* Computer */,
 				CDBCBB5D25BEB85C00FDB350 /* Processor */,
@@ -1359,6 +1402,7 @@
 				CDCB61C825881786008DD916 /* Color.swift */,
 				CDCB61CD258817C8008DD916 /* Bitmap.swift */,
 				CD62E48625ACE58900B89CEA /* images.xcassets */,
+				CD23901B25ED5692006BFA69 /* SaveLoad.swift */,
 			);
 			path = inSpeccytor;
 			sourceTree = "<group>";
@@ -1516,6 +1560,7 @@
 				CDCB61DC2588DC56008DD916 /* UInt8+Attributes.swift */,
 				CD8F4D6D258FD48B0004CD3F /* DispatchQueue+backgrounding.swift */,
 				CDBC542C25B34FA0004FAA55 /* Constraint+Multiplier.swift */,
+				CD4ED8EC25ED874500EBF8A7 /* Decode+Dictionary.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1526,6 +1571,8 @@
 				CDF8A2732531E87F00F0D216 /* CodeByteModel.swift */,
 				CDF8C47825335F8C0014A587 /* RegisterModel.swift */,
 				CDBB3F3E253B371800A1FFC0 /* OpCode.swift */,
+				CD576EB425E8E7F5008A4D72 /* CodeListing.swift */,
+				CD0D44EB25EFC6B300AD6272 /* CodeRoutine.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1548,6 +1595,7 @@
 			name = inSpeccytor;
 			packageProductDependencies = (
 				CDE32BC025C5F3F9006CF512 /* Zip */,
+				CD4ED8F225EE33B900EBF8A7 /* FilesProvider */,
 			);
 			productName = inSpeccytor;
 			productReference = CDF8A1CF2531CC2700F0D216 /* inSpeccytor.app */;
@@ -1622,6 +1670,7 @@
 			mainGroup = CDF8A1C62531CC2700F0D216;
 			packageReferences = (
 				CDE32BBF25C5F3F9006CF512 /* XCRemoteSwiftPackageReference "Zip" */,
+				CD4ED8F125EE33B900EBF8A7 /* XCRemoteSwiftPackageReference "FileProvider" */,
 			);
 			productRefGroup = CDF8A1D02531CC2700F0D216 /* Products */;
 			projectDirPath = "";
@@ -2165,6 +2214,7 @@
 				CDBB3F3A253B360F00A1FFC0 /* OpCodeDefs.swift in Sources */,
 				CDED0C0025949B3C00862DE0 /* Z80+Opcode.swift in Sources */,
 				CD0DB0F9259B5E340001A4F5 /* FlagRegister.swift in Sources */,
+				CD4ED8ED25ED874500EBF8A7 /* Decode+Dictionary.swift in Sources */,
 				CD94821725D2511A001A8718 /* Z80Assembler+Logic.swift in Sources */,
 				CDF8A26E2531DBC000F0D216 /* StringExtensions.swift in Sources */,
 				CD59ED08254EC83B00B56C1A /* TargetType.swift in Sources */,
@@ -2177,8 +2227,10 @@
 				CD94820B25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */,
 				CD62E43E25A4C44600B89CEA /* AudioStreamer.swift in Sources */,
 				CDBF6B8225D58A1A003E189E /* CodeExtensions.swift in Sources */,
+				CD0D44E325EFBEC100AD6272 /* Z80Disassembler.swift in Sources */,
 				CDCB61CE258817C8008DD916 /* Bitmap.swift in Sources */,
 				CDBF6B7C25D588F9003E189E /* DisassemblyExtensions.swift in Sources */,
+				CD576EB525E8E7F5008A4D72 /* CodeListing.swift in Sources */,
 				CD959D6C2599EF940043FB91 /* Z80+OpcodeDDFDCB.swift in Sources */,
 				CDF8A1D32531CC2700F0D216 /* AppDelegate.swift in Sources */,
 				CDBCBB7225BEC3B800FDB350 /* ComputerModel.swift in Sources */,
@@ -2190,7 +2242,9 @@
 				CDED0BEC25949ACD00862DE0 /* Z80+OpcodeED.swift in Sources */,
 				CDED0C122598967700862DE0 /* UInt16+Bitwise.swift in Sources */,
 				CDF8A1D52531CC2700F0D216 /* SceneDelegate.swift in Sources */,
+				CD0D44F225EFC7D600AD6272 /* DataType.swift in Sources */,
 				CD94820525D18CB8001A8718 /* Z80Assembler+Load.swift in Sources */,
+				CD23901C25ED5692006BFA69 /* SaveLoad.swift in Sources */,
 				CDCB61D82588C80B008DD916 /* Int+Bitwise.swift in Sources */,
 				CDCB61D325881842008DD916 /* UIImage+Bitmap.swift in Sources */,
 				CDE3ECB0258CE7D900C8E8AF /* Z80.swift in Sources */,
@@ -2217,7 +2271,8 @@
 				CD94C42925C01B1A00C93F21 /* ZXSpectrum128K.swift in Sources */,
 				CDF8A2742531E87F00F0D216 /* CodeByteModel.swift in Sources */,
 				CD94822925D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */,
-				CD94822325D258DC001A8718 /* Assembler+Jump.swift in Sources */,
+				CD94822325D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */,
+				CD0D44EC25EFC6B300AD6272 /* CodeRoutine.swift in Sources */,
 				CD59ECF1254EBE0400B56C1A /* MainTableViewCell.swift in Sources */,
 				CDCB61DD2588DC56008DD916 /* UInt8+Attributes.swift in Sources */,
 				CDF8C47925335F8C0014A587 /* RegisterModel.swift in Sources */,
@@ -2240,11 +2295,12 @@
 				CD03E711259CF963005F0F83 /* Z80+OpcodeED.swift in Sources */,
 				CD03E708259CF963005F0F83 /* UInt8+Attributes.swift in Sources */,
 				CD03E710259CF963005F0F83 /* DispatchQueue+backgrounding.swift in Sources */,
-				CD94822425D258DC001A8718 /* Assembler+Jump.swift in Sources */,
+				CD94822425D258DC001A8718 /* Z80Assembler+Jump.swift in Sources */,
 				CD03E71D259CF989005F0F83 /* ViewController.swift in Sources */,
 				CD62E3D325A1C06700B89CEA /* allTestsP_CB00to7f.swift in Sources */,
 				CD03E72A259CF995005F0F83 /* TargetType.swift in Sources */,
 				CDD9021C25AE08E500AB93FD /* BaseViewController.swift in Sources */,
+				CD0D44F325EFC7D600AD6272 /* DataType.swift in Sources */,
 				CD03E724259CF995005F0F83 /* RegisterPair.swift in Sources */,
 				CD62E3FE25A2526200B89CEA /* allTestsP_FDCB00to7f.swift in Sources */,
 				CD94823925D2952C001A8718 /* Z80Assembler+Ports.swift in Sources */,
@@ -2270,6 +2326,7 @@
 				CD03E719259CF989005F0F83 /* Color.swift in Sources */,
 				CD03E716259CF989005F0F83 /* MainTableViewCell.swift in Sources */,
 				CD62E46D25A79E8700B89CEA /* BaseFileFormat.swift in Sources */,
+				CD0D44E425EFBEC100AD6272 /* Z80Disassembler.swift in Sources */,
 				CD62E40B25A2557C00B89CEA /* allTestsP_FD_ALL.swift in Sources */,
 				CD94821225D19779001A8718 /* Z80Assembly+Subtractions.swift in Sources */,
 				CD2A9A2D25CC51130052A0F8 /* AssemblerTests.swift in Sources */,
@@ -2299,6 +2356,7 @@
 				CD94820C25D192ED001A8718 /* Z80Assembler+Adds.swift in Sources */,
 				CD94822A25D263B2001A8718 /* Z80Assembler+Registry.swift in Sources */,
 				CD62E3E725A1F49200B89CEA /* allTestsP_DD80toff.swift in Sources */,
+				CD0D44ED25EFC6B300AD6272 /* CodeRoutine.swift in Sources */,
 				CD94823025D2663D001A8718 /* Z80Assembler+BitShift.swift in Sources */,
 				CDBF6B7D25D588F9003E189E /* DisassemblyExtensions.swift in Sources */,
 			);
@@ -2638,6 +2696,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CD4ED8F125EE33B900EBF8A7 /* XCRemoteSwiftPackageReference "FileProvider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amosavian/FileProvider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.26.0;
+			};
+		};
 		CDE32BBF25C5F3F9006CF512 /* XCRemoteSwiftPackageReference "Zip" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/Zip.git";
@@ -2649,6 +2715,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CD4ED8F225EE33B900EBF8A7 /* FilesProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD4ED8F125EE33B900EBF8A7 /* XCRemoteSwiftPackageReference "FileProvider" */;
+			productName = FilesProvider;
+		};
 		CDE32BC025C5F3F9006CF512 /* Zip */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CDE32BBF25C5F3F9006CF512 /* XCRemoteSwiftPackageReference "Zip" */;

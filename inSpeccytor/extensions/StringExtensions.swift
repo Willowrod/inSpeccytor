@@ -104,7 +104,7 @@ extension String {
         return false
     }
     
-    func validUInt16() -> UInt16? {
+    func validUInt16(labels: Dictionary<String, Int>?) -> UInt16? {
         if self.contains("0X") || self.contains("$"){
             if let integer = Int(self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "0X", with: "").replacingOccurrences(of: "$", with: ""), radix: 16), integer <= 0xFFFF, integer >= 0x00 {
                 return UInt16(integer)
@@ -113,6 +113,10 @@ extension String {
             if let integer = Int(self), integer <= 0xFFFF {
                 return UInt16(integer)
             }
+        
+        if let integer = labels?[self], integer <= 0xFFFF {
+            return UInt16(integer)
+        }
         return nil
     }
     
@@ -125,6 +129,25 @@ extension String {
             if let integer = Int(self), integer <= 0xFF, integer >= 0x00 {
                 return UInt8(integer)
             }
+        return nil
+    }
+    
+    func validUInt8(labels: Dictionary<String, Int>?, line: Int) -> UInt8? {
+        if self.contains("0X") || self.contains("$"){
+            if let integer = Int(self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "0X", with: "").replacingOccurrences(of: "$", with: ""), radix: 16), integer <= 0xFF {
+                return UInt8(integer)
+            }
+        }
+            if let integer = Int(self), integer <= 0xFF, integer >= 0x00 {
+                return UInt8(integer)
+            }
+        
+        if let integer = labels?[self], integer <= 0xFFFF {
+            let difference = integer - line
+            if let twos = difference.findTwosCompliment() {
+                return twos
+            }
+        }
         return nil
     }
     

@@ -41,8 +41,10 @@ extension Z80Assembler {
         if splitParts[0].count > 4 {
             var returner = ""
             let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-            if let word = address.validUInt16(){
+            if let word = address.validUInt16(labels: labelDictionary){
                 returner = "\(word.lowByte().hex()) \(word.highByte().hex())"
+            } else {
+                returner = "00 00"
             }
             
             switch splitParts[1] {
@@ -62,7 +64,7 @@ extension Z80Assembler {
                 return "ED 73 \(returner)"
             default:
                 print("Direct memory load failed for opcode \(opCode)")
-                return "??"
+                return "00 00 00"
             }
         }
         
@@ -106,6 +108,7 @@ extension Z80Assembler {
                 return "ED 5F"
                 
             default:
+                
                 if let displacement = String(splitParts[1]).displacement(){
                     if splitParts[1].contains("IX+") {
                         return "DD 7E \(displacement)"
@@ -117,7 +120,7 @@ extension Z80Assembler {
                 
                 if splitParts[1].contains("(") {
                     let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                    if let word = address.validUInt16(){
+                    if let word = address.validUInt16(labels: labelDictionary){
                         return "3A \(word.lowByte().hex()) \(word.highByte().hex())"
                     }
                 }
@@ -273,68 +276,76 @@ extension Z80Assembler {
             
         case "BC":
             
-            if let word = String(splitParts[1]).validUInt16() {
-                return "01 \(word.lowByte().hex()) \(word.highByte().hex())"
-            }
-            
             if splitParts[1].contains("(") {
                 let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                if let word = address.validUInt16(){
+                if let word = address.validUInt16(labels: labelDictionary){
                     return "ED 4B \(word.lowByte().hex()) \(word.highByte().hex())"
                 }
             }
             
+            if let word = String(splitParts[1]).validUInt16(labels: labelDictionary) {
+                return "01 \(word.lowByte().hex()) \(word.highByte().hex())"
+            }
+            print("Load failed for opcode \(opCode)")
+            return "00 00 00 00"
+            
         case "DE":
             
-            if let word = String(splitParts[1]).validUInt16() {
-                return "11 \(word.lowByte().hex()) \(word.highByte().hex())"
-            }
             
             if splitParts[1].contains("(") {
                 let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                if let word = address.validUInt16(){
+                if let word = address.validUInt16(labels: labelDictionary){
                     return "ED 5B \(word.lowByte().hex()) \(word.highByte().hex())"
                 }
             }
+            if let word = String(splitParts[1]).validUInt16(labels: labelDictionary) {
+                return "11 \(word.lowByte().hex()) \(word.highByte().hex())"
+            }
+            print("Load failed for opcode \(opCode)")
+            return "00 00 00 00"
             
         case "HL":
             
-            if let word = String(splitParts[1]).validUInt16() {
-                return "21 \(word.lowByte().hex()) \(word.highByte().hex())"
-            }
-            
             if splitParts[1].contains("(") {
                 let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                if let word = address.validUInt16(){
+                if let word = address.validUInt16(labels: labelDictionary){
                     return "2A \(word.lowByte().hex()) \(word.highByte().hex())"
                 }
             }
+            if let word = String(splitParts[1]).validUInt16(labels: labelDictionary) {
+                return "21 \(word.lowByte().hex()) \(word.highByte().hex())"
+            }
+            
             
         case "IX":
             
-            if let word = String(splitParts[1]).validUInt16() {
-                return "DD 21 \(word.lowByte().hex()) \(word.highByte().hex())"
-            }
-            
             if splitParts[1].contains("(") {
                 let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                if let word = address.validUInt16(){
+                if let word = address.validUInt16(labels: labelDictionary){
                     return "DD 2A \(word.lowByte().hex()) \(word.highByte().hex())"
                 }
             }
+            if let word = String(splitParts[1]).validUInt16(labels: labelDictionary) {
+                return "DD 21 \(word.lowByte().hex()) \(word.highByte().hex())"
+            }
+            
+            print("Load failed for opcode \(opCode)")
+            return "00 00 00 00"
             
         case "IY":
             
-            if let word = String(splitParts[1]).validUInt16() {
-                return "FD 21 \(word.lowByte().hex()) \(word.highByte().hex())"
-            }
-            
             if splitParts[1].contains("(") {
                 let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                if let word = address.validUInt16(){
+                if let word = address.validUInt16(labels: labelDictionary){
                     return "FD 2A \(word.lowByte().hex()) \(word.highByte().hex())"
                 }
             }
+            if let word = String(splitParts[1]).validUInt16(labels: labelDictionary) {
+                return "FD 21 \(word.lowByte().hex()) \(word.highByte().hex())"
+            }
+            
+            print("Load failed for opcode \(opCode)")
+            return "00 00 00 00"
             
         case "SP":
             
@@ -350,16 +361,18 @@ extension Z80Assembler {
                         return "FD F9 \(displacement)"
                     }
                 }
-                if let word = String(splitParts[1]).validUInt16() {
-                    return "31 \(word.lowByte().hex()) \(word.highByte().hex())"
-                }
-                
                 if splitParts[1].contains("(") {
                     let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                    if let word = address.validUInt16(){
+                    if let word = address.validUInt16(labels: labelDictionary){
                         return "ED 7B \(word.lowByte().hex()) \(word.highByte().hex())"
                     }
                 }
+                if let word = String(splitParts[1]).validUInt16(labels: labelDictionary) {
+                    return "31 \(word.lowByte().hex()) \(word.highByte().hex())"
+                }
+                
+                print("Load failed for opcode \(opCode)")
+                return "00 00 00 00"
             }
             
             
@@ -369,13 +382,13 @@ extension Z80Assembler {
         default:
             if splitParts[1].contains("(") {
                 let address = splitParts[1].replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-                if let word = address.validUInt16(){
+                if let word = address.validUInt16(labels: labelDictionary){
                     return "3A \(word.lowByte().hex()) \(word.highByte().hex())"
                 }
             }
             
             print("Load failed for opcode \(opCode)")
-            return "??"
+            return "00 00 00"
         }
         
         

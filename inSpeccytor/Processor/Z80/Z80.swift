@@ -266,10 +266,14 @@ print("Writing nothing to RAM....")
     func call(location: UInt16, length: UInt16 = 1){
         PC = PC &+ length
         push(value: PC)
-        PC = location
+        //PC = location
+        jump(location: location)
     }
     
     func jump(location: UInt16){
+        if !jumpPoints.contains(location) {
+            jumpPoints.append(location)
+        }
         PC = location
     }
     
@@ -308,7 +312,7 @@ print("Writing nothing to RAM....")
         if subt{
             return iy().value() &- UInt16(comp)
         } else {
-            return iy().value() &+ UInt16(comp)
+            return iy().value() &+ UInt16(twos)
         }
     }
     

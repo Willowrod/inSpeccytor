@@ -1,17 +1,22 @@
 //
-//  TargetType.swift
+//  DataType.swift
 //  inSpeccytor
 //
-//  Created by Mike Hall on 01/11/2020.
+//  Created by Mike Hall on 03/03/2021.
 //
 
 import Foundation
 
-enum TypeOfTarget: String{
-    case CODE = "CODE", DATA = "DATA", TEXT = "TEXT", GRAPHICS = "GRAPHICS", VALUE = "VALUE", RELATIVE = "RELATIVE", NOTARGET = "NOTARGET", RST = "RST", EMPTY = "EMPTY"
+enum DataType: String{
+    case CODE = "CODE",
+         DATA = "DATA",
+         TEXT = "TEXT",
+         GRAPHICS = "GRAPHICS",
+         UNUSED = "VALUE",
+         UNDEFINED = "UNDEFINED"
 }
 
-extension TypeOfTarget: Codable {
+extension DataType: Codable {
     enum Key: CodingKey {
         case rawValue
     }
@@ -28,13 +33,10 @@ extension TypeOfTarget: Codable {
        case "DATA": self = .DATA
        case "TEXT": self = .TEXT
        case "GRAPHICS": self = .GRAPHICS
-       case "VALUE": self = .VALUE
-       case "RELATIVE": self = .RELATIVE
-       case "NOTARGET": self = .NOTARGET
-       case "RST": self = .RST
-       case "EMPTY": self = .EMPTY
+       case "UNUSED": self = .UNUSED
+       case "UNDEFINED": self = .UNDEFINED
        default:
-       self = .NOTARGET
+       self = .UNDEFINED
        }
     }
     
@@ -50,16 +52,10 @@ extension TypeOfTarget: Codable {
             try container.encode("TEXT", forKey: .rawValue)
         case .GRAPHICS:
             try container.encode("GRAPHICS", forKey: .rawValue)
-        case .VALUE:
-            try container.encode("VALUE", forKey: .rawValue)
-        case .RELATIVE:
-            try container.encode("RELATIVE", forKey: .rawValue)
-        case .NOTARGET:
-            try container.encode("NOTARGET", forKey: .rawValue)
-        case .RST:
-            try container.encode("RST", forKey: .rawValue)
-        case .EMPTY:
-            try container.encode("EMPTY", forKey: .rawValue)
+        case .UNUSED:
+            try container.encode("UNUSED", forKey: .rawValue)
+        case .UNDEFINED:
+            try container.encode("UNDEFINED", forKey: .rawValue)
         }
     }
 }

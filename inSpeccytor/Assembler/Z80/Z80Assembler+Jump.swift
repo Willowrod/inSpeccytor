@@ -13,7 +13,7 @@ extension Z80Assembler {
         
         let split = secondPart.split(separator: ",")
         if split.count == 2{
-            if let word = String(split[1]).validUInt16(){
+            if let word = String(split[1]).validUInt16(labels: labelDictionary){
                 let bytes = "\(word.lowByte().hex()) \(word.highByte().hex())"
                 switch split[0] {
                 case "C":
@@ -38,21 +38,21 @@ extension Z80Assembler {
             }
             
         }
-        if let word = secondPart.validUInt16(){
+        if let word = secondPart.validUInt16(labels: labelDictionary){
             let bytes = "\(word.lowByte().hex()) \(word.highByte().hex())"
             
             return "CD \(bytes)"
             
         }
         print("CALL did not conform to any known pattern for opcode \(opCode)")
-        return "??"
+        return "00 00 00"
     }
     
     func jp(secondPart: String, opCode: String) -> String {
         
         let split = secondPart.split(separator: ",")
         if split.count == 2{
-            if let word = String(split[1]).validUInt16(){
+            if let word = String(split[1]).validUInt16(labels: labelDictionary){
                 let bytes = "\(word.lowByte().hex()) \(word.highByte().hex())"
                 switch split[0] {
                 case "C":
@@ -90,21 +90,21 @@ extension Z80Assembler {
         }
         
         
-        if let word = secondPart.validUInt16(){
+        if let word = secondPart.validUInt16(labels: labelDictionary){
             let bytes = "\(word.lowByte().hex()) \(word.highByte().hex())"
             
             return "C3 \(bytes)"
             
         }
         print("JP did not conform to any known pattern for opcode \(opCode)")
-        return "??"
+        return "00 00 00"
     }
     
-    func jr(secondPart: String, opCode: String) -> String {
+    func jr(secondPart: String, opCode: String, line: Int) -> String {
         
         let split = secondPart.split(separator: ",")
         if split.count == 2{
-            if let byte = String(split[1]).validUInt8()?.hex(){
+            if let byte = String(split[1]).validUInt8(labels: labelDictionary, line: line+2)?.hex(){
                 switch split[0] {
                 case "C":
                     return "38 \(byte)"
@@ -120,13 +120,13 @@ extension Z80Assembler {
             }
             
         }
-        if let byte = secondPart.validUInt8()?.hex(){
+        if let byte = secondPart.validUInt8(labels: labelDictionary, line: line+2)?.hex(){
             
             return "18 \(byte)"
             
         }
         print("JR did not conform to any known pattern for opcode \(opCode)")
-        return "??"
+        return "00 00"
     }
     
     func ret(secondPart: String, opCode: String) -> String {
@@ -185,17 +185,17 @@ extension Z80Assembler {
         return "??"
     }
     
-    func djnz(secondPart: String, opCode: String) -> String {
+    func djnz(secondPart: String, opCode: String, line: Int) -> String {
         
         
-        if let byte = secondPart.validUInt8()?.hex(){
+        if let byte = secondPart.validUInt8(labels: labelDictionary, line: line+2)?.hex(){
             
             return "10 \(byte)"
             
         }
               
         print("DJNZ did not conform to any known pattern for opcode \(opCode)")
-        return "??"
+        return "00 00"
     }
     
 }

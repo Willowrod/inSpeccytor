@@ -144,11 +144,11 @@ class ZXSpectrum : Z80 {
                 }
                 
                 shouldForceBreak = false//
-                if PC >= 0x6000 {
-              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) \(byte) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
-
-//                    print("Breaking here")
-               }
+//                if PC >= 0x6000 {
+//              print("Next: \(String(PC, radix:16)) Opcode: \(String(byte, radix:16)) \(byte) A: \(String(a(), radix: 16)) F: \(String(f(), radix: 16)) (\(String(f(), radix: 2))) HL: \(String(HL.value(), radix: 16))  BC: \(String(BC.value(), radix: 16)) DE: \(String(DE.value(), radix: 16))")
+//
+////                    print("Breaking here")
+//               }
                 
                 opCode(byte: byte)
  //               beeper.updateSample(UInt32(currentTStates), beep: clicks)
@@ -430,7 +430,20 @@ class ZXSpectrum : Z80 {
             model.append(byte.createCodeByte(lineNumber: id))
             id += 1
         }
+        memory[1].forEach{byte in
+            model.append(byte.createCodeByte(lineNumber: id))
+            id += 1
+        }
         delegate?.updateCodeByteModel(model: model)
+    }
+    
+    override func memoryDump(withRom: Bool = true) -> [UInt8]{
+        var model: [UInt8] = []
+        if withRom {
+            model.append(contentsOf: memory[0])
+        }
+            model.append(contentsOf: memory[1])
+        return model
     }
     
 }
