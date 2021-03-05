@@ -21,6 +21,8 @@ class CPU {
     var jumpPoints: [UInt16] = []
     var memory: [[UInt8]] = []
     
+    var ramUpdated = false
+    
     // Registers
     var A: Accumilator = Accumilator()
     var spareRegister: Register = Register()

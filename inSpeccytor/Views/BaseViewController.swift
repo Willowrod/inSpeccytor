@@ -8,7 +8,8 @@
 import UIKit
 import FilesProvider
 
-class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate, CodeLineDelegate, SaveLoadDelegate, DisassemblyDelegate {
+class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CPUDelegate, CodeLineDelegate, SaveLoadDelegate, DisassemblyDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+
 
     
     func fileSaved() {
@@ -22,15 +23,20 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var programCounter: UITextField!
     @IBOutlet weak var jumpBox: UITextField!
     @IBOutlet weak var baseSelector: UISegmentedControl!
-    
+    @IBOutlet weak var ramViewTable: UICollectionView!
     @IBOutlet weak var border: UIView!
     @IBOutlet weak var snapShotTableView: UITableView!
+    
+    @IBOutlet weak var routineTableView: UITableView!
+    
     
     @IBOutlet weak var primaryFunction: UISegmentedControl!
     
     let pCOffset = 16384 - 27
     let lineCellIdentifier = "lineCell"
     let mainCellIdentifier = "codeCell"
+    let ramCellIdentifier = "ramCell"
+    let routineCellIdentifier = "routineCell"
     var model: [CodeByteModel] = []
     var opCodes: [OpCode] = []
     var stopAfterEachOpCode = false
@@ -63,7 +69,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var computerModel: ComputerModel = .ZXSpectrum_48K  //.ZXSpectrum_128K//
     
     
-    var codeStart: UInt16 = 0x6000
+    var codeStart: UInt16 = 0x5CCB
     
     var current_d_filename = ""
     var current_c_filename = ""
@@ -73,6 +79,9 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     var sizeOfLastJumpMap = 0
     
     
+    var memoryModel: [UInt8] = []
+    
+    var routineModel: [CodeRoutine] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +95,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func refreshTables() {
         mainTableView.reloadData()
+        routineTableView.reloadData()
         tableView.reloadData()
     }
     
@@ -252,6 +262,17 @@ resetDisassembly()
         alertUser(alertBody: "Disassembly complete - found \(disassembly.count) lines of code")
     }
     
+    func disassemblyComplete(codeRoutines: [CodeRoutine]) {
+        opCodes = []
+        routineModel = codeRoutines
+        codeRoutines.forEach{ routine in
+            opCodes.append(contentsOf: routine.code)
+        }
+        opCodes.sort{$0.line < $1.line}
+        refreshTables()
+        alertUser(alertBody: "Disassembly complete - found \(opCodes.count) lines of code in \(codeRoutines.count) routines")
+    }
+    
     func addNewLineOfCode(){
         var newLine = OpCode.init(v: "", c: "", m: "", l: 0)
         newLine.lineType = currentLineType
@@ -411,8 +432,8 @@ addNewLineOfCode()
 
             for item in items {
                 print("Found: \(item)")
-                if item.contains(".sna") || item.contains(".z80") || item.contains(".zip"){
-                    print("Adding: \(item)")
+                if item.contains(".sna") || item.contains(".z80") { //} || item.contains(".zip"){
+                 //   print("Adding: \(item)")
                     snapShots.append(item)
                 }
             }
@@ -436,6 +457,9 @@ addNewLineOfCode()
         if (tableView == mainTableView){
             return self.opCodes.count
         }
+        if (tableView == routineTableView){
+            return self.routineModel.count
+        }
         return self.model.count
     }
     
@@ -456,6 +480,19 @@ addNewLineOfCode()
             default:
                 return UITableViewCell.init()
             }
+        } else if (tableView == routineTableView){
+//            switch primaryFunction.selectedSegmentIndex {
+//            case 1:
+//                return d_mainTableViewCell(indexPath: indexPath)
+//            case 2:
+//                return c_mainTableViewCell(indexPath: indexPath)
+//            default:
+//                return UITableViewCell.init()
+//            }
+        let cell = tableView.dequeueReusableCell(withIdentifier: routineCellIdentifier, for: indexPath) as! RoutineTableViewCell
+        let thisLine = self.routineModel[row]
+        cell.routine.text = thisLine.title
+        return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: lineCellIdentifier, for: indexPath) as! LineTableViewCell
             let thisLine = self.model[row]
@@ -495,6 +532,15 @@ addNewLineOfCode()
                 }
                 
             }
+        } else if (tableView == routineTableView){
+            let row = indexPath.row
+            let thisLine = self.routineModel[row]
+                if let target = self.opCodes.firstIndex(where: {$0.line == thisLine.startLine}) {
+                    let targetRowIndexPath = IndexPath(row: target, section: 0)
+                   // tableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+                    mainTableView.scrollToRow(at: targetRowIndexPath, at: .top, animated: true)
+                }
+                
         } else if (tableView == self.tableView){
             let row = indexPath.row
             let thisLine = self.model[row]
@@ -514,6 +560,22 @@ addNewLineOfCode()
             tableView.reloadData()
         }
     }
+    
+    // Collection View Delegates
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return memoryModel.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+     //   return UICollectionViewCell()
+        let cell = ramViewTable.dequeueReusableCell(withReuseIdentifier: ramCellIdentifier, for: indexPath) as! RamCollectionViewCell
+        
+        let thisLine = self.memoryModel[indexPath.row]
+        cell.value.text = thisLine.hex()
+        return cell
+    }
+    
     
     // File Provider Delegates
     

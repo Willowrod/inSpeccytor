@@ -9,6 +9,7 @@ import Foundation
 
 protocol DisassemblyDelegate {
     func disassemblyComplete(disassembly: [OpCode])
+    func disassemblyComplete(codeRoutines: [CodeRoutine])
 }
 
 class Z80Disassembler {
@@ -41,14 +42,20 @@ class Z80Disassembler {
     }
     
     func disassemble(){
+        // Zeroth sweep - Screen and attributes
+        sweep0()
         // First sweep - Add all known opcodes
+        
         sweep1()
+        
+        disassembly.sort{$0.line < $1.line}
         // Second Sweep - try to find unclaimed sections of data
         sweep2()
         // Third sweep - compile 'allRoutines' array
         sweep3()
         // Send result back to delegate
-        delegate?.disassemblyComplete(disassembly: disassembly)
+        //delegate?.disassemblyComplete(disassembly: disassembly)
+        delegate?.disassemblyComplete(codeRoutines: allRoutines)
     }
     
     func increasePC(){
@@ -77,9 +84,51 @@ class Z80Disassembler {
         return 0
     }
 
+    func sweep0(){
+        var currentPoint = 0x4000
+        let step = 32
+        var graphicSet: [OpCode] = []
+        while currentPoint < 0x5800 {
+            let thisLineOfGraphics = memoryDump[currentPoint..<currentPoint+step]
+            var code = ""
+            thisLineOfGraphics.forEach{ byte in
+                code = "\(code)\(byte) "
+            }
+            var graphicalOpCode = OpCode(v: "GFX", c: "SCR$", m: code, l: 32)
+            graphicalOpCode.line = currentPoint
+            graphicalOpCode.lineType = .GRAPHICS
+            graphicSet.append(graphicalOpCode)
+            currentPoint += step
+        }
+        var title = "ScreenGraphics"
+        allRoutines.append(CodeRoutine(startLine: 0x4000, length: graphicSet.count * 32, code: graphicSet, description: "Screen Graphics at snap shot point", title: title, type: .GRAPHICS))
+        graphicSet = []
+        while currentPoint < 0x5B00 {
+            let thisLineOfGraphics = memoryDump[currentPoint..<currentPoint+step]
+            var code = ""
+            thisLineOfGraphics.forEach{ byte in
+                code = "\(code)\(byte) "
+            }
+            var graphicalOpCode = OpCode(v: "ATTR", c: "Attribs", m: code, l: 32)
+            graphicalOpCode.lineType = .GRAPHICS
+            graphicalOpCode.line = currentPoint
+            graphicSet.append(graphicalOpCode)
+            currentPoint += step
+        }
+        title = "Attributes"
+        allRoutines.append(CodeRoutine(startLine: 0x5800, length: graphicSet.count * 32, code: graphicSet, description: "Screen Attributes at snap shot point", title: title, type: .GRAPHICS))
+        
+        
+        
+    }
     
     func sweep1(){
         var runLoop = true
+        var count = 0
+        var lineCount = 0
+        var currentLine = -1
+        var routineCodes: [OpCode] = []
+        var thisLine = 0
         while runLoop{
             let lineAsInt = currentPC
             var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
@@ -190,7 +239,26 @@ class Z80Disassembler {
                 if opCode.value.uppercased() == "EF" {
                     isCalc = true
                 }
-                if (opCode.isEndOfRoutine){
+                
+                lineCount += 1
+                count += opCode.length
+                thisLine = opCode.line
+                if currentLine == -1 {
+                    currentLine = opCode.line
+                    lineCount = 1
+                }
+                routineCodes.append(opCode)
+                if opCode.isEndOfRoutine {
+                    let title = "\(UInt16(currentLine).hex()) - \(UInt16(thisLine).hex())"
+                    allRoutines.append(CodeRoutine(startLine: currentLine, length: count, code: routineCodes, description: "", title: title, type: .CODE))
+                    currentLine = -1
+                    print("Found routine \(title)")
+                    routineCodes.removeAll()
+//                }
+//
+//
+//
+//                if (opCode.isEndOfRoutine){
                         runLoop = sortNextOpCode()
                     }
 
@@ -223,13 +291,34 @@ class Z80Disassembler {
                 }
             }
             
-            print("Adding line \(opCode.line): \(opCode.code) - \(opCode.opCodeString)")
+      //      print("Adding line \(opCode.line): \(opCode.code) - \(opCode.opCodeString)")
             
         }
     }
     
     func sweep2(){
-        
+//        var count = 0
+//        var lineCount = 0
+//        var currentLine = -1
+//        var routineCodes: [OpCode] = []
+//        var thisLine = 0
+//        disassembly.forEach{line in
+//            lineCount += 1
+//            count += line.length
+//            thisLine = line.line
+//            if currentLine == -1 {
+//                currentLine = line.line
+//                lineCount = 1
+//            }
+//            routineCodes.append(line)
+//            if line.isEndOfRoutine {
+//                let title = "\(UInt16(currentLine).hex()) - \(UInt16(thisLine).hex())"
+//                allRoutines.append(CodeRoutine(startLine: currentLine, length: count, code: routineCodes, description: "", title: title, type: .CODE))
+//                currentLine = -1
+//                print("Found routine \(title)")
+//            }
+//        }
+//
     }
     
     func sweep3(){

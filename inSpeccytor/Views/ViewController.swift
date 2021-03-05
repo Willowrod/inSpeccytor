@@ -25,9 +25,9 @@ class ViewController: BaseViewController {
     
     @IBOutlet weak var debuggerView: UIView!
     @IBOutlet weak var registersView: UIView!
-    
     @IBOutlet weak var screenHeightConstraint: NSLayoutConstraint!
     
+    var currentSeconds = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,12 +110,24 @@ class ViewController: BaseViewController {
                         }
                         sizeOfLastJumpMap = jumpPoints.count
                     }
+                    
+//                    if (seconds != currentSeconds){
+//                        currentSeconds = seconds
+//                        if speccy.ramUpdated {
+//                            memoryModel = speccy.memoryDump(withRom: true)
+//                            ramViewTable.reloadData()
+//                            speccy.ramUpdated = false
+//                        }
+//                    }
+                    
                    }
 
             }
         default:
             print("Model \(computerModel.rawValue) is not currently supported")
         }
+        
+
         
         fpsLabel.text = "FPS: \(frames / seconds) in \(seconds) seconds"
         
