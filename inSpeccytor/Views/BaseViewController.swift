@@ -346,6 +346,16 @@ addNewLineOfCode()
         checkIfNewLineRequired()
     }
     
+    @IBAction func changeFunction(_ sender: Any) {
+        setFunctionScreen()
+    }
+    
+    
+    func setFunctionScreen(){
+    }
+    
+    
+    
     // Delegates
     
     // Code Line Delegate
@@ -518,7 +528,9 @@ addNewLineOfCode()
             let row = indexPath.row
             let thisFile = self.snapShots[row]
             computer?.load(file: thisFile)
+            if !isEmulator(){
             updatePCFromSnapshot()
+            }
             hideSnapShotTable()
         } else if (tableView == mainTableView){
             let row = indexPath.row

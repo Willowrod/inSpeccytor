@@ -26,7 +26,7 @@ class Z80Disassembler {
     var delegate: DisassemblyDelegate? = nil
     var isCalc = false
     
-    init(withData: [UInt8], knownJumpPoints: [Int], fromPC: Int, delegate: DisassemblyDelegate, shouldIncludeRom: Bool = false){
+    init(withData: [UInt8], knownJumpPoints: [Int], fromPC: Int, delegate: DisassemblyDelegate, shouldIncludeRom: Bool = false, shouldIncludeScreen: Bool = false){
         memoryDump = withData
         currentPC = fromPC
         self.delegate = delegate
@@ -38,19 +38,21 @@ class Z80Disassembler {
                 linesAdded.append(a)
             }
         }
-        disassemble()
+        disassemble(shouldIncludeScreen: shouldIncludeScreen)
     }
     
-    func disassemble(){
+    func disassemble(shouldIncludeScreen: Bool){
         // Zeroth sweep - Screen and attributes
+        if shouldIncludeScreen {
         sweep0()
+        }
         // First sweep - Add all known opcodes
-        
         sweep1()
-        
         disassembly.sort{$0.line < $1.line}
+        allRoutines.sort{$0.startLine < $1.startLine}
         // Second Sweep - try to find unclaimed sections of data
         sweep2()
+        allRoutines.sort{$0.startLine < $1.startLine}
         // Third sweep - compile 'allRoutines' array
         sweep3()
         // Send result back to delegate
@@ -125,11 +127,12 @@ class Z80Disassembler {
     func sweep1(){
         var runLoop = true
         var count = 0
-        var lineCount = 0
+    //    var lineCount = 0
         var currentLine = -1
         var routineCodes: [OpCode] = []
         var thisLine = 0
         while runLoop{
+          //  lineCount = 0
             let lineAsInt = currentPC
             var opCode = opcodeLookup.opCode(code: getCodeByte().hexValue)
             increasePC()
@@ -240,18 +243,19 @@ class Z80Disassembler {
                     isCalc = true
                 }
                 
-                lineCount += 1
+             //   lineCount += 1
                 count += opCode.length
                 thisLine = opCode.line
                 if currentLine == -1 {
                     currentLine = opCode.line
-                    lineCount = 1
+                //    lineCount = 1
                 }
                 routineCodes.append(opCode)
                 if opCode.isEndOfRoutine {
                     let title = "\(UInt16(currentLine).hex()) - \(UInt16(thisLine).hex())"
                     allRoutines.append(CodeRoutine(startLine: currentLine, length: count, code: routineCodes, description: "", title: title, type: .CODE))
                     currentLine = -1
+                    count = 0
                     print("Found routine \(title)")
                     routineCodes.removeAll()
 //                }
@@ -297,28 +301,26 @@ class Z80Disassembler {
     }
     
     func sweep2(){
-//        var count = 0
-//        var lineCount = 0
-//        var currentLine = -1
-//        var routineCodes: [OpCode] = []
-//        var thisLine = 0
-//        disassembly.forEach{line in
-//            lineCount += 1
-//            count += line.length
-//            thisLine = line.line
-//            if currentLine == -1 {
-//                currentLine = line.line
-//                lineCount = 1
-//            }
-//            routineCodes.append(line)
-//            if line.isEndOfRoutine {
-//                let title = "\(UInt16(currentLine).hex()) - \(UInt16(thisLine).hex())"
-//                allRoutines.append(CodeRoutine(startLine: currentLine, length: count, code: routineCodes, description: "", title: title, type: .CODE))
-//                currentLine = -1
-//                print("Found routine \(title)")
-//            }
-//        }
-//
+var currentStartLine = 0x5B01
+        allRoutines.forEach{routine in
+           // currentStartLine += 1
+            if routine.startLine > currentStartLine {
+                var opCodeSet: [OpCode] = []
+                let unknownCode = memoryDump[currentStartLine..<routine.startLine]
+                var code = ""
+                unknownCode.forEach{ byte in
+                    code = "\(code)\(byte) "
+                }
+                var unknownOpCode = OpCode(v: "UNKNOWN", c: "UNKNOWN", m: code, l: code.count)
+                unknownOpCode.line = currentStartLine
+                unknownOpCode.lineType = .EMPTY
+                opCodeSet.append(unknownOpCode)
+                let title = "\(UInt16(currentStartLine).hex()) - \(UInt16(routine.startLine - 1).hex()) - Undefined"
+                allRoutines.append(CodeRoutine(startLine: currentStartLine, length: unknownCode.count, code: opCodeSet, description: "", title: title, type: .UNDEFINED))
+                print("Found routine \(title)")
+            }
+            currentStartLine = routine.startLine + routine.length
+        }
     }
     
     func sweep3(){

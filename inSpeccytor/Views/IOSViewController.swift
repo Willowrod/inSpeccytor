@@ -27,6 +27,7 @@ class IOSViewController: BaseViewController{
     
     @IBOutlet weak var keyboardBottomConstant: NSLayoutConstraint!
     var kbAspectConstant: NSLayoutConstraint? = nil
+    @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +89,39 @@ class IOSViewController: BaseViewController{
     override func hideSnapShotTable(){
         snapShotTableView.isHidden = true
     }
+    
+    override func setFunctionScreen(){
+        switch primaryFunction.selectedSegmentIndex {
+        case 0:
+            screenWidthConstraint.constant = self.view.frame.width * 1
+            mainTableView.isHidden = true
+            tableView.isHidden = true
+            //debuggerView.isHidden = true
+            hexView.isHidden = true
+            registersView.isHidden = true
+        case 2:
+            screenHeightConstraint.constant = self.view.frame.height * 0.25
+            mainTableView.isHidden = false
+            tableView.isHidden = false
+            debuggerView.isHidden = false
+            hexView.isHidden = false
+            registersView.isHidden = true
+            mainTableView.reloadData()
+        default:
+            screenHeightConstraint.constant = self.view.frame.height * 0.5
+            mainTableView.isHidden = false
+            tableView.isHidden = false
+            debuggerView.isHidden = false
+            hexView.isHidden = false
+            registersView.isHidden = false
+            mainTableView.reloadData()
+        }
+        
+    }
+    
+    
+    
+    
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        if (tableView == self.fileTable){
 //            return self.filez.count

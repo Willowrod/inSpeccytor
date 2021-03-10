@@ -87,6 +87,7 @@ class ViewController: BaseViewController {
     
     
     override func updateRegisters(){
+        if !isEmulator(){
         switch computerModel {
         case .ZXSpectrum_48K, .ZXSpectrum_128K, .ZXSpectrum_128K_Plus2, .ZXSpectrum_128K_Plus3:
             if let speccy = computer as? ZXSpectrum {
@@ -129,10 +130,10 @@ class ViewController: BaseViewController {
         
 
         
+        }
         fpsLabel.text = "FPS: \(frames / seconds) in \(seconds) seconds"
         
    
-        
         
     }
     
@@ -195,7 +196,7 @@ class ViewController: BaseViewController {
         tableView.reloadData()
     }
     
-    func setFunctionScreen(){
+    override func setFunctionScreen(){
         switch primaryFunction.selectedSegmentIndex {
         case 0:
             screenHeightConstraint.constant = self.view.frame.height * 0.9
@@ -223,11 +224,7 @@ class ViewController: BaseViewController {
         }
         
     }
-    
-    @IBAction func changeFunction(_ sender: Any) {
-        setFunctionScreen()
-    }
-    
+
     
 }
 
